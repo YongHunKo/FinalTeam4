@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.DefaultMapper">
+	
+	<select id="select" parameterType="String" resultType="DefaultDTO">
+
+	</select>
+	<select id="selectall" resultType="DefaultDTO">
+
+	</select>
+	<insert id="insert" parameterType="DefaultDTO">
+	
+	</insert>
+	<update id="update" parameterType="DefaultDTO">
+	
+	</update>
+	<delete id="delete" parameterType="String">
+	
+	</delete>
+	
+</mapper>
