@@ -4486,7 +4486,7 @@ p {
 }
 
 .navbar-style-7 .navbar-container .navbar-top-wrapper {
-  background-color: #00ACB2;
+  background-color: black;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -6681,11 +6681,11 @@ p {
 }
 
 .header-style-dark-1 .header-big .single-header-item .header-item-content .link {
-  color: #00D4E0;
+  color: black;
 }
 
 .header-style-dark-1 .header-big .header-items-active .slick-dots li.slick-active button {
-  background-color: #00D4E0;
+  background-color: black;
 }
 
 .header-style-dark-1 .header-min .product-style-25 .product-content {
