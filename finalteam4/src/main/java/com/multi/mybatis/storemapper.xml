@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.StoreMapper">
+	
+	<select id="select" parameterType="Integer" resultType="StoreDTO">
+		SELECT * FROM store WHERE storeid=#{storeid}
+	</select>
+	<select id="selectall" resultType="StoreDTO">
+		SELECT * FROM store
+	</select>
+	<insert id="insert" parameterType="StoreDTO">
+		INSERT INTO store VALUES (#{storeid},#{cateid},#{storename},#{storeintroduce},#{storetel},#{storestatus},#{storeinfo})
+	</insert>
+	<update id="update" parameterType="StoreDTO">
+		UPDATE store SET cateid=#{cateid}, storename=#{storename}, storeintroduce=#{storeintroduce}, storetel=#{storetel}, storestatus=#{storestatus}, storeinfo=#{storeinfo} WHERE storeid=#{storeid}
+	</update>
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM store WHERE storeid=#{storeid}
+	</delete>
+	
+</mapper>
