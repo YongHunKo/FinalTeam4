@@ -14,8 +14,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		INSERT INTO review VALUES (#{reviewid}, #{custid}, #{storeid}, #{revtext}, #{star})
 	</insert>
 	<update id="update" parameterType="ReviewDTO">
-		UPDATE menu SET custid = #{custid}, storeid = #{storeid}, 
-		revtext = #{revtext}, star = #{star} WHERE reviewid = #{reviewid}
+		UPDATE review SET custid = #{custid}, storeid = #{storeid}, revtext = #{revtext}, star = #{star} WHERE reviewid = #{reviewid}
 	</update>
 	<delete id="delete" parameterType="Integer">
 		DELETE FROM review WHERE reviewid = #{reviewid}
