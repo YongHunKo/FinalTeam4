@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.ReserveMapper">
+	
+	<select id="select" parameterType="Integer" resultType="ReserveDTO">
+		SELECT * FROM reserve
+		WHERE reserveno=#{reserveno}
+	</select>
+	<select id="selectall" resultType="ReserveDTO">
+		SELECT * FROM reserve
+	</select>
+	<insert id="insert" parameterType="ReserveDTO">
+		INSERT INTO reserve VALUES (NULL, #{menuid}, #{cnt}, #{price})
+	</insert>
+	<update id="update" parameterType="ReserveDTO">
+		UPDATE reserve SET cnt=#{cnt}, price=#{price} WHERE reserveno = #{reserveno}
+	</update>
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM reserve WHERE reserveno = #{reserveno}
+	</delete>
+	
+</mapper>
