@@ -43,5 +43,9 @@ public class MenuService implements MyService<Integer, MenuDTO> {
 	public List<MenuDTO> selectcatemenu(Integer menucateid) throws Exception {
 		return mapper.selectcatemenu(menucateid);
 	}
+	
+	public List<MenuDTO> searchmenu(String txt) throws Exception {
+		return mapper.searchmenu(txt);
+	}
 
 }

@@ -14,6 +14,9 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="selectcatemenu" parameterType="Integer" resultType="MenuDTO">
 		SELECT menuid, storeid, menuname, menuprice, menuinfo, img FROM menu WHERE menucateid = #{menucateid}
 	</select>
+	<select id="searchmenu" parameterType="String" resultType="MenuDTO">
+		SELECT * FROM menu WHERE menuname LIKE CONCAT('%',#{txt},'%')
+	</select>
 	
 	<insert id="insert" parameterType="MenuDTO">
 		INSERT INTO menu VALUES (#{menuid}, #{storeid}, #{menucateid}, 
