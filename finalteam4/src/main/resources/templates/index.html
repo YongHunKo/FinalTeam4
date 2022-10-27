@@ -346,7 +346,7 @@ $(document).ready(function(){
                             <!-- navbar top right Start -->
                             <div class="navbar-top-right">
                                 <ul class="navbar-top-link">
-                                  
+                                    <li th:if="${session.logincust == null}"> <a href="/signin" ><i class="mdi mdi-account" ></i>Sign in</a></li>
                                     <li th:if="${session.logincust == null}"> <a href="/login" ><i class="mdi mdi-account" ></i>Login</a></li>
                                 </ul>
                             </div>
