@@ -31,7 +31,6 @@ public class LoginController {
 	@RequestMapping("/loginimpl")
 	public String loginimpl(HttpSession session, String custid, String custpwd, Model model) {
 		CustDTO cust = null;
-		System.out.println("in");
 		try {
 			cust = service.get(custid);
 			if(cust != null) {
