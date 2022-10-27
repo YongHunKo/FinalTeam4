@@ -3976,14 +3976,23 @@ p {
                            09. Search css
 ==================================================================*/
 /*=====  Search Style 05 =====*/
+
+/* 상단 SEARCH BAR */
 .search-style-5 {
   position: relative;
+  left:-190px;
   display: -moz-flex;
   display: -ms-flex;
   display: -o-flex;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width:750px;
+  text-align:center;
+  padding-top:20px;
+  padding-bottom:20px;
+  margin-left:20px;
+  
 }
 
 .search-style-5 .search-select .nice-select {
@@ -5281,9 +5290,14 @@ p {
   }
 }
 
-.navbar-style-7 .navbar-cart {
-  padding-left: 15px;
+ .navbar-cart {
+  padding-left: 0px;
   position: relative;
+  padding-top:20px;
+  padding-bottom:20px;
+  left:-150px;
+  height:50px;
+  
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
