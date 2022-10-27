@@ -16,6 +16,18 @@ public class LoginController {
 	@Autowired
 	CustService service;
 	
+	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		if (session != null) {
+			session.invalidate();
+		}
+		return "index";
+	}
+
+	
+	
+	
 	@RequestMapping("/loginimpl")
 	public String loginimpl(HttpSession session, String custid, String custpwd, Model model) {
 		CustDTO cust = null;

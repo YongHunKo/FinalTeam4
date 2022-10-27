@@ -333,13 +333,6 @@ $(document).ready(function(){
                             <div class="navbar-top-left">
                                 <ul class="navbar-top-link">
                                     <li><a href="about-page.html">About</a></li>
-                                    <li><a href="contact-page.html">Contact</a></li>
-                                    <li>
-                                        <a href="javascript:void(0)">
-                                            <i class="mdi mdi-phone-in-talk"></i>
-                                            +8801234567890
-                                        </a>
-                                    </li>
                                 </ul>
                             </div>
                             <!-- navbar top left Ends -->
@@ -349,6 +342,11 @@ $(document).ready(function(){
                                     <li th:if="${session.logincust == null}"> <a href="/signin" ><i class="mdi mdi-account" ></i>Sign in</a></li>
                                     <li th:if="${session.logincust == null}"> <a href="/login" ><i class="mdi mdi-account" ></i>Login</a></li>
                                     <li th:if="${session.logincust != null}"> <a href="/logout" ><i class="mdi mdi-account" ></i>Logout</a></li>
+                                    <li th:if="${session.logincust != null}">
+                                    	<p th:text="'😀'+${session.logincust.custname}+ '님 환영합니다'" style="color:white;"></p>
+                                    	
+                                    	
+                                     </li>
                                 </ul>
                             </div>
                             <!-- navbar top right Ends -->
@@ -389,7 +387,7 @@ $(document).ready(function(){
                                     </div>
                                 </div>
                                 <!-- navbar search Ends -->
-                                
+                              
                                 
                                 
                                 <!-- navbar cart start -->
