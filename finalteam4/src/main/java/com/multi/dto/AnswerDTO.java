@@ -15,8 +15,8 @@ import lombok.ToString;
 @ToString
 public class AnswerDTO {
 	private Integer apostid;
-	private Integer adminid;
-	private String qpostid;
+	private String adminid;
+	private Integer qpostid;
 	private String title;
 	private String qtext;
 	private Date rdate;
