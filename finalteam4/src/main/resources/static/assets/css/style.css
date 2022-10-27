@@ -39,6 +39,7 @@ body {
 
 img {
   max-width: 100%;
+  
 }
 
 a:focus,
@@ -3978,9 +3979,12 @@ p {
 /*=====  Search Style 05 =====*/
 
 /* 상단 SEARCH BAR */
+
+
+@media only screen and (min-width: 600px) and (max-width: 2000px){
 .search-style-5 {
   position: relative;
-  left:-190px;
+  left:-30%;
   display: -moz-flex;
   display: -ms-flex;
   display: -o-flex;
@@ -3988,13 +3992,11 @@ p {
   display: -ms-flexbox;
   display: flex;
   width:750px;
-  text-align:center;
   padding-top:20px;
   padding-bottom:20px;
-  margin-left:20px;
   
+	}
 }
-
 .search-style-5 .search-select .nice-select {
   float: none;
   border: 1px solid #D1D1D1;
@@ -4007,6 +4009,7 @@ p {
   border-bottom-left-radius: 4px;
   padding: 0 10px;
   padding-right: 28px;
+  display:flex;
 }
 
 .search-style-5 .search-select .nice-select:focus {
@@ -4425,7 +4428,16 @@ p {
   padding: 15px 0;
 }
 
-.navbar-style-7 .desktop-logo {
+.desktop-logo{
+	padding-top:30px;
+	width:100px;
+	padding-bottom:30px;
+	position: relative;
+	margin:0px;
+	
+}
+
+.navbar-style-7 {
   margin-right: 10px;
 }
 
