@@ -2581,10 +2581,13 @@ p {
 /*===== All Product Style 1 =====*/
 .product-style-1 .product-image {
   position: relative;
+  
 }
 
+/* Today's Pick img 조절 */
 .product-style-1 .product-image .product-active .product-item img {
   width: 100%;
+  height:350px;
 }
 
 .product-style-1 .product-image .product-active .slick-arrow {
@@ -2639,7 +2642,8 @@ p {
   margin: -50px 42px 0;
   position: relative;
   z-index: 5;
-  padding: 30px 20px 35px;
+  padding: 20px 20px 35px;
+  
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -4577,6 +4581,7 @@ p {
   height: 36px;
   line-height: 36px;
   border-radius: 0;
+  
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -4730,6 +4735,7 @@ p {
 .navbar-style-7 .navbar-container .main-navbar .navbar-menu .main-menu li {
   padding: 17px 0;
   position: relative;
+  justify-content: space-between;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -4922,6 +4928,9 @@ p {
     transition: all 0s linear;
   }
 }
+
+
+
 
 .navbar-style-7 .navbar-container .main-navbar .navbar-menu .main-menu li .sub-menu li {
   position: relative;
@@ -5392,6 +5401,7 @@ p {
 
 .navbar-dark-7 .navbar-container .navbar-top-wrapper {
   background-color: #B62F5C;
+
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -6509,8 +6519,8 @@ p {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 70%;
-  padding: 40px;
+  width: 35%;
+  padding: 25px;
   background-color: rgba(255, 255, 255, 0.74);
 }
 
