@@ -323,7 +323,7 @@
                             <div class="navbar-top-right">
                                 <ul class="navbar-top-link">
                                   
-                                    <li><a href="/login"><i class="mdi mdi-account"></i>Login</a></li>
+                                    <li th:if="${session.logincust == null}"> <a href="/login" ><i class="mdi mdi-account" ></i>Login</a></li>
                                 </ul>
                             </div>
                             <!-- navbar top right Ends -->
