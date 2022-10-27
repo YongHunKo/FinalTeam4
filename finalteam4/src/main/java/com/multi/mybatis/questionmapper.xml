@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.QuestionMapper">
+
+	<select id="select" parameterType="Integer" resultType="QuestionDTO">
+		SELECT * FROM question WHERE qpostid=#{qpostid}
+	</select>
+	<select id="selectall" resultType="QuestionDTO">
+		SELECT * FROM question
+	</select>
+	<insert id="insert" parameterType="QuestionDTO">
+		INSERT INTO question VALUES (#{qpostid},#{storeid},#{custid},#{title},#{qtext},sysdate())
+	</insert>
+	<update id="update" parameterType="QuestionDTO">
+		UPDATE question SET title=#{title}, qtext=#{qtext} WHERE qpostid=#{qpostid}
+	</update>
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM question WHERE qpostid=#{qpostid}
+	</delete>
+	
+</mapper>

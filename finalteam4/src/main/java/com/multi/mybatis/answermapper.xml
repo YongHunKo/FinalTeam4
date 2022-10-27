@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.AnswerMapper">
+
+	<select id="select" parameterType="Integer" resultType="AnswerDTO">
+		SELECT * FROM answer WHERE apostid=#{apostid}
+	</select>
+	<select id="selectall" resultType="AnswerDTO">
+		SELECT * FROM answer
+	</select>
+	<insert id="insert" parameterType="AnswerDTO">
+		INSERT INTO answer VALUES (#{apostid},#{adminid},#{qpostid},#{title},#{qtext},sysdate())
+	</insert>
+	<update id="update" parameterType="AnswerDTO">
+		UPDATE answer SET title=#{title}, qtext=#{qtext} WHERE apostid=#{apostid}
+	</update>
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM answer WHERE apostid=#{apostid}
+	</delete>
+	
+</mapper>
