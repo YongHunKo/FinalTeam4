@@ -36,6 +36,30 @@
 
     <!--====== Style CSS ======-->
     <link rel="stylesheet" href="assets/css/style.css">
+<script>
+function enterkey2(){
+	if(window.event.keyCode == 13){
+		$('#search_form').attr({
+			'method':'post',
+			'action':'[[@{/searchimpl}]]'
+		});
+		$('#search_form').submit();
+	};
+	
+};
+
+$(document).ready(function(){
+	$('#search_btn').click(function() {
+		$('#search_form').attr({
+			'method':'get',
+			'action':'[[@{/searchimpl}]]',
+		});
+		$('#search_form').submit();
+	});
+	
+	
+});
+</script>
 
 </head>
 
@@ -286,7 +310,7 @@
                             <input type="text" placeholder="Search">
                         </div>
                         <div class="search-btn">
-                            <button><i class="lni lni-search-alt"></i></button>
+                            <button id="search_btn"><i class="lni lni-search-alt"></i></button>
                         </div>
                     </div>
                     <!-- navbar search Ends -->
@@ -355,7 +379,9 @@
                                         </select>
                                     </div>
                                     <div class="search-input">
-                                        <input type="text" placeholder="지역 및 식당을 검색해주세요!">
+                                    	<form id="search_form">
+	                                        <input id="search_input" name="txt" type="text" placeholder="지역 및 식당을 검색해주세요!" onkeyup="enterkey2()">
+                                    	</form>
                                     </div>
                                     <div class="search-btn">
                                         <button><i class="lni lni-search-alt"></i></button>
