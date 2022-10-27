@@ -5,17 +5,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.multi.service.MenuService;
+import com.multi.service.ReviewService;
 
 @SpringBootTest
-public class DeleteMenu {
+public class DeleteReview {
 	
 	@Autowired
-	MenuService menu_service;
+	ReviewService review_service;
 	
 	@Test
 	void contextLoads() {
 		try {
-			menu_service.remove(6);
+			review_service.remove(6);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
