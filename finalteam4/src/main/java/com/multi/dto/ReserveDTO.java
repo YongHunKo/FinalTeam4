@@ -16,6 +16,7 @@ import lombok.ToString;
 public class ReserveDTO {
 
 	private Integer reserveno;
+	private Integer orderlistno;
 	private Integer menuid;
 	private Integer cnt;
 	private Integer price;

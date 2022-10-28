@@ -15,7 +15,7 @@ class UpdateOrderlist {
 	@Test
 	void contextLoads() {
 		try {
-			service.modify(new OrderlistDTO(6, 66, "id03", null, 66, 666666));
+			service.modify(new OrderlistDTO(6, "id03", null, 66, 666666, null, null));
 			System.out.println("update_ok");
 		} catch (Exception e) {
 			e.printStackTrace();

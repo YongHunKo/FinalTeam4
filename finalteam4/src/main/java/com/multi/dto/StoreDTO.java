@@ -20,5 +20,6 @@ public class StoreDTO {
 	private String storestatus;
 	private String storeinfo;
 	private String storeaddr;
+	private String storeimg;
 
 }

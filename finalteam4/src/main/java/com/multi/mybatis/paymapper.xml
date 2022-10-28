@@ -12,7 +12,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM pay
 	</select>
 	<insert id="insert" parameterType="PayDTO">
-		INSERT INTO pay VALUES (NULL, #{orderlistno}, #{custid}, #{price}, #{paystatus})
+		INSERT INTO pay VALUES (NULL, #{reserveno}, #{price}, #{paystatus})
 	</insert>
 	<update id="update" parameterType="PayDTO">
 		UPDATE pay SET price=#{price}, paystatus=#{paystatus} WHERE payid = #{payid}

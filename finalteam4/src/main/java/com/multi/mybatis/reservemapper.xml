@@ -12,7 +12,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM reserve
 	</select>
 	<insert id="insert" parameterType="ReserveDTO">
-		INSERT INTO reserve VALUES (NULL, #{menuid}, #{cnt}, #{price})
+		INSERT INTO reserve VALUES (NULL, #{orderlistno}, #{menuid}, #{cnt}, #{price})
 	</insert>
 	<update id="update" parameterType="ReserveDTO">
 		UPDATE reserve SET cnt=#{cnt}, price=#{price} WHERE reserveno = #{reserveno}

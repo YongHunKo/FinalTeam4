@@ -16,8 +16,7 @@ import lombok.ToString;
 public class PayDTO {
 
 	private Integer payid;
-	private Integer orderlistno;
-	private String custid;
+	private Integer reserveno;
 	private Integer price;
 	private String paystatus;
 	
