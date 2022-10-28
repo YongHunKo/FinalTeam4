@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.multi.dto.CartDTO;
 import com.multi.dto.ReserveDTO;
 import com.multi.service.ReserveService;
 
@@ -16,7 +15,7 @@ class UpdateReserve {
 	
 	@Test
 	void contextLoads() {
-		ReserveDTO reserve = new ReserveDTO(5,null,7, 10);
+		ReserveDTO reserve = new ReserveDTO(5, null, null, 7, 10);
 		try {
 			service.modify(reserve);
 		} catch (Exception e) {

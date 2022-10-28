@@ -15,7 +15,7 @@ class InsertStore {
 	@Test
 	void contextLoads() {
 		try {
-			service.register(new StoreDTO(3, 100, "test03", "test03입니다", "064-777-7777", "예약가능", "영업시간","addr test3"));
+			service.register(new StoreDTO(3, 100, "test03", "test03입니다", "064-777-7777", "예약가능", "영업시간","addr test3",null));
 			System.out.println("insert_ok");
 		} catch (Exception e) {
 			e.printStackTrace();

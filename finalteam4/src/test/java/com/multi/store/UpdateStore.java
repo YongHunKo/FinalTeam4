@@ -15,7 +15,7 @@ class UpdateStore {
 	@Test
 	void contextLoads() {
 		try {
-			service.modify(new StoreDTO(3, 200, "test33", "test33입니다", "064-333-3333", "영업시간 종료", "영업시간안내","addr test33"));
+			service.modify(new StoreDTO(3, 200, "test33", "test33입니다", "064-333-3333", "영업시간 종료", "영업시간안내","addr test33",null));
 			System.out.println("updat_ok");
 		} catch (Exception e) {
 			e.printStackTrace();

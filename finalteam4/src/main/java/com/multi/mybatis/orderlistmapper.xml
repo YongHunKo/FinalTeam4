@@ -11,10 +11,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM orderlist
 	</select>
 	<insert id="insert" parameterType="OrderlistDTO">
-		INSERT INTO orderlist VALUES (#{orderlistno},#{reserveno},#{custid},sysdate(),#{cnt},#{totalprice})
+		INSERT INTO orderlist VALUES (#{orderlistno},#{custid},sysdate(),#{cnt},#{totalprice},#{reservedate},#{reservetime})
 	</insert>
 	<update id="update" parameterType="OrderlistDTO">
-		UPDATE orderlist SET reserveno=#{reserveno}, custid=#{custid}, cnt=#{cnt}, totalprice=#{totalprice} WHERE orderlistno=#{orderlistno}
+		UPDATE orderlist SET custid=#{custid}, cnt=#{cnt}, totalprice=#{totalprice}, reservedate=#{reservedate}, reservetime=#{reservetime} WHERE orderlistno=#{orderlistno}
 	</update>
 	<delete id="delete" parameterType="Integer">
 		DELETE FROM orderlist WHERE orderlistno=#{orderlistno}

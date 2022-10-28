@@ -16,7 +16,7 @@ class InsertPay {
 	@Test
 	void contextLoads() {
 		try {
-			service.register(new PayDTO(null, 6, "id06", 60000, "결제완료"));
+			service.register(new PayDTO(null, 6, 60000, "결제완료"));
 			System.out.println("OK");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

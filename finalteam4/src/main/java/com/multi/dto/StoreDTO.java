@@ -20,5 +20,8 @@ public class StoreDTO {
 	private String storestatus;
 	private String storeinfo;
 	private String storeaddr;
+	
+	//조인
+	private String storeimg;
 
 }

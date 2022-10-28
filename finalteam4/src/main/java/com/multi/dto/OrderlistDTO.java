@@ -15,10 +15,11 @@ import lombok.ToString;
 @ToString
 public class OrderlistDTO {
 	private Integer orderlistno;
-	private	Integer reserveno;
 	private String custid;
 	private Date orderdate;
 	private Integer cnt;
 	private Integer totalprice;
+	private Date reservedate;
+	private Date reservetime;
 
 }
