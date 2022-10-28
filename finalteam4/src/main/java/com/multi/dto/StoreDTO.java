@@ -19,5 +19,6 @@ public class StoreDTO {
 	private String storetel; 
 	private String storestatus;
 	private String storeinfo;
+	private String storeaddr;
 
 }
