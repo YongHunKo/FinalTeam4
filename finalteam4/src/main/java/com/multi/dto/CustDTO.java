@@ -20,6 +20,5 @@ public class CustDTO {
 	private Date custrdate;
 	private String birth;
 	private String tel;
-	
 
 }
