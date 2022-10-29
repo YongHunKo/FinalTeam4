@@ -18,7 +18,7 @@ public class CustDTO {
 	private String custpwd;
 	private String custname;
 	private Date custrdate;
-	private Date birth;
+	private String birth;
 	private String tel;
 	
 
