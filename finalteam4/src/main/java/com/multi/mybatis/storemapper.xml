@@ -10,6 +10,12 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="selectall" resultType="StoreDTO">
 		SELECT * FROM store
 	</select>
+	<select id="searchstore" resultType="StoreDTO">
+		SELECT * FROM store s
+		LEFT OUTER JOIN storeimgs ss ON s.storeid = ss.storeid
+		GROUP BY storename
+		HAVING storename LIKE CONCAT('%',#{txt},'%')
+	</select>
 	<insert id="insert" parameterType="StoreDTO">
 		INSERT INTO store VALUES (#{storeid},#{cateid},#{storename},#{storeintroduce},#{storetel},#{storestatus},#{storeinfo},#{storeaddr})
 	</insert>

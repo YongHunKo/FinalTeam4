@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.multi.dto.MenuDTO;
 import com.multi.dto.StoreDTO;
 import com.multi.frame.MyService;
 import com.multi.mapper.StoreMapper;
@@ -37,5 +38,8 @@ public class StoreService implements MyService<Integer, StoreDTO>{
 	public List<StoreDTO> getall() throws Exception {
 		return mapper.selectall();
 	}
-
+	
+	public List<StoreDTO> searchstore(String txt) throws Exception {
+		return mapper.searchstore(txt);
+	}
 }
