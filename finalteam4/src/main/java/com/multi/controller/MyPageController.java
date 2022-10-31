@@ -29,7 +29,6 @@ public class MyPageController {
 		try {
 			cust = cust_service.get(id);
 			model.addAttribute("custedit", cust);
-			model.addAttribute("center", dir + "edit");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

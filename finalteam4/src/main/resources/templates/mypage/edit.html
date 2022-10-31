@@ -43,12 +43,13 @@ a {
 			if (c == true) {
 				$('#update_form').attr({
 					'method' : 'get',
-					'action' : '/updateimpl'
+					'action' : '/mypage/updateimpl'
 				});
 				$('#update_form').submit();
 			} else {
 				return;
 			}
+			var a = alert('회원정보가 수정되었습니다.');
 		});
 	});
 </script>
@@ -87,9 +88,9 @@ a {
 			<h5>로그인 정보</h5>
 			<ul>
 				<div>아이디</div>
-				<input type="text" name="custid"
-					th:value="${session.logincust.custid}" readonly="readyonly"
-					style="font-weight: bold"></input>
+				<p th:text="${session.logincust.custid}"></p>
+				<input type="hidden" name="custid" th:value="${custedit.custid}"
+					readonly="readyonly" style="font-weight: bold"></input>
 				<div>비밀번호</div>
 				<input type="text" name="custpwd">
 				<br>
@@ -97,13 +98,12 @@ a {
 			<h5>회원 정보</h5>
 			<ul>
 				<div>성명</div>
-				<input type="text" name="custname"
-					th:value="${session.logincust.custname}" style="font-weight: bold"></input>
+				<input type="text" name="custname" th:value="${custedit.custname}"
+					style="font-weight: bold"></input>
 				<div>연락처</div>
-				<input type="text" name="tel" th:value="${session.logincust.tel}">
+				<input type="text" name="tel" th:value="${custedit.tel}">
 				<div>생일</div>
-				<input type="text" name="birth"
-					th:value="${session.logincust.birth}">
+				<input type="text" name="birth" th:value="${custedit.birth}">
 			</ul>
 		</form>
 		<div>
