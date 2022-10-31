@@ -18,7 +18,7 @@ class SearchMenu {
 	void contextLoads() {
 		List<MenuDTO> list = null;
 		try {
-			list = service.searchmenu("마레");
+			list = service.searchmenu("고기");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

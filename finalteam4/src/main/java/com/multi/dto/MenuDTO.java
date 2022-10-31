@@ -21,4 +21,5 @@ public class MenuDTO {
 	
 	//조인
 	private String menuimg;
+	private String storename;
 }
