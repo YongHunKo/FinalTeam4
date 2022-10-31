@@ -1,27 +1,116 @@
 
 <meta charset="utf-8">
 
+<style>
+.parent {
+	margin: 70px auto 0;
+	padding: 0 100px 100px;
+	display: flex;
+}
+
+.second {
+	margin-top: 75px;
+	margin-left: 100px;
+	margin-right: 100px;
+}
+
+h4 {
+	font-size: 30px;
+}
+
+ul {
+	padding: 5px 0;
+	margin-bottom: 20px;
+}
+
+a {
+	padding: 5px 0;
+	font-size: 15px;
+	color: gray;
+}
+
+#info {
+	font-size: 30px;
+	color: #000;
+	margin-bottom: 20px;
+}
+</style>
+
+<script>
+	$(document).ready(function() {
+		$('#insert_btn').click(function() {
+			var c = confirm('회원정보가 수정됩니다.');
+			if (c == true) {
+				$('#update_form').attr({
+					'method' : 'get',
+					'action' : '/updateimpl'
+				});
+				$('#update_form').submit();
+			} else {
+				return;
+			}
+		});
+	});
+</script>
+
 <!--====== Content Card Style 4 Part Start ======-->
-<section class="content-card-style-4 pt-70 pb-100">
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-lg-4 col-md-7 col-sm-8">
-				<div class="single-content mt-15 text-center">
-					<div class="content-icon">
-						<i class="mdi mdi-truck-fast"></i>
-					</div>
-					<div class="content-content">
-						<h4 class="title">MY PAGE</h4>
-						<p th:text="${session.logincust.custname} + 님"></p>
-						<h5>나의 예약정보</h5>
-						<ul>
-							<li><a href="#">예약조회</a></li>
-							<li><a href="#">나의 리뷰</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
+<div class=parent>
+	<div class="first">
+		<h4 class="title">MY PAGE</h4>
+		<!-- ID값을 부여해주자  -->
+		<p th:text="${session.logincust.custname} + 님" id="info"></p>
+		<h5>나의 예약정보</h5>
+		<ul>
+			<li><a href="#">예약조회</a></li>
+			<li><a href="#">나의 리뷰</a></li>
+		</ul>
+		<h5>나의 계정설정</h5>
+		<ul>
+			<li><a href="/mypage/edit/">회원정보수정</a></li>
+			<li><a href="#">회원등급</a></li>
+			<li><a href="#">쿠폰</a></li>
+		</ul>
+		<h5>고객센터</h5>
+		<ul>
+			<li><a href="#">1:1 문의내역</a></li>
+			<li><a href="#">공지사항</a></li>
+			<li><a href="#">#</a></li>
+		</ul>
+		<ul>
+			<p style="color: orange">Eat & Out</p>
+		</ul>
+	</div>
+	<div class="second">
+		<h4>회원정보 수정</h4>
+		<br>
+		<form id="update_form">
+			<h5>로그인 정보</h5>
+			<ul>
+				<div>아이디</div>
+				<input type="text" name="custid"
+					th:value="${session.logincust.custid}" readonly="readyonly"
+					style="font-weight: bold"></input>
+				<div>비밀번호</div>
+				<input type="text" name="custpwd">
+				<br>
+			</ul>
+			<h5>회원 정보</h5>
+			<ul>
+				<div>성명</div>
+				<input type="text" name="custname"
+					th:value="${session.logincust.custname}" style="font-weight: bold"></input>
+				<div>연락처</div>
+				<input type="text" name="tel" th:value="${session.logincust.tel}">
+				<div>생일</div>
+				<input type="text" name="birth"
+					th:value="${session.logincust.birth}">
+			</ul>
+		</form>
+		<div>
+			<button id="insert_btn" type="button">
+				<span>수정하기</span>
+			</button>
 		</div>
 	</div>
-</section>
+</div>
 <!--====== Content Card Style 4 Part Ends ======-->

@@ -1,20 +1,18 @@
-
 <meta charset="utf-8">
 
 <style>
-h4 {
-	font-size: 30px;
-	color: #000;
+.parent {
+	margin: 70px auto 0;
+	padding: 0 100px 100px;
+	display: flex;
 }
 
-#info{
+h4 {
 	font-size: 30px;
-	color: #000;
-	margin-bottom: 20px;
 }
 
 ul {
-	font-size: 20px;
+	padding: 5px 0;
 	margin-bottom: 20px;
 }
 
@@ -24,18 +22,16 @@ a {
 	color: gray;
 }
 
-#left {
-	position: relative;
-	min-width: 900px;
-	max-width: 1500px;
-	margin: 40px auto 0;
-	padding: 0 100px 500px;
+#info {
+	font-size: 30px;
+	color: #000;
+	margin-bottom: 20px;
 }
 </style>
 
 <!--====== Content Card Style 4 Part Start ======-->
-<section class="content-card-style-4 pt-70 pb-100">
-	<div class="content-content" id="left">
+<div class=parent>
+	<div class="first">
 		<h4 class="title">MY PAGE</h4>
 		<!-- ID값을 부여해주자  -->
 		<p th:text="${session.logincust.custname} + 님" id="info"></p>
@@ -46,7 +42,7 @@ a {
 		</ul>
 		<h5>나의 계정설정</h5>
 		<ul>
-			<li><a href="/mypage/edit/">회원정보수정</a></li>
+			<li><a th:href="@{/mypage/edit(id=${session.logincust.custid})}">회원정보수정</a></li>
 			<li><a href="#">회원등급</a></li>
 			<li><a href="#">쿠폰</a></li>
 		</ul>
@@ -57,5 +53,6 @@ a {
 			<li><a href="#">#</a></li>
 		</ul>
 	</div>
-</section>
+	<div class="second"></div>
+</div>
 <!--====== Content Card Style 4 Part Ends ======-->
