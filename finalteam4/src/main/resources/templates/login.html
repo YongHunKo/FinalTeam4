@@ -3,6 +3,7 @@
 <html lang="ko">
 
   <head>
+	   
 	
 	<script src="http://code.jquery.com/jquery-latest.js"></script> 
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -25,7 +26,7 @@
     <link rel="stylesheet" href="/assets/css/nice-select.css">
     
 
-   
+
     <script src="/assets/js/vendor/jquery-3.5.1.min.js"></script>
     <script src="/assets/js/popper.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
@@ -49,13 +50,14 @@
     <script src="/assets/js/jquery.formatter.min.js"></script>
 
     <!--====== Main js ======-->
-    <script src="/assets/js/count-up.min.js"></script>
+  
 
     <!--====== Main js ======-->
-    <script src="/assets/js/main.js"></script>
+    
+    
     <!-- Required meta tags -->
-	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+	
+
     <meta charset="utf-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -208,56 +210,22 @@
 	</style>
 
 <script>
-function saveToDos(token) { //item을 localStorage에 저장 
-    typeof(Storage) !== 'undefined' && sessionStorage.setItem('AccessKEY', JSON.stringify(token)); 
-};
-
-window.Kakao.init('b69b79a570ff1eefbca66ca0445d929a');
-
-function kakaologin() {
-    window.Kakao.Auth.login({
-        scope: 'profile_nickname, profile_image, account_email, gender', //동의항목 페이지에 있는 개인정보 보호 테이블의 활성화된 ID값을 넣습니다.
-        success: function(response) {
-            saveToDos(response.access_token)  // 로그인 성공하면 사용자 엑세스 토큰 sessionStorage에 저장
-            window.Kakao.API.request({ // 사용자 정보 가져오기 
-                url: '/v2/user/me',
-                success: (res) => {
-                    const kakao_account = res.kakao_account;
-                    alert('로그인 성공');
-                    window.location.href='/shop'
-                }
-            });
-        },
-        fail: function(error) {
-            console.log(error);
-        }
-    });
-};
-
-const login = document.querySelector('#kakaologin');
-login.addEventListener('click', kakaoLogin);
 
 
-/* 네이버 로그인 */
- var naverLogin = new naver.LoginWithNaverId( {
-        clientId: "MAK4QIbORyQCqNxpf2Oc",
-        callbackUrl: "http://127.0.0.1/login",
-        isPopup: true, /* 팝업을 통한 연동처리 여부 */
-        loginButton: {color: "green", type: 3, height: 62} /* 로그인 버튼의 타입을 지정 */
-    } ); /* 설정정보를 초기화하고 연동을 준비 */
-    naverLogin.init();
+
+//네이버 로그인 
 
 
 
 
 
-
+/* 기본 로그인버튼 */
 $(document).ready(function(){
 	$('#login_btn').click(function(){
 		$('#login_form').attr({
-			method:'post',
+			method:'get',
 			action:'/loginimpl'
-		})
+		});
 		$('#login_form').submit();
 		
 	});
@@ -311,19 +279,19 @@ $(document).ready(function(){
 
         <ul>
         <a  id="kakaologin" href="javascript:kakaologin()">
-        <img th:src="@{assets/images/k_login.jpg}" alt="카카오계정 로그인" id="kakao_img" style="width:180px; margin-left:-20px;">
+        <img th:src="@{assets/images/client-logo/k_login.jpg}" alt="카카오계정 로그인" id="kakao_img" style="width:180px; margin-left:-20px;">
         </a><br>
         <br>
-        <a  id="naverLogin" href="javascript:void(0)">
-        <img th:src="@{assets/images/naver_login.png}" alt="네이버 로그인" id="naver_img" style="width:180px; margin-left:-20px;">
+        <a  id="naverIdLogin_loginButton" href="javascript:naverLogin()">
+        <img th:src="@{assets/images/client-logo/naver_login.png}" alt="네이버 로그인" id="naver_img" style="width:180px; margin-left:-20px;">
         </a>
-        <div id="naverLogin"></div>
+        
         </ul>
 
       </div>
 
     </div>
-
+	<div id="naverIdLogin"></div>
     </form>
 
       
@@ -335,8 +303,49 @@ $(document).ready(function(){
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
-    
 
+
+
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+        <script src="/assets/js/count-up.min.js"></script>
+	<script src="/assets/js/main.js"></script>
+  	
+  	<script type="text/javascript">
+	function saveToDos(token) { //item을 localStorage에 저장 
+	    typeof(Storage) !== 'undefined' && sessionStorage.setItem('AccessKEY', JSON.stringify(token)); 
+		};
+
+		window.Kakao.init('b69b79a570ff1eefbca66ca0445d929a');
+
+		function kakaologin() {
+	    window.Kakao.Auth.login({
+	        scope: 'profile_nickname, profile_image, account_email, gender', //동의항목 페이지에 있는 개인정보 보호 테이블의 활성화된 ID값을 넣습니다.
+	        success: function(response) {
+	            saveToDos(response.access_token)  // 로그인 성공하면 사용자 엑세스 토큰 sessionStorage에 저장
+	            window.Kakao.API.request({ // 사용자 정보 가져오기 
+	                url: '/v2/user/me',
+	                success: (res) => {
+	                    const kakao_account = res.kakao_account;
+	                    alert('로그인 성공');
+	                    window.location.href='/shop'
+	                }
+	            });
+	        },
+	        fail: function(error) {
+	            console.log(error);
+	       			 }
+	   		 });
+			};
+
+		const login = document.querySelector('#kakaologin');
+		 login.addEventListener('click', kakaoLogin);
+  	
+  	
+  	
+  	</script>
+  
+  
   </body>
 
 </html>
