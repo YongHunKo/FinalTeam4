@@ -4,7 +4,7 @@
 
   <head>
 	   
-	
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	<script src="http://code.jquery.com/jquery-latest.js"></script> 
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
@@ -61,7 +61,7 @@
     <meta charset="utf-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+	<meta name="google-signin-client_id" content="414674411151-8otfjo97eobc9r4lk262bvegl1e27so6.apps.googleusercontent.com">
     
 
     <title>Login Page</title>
@@ -210,15 +210,25 @@
 	</style>
 
 <script>
-
-
-
-//네이버 로그인 
-
-
-
-
-
+function onSuccess(googleUser) {
+    console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+  }
+  function onFailure(error) {
+    console.log(error);
+  }
+  function renderButton() {
+    gapi.signin2.render('my-signin2', {
+      'scope': 'profile email',
+      'width': 230,
+      'height': 50,
+      'longtitle': true,
+      'theme': 'dark',
+      'onsuccess': onSuccess,
+      'onfailure': onFailure
+    });
+  }
+  
+ 
 /* 기본 로그인버튼 */
 $(document).ready(function(){
 	$('#login_btn').click(function(){
@@ -284,8 +294,10 @@ $(document).ready(function(){
         <br>
         <a  id="naverIdLogin_loginButton" href="javascript:naverLogin()">
         <img th:src="@{assets/images/client-logo/naver_login.png}" alt="네이버 로그인" id="naver_img" style="width:180px; margin-left:-20px;">
-        </a>
-        
+        </a><br>
+        <br>
+        <div id="my-signin2" data-onsuccess="rendorButton"></div>	
+       
         </ul>
 
       </div>
@@ -307,7 +319,10 @@ $(document).ready(function(){
 
 
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-	<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+	<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+	
+	
+	<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
         <script src="/assets/js/count-up.min.js"></script>
 	<script src="/assets/js/main.js"></script>
   	
@@ -328,7 +343,7 @@ $(document).ready(function(){
 	                success: (res) => {
 	                    const kakao_account = res.kakao_account;
 	                    alert('로그인 성공');
-	                    window.location.href='/shop'
+	                    window.location.href='/'
 	                }
 	            });
 	        },
@@ -340,11 +355,60 @@ $(document).ready(function(){
 
 		const login = document.querySelector('#kakaologin');
 		 login.addEventListener('click', kakaoLogin);
-  	
-  	
-  	
   	</script>
   
+  <script type="text/javascript">
+  var naverLogin = new naver.LoginWithNaverId(
+			{
+				clientId: "MAK4QIbORyQCqNxpf2Oc", //내 애플리케이션 정보에 cliendId를 입력해줍니다.
+				callbackUrl: "http://127.0.0.1/", // 내 애플리케이션 API설정의 Callback URL 을 입력해줍니다.
+				isPopup: true,
+				callbackHandle: true
+			}
+		);	
+
+	naverLogin.init();
+
+	window.addEventListener('load', function () {
+		naverLogin.getLoginStatus(function (status) {
+			if (status) {
+				var email = naverLogin.user.getEmail(); // 필수로 설정할것을 받아와 아래처럼 조건문을 줍니다.
+	    		
+				console.log(naverLogin.user); 
+	    		
+	            if( email == undefined || email == null) {
+					alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
+					naverLogin.reprompt();
+					return;
+				}
+			} else {
+				console.log("callback 처리에 실패하였습니다.");
+			}
+		});
+	});
+
+
+	var testPopUp;
+	function openPopUp() {
+	    testPopUp= window.open("https://nid.naver.com/nidlogin.logout", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,width=1,height=1");
+	}
+	function closePopUp(){
+	    testPopUp.close();
+	}
+
+	function naverLogout() {
+		openPopUp();
+		setTimeout(function() {
+			closePopUp();
+			}, 1000);
+		
+		
+	}
+	
+	
+   
+</script>
+
   
   </body>
 
