@@ -35,7 +35,7 @@
 			    </thead>
 			    <tbody>
 			        <tr th:each="m : ${menulist}">
-			        	<td><img th:src="@{/img/}+${m.menuimg}"></td>
+			        	<td><a th:href="@{/storedetail(storeid=${m.storeid})}"><img th:src="@{/img/}+${m.menuimg}"></a></td>
 			            <td th:text="${m.menuname}">item_name</td>
 			            <td th:text="${m.storename}">store_name</td>
 			            <td th:text="${#numbers.formatInteger(m.menuprice, 3, 'COMMA')}">item_price</td>

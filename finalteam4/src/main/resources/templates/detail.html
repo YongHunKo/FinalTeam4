@@ -1,0 +1,17 @@
+<h5>스토어 디테일</h5>
+<table>
+    <thead>
+        <tr>
+        	<th></th>
+            <th>식당이름</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="s : ${storeimglist}">
+        	<td><img th:src="@{/img/}+${s.storeimg}"></td>
+            <td>item_name</td>
+
+        </tr>
+
+    </tbody>
+</table>  
