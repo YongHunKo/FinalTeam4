@@ -3,15 +3,24 @@
 
 <style>
 .parent {
-	margin: 70px auto 0;
-	padding: 0 100px 100px;
+	position: relative;
+	min-width: 900px px;
+	max-width: 1500px;
+	margin: 40px auto 0;
+	padding: 0 50px 100px;
 	display: flex;
+}
+
+.first {
+	flex: none;
+	width: 230px;
+	padding: 0 50px 0 0;
 }
 
 .second {
 	margin-top: 75px;
-	margin-left: 100px;
-	margin-right: 100px;
+	margin-left: 0;
+	margin-right: 0;
 }
 
 h4 {
@@ -33,6 +42,11 @@ a {
 	font-size: 30px;
 	color: #000;
 	margin-bottom: 20px;
+}
+
+.tbl {
+	width: 200px;
+	text-align: center;
 }
 </style>
 
@@ -89,8 +103,7 @@ a {
 			<ul>
 				<div>아이디</div>
 				<p th:text="${session.logincust.custid}"></p>
-				<input type="hidden" name="custid" th:value="${custedit.custid}"
-					readonly="readyonly" style="font-weight: bold"></input>
+				<input type="hidden" name="custid" th:value="${custedit.custid}" readonly="readyonly"></input>
 				<div>비밀번호</div>
 				<input type="text" name="custpwd">
 				<br>

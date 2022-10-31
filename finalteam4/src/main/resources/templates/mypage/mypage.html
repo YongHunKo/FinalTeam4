@@ -2,9 +2,24 @@
 
 <style>
 .parent {
-	margin: 70px auto 0;
-	padding: 0 100px 100px;
+	position: relative;
+	min-width: 900px px;
+	max-width: 1500px;
+	margin: 40px auto 0;
+	padding: 0 50px 100px;
 	display: flex;
+}
+
+.first {
+	flex: none;
+	width: 230px;
+	padding: 0 50px 0 0;
+}
+
+.second {
+	margin-top: 75px;
+	margin-left: 0;
+	margin-right: 0;
 }
 
 h4 {
@@ -26,6 +41,11 @@ a {
 	font-size: 30px;
 	color: #000;
 	margin-bottom: 20px;
+}
+
+.tbl {
+	width: 200px;
+	text-align: center;
 }
 </style>
 
@@ -53,6 +73,28 @@ a {
 			<li><a href="#">#</a></li>
 		</ul>
 	</div>
-	<div class="second"></div>
+	<div class="second">
+		<h3>현재 나의 예약</h3>
+		<ul class="my_order_tbl ng-star-inserted">
+			<li class="my_order_tit">
+				<div class="my_tbl" style="display: flex">
+					<div class="tbl">주문일</div>
+					<div class="tbl">주문내역</div>
+					<div class="tbl">주문번호</div>
+					<div class="tbl">결제금액</div>
+					<div class="tbl">결제금액</div>
+				</div>
+			</li>
+			<li class="ng-star-inserted">
+			<a class="my_tbl ng-star-inserted" href="#">
+					<div _ngcontent-qbt-c196="" class="date">2022.10.01</div>
+					<div _ngcontent-qbt-c196="" class="date">2022.10.01</div>
+					<div _ngcontent-qbt-c196="" class="date">2022.10.01</div>
+					<div _ngcontent-qbt-c196="" class="num">ORD20221001-8696166</div>
+					<div _ngcontent-qbt-c196="" class="amount">10,600원</div>
+			</a> <!----> <!----></li>
+		</ul>
+
+	</div>
 </div>
 <!--====== Content Card Style 4 Part Ends ======-->
