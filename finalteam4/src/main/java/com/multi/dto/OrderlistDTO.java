@@ -21,5 +21,7 @@ public class OrderlistDTO {
 	private Integer totalprice;
 	private Date reservedate;
 	private Date reservetime;
-
+	
+	private String storename;
+	private String menuname;
 }
