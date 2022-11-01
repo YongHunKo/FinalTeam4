@@ -20,11 +20,5 @@ public class ReserveDTO {
 	private Integer menuid;
 	private Integer cnt;
 	private Integer price;
-	
-	private String storename;
-	private String menuname;
-	private Integer reservedate;
-	private Integer reservetime;
-	
-	private String custid;
+
 }
