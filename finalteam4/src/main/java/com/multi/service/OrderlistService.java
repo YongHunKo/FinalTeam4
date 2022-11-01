@@ -39,4 +39,7 @@ public class OrderlistService implements MyService<Integer, OrderlistDTO>{
 		return mapper.selectall();
 	}
 
+	public List<OrderlistDTO> myorder(String k) throws Exception {
+		return mapper.myorder(k);
+	}
 }
