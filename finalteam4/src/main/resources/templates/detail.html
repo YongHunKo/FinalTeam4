@@ -1,4 +1,15 @@
-<h5>스토어 디테일</h5>
+<script>
+$(document).ready(function(){
+	//1. wishlist_btn클릭시 식당id 고객id를 변수로 지정해서 로케이션으로 wishlist로 넘긴다
+	
+	//2. reserve_btn클릭시 
+	$('#reserve_btn').click(function(){
+		var storeid=$('#storeid').text();
+		location.href="[[@{/reserveimpl?storeid=}]]"+storeid;
+	});
+	
+});
+</script>
 <table>
     <thead>
         <tr>
@@ -8,7 +19,9 @@
     </thead>
     <tbody>
         <tr th:each="s : ${storeimglist}">
-        	<td><img th:src="@{/img/}+${s.storeimg}"></td>
+        	<td><img th:src="@{/img/}+${s.storeimg}" style="width:300px; height:300px;"></td>
+            <td id="storeid" th:text="${s.storeid}" style="display:none">item_name</td>
+        	
             <td>item_name</td>
         </tr>
     </tbody>
@@ -26,8 +39,16 @@
     <tbody>
     <!-- 타임리프 작동되는 것 확인함 -->
         <tr th:each="d : ${detaillist}">
-        	<td><img th:src="@{/img/}+${d.menuimg}"></td>
-            <td>item_name</td>
+        	<td><img th:src="@{/img/}+${d.menuimg}" style="width:200px; height:200px;"></td>
+            <td th:text="${d.menuname}"></td>
+            <td th:text="${d.menuinfo}"></td>
+            <td th:text="${d.menuprice}"></td>
         </tr>
     </tbody>
+    <!-- 단순히 버튼 하나를 놓고 메뉴마다 예약? -->
+    <!-- or 예약하기 페이지로 넘어가서 날짜 시간 선택하고 결제? -->
+    <!-- 위시리스트 버튼도 만들어야함 -->
 </table> 
+<button id="reserve_btn" th:if="${session.logincust != null}">예약하러가기</button>
+<button th:if="${session.logincust == null}" onclick="location.href='/login'">로그인하러가기</button>
+<button id="wishlist_btn" th:if="${session.logincust != null}">위시리스트 넣기</button>

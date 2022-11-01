@@ -1,0 +1,25 @@
+<!-- 예약페이지 -->
+<!-- 예약과 동시에 주문이 이루어져야함 -->
+<!-- 날짜와 시간을 선택하여 orderlist에 insert -->
+<!-- 동시에 reserve에 orderlistno를 넣어 주문하려는 menu들을 for문을 돌려 insert -->
+<!-- 여기서 해야하는 것은 원하는 메뉴를 잘 뽑아내는 것이 목표 -->
+<!-- 작은 사진들로 멀티일렉에서 했던 것처럼 나타내기 -->
+<!-- 일단은 사진안가져오고 시작해보자 -->
+
+<!-- 필요데이터 = store-menu에서 storeid를 이용하여 menuname,cnt,price, orderlist에 넣을 날짜와 시간 -->
+
+<h4>예약페이지</h4>
+<table>
+    <thead>
+        <tr>
+        	<th></th>
+            <th>메뉴이름</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="r : ${menulist}">
+        	<td></td>
+        	<td th:text="${r.menuname}"></td>
+        </tr>
+    </tbody>
+</table> 
