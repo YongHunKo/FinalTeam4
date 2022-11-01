@@ -228,6 +228,36 @@ function onSuccess(googleUser) {
     });
   }
   
+//카카오로그인
+  function kakaoLogin() {
+
+    $.ajax({
+        url: '/login/getKakaoAuthUrl',
+        type: 'get',
+        async: false,
+        dataType: 'text',
+        success: function (res) {
+            location.href = res;
+        }
+    });
+
+  }
+
+  $(document).ready(function() {
+
+      var kakaoInfo = '${kakaoInfo}';
+
+      if(kakaoInfo != ""){
+          var data = JSON.parse(kakaoInfo);
+
+          alert("카카오로그인 성공 \n accessToken : " + data['accessToken']);
+          alert(
+          "user : \n" + "email : "
+          + data['email']  
+          + "\n nickname : " 
+          + data['nickname']);
+      }
+  });  
  
 /* 기본 로그인버튼 */
 $(document).ready(function(){
@@ -288,7 +318,7 @@ $(document).ready(function(){
 
 
         <ul>
-        <a  id="kakaologin" href="javascript:kakaologin()">
+        <a  id="kakaologin" href="https://kauth.kakao.com/oauth/authorize?client_id=8f091ec537ce9700f5864824e26f19d9&redirect_uri=http://127.0.0.1/kakao/callback&response_type=code">
         <img th:src="@{assets/images/client-logo/k_login.jpg}" alt="카카오계정 로그인" id="kakao_img" style="width:180px; margin-left:-20px;">
         </a><br>
         <br>
@@ -298,6 +328,7 @@ $(document).ready(function(){
         <br>
         <div id="my-signin2" data-onsuccess="rendorButton"></div>	
        
+ 
         </ul>
 
       </div>
@@ -327,34 +358,7 @@ $(document).ready(function(){
 	<script src="/assets/js/main.js"></script>
   	
   	<script type="text/javascript">
-	function saveToDos(token) { //item을 localStorage에 저장 
-	    typeof(Storage) !== 'undefined' && sessionStorage.setItem('AccessKEY', JSON.stringify(token)); 
-		};
-
-		window.Kakao.init('b69b79a570ff1eefbca66ca0445d929a');
-
-		function kakaologin() {
-	    window.Kakao.Auth.login({
-	        scope: 'profile_nickname, profile_image, account_email, gender', //동의항목 페이지에 있는 개인정보 보호 테이블의 활성화된 ID값을 넣습니다.
-	        success: function(response) {
-	            saveToDos(response.access_token)  // 로그인 성공하면 사용자 엑세스 토큰 sessionStorage에 저장
-	            window.Kakao.API.request({ // 사용자 정보 가져오기 
-	                url: '/v2/user/me',
-	                success: (res) => {
-	                    const kakao_account = res.kakao_account;
-	                    alert('로그인 성공');
-	                    window.location.href='/'
-	                }
-	            });
-	        },
-	        fail: function(error) {
-	            console.log(error);
-	       			 }
-	   		 });
-			};
-
-		const login = document.querySelector('#kakaologin');
-		 login.addEventListener('click', kakaoLogin);
+	
   	</script>
   
   <script type="text/javascript">
