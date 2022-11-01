@@ -30,7 +30,7 @@ public class MyPageController {
 		try {
 		list = order_service.myorder(id);
 		model.addAttribute("list", list);			
-		model.addAttribute("center", dir + "mypage");			
+		model.addAttribute("center", dir + "mypage");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
