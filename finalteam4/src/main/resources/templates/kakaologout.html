@@ -1,0 +1,13 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<li th:text="|인가코드 = ${code}|">code</li>
+<li th:text="|유효토큰 = ${access_token}|">code</li>
+<li th:text="|사용자정보 = ${userInfo}|">code</li>
+<li th:text="|동의정보 = ${agreementInfo}|">code</li>
+<a href="kauth.kakao.com/oauth/authorize?client_id=8f091ec537ce9700f5864824e26f19d9&redirect_uri=http://127.0.0.1/kakao/kakaologin&response_type=code">로그아웃</a>
+</body>
+</html>
