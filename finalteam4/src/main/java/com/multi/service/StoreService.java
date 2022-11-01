@@ -42,4 +42,8 @@ public class StoreService implements MyService<Integer, StoreDTO>{
 	public List<StoreDTO> searchstore(String txt) throws Exception {
 		return mapper.searchstore(txt);
 	}
+	
+	public List<StoreDTO> detail(Integer storeid) throws Exception {
+		return mapper.detail(storeid);
+	}
 }

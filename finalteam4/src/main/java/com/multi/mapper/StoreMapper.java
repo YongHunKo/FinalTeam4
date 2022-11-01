@@ -11,5 +11,6 @@ import com.multi.frame.MyMapper;
 @Mapper
 public interface StoreMapper extends MyMapper<Integer, StoreDTO>{
 	public List<StoreDTO> searchstore(String txt);
+	public List<StoreDTO> detail(Integer storeid);
 
 }

@@ -23,5 +23,10 @@ public class StoreDTO {
 	
 	//조인
 	private String storeimg;
+	private Integer menuid;
+	private String menuname;
+	private Integer menuprice;
+	private String menuinfo;
+	private String menuimg;
 
 }

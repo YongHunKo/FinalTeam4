@@ -10,8 +10,24 @@
         <tr th:each="s : ${storeimglist}">
         	<td><img th:src="@{/img/}+${s.storeimg}"></td>
             <td>item_name</td>
-
         </tr>
-
     </tbody>
 </table>  
+
+<table>
+    <thead>
+        <tr>
+        	<th>메뉴사진</th>
+            <th>메뉴이름</th>
+            <th>메뉴정보</th>
+            <th>메뉴가격</th>
+        </tr>
+    </thead>
+    <tbody>
+    <!-- 타임리프 작동되는 것 확인함 -->
+        <tr th:each="d : ${detaillist}">
+        	<td><img th:src="@{/img/}+${d.menuimg}"></td>
+            <td>item_name</td>
+        </tr>
+    </tbody>
+</table> 
