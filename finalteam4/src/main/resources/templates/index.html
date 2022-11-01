@@ -186,7 +186,7 @@ $(document).ready(function(){
                      <ul class="navbar-top-link">
                          <li th:if="${session.logincust == null}"> <a href="/signup" ><i class="mdi mdi-account" ></i>Sign up</a></li>
                          <li th:if="${session.logincust == null}"> <a href="/login" ><i class="mdi mdi-account" ></i>Login</a></li>
-                         <li th:if="${session.logincust != null}"> <a href="/mypage" ><i class="mdi mdi-account" ></i>My Page</a></li>
+                         <li th:if="${session.logincust != null}"> <a th:href="@{/mypage(id=${session.logincust.custid})}" ><i class="mdi mdi-account" ></i>My Page</a></li>
                          <li th:if="${session.logincust != null}"> <a href="/logout" ><i class="mdi mdi-account" ></i>Logout</a></li>
                          <li th:if="${session.logincust != null}">
                          	<p th:text="'😀'+${session.logincust.custname}+ '님 환영합니다'" style="color:white;"></p>
