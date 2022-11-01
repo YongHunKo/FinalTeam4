@@ -3,8 +3,9 @@
 PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.multi.mapper.ReserveMapper">
-	
-	<select id="select" parameterType="Integer" resultType="ReserveDTO">
+
+	<select id="select" parameterType="Integer"
+		resultType="ReserveDTO">
 		SELECT * FROM reserve
 		WHERE reserveno=#{reserveno}
 	</select>
@@ -12,13 +13,26 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM reserve
 	</select>
 	<insert id="insert" parameterType="ReserveDTO">
-		INSERT INTO reserve VALUES (NULL, #{orderlistno}, #{menuid}, #{cnt}, #{price})
+		INSERT INTO reserve VALUES
+		(NULL, #{orderlistno}, #{menuid}, #{cnt}, #{price})
 	</insert>
 	<update id="update" parameterType="ReserveDTO">
-		UPDATE reserve SET cnt=#{cnt}, price=#{price} WHERE reserveno = #{reserveno}
+		UPDATE reserve SET cnt=#{cnt},
+		price=#{price} WHERE reserveno = #{reserveno}
 	</update>
 	<delete id="delete" parameterType="Integer">
-		DELETE FROM reserve WHERE reserveno = #{reserveno}
+		DELETE FROM reserve WHERE
+		reserveno = #{reserveno}
 	</delete>
-	
+
+	<select id="myreserve" parameterType="String"
+		resultType="ReserveDTO">
+		select o.reservedate, o.reservetime, m.menuname, s.storename, r.price from reserve r
+		inner join orderlist o on o.orderlistno = r.orderlistno
+		inner join menu m on m.menuid = r.menuid
+		inner join store s on s.storeid = m.storeid
+		where o.custid = #{custid}
+
+	</select>
+
 </mapper>

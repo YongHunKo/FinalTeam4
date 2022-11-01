@@ -46,4 +46,7 @@ public class ReserveService implements MyService<Integer,ReserveDTO> {
 		return mapper.selectall();
 	}
 
+	public List<ReserveDTO> myreserve(String k) throws Exception {
+		return mapper.myreserve(k);
+	}
 }
