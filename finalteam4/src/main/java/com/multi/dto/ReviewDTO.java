@@ -17,4 +17,6 @@ public class ReviewDTO {
 	private Integer storeid;
 	private String revtext;
 	private Integer star;
+	
+	private String storename;
 }

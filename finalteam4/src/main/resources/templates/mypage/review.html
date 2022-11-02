@@ -63,7 +63,7 @@ tr>td {
 		<h5>나의 예약정보</h5>
 		<ul class="ul">
 			<li><a href="#">예약조회</a></li>
-			<li><a href="mypage/review">나의 리뷰</a></li>
+			<li><a href="#">나의 리뷰</a></li>
 		</ul>
 		<h5>나의 계정설정</h5>
 		<ul class="ul">
@@ -89,7 +89,7 @@ tr>td {
 				<li></li>
 			</ul>
 		</section>
-		<h3>현재 예약 테이블(임시)</h3>
+		<h3>리 뷰</h3>
 		<table class="table">
 			<thead>
 				<tr class="tbl">
@@ -101,12 +101,12 @@ tr>td {
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="li : ${list}">
-					<td th:text="${#dates.format(li.reservedate, 'yyyy-MM-dd')}"></td>
-					<td th:text="${#dates.format(li.reservetime, 'HH:mm')}"></td>
-					<td th:text="${li.storename}"></td>
-					<td th:text="${li.menuname}"></td>
-					<td th:text="${li.totalprice}"></td>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
 				</tr>
 			</tbody>
 		</table>

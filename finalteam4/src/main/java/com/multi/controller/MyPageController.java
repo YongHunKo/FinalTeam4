@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.multi.dto.CustDTO;
 import com.multi.dto.OrderlistDTO;
+import com.multi.dto.ReviewDTO;
 import com.multi.service.CustService;
 import com.multi.service.OrderlistService;
+import com.multi.service.ReviewService;
 
 @Controller
 @RequestMapping("/mypage")
@@ -21,6 +23,9 @@ public class MyPageController {
 	
 	@Autowired
 	OrderlistService order_service;
+	
+	@Autowired
+	ReviewService review_service;
 
 	String dir = "mypage/";
 
@@ -37,6 +42,25 @@ public class MyPageController {
 		return "index";
 	}
 	
+	@RequestMapping("/review")
+	public String review(Model model) {
+		model.addAttribute("center", dir + "review");
+		return "index";
+	}
+		
+//	@RequestMapping("/review")
+//	public String review(String id, Model model) {
+//		List<ReviewDTO> list = null;
+//		try {
+//			list = order_service.myorder(id);
+//			model.addAttribute("list", list);			
+//			model.addAttribute("center", dir + "review");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return "index";
+//	}
+
 	@RequestMapping("/edit")
 	public String edit(String id, Model model) {
 		CustDTO cust = null;

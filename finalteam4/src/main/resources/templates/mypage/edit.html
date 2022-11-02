@@ -27,7 +27,7 @@ h4 {
 	font-size: 30px;
 }
 
-ul {
+.ul {
 	padding: 5px 0;
 	margin-bottom: 20px;
 }
@@ -71,27 +71,27 @@ a {
 <!--====== Content Card Style 4 Part Start ======-->
 <div class=parent>
 	<div class="first">
-		<h4 class="title">MY PAGE</h4>
+		<h4 class="title" th:h>MY PAGE</h4>
 		<!-- ID값을 부여해주자  -->
 		<p th:text="${session.logincust.custname} + 님" id="info"></p>
 		<h5>나의 예약정보</h5>
-		<ul>
+		<ul class="ul">
 			<li><a href="#">예약조회</a></li>
 			<li><a href="#">나의 리뷰</a></li>
 		</ul>
 		<h5>나의 계정설정</h5>
-		<ul>
+		<ul class="ul">
 			<li><a href="/mypage/edit/">회원정보수정</a></li>
 			<li><a href="#">회원등급</a></li>
 			<li><a href="#">쿠폰</a></li>
 		</ul>
 		<h5>고객센터</h5>
-		<ul>
+		<ul class="ul">
 			<li><a href="#">1:1 문의내역</a></li>
 			<li><a href="#">공지사항</a></li>
 			<li><a href="#">#</a></li>
 		</ul>
-		<ul>
+		<ul class="ul">
 			<p style="color: orange">Eat & Out</p>
 		</ul>
 	</div>
@@ -100,7 +100,7 @@ a {
 		<br>
 		<form id="update_form">
 			<h5>로그인 정보</h5>
-			<ul>
+			<ul class="ul">
 				<div>아이디</div>
 				<p th:text="${session.logincust.custid}"></p>
 				<input type="hidden" name="custid" th:value="${custedit.custid}" readonly="readyonly"></input>
@@ -109,14 +109,11 @@ a {
 				<br>
 			</ul>
 			<h5>회원 정보</h5>
-			<ul>
-				<div>성명</div>
-				<input type="text" name="custname" th:value="${custedit.custname}"
-					style="font-weight: bold"></input>
-				<div>연락처</div>
-				<input type="text" name="tel" th:value="${custedit.tel}">
-				<div>생일</div>
-				<input type="text" name="birth" th:value="${custedit.birth}">
+			<ul class="ul">
+				<div>성명 : <input type="text" name="custname" th:value="${custedit.custname}"
+					style="font-weight: bold"></input></div>
+				<div>연락처 : <input type="text" name="tel" th:value="${custedit.tel}"></div>
+				<div>생일 : <input type="text" name="birth" th:value="${custedit.birth}"></div>
 			</ul>
 		</form>
 		<div>
