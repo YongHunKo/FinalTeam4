@@ -18,6 +18,7 @@ public class MenuDTO {
 	private String menuname;
 	private Integer menuprice;
 	private String menuinfo;
+	private Integer menucnt;
 	
 	//조인
 	private String menuimg;

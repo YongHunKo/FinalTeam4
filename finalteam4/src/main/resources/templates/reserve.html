@@ -14,12 +14,34 @@
         <tr>
         	<th></th>
             <th>메뉴이름</th>
+            <th>수량</th>
         </tr>
     </thead>
     <tbody>
         <tr th:each="r : ${menulist}">
         	<td></td>
         	<td th:text="${r.menuname}"></td>
+        	<td>
+        		<div>
+	        		<input type="text" th:value="${r.menucnt}" class="cnt_input">
+	        		<span>
+		        		<button class="plus_btn">+</button>
+		        		<button class="minus_btn">-</button>
+	        		</span>
+        		</div>
+        	</td>
         </tr>
     </tbody>
 </table> 
+
+<script>
+let cnt = $(".cnt_input").val();
+$(".plus_btn").on("click",function(){
+	$(".cnt_input").val(++cnt);
+});
+$(".minus_btn").on("click",function(){
+	if(cnt > 0){
+		$(".cnt_input").val(--cnt);		
+	}
+});
+</script>

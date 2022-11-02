@@ -28,5 +28,6 @@ public class StoreDTO {
 	private Integer menuprice;
 	private String menuinfo;
 	private String menuimg;
+	private Integer menucnt;
 
 }

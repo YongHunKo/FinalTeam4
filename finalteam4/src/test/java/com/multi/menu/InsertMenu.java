@@ -16,7 +16,7 @@ public class InsertMenu {
 	@Test
 	void contextLoads() {
 		try {
-			menu_service.register(new MenuDTO(3, 3, 3, "상견례상차림", 50000, "백년가약", null, null));
+			menu_service.register(new MenuDTO(3, 3, 3, "상견례상차림", 50000, "백년가약", null, null,null));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

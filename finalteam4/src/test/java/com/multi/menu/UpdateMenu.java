@@ -16,7 +16,7 @@ public class UpdateMenu {
 	@Test
 	void contextLoads() {
 		try {
-			menu_service.modify(new MenuDTO(2, 1, 2, "한상차림", 20000, "한상차림", null, null));
+			menu_service.modify(new MenuDTO(2, 1, 2, "한상차림", 20000, "한상차림", null, null,null));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
