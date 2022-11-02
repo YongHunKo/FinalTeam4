@@ -48,6 +48,10 @@ tr > th {
 	width: 200px;
 	text-align: center;
 }
+
+tr > td {
+	text-align: center;
+}
 </style>
 
 <!--====== Content Card Style 4 Part Start ======-->
@@ -79,31 +83,22 @@ tr > th {
 		<table class="table">
 			<thead>
 				<tr class="tbl">
-					<!-- <th>예약일</th> -->
-					<!-- <th>예약시간</th> -->
+					<th>예약날짜</th>
+					<th>예약시간</th>
 					<th>테이블</th>
 					<th>주문메뉴</th>
 					<th>가격</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<!-- <td th:text="${#dates.format(list.reservedate, 'yyyy-MM-dd')}"></td> -->
-					<!-- <td th:text="${list.reservetime}"></td> -->
-					<td>a</td>
-					<td>b</td>
-					<td>c</td>
+				<tr th:each="li : ${list}">
+					<td th:text="${#dates.format(li.reservedate, 'yyyy-MM-dd')}"></td>
+					<td th:text="${#dates.format(li.reservetime, 'HH:mm')}"></td>
+					<td th:text="${li.storename}"></td>
+					<td th:text="${li.menuname}"></td>
+					<td th:text="${li.totalprice}"></td>
 				</tr>
 			</tbody>
-			<!-- <tbody>
-				<tr th:each="${list}">
-					<td th:text="${#dates.format(list.reservedate, 'yyyy-MM-dd')}"></td>
-					<td th:text="${list.reservetime}"></td>
-					<td th:text="${list.storename}"></td>
-					<td th:text="${list.menuname}"></td>
-					<td th:text="${list.totalprice}"></td>
-				</tr>
-			</tbody> -->
 		</table>
 	</div>
 </div>
