@@ -2,6 +2,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Eat & Out</title>
+<style>
+#profile{
+
+width:350px;
+height:350px;
+border-radius:200px;
+margin: 0 auto;
+
+}
+
+
+</style>
+
 </head>
 <body>
  <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -12,7 +25,7 @@
      <div class="card-header py-3">
          <h6 class="m-0 font-weight-bold text-primary">로그인결과</h6><br>
          <br>
-     	<h4><img th:src="${userId.profile}"></h4><br>
+     	<h4><img id="profile" th:src="${userId.profile}"></h4><br>
      	<br>
      	<h4 th:text="|User Name = ${userId.nickname}|"></h4>
      	<h4 th:text="|User Email = ${userId.email}|"></h4>
