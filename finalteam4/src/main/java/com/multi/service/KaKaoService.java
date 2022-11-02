@@ -40,8 +40,8 @@ public class KaKaoService {
 	            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 	            StringBuilder sb = new StringBuilder();
 	            sb.append("grant_type=authorization_code");
-	            sb.append("&client_id=8f091ec537ce9700f5864824e26f19d9");
-	            sb.append("&redirect_uri=http://127.0.0.1/kakao/callback");
+	            sb.append("&client_id=8f091ec537ce9700f5864824e26f19d9"); // APPLICATION Client ID
+	            sb.append("&redirect_uri=http://127.0.0.1/kakao/callback"); // Redirect URL
 	            sb.append("&code=" + authorize_code);
 	            bw.write(sb.toString());
 	            bw.flush();
@@ -114,10 +114,11 @@ public class KaKaoService {
 		        
 		        String nickname = properties.getAsJsonObject().get("nickname").getAsString();
 		        String email = kakao_account.getAsJsonObject().get("email").getAsString();
+		        String profile = properties.getAsJsonObject().get("profile_image").getAsString();
 		        
 		        userInfo.put("nickname", nickname);
 		        userInfo.put("email", email);
-		        
+		        userInfo.put("profile", profile);
 		    } catch (IOException e) {
 		        // TODO Auto-generated catch block
 		        e.printStackTrace();
@@ -126,7 +127,32 @@ public class KaKaoService {
 		    return userInfo;
 		}
 
-	 
+	 public void kakaoLogout(String access_Token) {
+		    String reqURL = "https://kapi.kakao.com/v1/user/logout";
+		    try {
+		        URL url = new URL(reqURL);
+		        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		        conn.setRequestMethod("POST");
+		        conn.setRequestProperty("Authorization", "Bearer " + access_Token);
+		        
+		        int responseCode = conn.getResponseCode();
+		        System.out.println("responseCode : " + responseCode);
+		        
+		        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		        
+		        String result = "";
+		        String line = "";
+		        
+		        while ((line = br.readLine()) != null) {
+		            result += line;
+		        }
+		        System.out.println(result);
+		    } catch (IOException e) {
+		        // TODO Auto-generated catch block
+		        e.printStackTrace();
+		    }
+		}
+
 	 
 	 
 }
