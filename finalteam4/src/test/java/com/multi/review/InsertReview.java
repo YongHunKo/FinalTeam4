@@ -16,7 +16,7 @@ public class InsertReview {
 	@Test
 	void contextLoads() {
 		try {
-			review_service.register(new ReviewDTO(null, "id06", 3, "군침이 싸악 돕니다.", 5, null));
+			review_service.register(new ReviewDTO(null, "id06", 3, "군침이 싸악 돕니다.", 5, null, null));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

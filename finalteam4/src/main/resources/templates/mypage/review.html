@@ -82,34 +82,14 @@ tr>td {
 		</ul>
 	</div>
 	<div class="second">
-		<section class="myinfo">
-			<ul class="ul">
-				<li></li>
-				<li></li>
-				<li></li>
-			</ul>
-		</section>
 		<h3>리 뷰</h3>
-		<table class="table">
-			<thead>
-				<tr class="tbl">
-					<th>예약날짜</th>
-					<th>예약시간</th>
-					<th>테이블</th>
-					<th>주문메뉴</th>
-					<th>가격</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</tbody>
-		</table>
+		<ul>
+			<li th:each="list : ${list}" class="inserted" style="display: block">
+				<div>
+					<span th:text="${list.storename}"></span>
+				</div>
+				<div>dfad</div>
+		</ul>
 	</div>
 </div>
 <!--====== Content Card Style 4 Part Ends ======-->

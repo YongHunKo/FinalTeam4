@@ -19,5 +19,13 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<delete id="delete" parameterType="Integer">
 		DELETE FROM review WHERE reviewid = #{reviewid}
 	</delete>
+	
+	<select id="myreview" parameterType="String" resultType="ReviewDTO">
+		select s.storename, o.reservedate, r.revtext, r.star from review r
+		inner join cust c on c.custid = r.custid
+		inner join store s on s.storeid = r.storeid
+		inner join orderlist o on o.custid = c.custid
+		where c.custid = #{custid};
+	</select>
 
 </mapper>
