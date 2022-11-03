@@ -1,12 +1,12 @@
-
 <meta charset="utf-8">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <style>
 .parent {
 	position: relative;
 	min-width: 900px px;
 	max-width: 1500px;
-	margin: 40px auto 0;
+	margin: 50px auto 0;
 	padding: 0 50px 100px;
 	display: flex;
 }
@@ -21,6 +21,7 @@
 	margin-top: 75px;
 	margin-left: 0;
 	margin-right: 0;
+	width: 1500px;
 }
 
 h4 {
@@ -30,6 +31,10 @@ h4 {
 .ul {
 	padding: 5px 0;
 	margin-bottom: 20px;
+}
+
+.ul > div {
+	padding: 5px 0;
 }
 
 a {
@@ -77,11 +82,13 @@ a {
 		<h5>나의 예약정보</h5>
 		<ul class="ul">
 			<li><a href="#">예약조회</a></li>
-			<li><a href="#">나의 리뷰</a></li>
+			<li><a
+				th:href="@{/mypage/review(id=${session.logincust.custid})}">나의
+					리뷰</a></li>
 		</ul>
 		<h5>나의 계정설정</h5>
 		<ul class="ul">
-			<li><a href="/mypage/edit/">회원정보수정</a></li>
+			<li><a th:href="@{/mypage/edit(id=${session.logincust.custid})}">회원정보수정</a></li>
 			<li><a href="#">회원등급</a></li>
 			<li><a href="#">쿠폰</a></li>
 		</ul>
@@ -96,24 +103,31 @@ a {
 		</ul>
 	</div>
 	<div class="second">
-		<h4>회원정보 수정</h4>
+		<h4 style="border-bottom: 2px solid black; padding: 0 0 10px">회원정보
+			수정</h4>
 		<br>
 		<form id="update_form">
 			<h5>로그인 정보</h5>
 			<ul class="ul">
 				<div>아이디</div>
-				<p th:text="${session.logincust.custid}"></p>
-				<input type="hidden" name="custid" th:value="${custedit.custid}" readonly="readyonly"></input>
+				<div th:text="${session.logincust.custid}"></div>
+				<input type="hidden" name="custid" th:value="${custedit.custid}"
+					readonly="readyonly"></input>
 				<div>비밀번호</div>
 				<input type="text" name="custpwd">
-				<br>
 			</ul>
 			<h5>회원 정보</h5>
 			<ul class="ul">
-				<div>성명 : <input type="text" name="custname" th:value="${custedit.custname}"
-					style="font-weight: bold"></input></div>
-				<div>연락처 : <input type="text" name="tel" th:value="${custedit.tel}"></div>
-				<div>생일 : <input type="text" name="birth" th:value="${custedit.birth}"></div>
+				<div>
+					성명 : <input type="text" name="custname"
+						th:value="${custedit.custname}" style="font-weight: bold"></input>
+				</div>
+				<div>
+					연락처 : <input type="text" name="tel" th:value="${custedit.tel}">
+				</div>
+				<div>
+					생일 : <input type="text" name="birth" th:value="${custedit.birth}">
+				</div>
 			</ul>
 		</form>
 		<div>

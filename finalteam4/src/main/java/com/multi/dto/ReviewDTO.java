@@ -20,4 +20,5 @@ public class ReviewDTO {
 	
 	private String storename;
 	private String reservedate;
+	private String storeimg;
 }
