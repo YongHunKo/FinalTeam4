@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.HashMap;
 
 import org.springframework.stereotype.Service;
@@ -23,11 +24,13 @@ import com.google.gson.JsonParser;
 
 @Service
 public class KaKaoService {
-	 public String getAccessToken (String authorize_code) {
+	 
+	
+	public String getAccessToken (String authorize_code) {
 	        String access_Token = "";
 	        String refresh_Token = "";
 	        String reqURL = "https://kauth.kakao.com/oauth/token";
-	        
+	      
 	        try {
 	            URL url = new URL(reqURL);
 	            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
