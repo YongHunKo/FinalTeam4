@@ -28,8 +28,8 @@ public class NaverController {
 	public String login(@RequestParam("code") String code) {
 		String access_Token = naver.getAccessToken(code);
         System.out.println("controller access_token : " + access_Token);
-        HashMap<String, Object> userInfo = naver.getUserInfo(access_Token);
-        System.out.println("login Controller : " + userInfo);
+//        HashMap<String, Object> userInfo = naver.getUserInfo(access_Token);
+//        System.out.println("login Controller : " + userInfo);
 	    
 	    return "index";
 	

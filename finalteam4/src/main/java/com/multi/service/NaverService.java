@@ -105,13 +105,13 @@ public HashMap<String, Object> getUserInfo (String access_Token) {
 	        JsonParser parser = new JsonParser();
 	        JsonElement element = parser.parse(result);
 	        
-	        JsonObject message = element.getAsJsonObject().get("message").getAsJsonObject();
+//	        JsonObject resultcode = element.getAsJsonObject().get("resultcode").getAsJsonObject();
 	        //JsonObject  = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
 	        
-	        String nickname = message.getAsJsonObject().get("nickname").getAsString();
+//	        String nickname = message.getAsJsonObject().get("nickname").getAsString();
 	      //  String email = kakao_account.getAsJsonObject().get("email").getAsString();
 	        
-	        userInfo.put("nickname", nickname);
+//	        userInfo.put("nickname", nickname);
 	      //  userInfo.put("email", email);
 	        
 	    } catch (IOException e) {
