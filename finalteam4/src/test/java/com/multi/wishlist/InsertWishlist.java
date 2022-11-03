@@ -1,25 +1,28 @@
-package com.multi.cart;
+package com.multi.wishlist;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.multi.service.CartService;
+import com.multi.dto.WishlistDTO;
+import com.multi.service.WishlistService;
 
 @SpringBootTest
-class DeleteCart {
+class InsertWishlist {
 
 	@Autowired
-	CartService service;
+	WishlistService service;
 	
 	@Test
 	void contextLoads() {
 		try {
-			service.remove(1);
+			service.register(new WishlistDTO(0, 5, "id05", null));
+			System.out.println("OK");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 }
