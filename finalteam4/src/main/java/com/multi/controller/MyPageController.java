@@ -20,10 +20,10 @@ public class MyPageController {
 
 	@Autowired
 	CustService cust_service;
-	
+
 	@Autowired
 	OrderlistService order_service;
-	
+
 	@Autowired
 	ReviewService review_service;
 
@@ -33,21 +33,28 @@ public class MyPageController {
 	public String mypage(String id, Model model) {
 		List<OrderlistDTO> list = null;
 		try {
-		list = order_service.myorder(id);
-		model.addAttribute("list", list);			
-		model.addAttribute("center", dir + "mypage");
+			list = order_service.myorder(id);
+			model.addAttribute("list", list);
+			model.addAttribute("center", dir + "mypage");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "index";
 	}
-	
+
 	@RequestMapping("/review")
-	public String review(Model model) {
-		model.addAttribute("center", dir + "review");
+	public String review(String id, Model model) {
+		List<ReviewDTO> list = null;
+		try {
+			list = review_service.myreview(id);
+			model.addAttribute("list", list);
+			model.addAttribute("center", dir + "review");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "index";
 	}
-		
+
 //	@RequestMapping("/review")
 //	public String review(String id, Model model) {
 //		List<ReviewDTO> list = null;

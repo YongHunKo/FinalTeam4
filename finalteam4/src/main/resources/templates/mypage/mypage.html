@@ -63,7 +63,7 @@ tr>td {
 		<h5>나의 예약정보</h5>
 		<ul class="ul">
 			<li><a href="#">예약조회</a></li>
-			<li><a href="mypage/review">나의 리뷰</a></li>
+			<li><a th:href="@{/mypage/review(id=${session.logincust.custid})}">나의 리뷰</a></li>
 		</ul>
 		<h5>나의 계정설정</h5>
 		<ul class="ul">

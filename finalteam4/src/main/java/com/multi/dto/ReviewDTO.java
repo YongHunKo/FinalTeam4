@@ -19,4 +19,5 @@ public class ReviewDTO {
 	private Integer star;
 	
 	private String storename;
+	private String reservedate;
 }

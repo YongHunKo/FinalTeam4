@@ -1,25 +1,31 @@
 package com.multi.review;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.multi.dto.OrderlistDTO;
 import com.multi.dto.ReviewDTO;
 import com.multi.service.ReviewService;
 
 @SpringBootTest
-public class UpdateReview {
+class MyReview {
 
 	@Autowired
-	ReviewService review_service;
+	ReviewService service;
 
 	@Test
 	void contextLoads() {
+		List<ReviewDTO> list = null;
 		try {
-			review_service.modify(new ReviewDTO(6, "id07", 2, "별로네요...", 1, null, null));
+			list = service.myreview("id01");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("Update Ok");
+		for (ReviewDTO r : list) {
+			System.out.println(r);
+		}
 	}
 }
