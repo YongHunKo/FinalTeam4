@@ -15,7 +15,6 @@
 </head>
 
 <style>
-@charset "UTF-8";
 *{
 	margin: 0;
 	padding:0;
@@ -242,10 +241,6 @@ table th, td {
 	text-align: center;
 }
 
-table.totalprice th {
-	cellpadding: 0px
-}
-
 table.table td {
 	border-bottom: solid #E9E9E9
 }
@@ -256,10 +251,6 @@ table.table th {
 
 table.table th {
 	border-bottom: solid #E9E9E9
-}
-
-table.table4 th {
-	border-top: solid #E9E9E9
 }
 </style>
 
@@ -290,13 +281,11 @@ table.table4 th {
 						<c:forEach items="${cartInfo}">	
 							<tr>
 								<th class="td_width_1"></th>
-								<th class="td_width_0">no</th>
 								<th class="td_width_2">메뉴 이미지</th>
 								<th class="td_width_3">메뉴명</th>
 								<th class="td_width_4">가격</th>
 								<th class="td_width_4">수량</th>
 								<th class="td_width_4">합계</th>
-								<th class="td_width_4">삭제</th>
 							</tr>
 							</thead>
 							<tbody>
@@ -308,7 +297,6 @@ table.table4 th {
 										<input type="hidden" class="individual_totalPrice_input"> 
 										<input type="hidden" class="individual_itemId_input" th:value="${c.menuid}">
 									</td>
-									<td id="cartid">NO</td>
 									<td class="td_width_2"><img th:src="@{/img/}+${c.menuimg}">
 									</td>
 									<td class="td_width_3" th:text="${c.menuname}">Item Name</td>
@@ -325,11 +313,6 @@ table.table4 th {
 										</button>
 									</td>
 									<td>TotalPrice</td>
-									<td>
-										<button type="button" class="btn btn-dark btn-sm">
-											<span class="material-icons">delete</span>
-										</button>
-									</td>
 								</tr>
 						</c:forEach>
 					</tbody>
@@ -344,10 +327,6 @@ table.table4 th {
 									<tr>
 										<td>총 상품 가격</td>
 										<td><span class="totalPrice_span">70000</span> 원</td>
-									</tr>
-									<tr>
-										<td>배송비</td>
-										<td><span class="delivery_price">3000</span> 원</td>
 									</tr>
 									<tr>
 										<td>총 주문 상품수</td>
@@ -432,7 +411,6 @@ function setTotalInfo(){
 	let totalCount = 0;				// 총 갯수
 	let totalKind = 0;				// 총 종류
 	let totalPoint = 0;				// 총 마일리지
-	let deliveryPrice = 0;			// 배송비
 	let finalTotalPrice = 0; 		// 최종 가격(총 가격 + 배송비)
 
 	
@@ -449,17 +427,6 @@ function setTotalInfo(){
 
 	});
 	
-	
-	/* 배송비 결정 */
-	if(totalPrice >= 30000){
-		deliveryPrice = 0;
-	} else if(totalPrice == 0){
-		deliveryPrice = 0;
-	} else {
-		deliveryPrice = 3000;	
-	}
-		finalTotalPrice = totalPrice + deliveryPrice;
-	
 	/* ※ 세자리 컴마 Javscript Number 객체의 toLocaleString() */
 	
 	// 총 가격
@@ -468,8 +435,6 @@ function setTotalInfo(){
 	$(".totalCount_span").text(totalCount);
 	// 총 종류
 	$(".totalKind_span").text(totalKind);
-	// 배송비
-	$(".delivery_price").text(deliveryPrice.toLocaleString());	
 	// 최종 가격(총 가격 + 배송비)
 	$(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());		
 }
