@@ -29,6 +29,8 @@ public class KaKaoController {
 		    model.addAttribute("userId", userInfo);
 		    model.addAttribute("center", "kakaologout");
 		    //    클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
+		    
+		    
 		    if (userInfo.get("email") != null) {
 		        session.setAttribute("userId", userInfo.get("email"));
 		        session.setAttribute("access_Token", access_Token);
