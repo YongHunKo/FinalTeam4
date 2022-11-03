@@ -13,9 +13,9 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class CartDTO {
+public class WishlistDTO {
 
-	private Integer cartid;
+	private Integer wishlistid;
 	private Integer storeid;
 	private String custid;
 	private Date rdate;

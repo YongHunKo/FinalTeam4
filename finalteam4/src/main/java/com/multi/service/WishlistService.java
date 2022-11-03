@@ -5,18 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.multi.dto.CartDTO;
+import com.multi.dto.WishlistDTO;
 import com.multi.frame.MyService;
-import com.multi.mapper.CartMapper;
+import com.multi.mapper.WishlistMapper;
 
 @Service
-public class CartService implements MyService<Integer,CartDTO>{
+public class WishlistService implements MyService<Integer,WishlistDTO>{
 
 	@Autowired
-	CartMapper mapper;
+	WishlistMapper mapper;
 	
 	@Override
-	public void register(CartDTO v) throws Exception {
+	public void register(WishlistDTO v) throws Exception {
 		mapper.insert(v);
 		
 	}
@@ -28,19 +28,19 @@ public class CartService implements MyService<Integer,CartDTO>{
 	}
 
 	@Override
-	public void modify(CartDTO v) throws Exception {
+	public void modify(WishlistDTO v) throws Exception {
 		mapper.update(v);
 		
 	}
 
 	@Override
-	public CartDTO get(Integer k) throws Exception {
+	public WishlistDTO get(Integer k) throws Exception {
 		
 		return mapper.select(k);
 	}
 
 	@Override
-	public List<CartDTO> getall() throws Exception {
+	public List<WishlistDTO> getall() throws Exception {
 		
 		return mapper.selectall();
 	}
