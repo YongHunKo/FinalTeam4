@@ -16,7 +16,7 @@ public class UpdateReview {
 	@Test
 	void contextLoads() {
 		try {
-			review_service.modify(new ReviewDTO(6, "id07", 2, "별로네요...", 1));
+			review_service.modify(new ReviewDTO(6, "id07", 2, "별로네요...", 1, null));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
