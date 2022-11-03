@@ -7,12 +7,12 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.HashMap;
 
 import org.springframework.stereotype.Service;
- 
+
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
  
 @Service
@@ -21,8 +21,10 @@ public class NaverService {
     public String getAccessToken (String authorize_code) {
         String access_Token = "";
         String refresh_Token = "";
+        String state = "";
         String reqURL = "https://nid.naver.com/oauth2.0/token";
-        
+        // state값을 인코딩해야 값이 제대로넘어오나?... 
+        //state = URLEncoder.encode("http://127.0.0.1/naver/callback", "UTF-8");
         try {
             URL url = new URL(reqURL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -39,6 +41,7 @@ public class NaverService {
             sb.append("&client_secret=jgzzekxRIT");
             sb.append("&redirect_uri=http://127.0.0.1/naver/callback");
             sb.append("&code=" + authorize_code);
+            sb.append("&state=" + state);
             bw.write(sb.toString());
             bw.flush();
             
@@ -76,7 +79,7 @@ public class NaverService {
         return access_Token;
     }
 
-public HashMap<String, Object> getUserInfo (String access_Token) {
+    public HashMap<String, Object> getUserInfo (String access_Token) {
 	    
 	    //    요청하는 클라이언트마다 가진 정보가 다를 수 있기에 HashMap타입으로 선언
 	    HashMap<String, Object> userInfo = new HashMap<>();
@@ -105,15 +108,16 @@ public HashMap<String, Object> getUserInfo (String access_Token) {
 	        JsonParser parser = new JsonParser();
 	        JsonElement element = parser.parse(result);
 	        
-	        JsonObject message = element.getAsJsonObject().get("message").getAsJsonObject();
-	        //JsonObject  = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
-	        
-	        String nickname = message.getAsJsonObject().get("nickname").getAsString();
-	      //  String email = kakao_account.getAsJsonObject().get("email").getAsString();
-	        
-	        userInfo.put("nickname", nickname);
-	      //  userInfo.put("email", email);
-	        
+//	        JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
+//	        JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
+//	        
+//	        String nickname = properties.getAsJsonObject().get("nickname").getAsString();
+//	        String email = kakao_account.getAsJsonObject().get("email").getAsString();
+//	        String profile = properties.getAsJsonObject().get("profile_image").getAsString();
+//	        
+//	        userInfo.put("nickname", nickname);
+//	        userInfo.put("email", email);
+//	        userInfo.put("profile", profile);
 	    } catch (IOException e) {
 	        // TODO Auto-generated catch block
 	        e.printStackTrace();
@@ -121,6 +125,7 @@ public HashMap<String, Object> getUserInfo (String access_Token) {
 	    
 	    return userInfo;
 	}
+
 
 
 
