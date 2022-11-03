@@ -6,7 +6,7 @@
 	position: relative;
 	min-width: 900px px;
 	max-width: 1500px;
-	margin: 40px auto 0;
+	margin: 50px auto 0;
 	padding: 0 50px 100px;
 	display: flex;
 }
@@ -21,13 +21,14 @@
 	margin-top: 75px;
 	margin-left: 0;
 	margin-right: 0;
+	width: 1500px;
 }
 
 h4 {
 	font-size: 30px;
 }
 
-.ul {
+.ul1 {
 	padding: 5px 0;
 	margin-bottom: 20px;
 }
@@ -61,23 +62,23 @@ tr>td {
 		<!-- ID값을 부여해주자  -->
 		<p th:text="${session.logincust.custname} + 님" id="info"></p>
 		<h5>나의 예약정보</h5>
-		<ul class="ul">
+		<ul class="ul1">
 			<li><a href="#">예약조회</a></li>
 			<li><a th:href="@{/mypage/review(id=${session.logincust.custid})}">나의 리뷰</a></li>
 		</ul>
 		<h5>나의 계정설정</h5>
-		<ul class="ul">
+		<ul class="ul1">
 			<li><a th:href="@{/mypage/edit(id=${session.logincust.custid})}">회원정보수정</a></li>
 			<li><a href="#">회원등급</a></li>
 			<li><a href="#">쿠폰</a></li>
 		</ul>
 		<h5>고객센터</h5>
-		<ul class="ul">
+		<ul class="ul1">
 			<li><a href="#">1:1 문의내역</a></li>
 			<li><a href="#">공지사항</a></li>
 			<li><a href="#">#</a></li>
 		</ul>
-		<ul class="ul">
+		<ul class="ul1">
 			<p style="color: orange">Eat & Out</p>
 		</ul>
 	</div>
@@ -89,7 +90,7 @@ tr>td {
 				<li></li>
 			</ul>
 		</section>
-		<h3>현재 예약 테이블(임시)</h3>
+		<h3 style = "border-bottom: 2px solid black; padding: 0 0 10px">현재 예약 테이블(임시)</h3>
 		<table class="table">
 			<thead>
 				<tr class="tbl">

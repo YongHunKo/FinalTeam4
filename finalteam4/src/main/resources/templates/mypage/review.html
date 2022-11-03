@@ -21,6 +21,7 @@
 	margin-top: 75px;
 	margin-left: 0;
 	margin-right: 0;
+	width: 1500px;
 }
 
 h4 {
@@ -52,6 +53,15 @@ tr>th {
 tr>td {
 	text-align: center;
 }
+
+.img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.inserted {
+	padding: 0 30px 0 0;
 </style>
 
 <!--====== Content Card Style 4 Part Start ======-->
@@ -63,7 +73,7 @@ tr>td {
 		<h5>나의 예약정보</h5>
 		<ul class="ul">
 			<li><a href="#">예약조회</a></li>
-			<li><a href="#">나의 리뷰</a></li>
+			<li><a th:href="@{/mypage/review(id=${session.logincust.custid})}">나의 리뷰</a></li>
 		</ul>
 		<h5>나의 계정설정</h5>
 		<ul class="ul">
@@ -78,17 +88,30 @@ tr>td {
 			<li><a href="#">#</a></li>
 		</ul>
 		<ul class="ul">
-			<p style="color: orange">Eat & Out</p>
+			<h5 style="color: orange">Eat & Out</h5>
 		</ul>
 	</div>
 	<div class="second">
-		<h3>리 뷰</h3>
-		<ul>
-			<li th:each="list : ${list}" class="inserted" style="display: block">
+		<h3 style = "border-bottom: 2px solid black; padding: 0 0 10px">리 뷰</h3>
+		<ul style="display: flex; position: relative; padding: 20px 0">
+			<li th:each="list : ${list}" class="inserted">
 				<div>
-					<span th:text="${list.storename}"></span>
+					<a href = "#"><img th:src="'/img/' + ${list.storeimg}" class="img"></a>
 				</div>
-				<div>dfad</div>
+				<div>
+					<a href = "#"><span th:text="${list.storename}"></span></a>
+				</div>
+				<div>
+					<span th:text="${list.revtext}"></span>
+				</div>
+				<div>
+					<span th:text="${list.reservedate}"></span>
+				</div>
+				<div>
+					<span th:text="${list.star}"></span>
+				</div>
+			</li>
+			
 		</ul>
 	</div>
 </div>
