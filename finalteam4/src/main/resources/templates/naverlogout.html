@@ -1,0 +1,41 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Eat & Out</title>
+<style>
+#profile{
+
+width:350px;
+height:350px;
+border-radius:200px;
+margin: 0 auto;
+
+}
+
+
+</style>
+
+</head>
+<body>
+ <div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h1 class="h3 mb-0 text-gray-800">네이버 로그인성공!</h1>
+      
+  </div>
+ <div class="card shadow mb-4">
+     <div class="card-header py-3">
+         <h6 class="m-0 font-weight-bold text-primary">로그인결과</h6><br>
+         <br>
+     	<h4><img id="profile" th:src="${naver.profile}"></h4><br>
+     	<br>
+     	<h4 th:text="|User NickName = ${naver.nickname}|"></h4>
+     	<h4 th:text="|User Email = ${naver.email}|"></h4>
+		<br>
+		<a href="/logout" style="width:150px;">Logout</a>
+     </div>
+  
+ </div>
+
+
+</ul>
+</body>
+</html>

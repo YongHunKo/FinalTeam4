@@ -7,12 +7,12 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.util.HashMap;
 
 import org.springframework.stereotype.Service;
 
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
  
 @Service
@@ -21,7 +21,7 @@ public class NaverService {
     public String getAccessToken (String authorize_code) {
         String access_Token = "";
         String refresh_Token = "";
-        String state = "";
+        String state = "test";
         String reqURL = "https://nid.naver.com/oauth2.0/token";
         // state값을 인코딩해야 값이 제대로넘어오나?... 
         //state = URLEncoder.encode("http://127.0.0.1/naver/callback", "UTF-8");
@@ -41,7 +41,7 @@ public class NaverService {
             sb.append("&client_secret=jgzzekxRIT");
             sb.append("&redirect_uri=http://127.0.0.1/naver/callback");
             sb.append("&code=" + authorize_code);
-            sb.append("&state=" + state);
+            sb.append("&state="+"test");
             bw.write(sb.toString());
             bw.flush();
             
@@ -62,7 +62,7 @@ public class NaverService {
             //    Gson 라이브러리에 포함된 클래스로 JSON파싱 객체 생성
             JsonParser parser = new JsonParser();
             JsonElement element = parser.parse(result);
-            
+           
             access_Token = element.getAsJsonObject().get("access_token").getAsString();
             refresh_Token = element.getAsJsonObject().get("refresh_token").getAsString();
             
@@ -83,12 +83,12 @@ public class NaverService {
 	    
 	    //    요청하는 클라이언트마다 가진 정보가 다를 수 있기에 HashMap타입으로 선언
 	    HashMap<String, Object> userInfo = new HashMap<>();
-	    String reqURL = "https://openapi.naver.com/v1/nid/me";
+	    String reqURL ="https://openapi.naver.com/v1/nid/me";
 	    try {
 	        URL url = new URL(reqURL);
 	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-	        conn.setRequestMethod("POST");
-	        
+	        conn.setRequestMethod("GET");
+	       
 	        //    요청에 필요한 Header에 포함될 내용
 	        conn.setRequestProperty("Authorization", "Bearer " + access_Token);
 	        
@@ -107,17 +107,17 @@ public class NaverService {
 	        
 	        JsonParser parser = new JsonParser();
 	        JsonElement element = parser.parse(result);
-	        
-//	        JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
+	       
+	        JsonObject response = element.getAsJsonObject().get("response").getAsJsonObject();
 //	        JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
 //	        
-//	        String nickname = properties.getAsJsonObject().get("nickname").getAsString();
-//	        String email = kakao_account.getAsJsonObject().get("email").getAsString();
-//	        String profile = properties.getAsJsonObject().get("profile_image").getAsString();
-//	        
-//	        userInfo.put("nickname", nickname);
-//	        userInfo.put("email", email);
-//	        userInfo.put("profile", profile);
+	        String nickname = response.getAsJsonObject().get("nickname").getAsString();
+	        String email = response.getAsJsonObject().get("email").getAsString();
+	        String profile = response.getAsJsonObject().get("profile_image").getAsString();
+//	       
+	        userInfo.put("nickname", nickname);
+	        userInfo.put("email", email);
+	        userInfo.put("profile", profile);
 	    } catch (IOException e) {
 	        // TODO Auto-generated catch block
 	        e.printStackTrace();
