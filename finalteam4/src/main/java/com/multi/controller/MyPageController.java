@@ -47,9 +47,12 @@ public class MyPageController {
 
 	@RequestMapping("/review")
 	public String review(String id, Model model) {
+		OrderlistDTO list1 = null;
 		List<ReviewDTO> list = null;
 		try {
+			list1 = order_service.myorder_1(id);
 			list = review_service.myreview(id);
+			model.addAttribute("list1", list1);
 			model.addAttribute("list", list);
 			model.addAttribute("center", dir + "review");
 		} catch (Exception e) {
@@ -73,9 +76,12 @@ public class MyPageController {
 
 	@RequestMapping("/edit")
 	public String edit(String id, Model model) {
+		OrderlistDTO list1 = null;
 		CustDTO cust = null;
 		try {
+			list1 = order_service.myorder_1(id);
 			cust = cust_service.get(id);
+			model.addAttribute("list1", list1);
 			model.addAttribute("custedit", cust);
 		} catch (Exception e) {
 			e.printStackTrace();

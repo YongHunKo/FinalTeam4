@@ -6,7 +6,7 @@
 	position: relative;
 	min-width: 900px px;
 	max-width: 1500px;
-	margin: 40px auto 0;
+	margin: 50px auto 0;
 	padding: 0 50px 100px;
 	display: flex;
 }
@@ -15,25 +15,43 @@
 	flex: none;
 	width: 230px;
 	padding: 0 50px 0 0;
+	box-sizing: border-box;
 }
 
 .second {
-	margin-top: 75px;
-	margin-left: 0;
-	margin-right: 0;
-	width: 1500px;
-	padding-top: 50px;
+	flex: 1;
+	padding-top: 190px;
+}
+
+h4
+{
+font-size
+:
+30px;
+}
+.ul {
+	padding: 5px 0;
+	margin-bottom: 20px;
+	text-align: left;
 }
 
 h4 {
 	font-size: 30px;
 }
 
-.ul {
-	padding: 5px 0;
-	margin-bottom: 20px;
+.ul
+{
+padding
+:
+5px
+0;
+margin-bottom
+:
+20px;
+text-align
+:
+left;
 }
-
 a {
 	padding: 5px 0;
 	font-size: 15px;
@@ -56,13 +74,52 @@ tr>td {
 }
 
 .img {
-  width: 300px;
-  height: 300px;
-  object-fit: cover;
+	width: 300px;
+	height: 300px;
+	object-fit: cover;
 }
 
 .inserted {
 	padding: 0 30px 0 0;
+}
+
+.inserted>div {
+	text-align: left;
+}
+
+.recent {
+	position: absolute;
+	top: 0;
+	right: 50px;
+	left: 280px;
+	background: orange;
+}
+
+.recent>li {
+	display: flex;
+	align-items: flex-end;
+	float: left;
+	position: relative;
+	width: 25%;
+	height: 150px;
+	padding: 65px 20px 0px;
+	box-sizing: border-box;
+	text-align: left;
+	font-size: 50px;
+}
+
+.recent>li>a {
+	padding: 6px 0;
+	font-size: 15px;
+	color: black;
+	font-weight: 600;
+}
+
+.recent>li>a>span {
+	font-size: 50px;
+	font-weight: 400;
+	color: #fff;
+}
 </style>
 
 <!--====== Content Card Style 4 Part Start ======-->
@@ -74,7 +131,9 @@ tr>td {
 		<h5>나의 예약정보</h5>
 		<ul class="ul">
 			<li><a href="#">예약조회</a></li>
-			<li><a th:href="@{/mypage/review(id=${session.logincust.custid})}">나의 리뷰</a></li>
+			<li><a
+				th:href="@{/mypage/review(id=${session.logincust.custid})}">나의
+					리뷰</a></li>
 		</ul>
 		<h5>나의 계정설정</h5>
 		<ul class="ul">
@@ -92,15 +151,27 @@ tr>td {
 			<h5 style="color: orange">Eat & Out</h5>
 		</ul>
 	</div>
+	<div>
+		<ul class="recent">
+			<li><a>
+					<div>가장 가까운 예약</div> <span
+					th:text="${#dates.format(list1.reservedate, 'MM월 dd일')}"></span>
+			</a></li>
+			<li><a>
+					<div>테이블</div> <span th:text="${list1.storename}"></span>
+			</a></li>
+		</ul>
+	</div>
 	<div class="second">
-		<h3 style = "border-bottom: 2px solid black; padding: 0 0 10px">리 뷰</h3>
+		<h3 style="border-bottom: 2px solid black; padding: 0 0 10px">리 뷰</h3>
 		<ul style="display: flex; position: relative; padding: 20px 0">
 			<li th:each="list : ${list}" class="inserted">
 				<div>
-					<a href = "#"><img th:src="'/img/' + ${list.storeimg}" class="img"></a>
+					<a href="#"><img th:src="'/img/' + ${list.storeimg}"
+						class="img"></a>
 				</div>
 				<div>
-					<a href = "#"><span th:text="${list.storename}"></span></a>
+					<a href="#"><span th:text="${list.storename}" style="font-weight: 700; font-size: 20px"></span></a>
 				</div>
 				<div>
 					<span th:text="${list.revtext}"></span>
@@ -112,7 +183,7 @@ tr>td {
 					<span th:text="${list.star}"></span>
 				</div>
 			</li>
-			
+
 		</ul>
 	</div>
 </div>

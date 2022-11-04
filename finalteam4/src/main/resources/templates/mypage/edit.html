@@ -15,14 +15,12 @@
 	flex: none;
 	width: 230px;
 	padding: 0 50px 0 0;
+	box-sizing: border-box;
 }
 
 .second {
-	margin-top: 75px;
-	margin-left: 0;
-	margin-right: 0;
-	width: 1500px;
-	padding-top: 50px;
+	flex: 1;
+	padding-top: 190px;
 }
 
 h4 {
@@ -32,6 +30,7 @@ h4 {
 .ul {
 	padding: 5px 0;
 	margin-bottom: 20px;
+	text-align: left;
 }
 
 .ul>div {
@@ -53,6 +52,40 @@ a {
 .tbl {
 	width: 200px;
 	text-align: center;
+}
+
+.recent {
+	position: absolute;
+	top: 0;
+	right: 50px;
+	left: 280px;
+	background: orange;
+}
+
+.recent>li {
+	display: flex;
+	align-items: flex-end;
+	float: left;
+	position: relative;
+	width: 25%;
+	height: 150px;
+	padding: 65px 20px 0px;
+	box-sizing: border-box;
+	text-align: left;
+	font-size: 50px;
+}
+
+.recent>li>a {
+	padding: 6px 0;
+	font-size: 15px;
+	color: black;
+	font-weight: 600;
+}
+
+span {
+	font-size: 50px;
+	font-weight: 400;
+	color: #fff;
 }
 </style>
 
@@ -101,6 +134,17 @@ a {
 		</ul>
 		<ul class="ul">
 			<p style="color: orange">Eat & Out</p>
+		</ul>
+	</div>
+	<div>
+		<ul class="recent">
+			<li><a>
+					<div>가장 가까운 예약</div> <span
+					th:text="${#dates.format(list1.reservedate, 'MM월 dd일')}"></span>
+			</a></li>
+			<li><a>
+					<div>테이블</div> <span th:text="${list1.storename}"></span>
+			</a></li>
 		</ul>
 	</div>
 	<div class="second">
