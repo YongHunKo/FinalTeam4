@@ -15,13 +15,12 @@
 	flex: none;
 	width: 230px;
 	padding: 0 50px 0 0;
+	box-sizing: border-box;
 }
 
 .second {
-	margin-top: 75px;
-	margin-left: 0;
-	margin-right: 0;
-	width: 1500px;
+	flex: 1;
+	padding-top: 190px;
 }
 
 h4 {
@@ -48,10 +47,44 @@ a {
 tr>th {
 	width: 200px;
 	text-align: center;
+	padding: 10px 0;
+	border-bottom: 1px solid black;
 }
 
 tr>td {
 	text-align: center;
+	align-items: center;
+	position: relative;
+	height: 60px;
+	padding: 10px 0;
+	border-bottom: 1px solid black;
+}
+
+.recent {
+	position: absolute;
+	top: 0;
+	right: 50px;
+	left: 280px;
+	background: orange;
+}
+
+.recent>li {
+	display: flex;
+	align-items: flex-end;
+	float: left;
+	position: relative;
+	width: 25%;
+	height: 150px;
+	padding: 65px 20px 0px;
+	box-sizing: border-box;
+	text-align: left;
+	font-size: 50px;
+}
+
+span {
+	font-size: 50px;
+    font-weight: 400;
+    color: #fff;
 }
 </style>
 
@@ -64,7 +97,9 @@ tr>td {
 		<h5>나의 예약정보</h5>
 		<ul class="ul1">
 			<li><a href="#">예약조회</a></li>
-			<li><a th:href="@{/mypage/review(id=${session.logincust.custid})}">나의 리뷰</a></li>
+			<li><a
+				th:href="@{/mypage/review(id=${session.logincust.custid})}">나의
+					리뷰</a></li>
 		</ul>
 		<h5>나의 계정설정</h5>
 		<ul class="ul1">
@@ -82,16 +117,21 @@ tr>td {
 			<p style="color: orange">Eat & Out</p>
 		</ul>
 	</div>
+	<div>
+		<ul class="recent">
+			<li><a>
+					<div>가장 가까운 예약</div> <span
+					th:text="${#dates.format(list1.reservedate, 'MM월 dd일')}"></span>
+			</a></li>
+			<li><a>
+					<div>테이블</div> <span th:text="${list1.storename}"></span>
+			</a></li>
+		</ul>
+	</div>
 	<div class="second">
-		<section class="myinfo">
-			<ul class="ul">
-				<li></li>
-				<li></li>
-				<li></li>
-			</ul>
-		</section>
-		<h3 style = "border-bottom: 2px solid black; padding: 0 0 10px">현재 예약 테이블(임시)</h3>
-		<table class="table">
+		<h3 style="border-bottom: 2px solid black; padding: 0 0 10px">현재
+			예약 테이블(임시)</h3>
+		<table class="table1" style="padding: 13px 0">
 			<thead>
 				<tr class="tbl">
 					<th>예약날짜</th>
@@ -102,15 +142,16 @@ tr>td {
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="li : ${list}">
-					<td th:text="${#dates.format(li.reservedate, 'yyyy-MM-dd')}"></td>
-					<td th:text="${#dates.format(li.reservetime, 'HH:mm')}"></td>
-					<td th:text="${li.storename}"></td>
-					<td th:text="${li.menuname}"></td>
-					<td th:text="${li.totalprice}"></td>
+				<tr th:each="li2 : ${list2}">
+					<td th:text="${#dates.format(li2.reservedate, 'MM월 dd일')}"></td>
+					<td th:text="${#dates.format(li2.reservetime, 'HH시 mm분')}"></td>
+					<td th:text="${li2.storename}"></td>
+					<td th:text="${li2.menuname}"></td>
+					<td th:text="${li2.totalprice}"></td>
 				</tr>
 			</tbody>
 		</table>
+
 	</div>
 </div>
 <!--====== Content Card Style 4 Part Ends ======-->

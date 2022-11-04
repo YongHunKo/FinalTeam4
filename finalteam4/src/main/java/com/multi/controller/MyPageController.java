@@ -31,10 +31,13 @@ public class MyPageController {
 
 	@RequestMapping("")
 	public String mypage(String id, Model model) {
-		List<OrderlistDTO> list = null;
+		OrderlistDTO list1 = null;
+		List<OrderlistDTO> list2 = null;
 		try {
-			list = order_service.myorder(id);
-			model.addAttribute("list", list);
+			list1 = order_service.myorder_1(id);
+			list2 = order_service.myorder(id);
+			model.addAttribute("list1", list1);
+			model.addAttribute("list2", list2);
 			model.addAttribute("center", dir + "mypage");
 		} catch (Exception e) {
 			e.printStackTrace();

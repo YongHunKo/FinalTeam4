@@ -10,5 +10,6 @@ import com.multi.frame.MyMapper;
 @Repository
 @Mapper
 public interface OrderlistMapper extends MyMapper<Integer, OrderlistDTO>{
+	public OrderlistDTO myorder_1(String custid) throws Exception;
 	public List<OrderlistDTO> myorder(String custid) throws Exception;
 }
