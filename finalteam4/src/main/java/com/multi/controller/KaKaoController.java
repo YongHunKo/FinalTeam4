@@ -38,16 +38,16 @@ public class KaKaoController {
 		    String email = String.valueOf(userInfo.get("email"));
 //		    System.out.println(nickname); 확인용
 //		    System.out.println(userInfo.get("email"));
-		    if(custservice.get(email) != null) {
-		    	if(custservice.get(email).getCustpwd().equals("1")) {
-		    		session.setAttribute("logincust", custservice.get(email));
+		    if(custservice.get(email+"1") != null) {
+		    	if(custservice.get(email+"1").getCustpwd().equals("1")) {
+		    		session.setAttribute("logincust", custservice.get(email+"1"));
 		    		model.addAttribute("center","maincenter");
 		    	}
 		    	
 		    }else {
 		    	try {
-		    		custservice.register(new CustDTO(email, "1", nickname, null, null, null));
-		    		session.setAttribute("logincust", custservice.get(email));
+		    		custservice.register(new CustDTO(email+"1", "1", nickname, null, null, null));
+		    		session.setAttribute("logincust", custservice.get(email+"1"));
 //		    		System.out.println("register_ok"); // 나중에 막을 것
 		    	} catch (Exception e) {
 		    		e.printStackTrace();
