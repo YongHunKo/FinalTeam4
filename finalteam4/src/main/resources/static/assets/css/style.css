@@ -1,3 +1,4 @@
+
 /*-----------------------------------------------------------------------------------
 
     Template Name: eStore
@@ -41,6 +42,44 @@ img {
   max-width: 100%;
   
 }
+
+
+#cust{
+	position:realative;
+	display:flex;
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
+	
+	
+}
+
+
+#profile_image{
+	justify-content:space between;
+	position:realative;
+	text-align:center;
+	display:flex;
+	overflow:hidden;
+	
+}
+
+#profile{
+	
+	border-radius:100%;
+	width:60px;
+	height:60px;
+	position:realative;
+	margin-left:auto;
+	margin-right:auto;
+	display:block;
+	object-fit:cover;
+	padding-top:0 auto;
+	float:none;
+	text-align:center;
+}
+
+
 
 a:focus,
 button:focus,
@@ -111,6 +150,7 @@ ul {
   margin: 0;
   padding: 0;
   list-style-type: none;
+  text-align:center;
 }
 
 p {
@@ -119,6 +159,7 @@ p {
   font-weight: 400;
   color: rgba(0, 0, 0, 0.64);
   margin: 0;
+  display:inline-block;
 }
 
 .bg_cover {

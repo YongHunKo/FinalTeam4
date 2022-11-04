@@ -31,11 +31,12 @@ public class KaKaoController {
 		    HashMap<String, Object> userInfo = kakao.getUserInfo(access_Token);
 //		    System.out.println("login Controller : " + userInfo); //나중에 막을것
 		    model.addAttribute("userId", userInfo);
-		    model.addAttribute("center", "kakaologout");
+		    model.addAttribute("center", "maincenter");
 		    //    클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
 //		    System.out.println(userInfo.get("nickname")); 확인용
 		    String nickname = String.valueOf(userInfo.get("nickname"));
 		    String email = String.valueOf(userInfo.get("email"));
+		    String profile =String.valueOf(userInfo.get("profile"));
 //		    System.out.println(nickname); 확인용
 //		    System.out.println(userInfo.get("email"));
 		    if(custservice.get(email+"1") != null) {
@@ -46,7 +47,7 @@ public class KaKaoController {
 		    	
 		    }else {
 		    	try {
-		    		custservice.register(new CustDTO(email+"1", "1", nickname, null, null, null));
+		    		custservice.register(new CustDTO(email+"1", "1", nickname, null, null, null,profile));
 		    		session.setAttribute("logincust", custservice.get(email+"1"));
 //		    		System.out.println("register_ok"); // 나중에 막을 것
 		    	} catch (Exception e) {

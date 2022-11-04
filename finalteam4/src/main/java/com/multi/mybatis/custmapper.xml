@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
+
 PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.multi.mapper.CustMapper">
@@ -11,10 +12,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM cust
 	</select>
 	<insert id="insert" parameterType="CustDTO">
-		INSERT INTO cust VALUES (#{custid},#{custpwd},#{custname},sysdate(),#{birth},#{tel})
+		INSERT INTO cust VALUES (#{custid},#{custpwd},#{custname},sysdate(),#{birth},#{tel},#{profileimg})
 	</insert>
 	<update id="update" parameterType="CustDTO">
-		UPDATE cust SET custpwd=#{custpwd}, custname=#{custname}, custrdate=#{custrdate}, birth=#{birth}, tel=#{tel} WHERE custid=#{custid}
+		UPDATE cust SET custpwd=#{custpwd}, custname=#{custname}, custrdate=#{custrdate}, birth=#{birth}, tel=#{tel} profileimg=#{profileimg} WHERE custid=#{custid}
 	</update>
 	<delete id="delete" parameterType="String">
 		DELETE FROM cust WHERE custid=#{custid}

@@ -1,5 +1,6 @@
 package com.multi.dto;
 
+
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
@@ -20,5 +21,8 @@ public class CustDTO {
 	private Date custrdate;
 	private String birth;
 	private String tel;
+	
+	// 프로필이미지 테스트
+	private String profileimg;
 
 }
