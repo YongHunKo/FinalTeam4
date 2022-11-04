@@ -20,4 +20,8 @@ public class WishlistDTO {
 	private String custid;
 	private Date rdate;
 	
+	//조인
+	private String storename;
+	private String storeimg;
+	private String storeinstroduce;
 }

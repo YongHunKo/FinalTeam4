@@ -16,7 +16,7 @@ class InsertWishlist {
 	@Test
 	void contextLoads() {
 		try {
-			service.register(new WishlistDTO(0, 5, "id05", null));
+			service.register(new WishlistDTO(0, 5, "id05", null, null, null, null));
 			System.out.println("OK");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

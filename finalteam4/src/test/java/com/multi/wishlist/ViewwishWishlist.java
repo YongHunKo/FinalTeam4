@@ -1,5 +1,7 @@
 package com.multi.wishlist;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,24 +10,20 @@ import com.multi.dto.WishlistDTO;
 import com.multi.service.WishlistService;
 
 @SpringBootTest
-class UpdateWishlist {
-
+class ViewwishWishlist {
 	@Autowired
 	WishlistService service;
 	
 	@Test
 	void contextLoads() {
-		WishlistDTO cart = new WishlistDTO(6,5,"id06", null, null, null, null);
+		List<WishlistDTO> list = null;
 		try {
-			service.modify(cart);
+			list = service.viewwish("id01");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		for(WishlistDTO s:list) {
+			System.out.println(s);
+		}
 	}
-
 }
-
-
-
-

@@ -44,5 +44,7 @@ public class WishlistService implements MyService<Integer,WishlistDTO>{
 		
 		return mapper.selectall();
 	}
-
+	public List<WishlistDTO> viewwish(String custid) throws Exception{
+		return mapper.viewwish(custid);
+	}
 }
