@@ -189,7 +189,7 @@
     <!--====== Product Style 1 Part Ends ======-->
 
     <!--====== Product Style 7 Part Start ======-->
-    <section class="product-wrapper pt-100 pb-100">
+    <article class="product-wrapper pt-100 pb-100" th:if="${session.logincust != null}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -407,4 +407,4 @@
                 </div>
             </div>
         </div>
-    </section>
+    </article>
