@@ -52,7 +52,7 @@ public class AController {
 		try {
 			list = storeservice.detail(storeid);
 			for(StoreDTO s:list) {
-				cartservice.register(new CartDTO(null, custid, s.getMenuid(), cnt,s.getMenuname(),s.getMenuprice()));			
+				cartservice.register(new CartDTO(null, custid, s.getMenuid(), cnt,s.getMenuname(),s.getMenuprice(),s.getMenuimg(),(cnt*s.getMenuprice())));			
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

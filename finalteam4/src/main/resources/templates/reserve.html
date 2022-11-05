@@ -292,27 +292,28 @@ table.table th {
 								<tr th:each="c : ${menulist}">
 									<td class="td_width_1 cart_info_td">
 										<input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked"> 
-										<input type="hidden" class="individual_Price_input" th:value="${c.menuprice}">
-										<input type="hidden" class="individual_Cnt_input" th:value="${c.menucnt}"> 
-										<input type="hidden" class="individual_totalPrice_input"> 
+										<input type="hidden" class="individual_Price_input" th:value="${c.price}">
+										<input type="hidden" class="individual_Cnt_input" th:value="${c.cnt}"> 
+										<input type="hidden" class="individual_totalPrice_input" th:value="${c.price*c.cnt}"> 
 										<input type="hidden" class="individual_itemId_input" th:value="${c.menuid}">
 									</td>
 									<td class="td_width_2"><img th:src="@{/img/}+${c.menuimg}">
 									</td>
 									<td class="td_width_3" th:text="${c.menuname}">Item Name</td>
 									<td class="td_width_4 price_td"
-										th:text="${#numbers.formatInteger(c.menuprice, 3, 'COMMA')}+'원'">
+										th:text="${#numbers.formatInteger(c.price, 3, 'COMMA')}+'원'">
 									</td>
 									<td class="td_width_4 table_text_align_center">
 										<div class="table_text_align_center quantity_div">
-											<input type="text" th:value="${c.menucnt}" class="quantity_input">
+											<input type="text" th:value="${c.cnt}" class="quantity_input">
 											<button class="quantity_btn plus_btn">+</button>
 											<button class="quantity_btn minus_btn">-</button>
 										</div>
-										<button type="button" class="quantity_modify_btn">수정
+										<button type="button" class="quantity_modify_btn" th:data-cartid="${c.cartid}" th:data-custid="${c.custid}" th:data-menuid="${c.menuid}" th:data-menuname="${c.menuname}" th:data-price="${c.price}" th:data-menuimg="${c.menuimg}">수정
 										</button>
 									</td>
-									<td>TotalPrice</td>
+									<td th:if="${c.totalprice=0}"><td th:text="${c.totalprice+'원'}">TotalPrice</td></td>
+									<td th:if="${c.totalprice>0}"><td th:text="${#numbers.formatInteger(c.totalprice, 3, 'COMMA')}+'원'">TotalPrice</td></td>
 								</tr>
 						</c:forEach>
 					</tbody>
@@ -370,6 +371,15 @@ table.table th {
 						</button>
 				</div>
 			<!-- 수량 조정 form -->
+			<form th:action="@{/updatecart}" method="post" class="quantity_update_form">
+				<input type="hidden" name="cartid" class="update_cartid"> 
+				<input type="hidden" name="cnt" class="update_cnt"> 
+				<input type="hidden" name="menuid" class="update_menuid"> 
+				<input type="hidden" name="menuname" class="update_menuname"> 
+				<input type="hidden" name="price" class="update_price"> 
+				<input type="hidden" name="menuimg" class="update_menuimg"> 
+				<input type="hidden" name="custid" th:value="${custid}" class="update_custid">
+			</form>
 		</div>
 	</div>
 	<!-- class="wrap" -->
@@ -458,11 +468,22 @@ $(".quantity_modify_btn").on("click", function(){
 	//alert(cartid);
 	let custid = $(this).data("custid");
 	//alert(custid);
+	let menuid = $(this).data("menuid");
+	//alert(menuid);
+	let menuname = $(this).data("menuname");
+	let price = $(this).data("price");
+	let menuimg = $(this).data("menuimg");
+	let totalprice = $(this).data("totalprice");
 	let cnt = $(this).parent("td").find("input").val();
 	//alert(cnt);
 	$(".update_cartid").val(cartid);
 	$(".update_cnt").val(cnt);
 	$(".update_custid").val(custid);
+	$(".update_menuid").val(menuid);
+	$(".update_menuname").val(menuname);
+	$(".update_price").val(price);
+	$(".update_menuimg").val(menuimg);
+	$(".update_totalprice").val(totalprice);
 	$(".quantity_update_form").submit();
 	
 });

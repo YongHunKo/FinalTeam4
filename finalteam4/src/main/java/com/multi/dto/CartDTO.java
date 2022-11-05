@@ -20,5 +20,9 @@ public class CartDTO {
 	//조인
 	private String menuname;
 	private Integer price;
+	private String menuimg;
+	private Integer totalprice;
+	
+	
 
 }

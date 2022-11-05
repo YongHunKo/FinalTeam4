@@ -10,11 +10,18 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="selectall" resultType="CartDTO">
 		SELECT * FROM cart
 	</select>
+	<select id="selectcart" resultType="CartDTO">
+		SELECT * FROM cart
+		WHERE custid=#{custid}
+	</select>
 	<insert id="insert" parameterType="CartDTO">
-		INSERT INTO cart VALUES (null,#{custid},#{menuid},#{cnt},#{menuname},#{price})
+		INSERT INTO cart VALUES (null,#{custid},#{menuid},#{cnt},#{menuname},#{price},#{menuimg},#{totalprice})
 	</insert>
 	<update id="update" parameterType="CartDTO">
-		UPDATE cart SET custid=#{custid}, menuid=#{menuid}, cnt=#{cnt}, menuname=#{menuname}, price=#{price} WHERE cartid=#{cartid}
+		UPDATE cart SET custid=#{custid}, menuid=#{menuid}, cnt=#{cnt}, menuname=#{menuname}, price=#{price}, menuimg=#{menuimg}, totalprice=#{totalprice} WHERE cartid=#{cartid}
+	</update>
+	<update id="updatecart" parameterType="CartDTO">
+		UPDATE cart SET cnt=#{cnt} WHERE cartid=#{cartid}
 	</update>
 	<delete id="delete" parameterType="Integer">
 		DELETE FROM cart WHERE cartid=#{cartid}

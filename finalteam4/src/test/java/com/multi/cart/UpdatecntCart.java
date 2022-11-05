@@ -8,15 +8,15 @@ import com.multi.dto.CartDTO;
 import com.multi.service.CartService;
 
 @SpringBootTest
-class UpdateCart {
+class UpdatecntCart {
 	@Autowired
 	CartService service;
 
 	@Test
 	void contextLoads() {
 		try {
-			service.modify(new CartDTO(3, "id01", 9, 9,null,3000,null,null));
-			System.out.println("Update_ok");
+			service.updatecart(new CartDTO(1, "id01", null, 3, null, null, null, null));
+			System.out.println("cnt_update");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
