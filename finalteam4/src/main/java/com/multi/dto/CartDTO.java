@@ -16,5 +16,9 @@ public class CartDTO {
 	private String custid;
 	private Integer menuid;
 	private Integer cnt;
+	
+	//조인
+	private String menuname;
+	private Integer price;
 
 }

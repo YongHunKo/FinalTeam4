@@ -11,10 +11,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM cart
 	</select>
 	<insert id="insert" parameterType="CartDTO">
-		INSERT INTO cart VALUES (null,#{custid},#{menuid},#{cnt})
+		INSERT INTO cart VALUES (null,#{custid},#{menuid},#{cnt},#{menuname},#{price})
 	</insert>
 	<update id="update" parameterType="CartDTO">
-		UPDATE cart SET custid=#{custid}, menuid=#{menuid}, cnt=#{cnt} WHERE cartid=#{cartid}
+		UPDATE cart SET custid=#{custid}, menuid=#{menuid}, cnt=#{cnt}, menuname=#{menuname}, price=#{price} WHERE cartid=#{cartid}
 	</update>
 	<delete id="delete" parameterType="Integer">
 		DELETE FROM cart WHERE cartid=#{cartid}

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.multi.dto.CartDTO;
 import com.multi.dto.CustDTO;
 import com.multi.dto.MenuDTO;
+import com.multi.dto.StoreDTO;
 import com.multi.service.CartService;
 import com.multi.service.CustService;
 import com.multi.service.MenuService;
@@ -47,9 +48,12 @@ public class AController {
 	//미완
 	@RequestMapping("/addcart")
 	public String addcart(Model model, String custid, Integer cnt, Integer storeid) {
-		List<MenuDTO> list = null;
+		List<StoreDTO> list = null;
 		try {
-			cartservice.register(new CartDTO(null, custid, null, cnt));
+			list = storeservice.detail(storeid);
+			for(StoreDTO s:list) {
+				cartservice.register(new CartDTO(null, custid, s.getMenuid(), cnt,s.getMenuname(),s.getMenuprice()));			
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
