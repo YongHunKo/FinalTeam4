@@ -2,189 +2,354 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <style>
-.parent {
-	position: relative;
-	min-width: 900px px;
-	max-width: 1500px;
-	margin: 50px auto 0;
-	padding: 0 50px 100px;
-	display: flex;
-}
-
-.first {
-	flex: none;
-	width: 230px;
-	padding: 0 50px 0 0;
-	box-sizing: border-box;
-}
-
-.second {
-	flex: 1;
-	padding-top: 190px;
-}
-
-h4
-{
-font-size
-:
-30px;
-}
-.ul {
-	padding: 5px 0;
-	margin-bottom: 20px;
-	text-align: left;
-}
-
-h4 {
-	font-size: 30px;
-}
-
-.ul
-{
-padding
-:
-5px
-0;
-margin-bottom
-:
-20px;
-text-align
-:
-left;
-}
-a {
-	padding: 5px 0;
-	font-size: 15px;
-	color: gray;
-}
-
-#info {
-	font-size: 30px;
-	color: #000;
-	margin-bottom: 20px;
-}
-
-tr>th {
-	width: 200px;
-	text-align: center;
-}
-
-tr>td {
-	text-align: center;
-}
-
-.img {
-	width: 300px;
-	height: 300px;
-	object-fit: cover;
-}
-
-.inserted {
-	padding: 0 30px 0 0;
-}
-
-.inserted>div {
-	text-align: left;
-}
-
-.recent {
+/* Sidebar */
+#sidebar-wrapper {
+	z-index: 1;
 	position: absolute;
-	top: 0;
-	right: 50px;
-	left: 280px;
-	background: orange;
-}
-
-.recent>li {
+	width: 0;
+	height: 100%;
+	overflow-y: hidden;
+	background: white;
+	opacity: 0.9;
+	transition: all .5s;
 	display: flex;
-	align-items: flex-end;
-	float: left;
-	position: relative;
-	width: 25%;
-	height: 150px;
-	padding: 65px 20px 0px;
-	box-sizing: border-box;
-	text-align: left;
-	font-size: 50px;
+	padding-left: 40px;
 }
 
-.recent>li>a {
-	padding: 6px 0;
+/* Main Content */
+#page-content-wrapper {
+	width: 100%;
+	padding: 15px;
+	transition: all .5s;
+}
+
+#menu-toggle {
+	transition: all .3s;
+	font-size: 2em;
+}
+/* Change the width of the sidebar to display it*/
+#wrapper.menuDisplayed #sidebar-wrapper {
+	width: 250px;
+}
+
+#wrapper.menuDisplayed #page-content-wrapper {
+	padding-left: 250px;
+}
+
+/* Sidebar styling */
+.sidebar-nav {
+	padding: 0;
+	list-style: none;
+	transition: all .5s;
+	width: 100%;
+	text-align: center;
+}
+
+.sidebar-nav li {
+	line-height: 40px;
+	width: 100%;
+	transition: all .3s;
+	padding: 10px 0;
+}
+
+.sidebar-nav li a {
 	font-size: 15px;
-	color: black;
-	font-weight: 600;
+	color: #5d5d5d;
+	font-weight: 200;
 }
 
-.recent>li>a>span {
-	font-size: 50px;
+.sidebar-nav li h4 {
+	font-size: 17px;
+	line-height: 26px;
+	font-weight: 800;
+	color: #303033;
+}
+
+/* .sidebar-nav li {
+	
+} */
+.footer-style-3 {
+	display: none;
+}
+
+.weather-card {
+	margin: 0px auto;
+	height: 200px;
+	width: 1200px;
+	background: #fff;
+	box-shadow: 0 1px 38px rgba(0, 0, 0, 0.15), 0 5px 12px
+		rgba(0, 0, 0, 0.25);
+	overflow: hidden;
+}
+
+.weather-card .top {
+	position: relative;
+	height: 220px;
+	width: 100%;
+	overflow: hidden;
+	background:
+		url("https://s-media-cache-ak0.pinimg.com/564x/cf/1e/c4/cf1ec4b0c96e59657a46867a91bb0d1e.jpg")
+		no-repeat;
+	background-size: cover;
+	background-position: center center;
+	text-align: center;
+	background-size: cover;
+}
+
+.weather-card .top .wrapper {
+	padding: 0px;
+	position: relative;
+	z-index: 1;
+}
+
+.weather-card .top .wrapper .mynav {
+	height: 20px;
+}
+
+.weather-card .top .wrapper .mynav .lnr {
+	color: #fff;
+	font-size: 20px;
+}
+
+.weather-card .top .wrapper .mynav .lnr-chevron-left {
+	display: inline-block;
+	float: left;
+}
+
+.weather-card .top .wrapper .mynav .lnr-cog {
+	display: inline-block;
+	float: right;
+}
+
+.weather-card .top .wrapper .heading {
+	margin-top: 10px;
+	font-size: 35px;
 	font-weight: 400;
 	color: #fff;
 }
+
+.weather-card .top .wrapper .location {
+	margin-top: 20px;
+	font-size: 20px;
+	color: #fff;
+}
+
+.weather-card .top .wrapper .temp {
+	margin-top: 20px;
+}
+
+.weather-card .top .wrapper .temp a {
+	text-decoration: none;
+	color: #fff;
+}
+
+.weather-card .top .wrapper .temp a .temp-type {
+	font-size: 85px;
+}
+
+.weather-card .top .wrapper .temp .temp-value {
+	display: inline-block;
+	font-size: 50px;
+	color: #fff;
+}
+
+.weather-card .top .wrapper .temp .deg {
+	display: inline-block;
+	font-size: 35px;
+	font-weight: 600;
+	color: #fff;
+	vertical-align: top;
+	margin-top: 10px;
+}
+
+.weather-card .top:after {
+	content: "";
+	height: 100%;
+	width: 100%;
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.weather-card .bottom {
+	padding: 0 30px;
+	background: #fff;
+}
+
+.weather-card .bottom .wrapper .forecast {
+	overflow: hidden;
+	margin: 0;
+	font-size: 0;
+	padding: 0;
+	padding-top: 20px;
+	max-height: 155px;
+}
+
+.weather-card .bottom .wrapper .forecast a {
+	text-decoration: none;
+	color: #000;
+}
+
+.weather-card .bottom .wrapper .forecast .go-up {
+	text-align: center;
+	display: block;
+	font-size: 25px;
+	margin-bottom: 10px;
+}
+
+.weather-card .bottom .wrapper .forecast li {
+	display: block;
+	font-size: 25px;
+	font-weight: 400;
+	color: rgba(0, 0, 0, 0.25);
+	line-height: 1em;
+	margin-bottom: 30px;
+}
+
+.weather-card .bottom .wrapper .forecast li .date {
+	display: inline-block;
+}
+
+.weather-card .bottom .wrapper .forecast li .condition {
+	display: inline-block;
+	vertical-align: middle;
+	float: right;
+	font-size: 25px;
+}
+
+.weather-card .bottom .wrapper .forecast li .condition .temp {
+	display: inline-block;
+	vertical-align: top;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 20px;
+	font-weight: 400;
+	padding-top: 2px;
+}
+
+.weather-card .bottom .wrapper .forecast li .condition .temp .deg {
+	display: inline-block;
+	font-size: 10px;
+	font-weight: 600;
+	margin-left: 3px;
+	vertical-align: top;
+}
+
+.weather-card .bottom .wrapper .forecast li .condition .temp .temp-type
+	{
+	font-size: 20px;
+}
+
+.weather-card .bottom .wrapper .forecast li.active {
+	color: rgba(0, 0, 0, 0.8);
+}
+
+.reconfirm {
+	margin: 0px auto;
+	height: 220px;
+	width: 1200px;
+	padding-top: 50px;
+}
+
+.my_tit {
+	position: relative;
+	padding-bottom: 10px;
+	border-bottom: 4px solid #000;
+}
+
+.my_tit span {
+	display: inline-block;
+	margin-left: 10px;
+	font-size: 18px;
+	font-weight: 400;
+}
 </style>
 
-<!--====== Content Card Style 4 Part Start ======-->
-<div class=parent>
-	<div class="first">
-		<h4 class="title">MY PAGE</h4>
-		<!-- ID값을 부여해주자  -->
-		<p th:text="${session.logincust.custname} + 님" id="info"></p>
-		<h5>나의 예약정보</h5>
-		<ul class="ul">
-			<li><a href="#">예약조회</a></li>
-			<li><a
-				th:href="@{/mypage/review(id=${session.logincust.custid})}">나의
-					리뷰</a></li>
-		</ul>
-		<h5>나의 계정설정</h5>
-		<ul class="ul">
-			<li><a th:href="@{/mypage/edit(id=${session.logincust.custid})}">회원정보수정</a></li>
-			<li><a href="#">회원등급</a></li>
-			<li><a href="#">쿠폰</a></li>
-		</ul>
-		<h5>고객센터</h5>
-		<ul class="ul">
-			<li><a href="#">1:1 문의내역</a></li>
-			<li><a href="#">공지사항</a></li>
-			<li><a href="#">#</a></li>
-		</ul>
-		<ul class="ul">
-			<h5 style="color: orange">Eat & Out</h5>
-		</ul>
-	</div>
-	<div>
-		<ul class="recent">
-			<li><a>
-					<div>가장 가까운 예약</div> <span
-					th:text="${#dates.format(list1.reservedate, 'MM월 dd일')}"></span>
-			</a></li>
-			<li><a>
-					<div>테이블</div> <span th:text="${list1.storename}"></span>
-			</a></li>
-		</ul>
-	</div>
-	<div class="second">
-		<h3 style="border-bottom: 2px solid black; padding: 0 0 10px">리 뷰</h3>
-		<ul style="display: flex; position: relative; padding: 20px 0">
-			<li th:each="list : ${list}" class="inserted">
-				<div>
-					<a href="#"><img th:src="'/img/' + ${list.storeimg}"
-						class="img"></a>
-				</div>
-				<div>
-					<a href="#"><span th:text="${list.storename}" style="font-weight: 700; font-size: 20px"></span></a>
-				</div>
-				<div>
-					<span th:text="${list.revtext}"></span>
-				</div>
-				<div>
-					<span th:text="${list.reservedate}"></span>
-				</div>
-				<div>
-					<span th:text="${list.star}"></span>
-				</div>
-			</li>
+<script>
+	$(document).ready(function() {
+		$("#menu-toggle").click(function(e) {
+			e.preventDefault();
+			$("#wrapper").toggleClass("menuDisplayed");
+		});
+	});
+</script>
 
-		</ul>
+<body>
+	<div id="wrapper">
+		<!-- Sidebar -->
+		<div id="sidebar-wrapper">
+			<ul class="sidebar-nav">
+				<li><a th:text="${session.logincust.custname}"
+					style="padding: 20px 0 10px 0; font-size: 40px; font-weight: 700"></a></li>
+				<li><h4 href="#">나의 EAT & OUT 정보</h4></li>
+				<li><a href="#">예약조회</a></li>
+				<li><a href="#">테이블 내역</a></li>
+				<li><a
+					th:href="@{/mypage/review(id=${session.logincust.custid})}">나의
+						리뷰</a></li>
+				<li><h4 href="#">나의 계정설정</h4></li>
+				<li><a
+					th:href="@{/mypage/edit(id=${session.logincust.custid})}">회원정보수정</a></li>
+				<li><a href="#">회원등급</a></li>
+				<li><a href="#">쿠폰</a></li>
+				<li><h4 href="#">고객센터</h4></li>
+				<li><a href="#">1:1 문의내역</a></li>
+				<li><a href="#">공지사항</a></li>
+				<li><a href="#">FAQ</a></li>
+			</ul>
+		</div>
+
+		<!-- Page Content -->
+		<div id="page-content-wrapper">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+						<a href="#" class="btn" id="menu-toggle">click<span
+							class="glyphicon glyphicon-menu-hamburger"></span></a>
+						<div class="weather-card one" th:with="list1=${list_one}">
+							<div class="top">
+								<div class="wrapper">
+									<div class="mynav"></div>
+									<h1 class="heading">가까운 예약</h1>
+									<h3 class="location"
+										th:text="${#dates.format(list1.reservedate, 'MM월 dd일')}"></h3>
+									<p class="temp">
+										<span class="temp-value"
+											th:text="${#dates.format(list1.reservetime, 'HH시 mm분')}"></span>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="reconfirm">
+				<form>
+					<h3 class="my_tit">
+						비밀번호 재확인<span>회원님의 소중한 정보보호를 위해 비밀번호를 재확인하고 있습니다.</span>
+					</h3>
+					<div class="form-group" style="padding: 36px 0">
+						<div class="form-group row">
+							<label for="staticEmail" class="col-sm-2 col-form-label">아이디</label>
+							<div class="col-sm-10">
+								<input type="text" readonly class="form-control-plaintext"
+									id="staticEmail" th:value="${session.logincust.custid}">
+							</div>
+						</div>
+						<div class="form-group row" style="margin-top: 10px">
+							<label for="inputPassword" class="col-sm-2 col-form-label">비밀번호</label>
+							<div class="col-sm-10">
+								<input type="password" class="form-control" id="inputPassword"
+									placeholder="Password" style="width: 250px">
+							</div>
+						</div>
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			</div>
+		</div>
 	</div>
-</div>
-<!--====== Content Card Style 4 Part Ends ======-->
+
+
+</body>

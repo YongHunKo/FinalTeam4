@@ -31,13 +31,10 @@ public class MyPageController {
 
 	@RequestMapping("")
 	public String mypage(String id, Model model) {
-		OrderlistDTO list1 = null;
-		List<OrderlistDTO> list2 = null;
+		OrderlistDTO list_one = null;
 		try {
-			list1 = order_service.myorder_1(id);
-			list2 = order_service.myorder(id);
-			model.addAttribute("list1", list1);
-			model.addAttribute("list2", list2);
+			list_one = order_service.myorder_1(id);
+			model.addAttribute("list_one", list_one);
 			model.addAttribute("center", dir + "mypage");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -47,13 +44,13 @@ public class MyPageController {
 
 	@RequestMapping("/review")
 	public String review(String id, Model model) {
-		OrderlistDTO list1 = null;
-		List<ReviewDTO> list = null;
+		OrderlistDTO list_one = null;
+		List<ReviewDTO> review = null;
 		try {
-			list1 = order_service.myorder_1(id);
-			list = review_service.myreview(id);
-			model.addAttribute("list1", list1);
-			model.addAttribute("list", list);
+			list_one = order_service.myorder_1(id);
+			review = review_service.myreview(id);
+			model.addAttribute("list_one", list_one);
+			model.addAttribute("review", review);
 			model.addAttribute("center", dir + "review");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -76,18 +73,29 @@ public class MyPageController {
 
 	@RequestMapping("/edit")
 	public String edit(String id, Model model) {
-		OrderlistDTO list1 = null;
-		CustDTO cust = null;
+		OrderlistDTO list_one = null;
 		try {
-			list1 = order_service.myorder_1(id);
-			cust = cust_service.get(id);
-			model.addAttribute("list1", list1);
-			model.addAttribute("custedit", cust);
+			list_one = order_service.myorder_1(id);
+			model.addAttribute("list_one", list_one);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		model.addAttribute("center", dir + "edit");
 		return "index";
+	}
+	
+	@RequestMapping("/edit/reconfirm")
+	public String reconfirm(String custid, String custpwd, Model model ) {
+		CustDTO cust = null;
+		try {
+			cust cust_service.get(custid);
+			if (cust.getCustpwd() != custpwd) {
+				
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@RequestMapping("/updateimpl")
