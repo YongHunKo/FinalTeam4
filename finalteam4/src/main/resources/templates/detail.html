@@ -69,7 +69,10 @@ $(document).ready(function(){
 				'cnt':0
 			}
 		})
-		location.href="[[@{/reserveimpl?custid=}]]"+custid;
+		var timeout = function(){
+			location.href="[[@{/reserveimpl?custid=}]]"+custid;			
+			}
+			setTimeout(timeout,500);
 	});
 	
 });
@@ -86,7 +89,7 @@ $(document).ready(function(){
     <tbody>
         <tr th:each="s : ${storeimglist}">
         	<td><img th:src="@{/img/}+${s.storeimg}" style="width:300px; height:300px; border-radius:40px;"></td>
-            <td id="storeid" th:text="${s.storeid}" style="display:none">item_name</td>
+            
         	
             <td>item_name</td>
         </tr>
@@ -97,6 +100,7 @@ $(document).ready(function(){
   <ul class="slides" th:each="s : ${storeimglist}">
     <li>
       <img th:src="@{/img/}+${s.storeimg}" style="width:300px; height:300px; border-radius:40px; margin-top:20px;" />
+      <h4 id="storeid" th:text="${s.storeid}" style="display:none">item_name</h4>
     </li>
   </ul>
 </div>
