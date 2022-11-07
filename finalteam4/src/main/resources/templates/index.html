@@ -132,7 +132,7 @@ $(document).ready(function(){
 <div class="col-6">
     <!-- desktop logo Start -->
 <div class="mobile-logo text-center">
-    <a href="/"><img src="assets/images/logo7.svg" alt="Logo"></a>
+    <a href="/"><img src="/assets/images/logo7.svg" alt="Logo"></a>
 </div>
 <!-- desktop logo Ends -->
 </div>
@@ -185,7 +185,7 @@ $(document).ready(function(){
                             </div>
                             <!-- navbar top left Ends -->
                             <!-- navbar top right Start -->
-                 <div class="navbar-top-right">
+                 <div class="navbar-top-right" style="display:inline-block;">
                      <ul class="navbar-top-link">
                          <li th:if="${session.logincust == null}"> <a href="/signup" ><i class="mdi mdi-account" ></i>Sign up</a></li>
                          <li th:if="${session.logincust == null}"> <a href="/login" ><i class="mdi mdi-account" ></i>Login</a></li>
@@ -195,9 +195,8 @@ $(document).ready(function(){
                          	<p th:text="'😀'+${session.logincust.custname}+ '님 환영합니다'" style="color:white;"></p>
                           </li>
                           <li th:if="${session.logincust != null}">
-                           <span id="profile_image"><img id="profile" th:src=${session.logincust.profileimg}></span> 
-                          <a href="https://kauth.kakao.com/oauth/logout?client_id=8f091ec537ce9700f5864824e26f19d9&logout_redirect_uri=http://127.0.0.1" 
-                          style="color:white">Kakao Logout</a>	
+                          <img id="profile" th:src=${session.logincust.profileimg}> 
+                          	
                           </li> 
                      
                      </ul>

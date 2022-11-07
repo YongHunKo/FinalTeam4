@@ -31,11 +31,11 @@ public class NaverController {
        System.out.println("login Controller : " + userInfo);
 	    
        model.addAttribute("naver", userInfo);
-       model.addAttribute("center", "naverlogout");
+       model.addAttribute("center", "maincenter");
        
        String nickname = String.valueOf(userInfo.get("nickname"));
        String email = String.valueOf(userInfo.get("email"));
-       
+       String profile= String.valueOf(userInfo.get("profile"));
        if(custservice.get(email+"2") != null) {
 	    	if(custservice.get(email+"2").getCustpwd().equals("2")) {
 	    		session.setAttribute("logincust", custservice.get(email+"2"));
@@ -44,7 +44,7 @@ public class NaverController {
 	    	
 	    }else {
 	    	try {
-	    		custservice.register(new CustDTO(email+"2", "2", nickname, null, null, null, null));
+	    		custservice.register(new CustDTO(email+"2", "2", nickname, null, null, null, profile));
 	    		session.setAttribute("logincust", custservice.get(email+"2"));
 	    	} catch (Exception e) {
 	    		e.printStackTrace();

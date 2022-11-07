@@ -5,21 +5,21 @@
         <div class="header-big">
             <div class="header-items-active">
                 <div class="single-header-item bg_cover"
-                    style="background-image: url(/assets/images/pork.jpg);">
+                    th:style="'background-image: url('+@{/img/tclf4.jpg}+');'">
                     <div class="header-item-content">
                         <h3 class="title">숙성도-노형점</h3>
                         <a href="javascript:void(0)" class="link">정용진회장의 단골 삼겹살집!</a>
                     </div>
                 </div>
                 <div class="single-header-item bg_cover"
-                    style="background-image: url(/assets/images/olleh.jpg);">
+                    th:style="'background-image: url('+@{/img/mnsd2.jpg}+');'">
                     <div class="header-item-content">
                         <h3 class="title">올래국수-제주점</h3>
                         <a href="javascript:void(0)" class="link">고기국수맛집</a>
                     </div>
                 </div>
                 <div class="single-header-item bg_cover"
-                    style="background-image: url(/assets/images/260.jpg);">
+                    th:style="'background-image: url('+@{/img/jm1.jpg}+');'">
                     <div class="header-item-content">
                         <h3 class="title">송도-260도</h3>
                         <a href="javascript:void(0)" class="link">저렴한가격으로 즐기는 숙성 와규 집</a>
@@ -29,7 +29,7 @@
         </div>
         <div class="header-min">
             <div class="header-min-item product-style-25 bg_cover"
-                style="background-image: url(/assets/images/shrimp.jpg);">
+                th:style="'background-image: url('+@{img/ujA.jpg}+');'">
                 <div class="product-content">
                     <h4 class="title"><a href="product-details-page.html">닻-함덕점</a></h4>
                     <p>딱새우가 맛있는 이자카야</p>
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="header-min-item product-style-25 bg_cover"
-                style="background-image: url(/assets/images/mommy.jpg);">
+                th:style="'background-image: url('+@{img/hwdB.jpg}+');'">
                 <div class="product-content">
                     <h4 class="title"><a href="product-details-page.html">엄마손횟집-제주시</a></h4>
                     <p>부부가운영하는 오마카세횟집</p>
@@ -57,36 +57,37 @@
                 <div class="col-lg-4 col-md-7 col-sm-8">
                     <div class="single-content mt-15 text-center">
                         <div class="content-icon">
-                            <i class="mdi mdi-truck-fast"></i>
+                            <img src="/assets/images/deserticon.png" style="width:100px;">
                         </div>
                         <div class="content-content">
-                            <h4 class="title"><a href="javascript:void(0)">🍣Two-hour delivery</a></h4>
-                            <p>Available in most metros on selected in-stock products</p>
-                            <a href="javascript:void(0)" class="more">learn more</a>
+                            <h4 class="title"><a href="javascript:void(0)"></a></h4>
+                            <p style="font-weight:800;">제주도 내 모든 카페정보는어디?</p><br>
+                            
+                            <a href="javascript:void(0)" class="more">디저트 구경하러가기</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-7 col-sm-8">
                     <div class="single-content mt-15 text-center">
                         <div class="content-icon">
-                            <i class="mdi mdi-message-text"></i>
+                            <img src="/assets/images/sushiicon.png" style="width:100px;">
                         </div>
                         <div class="content-content">
-                            <h4 class="title"><a href="javascript:void(0)">🍣Get help buying</a></h4>
-                            <p>Have a question? Call a Specialist or chat online for help</p>
-                            <a href="contact-page.html" class="more">Contact us</a>
+                            <h4 class="title"><a href="javascript:void(0)"></a></h4>
+                            <p style="font-weight:800;">오늘 저녁은 정갈한 오마카세</p><br>
+                            <a href="contact-page.html" class="more">오마카세 예약하러가기</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-7 col-sm-8">
                     <div class="single-content mt-15 text-center">
                         <div class="content-icon">
-                            <i class="mdi mdi-ticket-percent"></i>
+                           <img src="/assets/images/porkicon.png" style="width:100px;">
                         </div>
                         <div class="content-content">
-                            <h4 class="title"><a href="javascript:void(0)">🍣Find the card for you</a></h4>
-                            <p>Get 3% Daily Cash with special financing offers from us</p>
-                            <a href="javascript:void(0)" class="more">learn more</a>
+                            <h4 class="title"><a href="javascript:void(0)"></a></h4>
+                            <p style="font-weight:800;">제주 흑돼지먹으러가자~!</p><br>
+                            <a href="javascript:void(0)" class="more">도민추천 흑돼지고기집보러가기</a>
                         </div>
                     </div>
                 </div>

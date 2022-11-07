@@ -1,5 +1,8 @@
+<meta charset="utf-8">
 
-<div class="container">
+<link rel="stylesheet" href="/assets/css/table.css">
+
+<!-- <div class="container">
     <div class="row">
         <div class="col-xs-12"></div>
     </div>
@@ -22,7 +25,7 @@
 			</table>  
         </div>
       
-        <!-- 메뉴 뿌려지는 곳 -->
+        메뉴 뿌려지는 곳
         <div class="col-sm-6">
 			<table class="table table-hover" width="100%" cellspacing="0">
 			    <thead>
@@ -44,9 +47,9 @@
 			    </tbody>
 			</table>        	
         </div>
-        <!-- 메뉴 뿌려지는 곳 종료 -->
-        <!-- 관련 식당or 추천 식당 뿌려지는 곳 -->
-        <!-- 정보칸 수정시 사이즈조절 문 -> class 이름에 col 부분을 조절  -->
+        메뉴 뿌려지는 곳 종료
+        관련 식당or 추천 식당 뿌려지는 곳
+        정보칸 수정시 사이즈조절 문 -> class 이름에 col 부분을 조절 
         <div class="col-sm-8 col-md-8">
 			<table>
 			    <thead>
@@ -65,11 +68,50 @@
 			    </tbody>
 			</table>        	
         </div>
-        <!-- 관련 식당or 추천 식당 뿌려지는 곳 종료 -->
+        관련 식당or 추천 식당 뿌려지는 곳 종료
         
         <div class="col-md-3"></div>
     </div>
     <div class="row">
         <div class="col-xs-12"></div>
     </div>
-</div>
+</div> -->
+
+<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">검색결과</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="table-wrap">
+						<table class="table" style="text-align:center;">
+						  <thead class="thead-dark">
+						    <tr>
+						      <th></th>
+						      <th>메뉴이름</th>
+						      <th>식당이름</th>
+						      <th>가격&nbsp(원)</th>
+						      <th></th>
+
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr class="alert" role="alert" th:each="m : ${menulist}">
+						<td><a th:href="@{/storedetail(storeid=${m.storeid})}">
+						<img th:src="@{/img/}+${m.menuimg}" style="width:200px; border-radius:40px;"></a></td>
+						 <td th:text="${m.menuname}">item_name</td>
+			            <td th:text="${m.storename}">store_name</td>
+			            <td th:text="${#numbers.formatInteger(m.menuprice, 3, 'COMMA')}">item_price</td>
+			            <td></td>
+						    </tr>
+						    
+						  </tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
