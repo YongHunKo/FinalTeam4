@@ -22,9 +22,9 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		DELETE FROM wishlist WHERE wishlistid = #{wishlistid}
 	</delete>
 	<select id="viewwish" resultType="WishlistDTO">
-		SELECT w.storeid, s.storename, s.storeintroduce, sm.storeimg from wishlist w
+		SELECT w.wishlistid, w.custid, w.storeid, s.storename, s.storeintroduce, sm.storeimg from wishlist w
 		INNER JOIN store s ON s.storeid = w.storeid
 		INNER JOIN storeimgs sm ON sm.storeid = w.storeid
-		WHERE w.custid = #{custid}
+		WHERE w.custid = #{custid} AND sm.storeimg LIKE '%1%'
 	</select>
 </mapper>

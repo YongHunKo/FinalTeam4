@@ -23,5 +23,5 @@ public class WishlistDTO {
 	//조인
 	private String storename;
 	private String storeimg;
-	private String storeinstroduce;
+	private String storeintroduce;
 }
