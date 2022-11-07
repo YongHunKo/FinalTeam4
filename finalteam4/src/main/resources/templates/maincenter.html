@@ -194,29 +194,26 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="mb-50">
-                        <h1 class="heading-1 font-weight-700">🙌Wish List</h1>
+                        <h1 class="heading-1 font-weight-700"><a>🙌WishList</a></h1>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-6" th:each="vw : ${viewwish}">
                     <div class="product-style-7 mt-30">
                         <div class="product-image">
                             <div class="product-active">
-                                <div class="product-item active">
-                                    <img src="assets/images/product-4/product-1.jpg" alt="product">
-                                </div>
                                 <div class="product-item">
-                                    <img src="assets/images/product-4/product-2.jpg" alt="product">
+                                    <img th:src="@{/img/}+${vw.storeimg}" alt="product">
                                 </div>
                             </div>
                         </div>
                         <div class="product-content" >
-                            <h4 class="title"><a>상호</a></h4>
-                            <p>Reference 1102</p>
-                            <a href="javascript:void(0)" class="main-btn primary-btn">
+                            <h4 class="title" th:text="${vw.storename}">상호<a th:href="@{/storedetail(storeid=${vw.storeid})}"></a></h4>
+                            <p th:text="${vw.storeintroduce}">소개</p>
+                            <a th:href="@{/storedetail(storeid=${vw.storeid})}" class="main-btn primary-btn">
                                 <img src="assets/images/icon-svg/cart-4.svg" alt="">
-                                Add to Cart
+                                가게 상세 정보
                             </a>
                         </div>
                     </div>
