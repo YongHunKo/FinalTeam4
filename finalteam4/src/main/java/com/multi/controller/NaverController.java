@@ -44,7 +44,7 @@ public class NaverController {
 	    	
 	    }else {
 	    	try {
-	    		custservice.register(new CustDTO(email+"2", "2", nickname, null, null, null));
+	    		custservice.register(new CustDTO(email+"2", "2", nickname, null, null, null, null));
 	    		session.setAttribute("logincust", custservice.get(email+"2"));
 	    	} catch (Exception e) {
 	    		e.printStackTrace();
