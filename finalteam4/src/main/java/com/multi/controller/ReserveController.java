@@ -36,8 +36,6 @@ public class ReserveController {
 			model.addAttribute("menulist",list);
 			model.addAttribute("center","/reserve");
 			for(CartDTO c:list) {
-				System.out.println(c);
-				//여기서 디비가 다 안넘어온다
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -47,7 +45,6 @@ public class ReserveController {
 	
 	@RequestMapping("/reserveimpl2")
 	public String reserveimpl2(CartDTO cart,String custid) {
-		System.out.println(custid);
 		List<CartDTO> list = null;
 		int cnt = 0;
 		int totalprice = 0;
@@ -55,20 +52,23 @@ public class ReserveController {
 		try {
 			list = cartservice.selectcart(custid);
 			for(CartDTO c:list) {
-				System.out.println(c);//얘가 안불러와짐
 				cnt += c.getCnt();
 				price = c.getPrice();
 				totalprice += c.getCnt()*c.getPrice();
 			}
 			OrderlistDTO order = new OrderlistDTO(null, custid, null, cnt, totalprice, null, null, custid, custid);
 			orderlistservice.register(order);
-			System.out.println(order);
 			int r = order.getOrderlistno();
 			
 			for(CartDTO c:list) {
-				ReserveDTO reserve = new ReserveDTO(null, r, c.getMenuid(), c.getCnt(), c.getPrice());
-				reserveservice.register(reserve);
-				cartservice.remove(c.getCartid());
+				int cnt2 = c.getCnt();
+				if(cnt2 == 0) {
+					cartservice.remove(c.getCartid());
+				}else {
+					ReserveDTO reserve = new ReserveDTO(null, r, c.getMenuid(), c.getCnt(), c.getPrice());
+					reserveservice.register(reserve);
+					cartservice.remove(c.getCartid());					
+				}
 			}					
 		} catch (Exception e) {
 			e.printStackTrace();
