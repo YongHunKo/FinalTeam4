@@ -35,13 +35,13 @@ public class ReserveController {
 			list = cartservice.selectcart(custid);
 			model.addAttribute("menulist",list);
 			model.addAttribute("center","/reserve");
+			for(CartDTO c:list) {
+				System.out.println(c);
+				//여기서 디비가 다 안넘어온다
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	
-		for(CartDTO c:list) {
-			System.out.println(c);
-			//여기서 디비가 다 안넘어온다
-		}
 		return "index";
 	}
 	

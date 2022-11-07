@@ -14,7 +14,10 @@ $(document).ready(function(){
 				'cnt':0
 			}
 		})
-		location.href="[[@{/reserveimpl?custid=}]]"+custid;
+		var timeout = function(){
+		location.href="[[@{/reserveimpl?custid=}]]"+custid;			
+		}
+		setTimeout(timeout,500);
 	});
 	
 });
