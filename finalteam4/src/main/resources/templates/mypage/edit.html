@@ -89,9 +89,7 @@
 	height: 220px;
 	width: 100%;
 	overflow: hidden;
-	background:
-		url("https://s-media-cache-ak0.pinimg.com/564x/cf/1e/c4/cf1ec4b0c96e59657a46867a91bb0d1e.jpg")
-		no-repeat;
+	background: url("img/mypage_recent.jpg") no-repeat;
 	background-size: cover;
 	background-position: center center;
 	text-align: center;
@@ -102,6 +100,16 @@
 	padding: 0px;
 	position: relative;
 	z-index: 1;
+	width: 50%;
+	float: right;
+}
+
+.weather-card .top .wrapper2 {
+	padding: 0px;
+	position: relative;
+	z-index: 1;
+	width: 50%;
+	float: left;
 }
 
 .weather-card .top .wrapper .mynav {
@@ -175,76 +183,64 @@
 	background: rgba(0, 0, 0, 0.5);
 }
 
-.weather-card .bottom {
-	padding: 0 30px;
-	background: #fff;
+.weather-card .top .wrapper2 .mynav {
+	height: 20px;
 }
 
-.weather-card .bottom .wrapper .forecast {
-	overflow: hidden;
-	margin: 0;
-	font-size: 0;
-	padding: 0;
-	padding-top: 20px;
-	max-height: 155px;
+.weather-card .top .wrapper2 .mynav .lnr {
+	color: #fff;
+	font-size: 20px;
 }
 
-.weather-card .bottom .wrapper .forecast a {
-	text-decoration: none;
-	color: #000;
-}
-
-.weather-card .bottom .wrapper .forecast .go-up {
-	text-align: center;
-	display: block;
-	font-size: 25px;
-	margin-bottom: 10px;
-}
-
-.weather-card .bottom .wrapper .forecast li {
-	display: block;
-	font-size: 25px;
-	font-weight: 400;
-	color: rgba(0, 0, 0, 0.25);
-	line-height: 1em;
-	margin-bottom: 30px;
-}
-
-.weather-card .bottom .wrapper .forecast li .date {
+.weather-card .top .wrapper2 .mynav .lnr-chevron-left {
 	display: inline-block;
+	float: left;
 }
 
-.weather-card .bottom .wrapper .forecast li .condition {
+.weather-card .top .wrapper2 .mynav .lnr-cog {
 	display: inline-block;
-	vertical-align: middle;
 	float: right;
-	font-size: 25px;
 }
 
-.weather-card .bottom .wrapper .forecast li .condition .temp {
-	display: inline-block;
-	vertical-align: top;
-	font-family: 'Montserrat', sans-serif;
-	font-size: 20px;
+.weather-card .top .wrapper2 .heading {
+	margin-top: 10px;
+	font-size: 35px;
 	font-weight: 400;
-	padding-top: 2px;
+	color: #fff;
 }
 
-.weather-card .bottom .wrapper .forecast li .condition .temp .deg {
-	display: inline-block;
-	font-size: 10px;
-	font-weight: 600;
-	margin-left: 3px;
-	vertical-align: top;
-}
-
-.weather-card .bottom .wrapper .forecast li .condition .temp .temp-type
-	{
+.weather-card .top .wrapper2 .location {
+	margin-top: 20px;
 	font-size: 20px;
+	color: #fff;
 }
 
-.weather-card .bottom .wrapper .forecast li.active {
-	color: rgba(0, 0, 0, 0.8);
+.weather-card .top .wrapper2 .temp {
+	margin-top: 20px;
+}
+
+.weather-card .top .wrapper2 .temp a {
+	text-decoration: none;
+	color: #fff;
+}
+
+.weather-card .top .wrapper2 .temp a .temp-type {
+	font-size: 85px;
+}
+
+.weather-card .top .wrapper2 .temp .temp-value {
+	display: inline-block;
+	font-size: 50px;
+	color: #fff;
+}
+
+.weather-card .top .wrapper2 .temp .deg {
+	display: inline-block;
+	font-size: 35px;
+	font-weight: 600;
+	color: #fff;
+	vertical-align: top;
+	margin-top: 10px;
 }
 
 .reconfirm {
@@ -278,6 +274,10 @@
 	height: 50px;
 	margin: 0 auto;
 	background: #000;
+	border-color: #000;
+	font-weight: 700;
+	font-size: 18px;
+	font-weight: 700;
 }
 </style>
 <script>
@@ -299,13 +299,20 @@
 				success : function(result) {
 					if (result == "false") {
 						$("#pspan").text("비밀번호를 다시 확인해주세요.");
+						$("#pspan").css("color", "#ff4800");
+						$("#next_btn").attr("disabled", true);
 					} else {
 						$("#pspan").text("비밀번호 일치.");
+						$("#pspan").css("color", "green");
+						$("#next_btn").attr("disabled", false);
 					}
 				}
 			});
 		});
-
+		$("#next_btn").click(function() {
+			var custid = $("#staticId").text();
+			location.href = "/mypage/info?id=" + custid;
+		});
 	});
 </script>
 
@@ -346,13 +353,18 @@
 							<div class="top">
 								<div class="wrapper">
 									<div class="mynav"></div>
-									<h1 class="heading">가까운 예약</h1>
+									<h1 class="heading" th:text="${list1.storename}"></h1>
 									<h3 class="location"
 										th:text="${#dates.format(list1.reservedate, 'MM월 dd일')}"></h3>
 									<p class="temp">
 										<span class="temp-value"
 											th:text="${#dates.format(list1.reservetime, 'HH시 mm분')}"></span>
 									</p>
+								</div>
+								<div class="wrapper2">
+									<div class="mynav"></div>
+									<h2 class="heading">가까운 예약</h2>
+									<h2 class="heading">D - 13</h2>
 								</div>
 							</div>
 						</div>
@@ -366,7 +378,7 @@
 					</h3>
 					<div class="form-group" style="padding: 36px 0">
 						<div class="form-group row">
-							<label for="staticEmail" class="col-sm-2 col-form-label">아이디</label>
+							<label for="staticId" class="col-sm-2 col-form-label">아이디</label>
 							<div class="col-sm-10">
 								<input type="text" readonly class="form-control-plaintext"
 									id="staticId" th:value="${session.logincust.custid}"
@@ -378,13 +390,14 @@
 								th:value="${session.logincust.custpwd}" id="sessionpwd">비밀번호</label>
 							<div class="col-sm-10">
 								<input type="password" class="form-control" id="inputPassword"
-									placeholder="Password" style="width: 250px" name="custpwd"><span
-									id="pspan" style="color: #ff4800; margin-top: 5px"></span>
+									placeholder="Password" style="width: 250px" name="custpwd">
+								<span id="pspan" style="margin-top: 5px"></span>
 							</div>
 						</div>
 					</div>
 					<div class="btn_next">
-						<button type="submit" class="btn-primary">다 음</button>
+						<button id="next_btn" type="submit" class="btn-primary">다
+							음</button>
 					</div>
 				</form>
 			</div>

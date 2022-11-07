@@ -89,13 +89,16 @@ public class MyPageController {
 		return "index";
 	}
 
-//	@RequestMapping("/updateimpl")
-//	public String updateimpl(CustDTO cust, Model model) {
-//		try {
-//			cust_service.modify(cust);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return "redirect:/mypage";
-//	}
+	@RequestMapping("/info")
+	public String info(String id, Model model) {
+		OrderlistDTO list_one = null;
+		try {
+			list_one = order_service.myorder_1(id);
+			model.addAttribute("list_one", list_one);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("center", dir + "info");
+		return "index";
+	}
 }
