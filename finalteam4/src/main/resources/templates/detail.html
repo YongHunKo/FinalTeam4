@@ -153,9 +153,8 @@ $(document).ready(function(){
 						      <td th:text="${d.menuname}"></td>
 						      <td th:text="${d.menuinfo}"></td>
 						      <td th:text="${d.menuprice}"></td>
-						      <td id="custid" th:text="${session.logincust.custid}" style="display:none"></td>
+						      <td th:if="${session.logincust != null}" id="custid" th:text="${session.logincust.custid}" style="display:none"></td>
 						    </tr>
-						    
 						  </tbody>
 						</table>
 					</div>
