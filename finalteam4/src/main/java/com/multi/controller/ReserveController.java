@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.multi.dto.CartDTO;
 import com.multi.dto.OrderlistDTO;
 import com.multi.dto.ReserveDTO;
-import com.multi.dto.StoreDTO;
 import com.multi.service.CartService;
 import com.multi.service.OrderlistService;
 import com.multi.service.ReserveService;
@@ -44,11 +43,12 @@ public class ReserveController {
 	}
 	
 	@RequestMapping("/reserveimpl2")
-	public String reserveimpl2(CartDTO cart,String custid) {
+	public String reserveimpl2(CartDTO cart,String custid, String reservedate, String reservetime) {
 		List<CartDTO> list = null;
 		int cnt = 0;
 		int totalprice = 0;
 		int price = 0;
+		System.out.println(reservedate+" "+reservetime);
 		try {
 			list = cartservice.selectcart(custid);
 			for(CartDTO c:list) {
@@ -56,7 +56,7 @@ public class ReserveController {
 				price = c.getPrice();
 				totalprice += c.getCnt()*c.getPrice();
 			}
-			OrderlistDTO order = new OrderlistDTO(null, custid, null, cnt, totalprice, null, null, custid, custid);
+			OrderlistDTO order = new OrderlistDTO(null, custid, null, cnt, totalprice, reservedate, reservetime, null, null);
 			orderlistservice.register(order);
 			int r = order.getOrderlistno();
 			

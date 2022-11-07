@@ -255,7 +255,6 @@ table.table th {
 </style>
 
 <script>
-
 </script>
 
 <body>
@@ -318,6 +317,12 @@ table.table th {
 										</div>
 									</td>
 								</tr>
+								<tr>
+									<td>
+										<input type="date" id="reservedate">
+										<input type="time" id="reservetime">
+									</td>
+								</tr>
 					</tbody>
 				</table>
 			<!-- 가격 종합 -->
@@ -365,10 +370,10 @@ table.table th {
 					</table>
 				</div>
 			</div>
-			<!-- 구매 버튼 영역 -->
+			<!-- 예약 버튼 영역 -->
 			<div class="content_btn_section" >
 						<button type="button">
-							<a th:href="@{/reserveimpl2(custid=${session.logincust.custid})}">예약하기</a>
+							<a th:href="@{/reserveimpl2(custid=${session.logincust.custid},reservedate=${reservedate},reservetime=${reservetime})}">예약하기</a>
 						</button>
 				</div>
 			<!-- 수량 조정 form -->
