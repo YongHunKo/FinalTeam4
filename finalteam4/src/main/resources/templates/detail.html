@@ -116,7 +116,7 @@ $(document).ready(function(){
             <td th:text="${d.menuname}"></td><br><br>
             <td th:text="${d.menuinfo}"></td><br>
             <td th:text="${d.menuprice}"></td>
-            <td id="custid" th:text="${session.logincust.custid}" style="display:none"></td>
+            
         </tr>
     </tbody>
     단순히 버튼 하나를 놓고 메뉴마다 예약?
@@ -149,6 +149,7 @@ $(document).ready(function(){
 						      <td th:text="${d.menuname}"></td>
 						      <td th:text="${d.menuinfo}"></td>
 						      <td th:text="${d.menuprice}"></td>
+						      <td id="custid" th:text="${session.logincust.custid}" style="display:none"></td>
 						    </tr>
 						    
 						  </tbody>
