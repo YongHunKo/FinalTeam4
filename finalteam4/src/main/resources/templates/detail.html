@@ -1,5 +1,60 @@
+
+<meta charset="utf-8">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<link rel="stylesheet" href="/assets/css/table.css">
+
+<script src="/assets/js/jquery.flexslider.js"></script>
+
+
+
+
+<style>
+
+
+
+#button{
+	margin:500px;
+	text-align:center;
+	position:relative;
+	display:inline=block;
+	margin-top:0px;
+	justify-content:space between;
+	padding:10px;
+
+}
+
+
+
+
+</style>
+
+
 <script>
 $(document).ready(function(){
+	
+	// 이미지 슬라이더 js
+	
+	 $('#carousel').flexslider({
+		    animation: "slide",
+		    controlNav: false,
+		    animationLoop: false,
+		    slideshow: false,
+		    itemWidth: 210,
+		    itemMargin: 5,
+		    asNavFor: '#slider'
+		  });
+		 
+		  $('#slider').flexslider({
+		    animation: "slide",
+		    controlNav: false,
+		    animationLoop: false,
+		    slideshow: false,
+		    sync: "#carousel"
+		  });
+	// 이미지 js 끝
+
+	
 	//1. wishlist_btn클릭시 식당id 고객id를 변수로 지정해서 로케이션으로 wishlist로 넘긴다
 	
 	//2. reserve_btn클릭시 
@@ -14,15 +69,14 @@ $(document).ready(function(){
 				'cnt':0
 			}
 		})
-		var timeout = function(){
-		location.href="[[@{/reserveimpl?custid=}]]"+custid;			
-		}
-		setTimeout(timeout,500);
+		location.href="[[@{/reserveimpl?custid=}]]"+custid;
 	});
 	
 });
+
+
 </script>
-<table>
+<!-- <table>
     <thead>
         <tr>
         	<th></th>
@@ -31,15 +85,22 @@ $(document).ready(function(){
     </thead>
     <tbody>
         <tr th:each="s : ${storeimglist}">
-        	<td><img th:src="@{/img/}+${s.storeimg}" style="width:300px; height:300px;"></td>
+        	<td><img th:src="@{/img/}+${s.storeimg}" style="width:300px; height:300px; border-radius:40px;"></td>
             <td id="storeid" th:text="${s.storeid}" style="display:none">item_name</td>
         	
             <td>item_name</td>
         </tr>
     </tbody>
-</table>  
+</table>   -->
 
-<table>
+<div id="slider" class="flexslider">
+  <ul class="slides" th:each="s : ${storeimglist}">
+    <li>
+      <img th:src="@{/img/}+${s.storeimg}" style="width:300px; height:300px; border-radius:40px; margin-top:20px;" />
+    </li>
+  </ul>
+</div>
+<!-- <table>
     <thead>
         <tr>
         	<th>메뉴사진</th>
@@ -49,19 +110,58 @@ $(document).ready(function(){
         </tr>
     </thead>
     <tbody>
-    <!-- 타임리프 작동되는 것 확인함 -->
+    타임리프 작동되는 것 확인함
         <tr th:each="d : ${detaillist}">
-        	<td><img th:src="@{/img/}+${d.menuimg}" style="width:200px; height:200px;"></td>
-            <td th:text="${d.menuname}"></td>
-            <td th:text="${d.menuinfo}"></td>
+        	<td><img th:src="@{/img/}+${d.menuimg}" style="width:200px; height:200px; border-radius:60px;"></td>
+            <td th:text="${d.menuname}"></td><br><br>
+            <td th:text="${d.menuinfo}"></td><br>
             <td th:text="${d.menuprice}"></td>
-            <td th:if="${session.logincust != null}" id="custid" th:text="${session.logincust.custid}" style="display:none"></td>
+            <td id="custid" th:text="${session.logincust.custid}" style="display:none"></td>
         </tr>
     </tbody>
-    <!-- 단순히 버튼 하나를 놓고 메뉴마다 예약? -->
-    <!-- or 예약하기 페이지로 넘어가서 날짜 시간 선택하고 결제? -->
-    <!-- 위시리스트 버튼도 만들어야함 -->
-</table> 
-<button id="reserve_btn" th:if="${session.logincust != null}">예약하러가기</button>
-<button th:if="${session.logincust == null}" onclick="location.href='/login'">로그인하러가기</button>
-<button id="wishlist_btn" th:if="${session.logincust != null}">위시리스트 넣기</button>
+    단순히 버튼 하나를 놓고 메뉴마다 예약?
+    or 예약하기 페이지로 넘어가서 날짜 시간 선택하고 결제?
+    위시리스트 버튼도 만들어야함
+</table><br> -->
+<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">상세정보</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="table-wrap">
+						<table class="table" style="text-align:center;">
+						  <thead class="thead-dark">
+						    <tr>
+						      <th>메뉴사진</th>
+						      <th>메뉴이름</th>
+						      <th>메뉴정보</th>
+						      <th>메뉴가격</th>
+
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr class="alert" role="alert" th:each="d : ${detaillist}">
+						      <td ><img th:src="@{/img/}+${d.menuimg}" style="width:200px; height:200px; border-radius:60px;"></td>
+						      <td th:text="${d.menuname}"></td>
+						      <td th:text="${d.menuinfo}"></td>
+						      <td th:text="${d.menuprice}"></td>
+						    </tr>
+						    
+						  </tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div><br>
+		<br>
+	<div id="button">
+<button id="reserve_btn" th:if="${session.logincust != null}" class="btn btn-primary">예약하러가기</button>
+<button th:if="${session.logincust == null}" onclick="location.href='/login'" class="btn btn-primary">로그인하러가기</button>
+<button id="wishlist_btn" th:if="${session.logincust != null}" class="btn btn-primary">위시리스트 넣기</button>
+</div>
+	</section>
+<br>

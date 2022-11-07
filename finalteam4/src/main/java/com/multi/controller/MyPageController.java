@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.multi.dto.CustDTO;
 import com.multi.dto.OrderlistDTO;
+import com.multi.dto.ReserveDTO;
 import com.multi.dto.ReviewDTO;
 import com.multi.service.CustService;
 import com.multi.service.OrderlistService;
@@ -42,6 +43,22 @@ public class MyPageController {
 		return "index";
 	}
 
+	@RequestMapping("/reserve")
+	public String reserve(String id, Model model) {
+		OrderlistDTO list_one = null;
+		List<OrderlistDTO> list = null;
+		try {
+			list_one = order_service.myorder_1(id);
+			list = order_service.myorder(id);
+			model.addAttribute("list_one", list_one);
+			model.addAttribute("reserve", list);
+			model.addAttribute("center", dir + "reserve");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "index";
+	}
+
 	@RequestMapping("/review")
 	public String review(String id, Model model) {
 		OrderlistDTO list_one = null;
@@ -55,21 +72,9 @@ public class MyPageController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println(review);
 		return "index";
 	}
-
-//	@RequestMapping("/review")
-//	public String review(String id, Model model) {
-//		List<ReviewDTO> list = null;
-//		try {
-//			list = order_service.myorder(id);
-//			model.addAttribute("list", list);			
-//			model.addAttribute("center", dir + "review");
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return "index";
-//	}
 
 	@RequestMapping("/edit")
 	public String edit(String id, Model model) {
@@ -83,29 +88,14 @@ public class MyPageController {
 		model.addAttribute("center", dir + "edit");
 		return "index";
 	}
-	
-	@RequestMapping("/edit/reconfirm")
-	public String reconfirm(String custid, String custpwd, Model model ) {
-		CustDTO cust = null;
-		try {
-			cust= cust_service.get(custid);
-			if (cust.getCustpwd() != custpwd) {
-				
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-			return "index";
-	}
 
-	@RequestMapping("/updateimpl")
-	public String updateimpl(CustDTO cust, Model model) {
-		try {
-			cust_service.modify(cust);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "redirect:/mypage";
-	}
+//	@RequestMapping("/updateimpl")
+//	public String updateimpl(CustDTO cust, Model model) {
+//		try {
+//			cust_service.modify(cust);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return "redirect:/mypage";
+//	}
 }

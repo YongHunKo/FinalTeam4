@@ -45,24 +45,16 @@ img {
 
 
 #cust{
-	position:realative;
-	display:flex;
+	position:absolute;
+	display:inline-block;
 	text-align:center;
-	margin-left:auto;
-	margin-right:auto;
-	
-	
-}
-
-
-#profile_image{
-	justify-content:space between;
-	position:realative;
-	text-align:center;
-	display:flex;
+	left:71.5%;
 	overflow:hidden;
 	
 }
+
+
+
 
 #profile{
 	
@@ -72,11 +64,12 @@ img {
 	position:realative;
 	margin-left:auto;
 	margin-right:auto;
-	display:block;
+	display:flex;
 	object-fit:cover;
 	padding-top:0 auto;
-	float:none;
 	text-align:center;
+	overflow:hidden;
+	
 }
 
 

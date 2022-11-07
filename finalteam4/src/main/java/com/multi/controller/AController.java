@@ -59,4 +59,25 @@ public class AController {
 		}
 		return "";
 	}
+	
+	@RequestMapping("/edit/reconfirm")
+	public Object reconfirm(String custid, String custpwd) {
+		String result = "";
+		String originpwd = "";
+		CustDTO cust = null;
+
+		try {
+			cust = cust_service.get(custid);
+			originpwd = cust.getCustpwd();
+
+			if (originpwd.equals(custpwd)) {
+				result = "true";
+			} else {
+				result = "false";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }
