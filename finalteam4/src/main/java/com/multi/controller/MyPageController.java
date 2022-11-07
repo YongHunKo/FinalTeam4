@@ -88,7 +88,7 @@ public class MyPageController {
 	public String reconfirm(String custid, String custpwd, Model model ) {
 		CustDTO cust = null;
 		try {
-			cust cust_service.get(custid);
+			cust= cust_service.get(custid);
 			if (cust.getCustpwd() != custpwd) {
 				
 			}
@@ -96,6 +96,7 @@ public class MyPageController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+			return "index";
 	}
 
 	@RequestMapping("/updateimpl")
