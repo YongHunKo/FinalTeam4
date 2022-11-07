@@ -149,11 +149,13 @@ $(document).ready(function(){
                                 <option>식당</option>
                                 <option>카페</option>
                                 <option>다이닝</option>
-                        
                             </select>
                         </div>
                         <div class="search-input">
-                            <input type="text" placeholder="지역 및 식당을 검색해주세요!">
+                          	<form id="search_form">
+                               <input id="search_input" name="txt" type="text" placeholder="지역 및 식당을 검색해주세요!" onkeyup="enterkey2()">
+                               <input type="text" style="display:none" onkeyup="enterkey2()">
+                          	</form>
                         </div>
                         <div class="search-btn">
                             <button><i class="lni lni-search-alt"></i></button>
