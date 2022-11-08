@@ -1,5 +1,7 @@
 package com.multi.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.multi.dto.CustDTO;
+import com.multi.dto.WishlistDTO;
 import com.multi.service.CustService;
+import com.multi.service.WishlistService;
 
 @Controller
 public class LoginController {
@@ -16,6 +20,8 @@ public class LoginController {
 	@Autowired
 	CustService service;
 	
+	@Autowired
+	WishlistService wishservice;
 	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
@@ -40,6 +46,9 @@ public class LoginController {
 				}else {
 					model.addAttribute("center", "loginfail");
 				}
+				List<WishlistDTO> list = null;
+				list = wishservice.viewwish(custid);
+				model.addAttribute("viewwish", list);
 			}
 		} catch (Exception e) {
 			
