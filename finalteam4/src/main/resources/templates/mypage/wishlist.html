@@ -276,6 +276,29 @@
 	height: 200px;
 	width: 150px;
 }
+
+.myButton {
+	box-shadow:inset 0px 39px 0px -24px #e67a73;
+	background-color:#e4685d;
+	border-radius:4px;
+	border:1px solid #ffffff;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:8px 81px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #b23e35;
+}
+.myButton:hover {
+	background-color:#eb675e;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
 </style>
 
 <script>
@@ -345,28 +368,22 @@
 					</div>
 				</div>
 			</div>
-			<div class="review">
+			<div class="wishlist">
 				<h3 class="my_tit">
-					리 뷰<span>##.</span>
+					위시리스트<span>Wishlist</span>
 				</h3>
 				<div class="row">
 					<div class="col-xl-3 col-lg-4 col-md-6 mb-4"
-						th:each="rv : ${review}">
+						th:each="vw : ${viewwish}">
 						<div class="bg-white rounded shadow-sm">
-							<img th:src="'/img/' + ${rv.storeimg}" alt=""
+							<img th:src="@{/img/} + ${vw.storeimg}" alt=""
 								class="img-fluid card-img-top">
 							<div class="p-4">
 								<h5>
-									<a href="#" class="text-dark" th:text="${rv.storename}"></a>
+									<a th:href="@{/storedetail(storeid=${vw.storeid})}" class="text-dark" th:text="${vw.storename}"></a>
 								</h5>
-								<p class="small text-muted mb-0" th:text="${rv.revtext}"></p>
-								<div
-									class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
-									<p class="small mb-0">
-										<i class="fa fa-picture-o mr-2"></i><span
-											class="font-weight-bold">Star</span>
-									</p>
-								</div>
+								<p class="small text-muted mb-0" th:text="${vw.storeintroduce}"></p>
+								<a href="#" class="myButton">DELETE</a>
 							</div>
 						</div>
 					</div>
