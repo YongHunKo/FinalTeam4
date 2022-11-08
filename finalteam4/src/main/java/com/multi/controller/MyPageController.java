@@ -11,9 +11,11 @@ import com.multi.dto.CustDTO;
 import com.multi.dto.OrderlistDTO;
 import com.multi.dto.ReserveDTO;
 import com.multi.dto.ReviewDTO;
+import com.multi.dto.WishlistDTO;
 import com.multi.service.CustService;
 import com.multi.service.OrderlistService;
 import com.multi.service.ReviewService;
+import com.multi.service.WishlistService;
 
 @Controller
 @RequestMapping("/mypage")
@@ -27,6 +29,9 @@ public class MyPageController {
 
 	@Autowired
 	ReviewService review_service;
+	
+	@Autowired
+	WishlistService wishservice;
 
 	String dir = "mypage/";
 
@@ -99,6 +104,22 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 		model.addAttribute("center", dir + "info");
+		return "index";
+	}
+	
+	@RequestMapping("/wishlist")
+	public String wishlist(String id, Model model) {
+		List<WishlistDTO> list = null;
+		OrderlistDTO list_one = null;
+		try {
+			list = wishservice.viewwish(id);
+			list_one = order_service.myorder_1(id);
+			model.addAttribute("list_one", list_one);
+			model.addAttribute("list", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("center", dir + "wishlist");
 		return "index";
 	}
 }
