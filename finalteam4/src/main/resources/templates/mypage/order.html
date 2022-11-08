@@ -344,6 +344,7 @@
 	bottom: 0;
 	left: 80px;
 }
+
 </style>
 
 <script>
@@ -427,7 +428,7 @@
 							</div>
 						</li>
 						<ul class="my_order_tbl2" th:each="ordlist : ${orderlist}">
-							<li class="ng-star-inserted"><a
+							<li class="ng-star-inserted"><a th:href="@{/mypage/orderdetail(id=${ordlist.orderlistno})}"
 								class="my_tbl ng-star-inserted"
 								href="/mypage/my-order/detail/15347295">
 									<div class="date"

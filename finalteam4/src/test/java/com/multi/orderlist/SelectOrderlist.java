@@ -16,11 +16,10 @@ class SelectOrderlist {
 	void contextLoads() {
 		OrderlistDTO orderlist = null;
 		try {
-			orderlist = service.get(6);
+			orderlist = service.get(1);
 			System.out.println(orderlist);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
 }

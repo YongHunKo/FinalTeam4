@@ -24,12 +24,14 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</delete>
 	
 	<select id="myorder" parameterType="String" resultType="OrderlistDTO">
-		select o.orderlistno, o.orderdate, o.reservedate, o.reservetime, s.storename, m.menuname, o.totalprice from orderlist o
+		select o.orderlistno, o.orderdate, o.reservedate, o.reservetime, s.storename, o.totalprice from orderlist o
 		inner join cust c on c.custid = o.custid
 		inner join reserve r on r.orderlistno = o.orderlistno
 		inner join menu m on m.menuid = r.menuid
 		inner join store s on s.storeid = m.storeid
-		where c.custid = #{custid};
+		where c.custid = #{custid}
+		group by o.orderlistno, s.storename;
+		
 	</select>
 	
 	<select id="myorder_1" parameterType="String" resultType="OrderlistDTO">
