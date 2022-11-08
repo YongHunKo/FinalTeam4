@@ -68,6 +68,16 @@
 <script>
 function enterkey2(){
 	if(window.event.keyCode == 13){
+		$('#search_form2').attr({
+			'method':'post',
+			'action':'/searchimpl'
+		});
+		$('#search_form2').submit();
+	};
+	
+};
+function enterkey(){
+	if(window.event.keyCode == 13){
 		$('#search_form').attr({
 			'method':'post',
 			'action':'/searchimpl'
@@ -84,6 +94,13 @@ $(document).ready(function(){
 			'action':'/searchimpl',
 		});
 		$('#search_form').submit();
+	});
+	$('.search-btn2').click(function() {
+		$('#search_form2').attr({
+			'method':'get',
+			'action':'/searchimpl',
+		});
+		$('#search_form2').submit();
 	});
 	
 	
@@ -153,7 +170,7 @@ $(document).ready(function(){
                         </div>
                         <div class="search-input">
                           	<form id="search_form">
-                               <input id="search_input" name="txt" type="text" placeholder="지역 및 식당을 검색해주세요!" onkeyup="enterkey2()">
+                               <input id="search_input" name="txt" type="text" placeholder="지역 및 식당을 검색해주세요!" onkeyup="enterkey()">
                                <input type="text" style="display:none" onkeyup="enterkey2()">
                           	</form>
                         </div>
@@ -231,13 +248,13 @@ $(document).ready(function(){
                                         </select>
                                     </div>
                                     <div class="search-input">
-                                    	<form id="search_form">
+                                    	<form id="search_form2">
 	                                        <input id="search_input" name="txt" type="text" placeholder="지역 및 식당을 검색해주세요!" onkeyup="enterkey2()">
 	                                        <input type="text" style="display:none" onkeyup="enterkey2()">
                                     	</form>
                                     </div>
-                                    <div class="search-btn">
-                                        <button id="search_btn"><i class="lni lni-search-alt"></i></button>
+                                    <div class="search-btn2">
+                                        <button id="search_btn2"><i class="lni lni-search-alt"></i></button>
                                     </div>
                                 </div>
                                 <!-- navbar search Ends -->

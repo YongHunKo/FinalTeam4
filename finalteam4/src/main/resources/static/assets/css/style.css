@@ -4105,6 +4105,18 @@ p {
   margin-left: -2px;
 }
 
+.search-style-5 .search-btn2 button {
+  background-color: #542DED;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  font-size: 20px;
+  border: 0;
+  border-radius: 4px;
+  margin-left: -2px;
+}
+
 .search-style-5.search-dark .nice-select {
   border: 1px solid rgba(255, 255, 255, 0.24);
   background-color: transparent;
