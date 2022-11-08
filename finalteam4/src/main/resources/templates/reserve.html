@@ -325,7 +325,9 @@ table.table th {
 								</tr>
 								<tr>
 									<td>
-										<input type="text" id="datepicker">
+										<form method = "post">
+											<input type="text" id="datepicker" name="datepicker" value="">
+										</form>
 									</td>
 								</tr>
 					</tbody>
@@ -377,9 +379,9 @@ table.table th {
 			</div>
 			<!-- 예약 버튼 영역 -->
 			<div class="content_btn_section" >
-						<button type="button">
-							<a th:href="@{/reserveimpl2(custid=${session.logincust.custid},reservedate=${reservedate},reservetime=${reservetime})}">예약하기</a>
-						</button>
+						<button type="button" id="reserve_btn2">예약하기
+<!-- 							<a th:href="@{/reserveimpl2(custid=${session.logincust.custid},datepicker=${datepicker})}">예약하기</a>
+ -->						</button>
 				</div>
 			<!-- 수량 조정 form -->
 			<form th:action="@{/updatecart}" method="post" class="quantity_update_form">
@@ -505,6 +507,13 @@ $(".quantity_modify_btn").on("click", function(){
 		timepicker: true,
 	    timeFormat: "hh:ii AA"
 	}); 
+	
+	$('#reserve_btn2').click(function(){
+		var reservedate=$('#datepicker').val();
+		var custid='[[${session.logincust.custid}]]'
+		alert(reservedate+" "+custid);
+		location.href="[[@{/reserveimpl2?custid=}]]"+custid+'&reservedate='+reservedate
+	});
 </script>
 </body>
 </html>
