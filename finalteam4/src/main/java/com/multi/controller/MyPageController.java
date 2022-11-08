@@ -43,7 +43,7 @@ public class MyPageController {
 		return "index";
 	}
 
-	@RequestMapping("/reserve")
+	@RequestMapping("/order")
 	public String reserve(String id, Model model) {
 		OrderlistDTO list_one = null;
 		List<OrderlistDTO> list = null;
@@ -51,8 +51,8 @@ public class MyPageController {
 			list_one = order_service.myorder_1(id);
 			list = order_service.myorder(id);
 			model.addAttribute("list_one", list_one);
-			model.addAttribute("reserve", list);
-			model.addAttribute("center", dir + "reserve");
+			model.addAttribute("orderlist", list);
+			model.addAttribute("center", dir + "order");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

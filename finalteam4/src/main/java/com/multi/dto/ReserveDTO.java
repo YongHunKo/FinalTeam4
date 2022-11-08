@@ -20,5 +20,5 @@ public class ReserveDTO {
 	private Integer menuid;
 	private Integer cnt;
 	private Integer price;
-
+	
 }
