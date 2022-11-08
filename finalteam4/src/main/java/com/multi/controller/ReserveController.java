@@ -1,7 +1,11 @@
 package com.multi.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
+import org.attoparser.config.ParseConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,12 +47,15 @@ public class ReserveController {
 	}
 	
 	@RequestMapping("/reserveimpl2")
-	public String reserveimpl2(CartDTO cart,String custid, String reservedate, String reservetime) {
+	public String reserveimpl2(CartDTO cart,String custid, String reservedate, String reservetime) throws ParseException {
 		List<CartDTO> list = null;
 		int cnt = 0;
 		int totalprice = 0;
 		int price = 0;
-		System.out.println(reservedate+" "+reservetime);
+		Date dt1 = new SimpleDateFormat("yyyy-mm-dd HH:mm").parse(reservedate);
+		String reservedate2 = new SimpleDateFormat("yyyy-MM-dd").format(dt1);
+		Date dt2 = new SimpleDateFormat("yyyy-mm-dd hh:mm").parse(reservetime);
+		String reservetime2 = new SimpleDateFormat("HH:mm").format(dt2);
 		try {
 			list = cartservice.selectcart(custid);
 			for(CartDTO c:list) {
@@ -56,7 +63,7 @@ public class ReserveController {
 				price = c.getPrice();
 				totalprice += c.getCnt()*c.getPrice();
 			}
-			OrderlistDTO order = new OrderlistDTO(null, custid, null, cnt, totalprice, reservedate, reservetime, null, null);
+			OrderlistDTO order = new OrderlistDTO(null, custid, null, cnt, totalprice, reservedate2, reservetime2, null, null);
 			orderlistservice.register(order);
 			int r = order.getOrderlistno();
 			

@@ -261,8 +261,7 @@ table.table th {
     <link href="/assets/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
     <!-- Air datepicker css -->
     <script src="/assets/js/datepicker.js"></script> <!-- Air datepicker js -->
-    <script src="/assets/js/datepicker.ko.js"></script> <!-- 달력 한글 추가를 위해 커스텀 -->
-    
+    <script src="/assets/js/datepicker.ko.js"></script> <!-- 달력 한글 추가를 위해 커스텀 -->    
 <body>
 	<div class="wrapper">
 		<div class="wrap">
@@ -325,8 +324,8 @@ table.table th {
 								</tr>
 								<tr>
 									<td>
-										<form method = "post">
-											<input type="text" id="datepicker" name="datepicker" value="">
+										<form method = "post"> 예약일 선택하기 :
+											<input type="text" id="datepicker" name="datepicker" >
 										</form>
 									</td>
 								</tr>
@@ -505,15 +504,54 @@ $(".quantity_modify_btn").on("click", function(){
 	$("#datepicker").datepicker({
 		language: 'ko',
 		timepicker: true,
-	    timeFormat: "hh:ii AA"
+	    timeFormat: "hh:ii"
 	}); 
+
 	
 	$('#reserve_btn2').click(function(){
 		var reservedate=$('#datepicker').val();
+		var reservetime=$('#datepicker').val();
 		var custid='[[${session.logincust.custid}]]'
-		alert(reservedate+" "+custid);
-		location.href="[[@{/reserveimpl2?custid=}]]"+custid+'&reservedate='+reservedate
+		location.href="[[@{/reserveimpl2?custid=}]]"+custid+'&reservedate='+reservedate+'&reservetime='+reservetime
+		
+	//I'mpot api test
+	var IMP = window.IMP; // 생략 가능
+    IMP.init("{imp34244488}");
+	
+    function requestPay() {
+        // IMP.request_pay(param, callback) 결제창 호출
+        IMP.request_pay({ // param
+            pg: "html5_inicis",
+            pay_method: "card",
+            merchant_uid: "ORD20180131-0000011",
+            name: "노르웨이 회전 의자",
+            amount: 64900,
+            buyer_email: "gildong@gmail.com",
+            buyer_name: "홍길동",
+            buyer_tel: "010-4242-4242",
+            buyer_addr: "서울특별시 강남구 신사동",
+            buyer_postcode: "01181"
+        }, function (rsp) { // callback
+            if (rsp.success) {
+            	jQuery.ajax({
+                    url: "{서버의 결제 정보를 받는 endpoint}", // 예: https://www.myservice.com/payments/complete
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    data: {
+                        imp_uid: rsp.imp_uid,
+                        merchant_uid: rsp.merchant_uid
+                    }
+                }).done(function (data) {
+                  // 가맹점 서버 결제 API 성공시 로직
+                })
+            } else {
+            	alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
+            }
+        });
+      }
+    //pay api end
 	});
+	
 </script>
 </body>
 </html>
