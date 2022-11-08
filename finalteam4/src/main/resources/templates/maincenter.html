@@ -5,7 +5,7 @@
         <div class="header-big">
             <div class="header-items-active">
                 <div class="single-header-item bg_cover" th:each="r : ${randomimg}"
-                    th:style="'background-image: url('+@{'img/'+${r.storeimg}}+');'">
+                    th:style="'background-image: url('+@{'/img/'+${r.storeimg}}+');'">
                     <div class="header-item-content">
                         <h3 class="title" th:text="${r.storename}"></h3>
                         <a href="javascript:void(0)" class="link" th:text="${r.storeintroduce}"></a>
@@ -16,7 +16,7 @@
         </div>
         <div class="header-min">
             <div class="header-min-item product-style-25 bg_cover" th:each="ra : ${randominfo}"
-                th:style="'background-image: url('+@{'img/'+${ra.menuimg}}+');'">
+                th:style="'background-image: url('+@{'/img/'+${ra.menuimg}}+');'">
                 <div class="product-content">
                     <h4 class="title"><a href="product-details-page.html" th:text="${ra.storename}"></a></h4>
                     <p th:text="${ra.storeintroduce}"></p>
@@ -42,7 +42,7 @@
                             <h4 class="title"><a href="javascript:void(0)"></a></h4>
                             <p style="font-weight:800;">제주도 내 모든 카페정보는어디?</p><br>
                             
-                            <a href="javascript:void(0)" class="more">디저트 구경하러가기</a>
+                            <a href="/cafedetail" class="more">디저트 구경하러가기</a>
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                         <div class="content-content">
                             <h4 class="title"><a href="javascript:void(0)"></a></h4>
                             <p style="font-weight:800;">오늘 저녁은 정갈한 오마카세</p><br>
-                            <a href="contact-page.html" class="more">오마카세 예약하러가기</a>
+                            <a href="/sushidetail" class="more">오마카세 예약하러가기</a>
                         </div>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
                         <div class="content-content">
                             <h4 class="title"><a href="javascript:void(0)"></a></h4>
                             <p style="font-weight:800;">제주 흑돼지먹으러가자~!</p><br>
-                            <a href="javascript:void(0)" class="more">도민추천 흑돼지고기집보러가기</a>
+                            <a href="/porkdetail" class="more">도민추천 흑돼지고기집보러가기</a>
                         </div>
                     </div>
                 </div>

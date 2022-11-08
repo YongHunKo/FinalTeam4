@@ -29,7 +29,20 @@ public class LoginController {
 	StoreimgService imgservice;
 	
 	@RequestMapping("/logout")
-	public String logout(HttpSession session) {
+	public String logout(HttpSession session,Model model) {
+		List<StoreimgDTO> list2=null;
+		List<StoreimgDTO> list3=null;
+		try {
+			list2 = imgservice.selectrandom();
+			list3 = imgservice.selectrandominfo();
+			model.addAttribute("randomimg", list2);
+	     	model.addAttribute("randominfo", list3);
+	     	model.addAttribute("center","maincenter");
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
 		if (session != null) {
 			session.invalidate();
 		}

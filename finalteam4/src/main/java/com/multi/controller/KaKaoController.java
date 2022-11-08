@@ -1,6 +1,7 @@
 package com.multi.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.multi.dto.CustDTO;
+import com.multi.dto.StoreimgDTO;
 import com.multi.service.CustService;
 import com.multi.service.KaKaoService;
+import com.multi.service.StoreimgService;
 
 
 
@@ -24,11 +27,18 @@ public class KaKaoController {
 	public KaKaoService kakao;
 	 @Autowired
 	 CustService custservice;
+	 
+	 @Autowired
+	 StoreimgService imgservice;
 	
 	 @RequestMapping(value="/callback")
 	 public String login(@RequestParam("code") String code, HttpSession session,Model model) throws Exception {
 		 String access_Token = kakao.getAccessToken(code);
 		    HashMap<String, Object> userInfo = kakao.getUserInfo(access_Token);
+		    List<StoreimgDTO> list2=null;
+		    List<StoreimgDTO> list3=null;
+		    list2 = imgservice.selectrandom();
+		    list3 = imgservice.selectrandominfo();
 //		    System.out.println("login Controller : " + userInfo); //나중에 막을것
 		    model.addAttribute("userId", userInfo);
 		    model.addAttribute("center", "maincenter");
@@ -43,6 +53,8 @@ public class KaKaoController {
 		    	if(custservice.get(email+"1").getCustpwd().equals("1")) {
 		    		session.setAttribute("logincust", custservice.get(email+"1"));
 		    		model.addAttribute("center","maincenter");
+		    		model.addAttribute("randomimg", list2);
+		    		model.addAttribute("randominfo", list3);
 		    	}
 		    	
 		    }else {
@@ -65,8 +77,16 @@ public class KaKaoController {
 	 }
 
 	 @RequestMapping(value="/logout")
-	 public String logout(HttpSession session) {
+	 public String logout(HttpSession session, Model model) throws Exception {
+		 	List<StoreimgDTO> list2=null;
+		    List<StoreimgDTO> list3=null;
+		    list2 = imgservice.selectrandom();
+		    list3 = imgservice.selectrandominfo();
 	     kakao.kakaoLogout((String)session.getAttribute("access_Token"));
+	     	model.addAttribute("randomimg", list2);
+	     	model.addAttribute("randominfo", list3);
+	     	model.addAttribute("center","maincenter");
+	     
 	     session.removeAttribute("access_Token");
 	     session.removeAttribute("userId");
 	     return "index";
