@@ -255,7 +255,6 @@ table.table th {
 </style>
 
 <script>
-
 </script>
 
 <body>
@@ -311,7 +310,18 @@ table.table th {
 										<button type="button" class="quantity_modify_btn" th:data-cartid="${c.cartid}" th:data-custid="${c.custid}" th:data-menuid="${c.menuid}" th:data-menuname="${c.menuname}" th:data-price="${c.price}" th:data-menuimg="${c.menuimg}">수정
 										</button>
 									</td>
-									<td th:text="${#numbers.formatInteger(c.totalprice, 3, 'COMMA')}+'원'">TotalPrice</td>
+									<td>
+										<div>
+											<span th:if="${c.cnt*c.price != 0}" th:text="${#numbers.formatInteger(c.cnt*c.price, 3, 'COMMA')}+'원'"></span>
+											<span th:if="${c.cnt*c.price == 0}">0원</span>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<input type="date" id="reservedate">
+										<input type="time" id="reservetime">
+									</td>
 								</tr>
 					</tbody>
 				</table>
@@ -360,10 +370,10 @@ table.table th {
 					</table>
 				</div>
 			</div>
-			<!-- 구매 버튼 영역 -->
+			<!-- 예약 버튼 영역 -->
 			<div class="content_btn_section" >
 						<button type="button">
-							<a th:href="@{/reserveimpl2(custid=${session.logincust.custid})}">예약하기</a>
+							<a th:href="@{/reserveimpl2(custid=${session.logincust.custid},reservedate=${reservedate},reservetime=${reservetime})}">예약하기</a>
 						</button>
 				</div>
 			<!-- 수량 조정 form -->
@@ -442,7 +452,7 @@ function setTotalInfo(){
 	// 총 종류
 	$(".totalKind_span").text(totalKind);
 	// 최종 가격(총 가격 + 배송비)
-	$(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());		
+	$(".finalTotalPrice_span").text(totalPrice.toLocaleString());		
 }
 
 /* 수량버튼 */
