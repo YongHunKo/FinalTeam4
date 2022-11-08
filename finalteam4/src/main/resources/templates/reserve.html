@@ -510,9 +510,9 @@ $(".quantity_modify_btn").on("click", function(){
 	
 	$('#reserve_btn2').click(function(){
 		var reservedate=$('#datepicker').val();
+		var reservetime=$('#datepicker').val();
 		var custid='[[${session.logincust.custid}]]'
-		alert(reservedate+" "+custid);
-		location.href="[[@{/reserveimpl2?custid=}]]"+custid+'&reservedate='+reservedate
+		location.href="[[@{/reserveimpl2?custid=}]]"+custid+'&reservedate='+reservedate+'&reservetime='+reservetime
 	});
 </script>
 </body>
