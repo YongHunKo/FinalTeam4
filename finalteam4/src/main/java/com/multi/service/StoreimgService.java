@@ -43,4 +43,16 @@ public class StoreimgService implements MyService<Integer, StoreimgDTO>{
 		return mapper.selectstoreid(storeid);
 	}
 
-}
+	public List<StoreimgDTO>  selectrandom() throws Exception{
+		return mapper.selectrandom();
+	}
+
+
+	public List<StoreimgDTO> selectrandominfo() throws Exception{
+		return mapper.selectrandominfo();
+	}
+	
+	
+	}
+
+

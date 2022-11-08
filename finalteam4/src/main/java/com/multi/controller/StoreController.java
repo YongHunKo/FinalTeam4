@@ -23,9 +23,11 @@ public class StoreController {
 	public String storedetail(Model model, Integer storeid) {
 		List<StoreimgDTO> list = null;
 		List<StoreDTO> list2 = null;
+		
 		try {
 			list = storeimgservice.selectstoreid(storeid);
 			list2 = storeservice.detail(storeid);
+			
 			model.addAttribute("storeimglist",list);
 			model.addAttribute("detaillist",list2);
 			

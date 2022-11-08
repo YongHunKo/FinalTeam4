@@ -13,6 +13,19 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="selectstoreid" parameterType="Integer" resultType="StoreimgDTO">
 		SELECT * FROM storeimgs WHERE storeid=#{storeid}
 	</select>
+	<select id="selectrandom"  resultType="StoreimgDTO">
+		SELECT * FROM storeimgs s
+		INNER JOIN store ss ON s.storeid = ss.storeid
+		ORDER BY RAND()
+		LIMIT 3
+	</select>
+	<select id="selectrandominfo"  resultType="StoreimgDTO">
+		SELECT * FROM menu m
+		LEFT OUTER JOIN menuimgs ms ON m.menuid = ms.menuid
+		INNER JOIN store s ON m.storeid = s.storeid
+		ORDER BY RAND()
+		LIMIT 2;
+	</select>
 	<insert id="insert" parameterType="StoreimgDTO">
 		INSERT INTO storeimgs VALUES (#{storeimgno},#{storeid},#{storeimg})
 	</insert>

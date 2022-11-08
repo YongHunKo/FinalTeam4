@@ -1,53 +1,32 @@
  <meta charset="utf-8">
  
  
- <section class="header-style-1">
+  <section class="header-style-1">
         <div class="header-big">
             <div class="header-items-active">
-                <div class="single-header-item bg_cover"
-                    th:style="'background-image: url('+@{/img/tclf4.jpg}+');'">
+                <div class="single-header-item bg_cover" th:each="r : ${randomimg}"
+                    th:style="'background-image: url('+@{'img/'+${r.storeimg}}+');'">
                     <div class="header-item-content">
-                        <h3 class="title">숙성도-노형점</h3>
-                        <a href="javascript:void(0)" class="link">정용진회장의 단골 삼겹살집!</a>
+                        <h3 class="title" th:text="${r.storename}"></h3>
+                        <a href="javascript:void(0)" class="link" th:text="${r.storeintroduce}"></a>
                     </div>
                 </div>
-                <div class="single-header-item bg_cover"
-                    th:style="'background-image: url('+@{/img/mnsd2.jpg}+');'">
-                    <div class="header-item-content">
-                        <h3 class="title">올래국수-제주점</h3>
-                        <a href="javascript:void(0)" class="link">고기국수맛집</a>
-                    </div>
-                </div>
-                <div class="single-header-item bg_cover"
-                    th:style="'background-image: url('+@{/img/jm1.jpg}+');'">
-                    <div class="header-item-content">
-                        <h3 class="title">송도-260도</h3>
-                        <a href="javascript:void(0)" class="link">저렴한가격으로 즐기는 숙성 와규 집</a>
-                    </div>
-                </div>
+                
             </div>
         </div>
         <div class="header-min">
-            <div class="header-min-item product-style-25 bg_cover"
-                th:style="'background-image: url('+@{img/ujA.jpg}+');'">
+            <div class="header-min-item product-style-25 bg_cover" th:each="ra : ${randominfo}"
+                th:style="'background-image: url('+@{'img/'+${ra.menuimg}}+');'">
                 <div class="product-content">
-                    <h4 class="title"><a href="product-details-page.html">닻-함덕점</a></h4>
-                    <p>딱새우가 맛있는 이자카야</p>
-                    <a href="javascript:void(0)" class="main-btn primary-btn-border">
-                        대기현황:12팀</a>
+                    <h4 class="title"><a href="product-details-page.html" th:text="${ra.storename}"></a></h4>
+                    <p th:text="${ra.storeintroduce}"></p>
+                    <a href="javascript:void(0)" class="main-btn primary-btn-border" th:text="${ra.storestatus}">
+                        </a>
                 </div>
             </div>
-            <div class="header-min-item product-style-25 bg_cover"
-                th:style="'background-image: url('+@{img/hwdB.jpg}+');'">
-                <div class="product-content">
-                    <h4 class="title"><a href="product-details-page.html">엄마손횟집-제주시</a></h4>
-                    <p>부부가운영하는 오마카세횟집</p>
-                    <a href="javascript:void(0)" class="main-btn primary-btn-border"> 
-                        대기현황:5팀</a>
-                </div>
+  
             </div>
         </div>
-    </section>
     <!--====== Header Style 1 Part Ends ======-->
 
     <!--====== Content Card Style 4 Part Start ======-->

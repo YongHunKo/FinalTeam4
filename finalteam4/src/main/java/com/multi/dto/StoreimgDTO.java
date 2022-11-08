@@ -16,4 +16,12 @@ public class StoreimgDTO {
 	private Integer storeid;
 	private String storeimg;
 
+	// maincenter random img 조인문
+	
+	private String storename;
+	private String storeinfo;
+	private String storeintroduce;
+	private String storestatus;
+	private  String menuimg;
+	
 }

@@ -11,5 +11,7 @@ import com.multi.frame.MyMapper;
 @Mapper
 public interface StoreimgMapper extends MyMapper<Integer, StoreimgDTO>{
 	public List<StoreimgDTO> selectstoreid(Integer storeid);
+	public List<StoreimgDTO> selectrandom();
+	public List<StoreimgDTO> selectrandominfo();
 
 }
