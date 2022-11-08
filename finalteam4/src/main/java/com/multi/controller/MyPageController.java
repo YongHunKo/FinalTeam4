@@ -130,7 +130,7 @@ public class MyPageController {
 			list = wishservice.viewwish(id);
 			list_one = order_service.myorder_1(id);
 			model.addAttribute("list_one", list_one);
-			model.addAttribute("list", list);
+			model.addAttribute("viewwish", list);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
