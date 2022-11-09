@@ -21,13 +21,22 @@ public class LoginController {
 
 	@Autowired
 	CustService service;
-	
 	@Autowired
 	WishlistService wishservice;
-	
 	@Autowired
 	StoreimgService imgservice;
 	
+	/**
+	 * logout
+	 * 단순히 session의 값이 존재할 때,
+	 * session을 invalidate하여 값을 없애며
+	 * 정상적으로 logout하는 것이 목적이다.
+	 * 부가적으로 랜덤이미지, 랜덤정보를
+	 * 메인센터에 뿌리도록 한다
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/logout")
 	public String logout(HttpSession session,Model model) {
 		List<StoreimgDTO> list2=null;
@@ -49,9 +58,25 @@ public class LoginController {
 		return "index";
 	}
 
-	
-	
-	
+	/**
+	 * loginimpl
+	 * 파라메터로 받아온 custid, custpwd를 사용하여
+	 * custid로 cust를 조회하여
+	 * 값이 있을 경우는 조회한 cust의 custpwd와
+	 * 파라메터로 받아온 custpwd를 비교하여
+	 * 일치하면 logincust에 cust를 담아서
+	 * maincenter에 뿌려주는 것이 목적
+	 * 부가적으로 랜덤이미지, 랜덤정보를
+	 * 메인센터에 뿌리도록 한다.
+	 * 부가적으로 로그인이 성공하면 custid를 이용하여
+	 * viewwish를 조회하여
+	 * 메인센터에 뿌리도록 한다.
+	 * @param session
+	 * @param custid
+	 * @param custpwd
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/loginimpl")
 	public String loginimpl(HttpSession session, String custid, String custpwd, Model model) {
 		CustDTO cust = null;

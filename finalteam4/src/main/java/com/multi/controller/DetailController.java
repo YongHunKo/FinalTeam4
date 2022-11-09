@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.multi.dto.StoreDTO;
-import com.multi.dto.StoreimgDTO;
 import com.multi.service.StoreService;
 import com.multi.service.StoreimgService;
 
@@ -17,11 +16,16 @@ public class DetailController {
 	
 	@Autowired
 	StoreService service;
-	
 	@Autowired
 	StoreimgService storeimgservice;
 	
-
+	/**
+	 * detail
+	 * 카테고리 값들을 catedetail과 detailimg에 조회하여
+	 *  해당 카테고리에 출력하는 것이 목적
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/cafedetail")
 	public String cafedetail(Model model) {
 		List<StoreDTO> list = null;
@@ -29,19 +33,12 @@ public class DetailController {
 		try {
 			list=service.cafedetail(200);
 			list2=service.detailimg(200);
+			model.addAttribute("center", "cafedetail");
 			model.addAttribute("detail", list);
 			model.addAttribute("all", list2);
-			model.addAttribute("center", "cafedetail");
-		} catch (Exception e) {
-			
+		} catch (Exception e) {			
 			e.printStackTrace();
 		}
-		
-		
-		
-		
-		
-		
 		return "index";
 	}
 	
@@ -55,11 +52,9 @@ public class DetailController {
 			model.addAttribute("center", "sushidetail");
 			model.addAttribute("detail", list);
 			model.addAttribute("all", list2);
-		} catch (Exception e) {
-			
+		} catch (Exception e) {		
 			e.printStackTrace();
-		}
-		
+		}	
 		return "index";
 	}
 	
@@ -74,7 +69,6 @@ public class DetailController {
 			model.addAttribute("detail", list);
 			model.addAttribute("all", list2);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "index";
