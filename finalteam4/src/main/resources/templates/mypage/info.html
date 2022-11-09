@@ -90,7 +90,7 @@
 	height: 220px;
 	width: 100%;
 	overflow: hidden;
-	background: url("img/mypage_recent.jpg") no-repeat;
+	background: url("/img/mypage_recent.jpg") no-repeat;
 	background-size: cover;
 	background-position: center center;
 	text-align: center;
@@ -295,8 +295,7 @@
 				<li><a th:text="${session.logincust.custname}"
 					style="padding: 20px 0 10px 0; font-size: 40px; font-weight: 700"></a></li>
 				<li><h4 href="#">나의 EAT & OUT 정보</h4></li>
-				<li><a>예약조회</a></li>
-				<li><a th:href="@{/mypage/order(id=${session.logincust.custid})}">테이블 내역</a></li>
+				<li><a th:href="@{/mypage/order(id=${session.logincust.custid})}">테이블 조회</a></li>
 				<li><a
 					th:href="@{/mypage/review(id=${session.logincust.custid})}">나의
 						리뷰</a></li>
