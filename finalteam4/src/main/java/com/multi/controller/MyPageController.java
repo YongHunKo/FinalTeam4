@@ -71,12 +71,16 @@ public class MyPageController {
 	@RequestMapping("/orderdetail")
 	public String orderdetail(Integer id, Model model) {
 		List<ReserveDTO> list = null;
+		int cnt = 0;
 		int total = 0;
 		try {
 			list = reserve_service.myreserve(id);
-			for (ReserveDTO r : list)
+			for (ReserveDTO r : list) {
+				cnt += r.getCnt(); 
 				total += r.getOrderprice();
+			}
 			model.addAttribute("list", list);
+			model.addAttribute("cnt", cnt);
 			model.addAttribute("total", total);
 			model.addAttribute("center", dir + "orderdetail");
 		} catch (Exception e) {

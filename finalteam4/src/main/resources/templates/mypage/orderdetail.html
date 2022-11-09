@@ -251,7 +251,20 @@
 	padding-top: 50px;
 }
 
+.contents2 {
+	margin: 0px auto;
+	height: 220px;
+	width: 1200px;
+	padding-top: 500px;
+}
+
 .my_tit {
+	position: relative;
+	padding-bottom: 10px;
+	border-bottom: 4px solid #000;
+}
+
+.my_tit2 {
 	position: relative;
 	padding-bottom: 10px;
 	border-bottom: 4px solid #000;
@@ -276,7 +289,84 @@
 	margin: 0 auto;
 	background: #000;
 }
+
+.my_order_tbl .my_order_tit>div {
+	height: 50px;
+	border-bottom: 1px solid #303033;
+	font-weight: 700;
+	font-size: 13px;
+	text-align: center;
+}
+
+.my_order_tbl .my_tbl {
+	display: -webkit-box;
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	position: relative;
+	height: 230px;
+	padding: 10px 0;
+	border-bottom: 1px solid #d4d4d4;
+}
+
+.my_order_tbl .my_tbl>div {
+	-webkit-box-flex: 0;
+	flex: none;
+	font-size: 14px;
+	color: #303033;
+	box-sizing: border-box;
+}
+
+.my_order_tbl .date {
+	width: 110px;
+	text-align: center;
+}
+
+.my_order_tbl .my_order_tit .history {
+	height: auto;
+}
+
+.my_order_tbl .history {
+	position: relative;
+	width: -webkit-calc(100% - 440px);
+	width: calc(100% - 440px);
+	height: 100%;
+	box-sizing: border-box;
+}
+
+.my_order_tbl .num {
+	width: 210px;
+	font-weight: 700;
+	text-align: center;
+}
+
+.my_order_tbl .my_tbl>.amount {
+	width: 120px;
+	padding-right: 20px;
+	text-align: right;
+}
+
+.imgin>img {
+	height: auto;
+	height: 180px;
+	width: 150px;
+}
+
+.summary {
+	padding-top: 25px;
+	position: absolute;
+	left: 80%;
+}
+
+.sumli>div {
+	width: 110px;
+	border-bottom: 1px solid #303033;
+	font-weight: 700;
+	font-size: 13px;
+	text-align: center;
+}
 </style>
+
 <script>
 	$(document).ready(function() {
 		$("#menu-toggle").click(function(e) {
@@ -294,9 +384,10 @@
 				<li><a th:text="${session.logincust.custname}"
 					style="padding: 20px 0 10px 0; font-size: 40px; font-weight: 700"></a></li>
 				<li><h4 href="#">나의 EAT & OUT 정보</h4></li>
+				<li><a>예약조회</a></li>
 				<li><a
 					th:href="@{/mypage/order(id=${session.logincust.custid})}">테이블
-						조회</a></li>
+						내역</a></li>
 				<li><a
 					th:href="@{/mypage/review(id=${session.logincust.custid})}">나의
 						리뷰</a></li>
@@ -327,50 +418,50 @@
 			</div>
 			<div class="contents">
 				<h3 class="my_tit">
-					상세 테이블 내역<span></span>
+					테이블 내역<span>txt</span>
 				</h3>
 				<div class="form-group">
 					<ul class="my_order_tbl">
 						<li class="my_order_tit">
 							<div class="my_tbl">
-								<div class="date">No.</div>
-								<div class="history">메뉴 정보</div>
-								<div class="num">가격</div>
-								<div class="amount">예약 시간</div>
+								<div class="date">테이블</div>
+								<div class="history">메뉴정보</div>
+								<div class="num">수량</div>
+								<div class="amount">가격</div>
 							</div>
 						</li>
-						<ul class="my_order_tbl2" th:each="ordlist : ${orderlist}">
+						<ul class="my_order_tbl2" th:each="li : ${list}">
 							<li class="ng-star-inserted"><a
-								th:href="@{/mypage/orderdetail(id=${ordlist.orderlistno})}"
 								class="my_tbl ng-star-inserted"
 								href="/mypage/my-order/detail/15347295">
-									<div class="date"
-										th:text="${#dates.format(ordlist.orderdate, 'yyyy-MM-dd')}"></div>
+									<div class="date" th:text="${li.storename}"></div>
 									<div class="history">
 										<div class="imgbx">
-											<div class="imgin">
-												<img alt="" src="#">
+											<div class="imgin" style="float: center">
+												<img th:src="'/menuimg/' + ${li.menuimg}">
 											</div>
 										</div>
 										<div class="prd_order">
 											<div class="prd_order_flex">
 												<div class="prd_order_in">
-													<em class="elp"> <span th:text="${ordlist.storename}"></span>
-													</em>
-
+													<span th:text="${li.menuname}"></span>
 												</div>
 											</div>
 										</div>
 									</div>
-									<div class="num" th:text="${ordlist.orderlistno}"></div>
-									<div class="amount" th:text="${ordlist.totalprice}"></div>
+									<div class="num" th:text="${li.cnt}"></div>
+									<div class="amount" th:text="${li.orderprice}"></div>
 							</a></li>
 						</ul>
 					</ul>
+					<div class="summary">
+						<h3 class="my_tit">Detail</h3>
+						<ul>
+							<li>총수량 : <span th:text="${cnt}"></span></li>
+							<li>결제금액 : <span th:text="${total}"></span></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-
-
 </body>

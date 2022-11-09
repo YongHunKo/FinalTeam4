@@ -26,8 +26,8 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</delete>
 
 	<select id="myreserve" parameterType="Integer" resultType="ReserveDTO">
-		select o.orderlistno, o.orderdate, m.menuname, mi.menuimg,
-		m.menuprice, s.storename, (r.cnt * m.menuprice) AS orderprice,
+		select o.orderlistno, o.orderdate, m.menuname, mi.menuimg, r.cnt,
+		m.menuprice, s.storename, r.cnt, (r.cnt * m.menuprice) AS orderprice,
 		o.reservedate, o.reservetime from reserve r
 		inner join orderlist o on o.orderlistno = r.orderlistno
 		inner join menu m on m.menuid = r.menuid
