@@ -302,7 +302,7 @@ table.table th {
 										<input type="hidden" class="individual_totalPrice_input" th:value="${c.price*c.cnt}"> 
 										<input type="hidden" class="individual_itemId_input" th:value="${c.menuid}">
 									</td>
-									<td class="td_width_2"><img th:src="@{/img/}+${c.menuimg}">
+									<td class="td_width_2"><img th:src="@{/menuimg/}+${c.menuimg}">
 									</td>
 									<td class="td_width_3" th:text="${c.menuname}">Item Name</td>
 									<td class="td_width_4 price_td"
@@ -511,17 +511,25 @@ $(".quantity_modify_btn").on("click", function(){
 
 	
 	$('#reserve_btn2').click(function(){
-		var reservedate=$('#datepicker').val();
+    	var reservedate=$('#datepicker').val();
 		var reservetime=$('#datepicker').val();
 		var custid='[[${session.logincust.custid}]]'
-		requestPay();
 		location.href="[[@{/reserveimpl2?custid=}]]"+custid+'&reservedate='+reservedate+'&reservetime='+reservetime
-		
+
+		//requestPay();
 	});
 	//I'mpot api test
+	var IMP = window.IMP; // 생략 가능
+    IMP.init("imp34244488");
+	
+    var today = new Date();   
+    var hours = today.getHours(); // 시
+    var minutes = today.getMinutes();  // 분
+    var seconds = today.getSeconds();  // 초
+    var milliseconds = today.getMilliseconds();
+    var makeMerchantUid = hours +  minutes + seconds + milliseconds;	
+	
     function requestPay() {
-		var IMP = window.IMP; // 생략 가능
-	    IMP.init("imp34244488");
         // IMP.request_pay(param, callback) 결제창 호출
         IMP.request_pay({ // param
             pg: "html5_inicis",
@@ -537,7 +545,7 @@ $(".quantity_modify_btn").on("click", function(){
         }, function (rsp) { // callback
             if (rsp.success) {
             	jQuery.ajax({
-                    url: "{서버의 결제 정보를 받는 endpoint}", // 예: https://www.myservice.com/payments/complete
+                    url: "/reserveimpl2", // 예: https://www.myservice.com/payments/complete
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     data: {
@@ -545,6 +553,10 @@ $(".quantity_modify_btn").on("click", function(){
                         merchant_uid: rsp.merchant_uid
                     }
                 }).done(function (data) {
+                	var reservedate=$('#datepicker').val();
+            		var reservetime=$('#datepicker').val();
+            		var custid='[[${session.logincust.custid}]]'
+            		location.href="[[@{/reserveimpl2?custid=}]]"+custid+'&reservedate='+reservedate+'&reservetime='+reservetime
                   // 가맹점 서버 결제 API 성공시 로직
                 })
             } else {
