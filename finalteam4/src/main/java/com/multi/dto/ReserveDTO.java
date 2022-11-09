@@ -1,6 +1,6 @@
 package com.multi.dto;
 
-
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,4 +21,11 @@ public class ReserveDTO {
 	private Integer cnt;
 	private Integer price;
 	
+	private Date orderdate;
+	private String menuname;
+	private String menuimg;
+	private String storename;
+	private String reservedate;
+	private String reservetime;
+	private String orderprice;
 }
