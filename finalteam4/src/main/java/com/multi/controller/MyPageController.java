@@ -146,13 +146,11 @@ public class MyPageController {
 	
 	@RequestMapping("/deletewishlist")
 	public String deletewishlist(Model model, int wishlistid, String id) {
-		System.out.println(wishlistid);
-		System.out.println(id);
 		try {
 			wishservice.remove(wishlistid);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:mypage/wishlist?id"+id;
+		return "redirect:/mypage/wishlist?id="+id;
 	}
 }
