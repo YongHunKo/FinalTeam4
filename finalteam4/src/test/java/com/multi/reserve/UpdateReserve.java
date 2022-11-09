@@ -15,7 +15,7 @@ class UpdateReserve {
 	
 	@Test
 	void contextLoads() {
-		ReserveDTO reserve = new ReserveDTO(5, 0, null, 7, 10);
+		ReserveDTO reserve = new ReserveDTO(5, 0, null, 7, 10, null, null, null, null, null, null, null);
 		try {
 			service.modify(reserve);
 		} catch (Exception e) {

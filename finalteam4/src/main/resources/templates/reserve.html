@@ -261,7 +261,9 @@ table.table th {
     <link href="/assets/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
     <!-- Air datepicker css -->
     <script src="/assets/js/datepicker.js"></script> <!-- Air datepicker js -->
-    <script src="/assets/js/datepicker.ko.js"></script> <!-- 달력 한글 추가를 위해 커스텀 -->    
+    <script src="/assets/js/datepicker.ko.js"></script> <!-- 달력 한글 추가를 위해 커스텀 --> 
+    
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>   
 <body>
 	<div class="wrapper">
 		<div class="wrap">
@@ -512,13 +514,14 @@ $(".quantity_modify_btn").on("click", function(){
 		var reservedate=$('#datepicker').val();
 		var reservetime=$('#datepicker').val();
 		var custid='[[${session.logincust.custid}]]'
+		requestPay();
 		location.href="[[@{/reserveimpl2?custid=}]]"+custid+'&reservedate='+reservedate+'&reservetime='+reservetime
 		
+	});
 	//I'mpot api test
-	var IMP = window.IMP; // 생략 가능
-    IMP.init("{imp34244488}");
-	
     function requestPay() {
+		var IMP = window.IMP; // 생략 가능
+	    IMP.init("imp34244488");
         // IMP.request_pay(param, callback) 결제창 호출
         IMP.request_pay({ // param
             pg: "html5_inicis",
@@ -550,7 +553,6 @@ $(".quantity_modify_btn").on("click", function(){
         });
       }
     //pay api end
-	});
 	
 </script>
 </body>
