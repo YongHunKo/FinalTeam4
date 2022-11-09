@@ -44,17 +44,6 @@ img {
 }
 
 
-#cust{
-	position:absolute;
-	display:inline-block;
-	text-align:center;
-	left:71.5%;
-	overflow:hidden;
-	
-}
-
-
-
 
 #profile{
 	
@@ -63,12 +52,11 @@ img {
 	height:60px;
 	position:realative;
 	margin-left:auto;
-	margin-right:auto;
 	display:flex;
 	object-fit:cover;
 	padding-top:0 auto;
-	text-align:center;
 	overflow:hidden;
+	margin-right:auto; 
 	
 }
 
@@ -4509,7 +4497,7 @@ p {
     left: -290px;
     width: 280px;
     height: 100%;
-    background-color: #fff;
+    background-color: black;
     padding: 50px 0px 15px;
     z-index: 999;
     overflow-y: auto;
@@ -4572,7 +4560,14 @@ p {
 }
 
 .navbar-style-7 .navbar-container .navbar-top-wrapper {
-  background-color: black;
+  
+   /* 보라 */
+   /* background: linear-gradient(to right, #5f2c82, #49a09d); */
+   
+    /* 주황 */
+    /*  background: linear-gradient(to right, #fdc830, #f37335); */ 
+   /* 블랙 */
+  /*  background: linear-gradient(to right, #232526, #414345); */
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {

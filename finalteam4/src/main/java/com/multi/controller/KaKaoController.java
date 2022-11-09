@@ -40,6 +40,8 @@ public class KaKaoController {
 		    list2 = imgservice.selectrandom();
 		    list3 = imgservice.selectrandominfo();
 //		    System.out.println("login Controller : " + userInfo); //나중에 막을것
+		    model.addAttribute("randomimg", list2);
+		    model.addAttribute("randominfo", list3);
 		    model.addAttribute("userId", userInfo);
 		    model.addAttribute("center", "maincenter");
 		    //    클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
@@ -53,8 +55,6 @@ public class KaKaoController {
 		    	if(custservice.get(email+"1").getCustpwd().equals("1")) {
 		    		session.setAttribute("logincust", custservice.get(email+"1"));
 		    		model.addAttribute("center","maincenter");
-		    		model.addAttribute("randomimg", list2);
-		    		model.addAttribute("randominfo", list3);
 		    	}
 		    	
 		    }else {

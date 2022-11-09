@@ -66,6 +66,12 @@
     <!--====== Main js ======-->
     <script src="/assets/js/main.js"></script>
 <script>
+
+
+
+
+
+
 function enterkey2(){
 	if(window.event.keyCode == 13){
 		$('#search_form2').attr({
@@ -102,6 +108,18 @@ $(document).ready(function(){
 		});
 		$('#search_form2').submit();
 	});
+	
+	
+	//navbar랜덤 배경색
+	var color = '#';
+	var letters = ['f6c9cc', 'a8c0c0', 
+	'FEBF36', 'FF7238', '6475A0', 'acc7bf', '5e5f67', 'c37070', 'eae160', 'bf7aa3', 'd7d967'];
+
+	color += letters[Math.floor(Math.random() * letters.length)];
+	document.getElementById('wrap').style.background = color;
+	
+	
+	
 	
 	
 });
@@ -191,31 +209,29 @@ $(document).ready(function(){
                 <!-- navbar close  Ends -->
     
                 <!-- navbar top Start -->
-                <div class="navbar-top-wrapper" style="text-align:center;">
+                <div class="navbar-top-wrapper" id="wrap">
                     <div class="container-lg">
                         <div class="navbar-top d-lg-flex justify-content-between">
                             <!-- navbar top left Start -->
-                            <div class="navbar-top-left">
-                                <ul class="navbar-top-link">
-                                    <li style="display:inline-block;"><a href="about-page.html">About</a></li>
+                            <div class="navbar-top-left d-lg-flex justify-content-left">
+                                <ul class="navbar-top-link" id="about">
+                                    
                                 </ul>
                             </div>
                             <!-- navbar top left Ends -->
                             <!-- navbar top right Start -->
-                 <div class="navbar-top-right" style="display:inline-block;">
+                 <div class="navbar-top-right">
                      <ul class="navbar-top-link">
                          <li th:if="${session.logincust == null}"> <a href="/signup" ><i class="mdi mdi-account" ></i>Sign up</a></li>
                          <li th:if="${session.logincust == null}"> <a href="/login" ><i class="mdi mdi-account" ></i>Login</a></li>
                          <li th:if="${session.logincust != null}"> <a th:href="@{/mypage(id=${session.logincust.custid})}"><i class="mdi mdi-account" ></i>My Page</a></li>
                          <li th:if="${session.logincust != null}"> <a href="/logout" ><i class="mdi mdi-account" ></i>Logout</a></li>
-                         <li id="cust" th:if="${session.logincust != null}">
-                         	<p th:text="'😀'+${session.logincust.custname}+ '님 환영합니다'" style="color:white;"></p>
-                          </li>
                           <li th:if="${session.logincust != null}">
                           <img id="profile" th:src=${session.logincust.profileimg}> 
-                          	
+                          <p th:text="'😺'+${session.logincust.custname}+ '님 환영합니다'" style="color:white; font-weight:600;"></p>
+     
                           </li> 
-                     
+                     <li><a href="about-page.html">ABOUT</a></li>
                      </ul>
                  </div>
                             <!-- navbar top right Ends -->
