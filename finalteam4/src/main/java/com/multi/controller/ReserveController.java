@@ -31,6 +31,17 @@ public class ReserveController {
 	@Autowired
 	ReserveService reserveservice;
 	
+	/** 
+	 * reserveimpl
+	 * 해당 메소드는 cart에 저장되어 있는 DB를
+	 * 파라메터 custid 값을 통해
+	 * selectcart를 사용하여 찾아서,
+	 * reserve에 사용하기 위한 목적이다 .
+	 * @param model
+	 * @param custid
+	 * @return
+	 */
+
 	@RequestMapping("/reserveimpl")
 	public String reserveimpl(Model model, String custid) {
 		List<CartDTO> list = null;
@@ -45,7 +56,23 @@ public class ReserveController {
 		}	
 		return "index";
 	}
-	//일단 결제를 위해 주석처리
+	
+	/**
+	 * reserveimpl2
+	 * 해당 메소드는 custid를 통해
+	 * selectcart를 하여,
+	 * 추출된 데이터들을 order에 넣고 register하는 동시에
+	 * 바로 직전에 생긴 order의 orderlistno를
+	 * reserve에 register하면서,
+	 * cart에 담겨진 DB를 delete하며
+	 * 하나의 주문번호로 여러메뉴를 reserve하기 위한 목적이다.
+	 * @param cart
+	 * @param custid
+	 * @param reservedate
+	 * @param reservetime
+	 * @return
+	 * @throws ParseException
+	 */
 	@RequestMapping("/reserveimpl2")
 	public String reserveimpl2(CartDTO cart,String custid, String reservedate, String reservetime) throws ParseException {
 		List<CartDTO> list = null;
@@ -83,6 +110,15 @@ public class ReserveController {
 		return "index";	
 	}
 	
+	/**
+	 * updatecart
+	 * reserve.html상에서 수량의 '수정'버튼을 누르면
+	 * cart를 통해 updatecart가 실행되며,
+	 * 수량이 정정되는 것이 목적이다.
+	 * @param cart
+	 * @param custid
+	 * @return
+	 */
 	@PostMapping("/updatecart")
 	public String updateCart(CartDTO cart,String custid) {		
 		try {
