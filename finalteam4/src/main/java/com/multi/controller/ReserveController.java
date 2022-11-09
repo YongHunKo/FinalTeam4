@@ -41,7 +41,6 @@ public class ReserveController {
 	 * @param custid
 	 * @return
 	 */
-
 	@RequestMapping("/reserveimpl")
 	public String reserveimpl(Model model, String custid) {
 		List<CartDTO> list = null;
@@ -79,7 +78,7 @@ public class ReserveController {
 		int cnt = 0;
 		int totalprice = 0;
 		int price = 0;
-		Date dt1 = new SimpleDateFormat("yyyy-mm-dd HH:mm").parse(reservedate);
+		Date dt1 = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(reservedate);
 		String reservedate2 = new SimpleDateFormat("yyyy-MM-dd").format(dt1);
 		Date dt2 = new SimpleDateFormat("yyyy-mm-dd hh:mm").parse(reservetime);
 		String reservetime2 = new SimpleDateFormat("HH:mm").format(dt2);
