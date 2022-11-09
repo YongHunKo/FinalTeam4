@@ -271,27 +271,25 @@ table.table th {
 			<div class="container-fluid">
 				<h2>예약페이지</h2>
 			</div>
-			<!-- 장바구니 리스트 -->
 			<div class="content_middle_section"></div>
-			<!-- 장바구니 가격 합계 -->
-			<!-- cartInfo -->
 			<div class="content_totalCount_section">
+			
 				<!-- 체크박스 전체 여부 -->
 				<div class="all_check_input_div">
 					<input type="checkbox" class="all_check_input input_size_20"
 						checked="checked"><span class="all_chcek_span">전체선택</span>
 				</div>
+				
 				<table class="table table-hover">
-					<caption></caption>
 					<tbody>
-							<tr>
-								<th class="td_width_1"></th>
-								<th class="td_width_2">메뉴 이미지</th>
-								<th class="td_width_3">메뉴명</th>
-								<th class="td_width_4">가격</th>
-								<th class="td_width_4">수량</th>
-								<th class="td_width_4">합계</th>
-							</tr>
+						<tr>
+							<th class="td_width_1"></th>
+							<th class="td_width_2">메뉴 이미지</th>
+							<th class="td_width_3">메뉴명</th>
+							<th class="td_width_4">가격</th>
+							<th class="td_width_4">수량</th>
+							<th class="td_width_4">합계</th>
+						</tr>
 							</thead>
 							<tbody>
 								<tr th:each="c : ${menulist}">
@@ -402,68 +400,47 @@ table.table th {
 
 	<script>
 $(document).ready(function(){
-	
-	/* 종합 정보 섹션 정보 삽입 */
 	setTotalInfo();	
 });	
 
-/* 체크여부에따른 종합 정보 변화 */
 $(".individual_cart_checkbox").on("change", function(){
-	/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
 	setTotalInfo($(".cart_info_td"));
 });
 
-/* 체크박스 전체 선택 */
 $(".all_check_input").on("click", function(){
-
-	/* 체크박스 체크/해제 */
 	if($(".all_check_input").prop("checked")){
 		$(".individual_cart_checkbox").attr("checked", true);
 	} else{
 		$(".individual_cart_checkbox").attr("checked", false);
 	}
-	
-	/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
 	setTotalInfo($(".cart_info_td"));	
 	
 });
 
-/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
 function setTotalInfo(){
 	
 	let totalPrice = 0;				// 총 가격
 	let totalCount = 0;				// 총 갯수
 	let totalKind = 0;				// 총 종류
 	let totalPoint = 0;				// 총 마일리지
-	let finalTotalPrice = 0; 		// 최종 가격(총 가격 + 배송비)
 
 	
 	$(".cart_info_td").each(function(index, element){
 		
-		if($(element).find(".individual_cart_checkbox").is(":checked") === true){	//체크여부
-			// 총 가격
+		if($(element).find(".individual_cart_checkbox").is(":checked") === true){
 			totalPrice += parseInt($(element).find(".individual_totalPrice_input").val());
-			// 총 갯수
 			totalCount += parseInt($(element).find(".individual_Cnt_input").val());
-			// 총 종류
 			totalKind += 1;	
 		}
 
 	});
 	
-	/* ※ 세자리 컴마 Javscript Number 객체의 toLocaleString() */
-	
-	// 총 가격
 	$(".totalPrice_span").text(totalPrice.toLocaleString());
-	// 총 갯수
 	$(".totalCount_span").text(totalCount);
-	// 총 종류
 	$(".totalKind_span").text(totalKind);
-	// 최종 가격(총 가격 + 배송비)
 	$(".finalTotalPrice_span").text(totalPrice.toLocaleString());		
 }
 
-/* 수량버튼 */
 $(".plus_btn").on("click", function(){
 	let quantity = $(this).parent("div").find("input").val();
 	$(this).parent("div").find("input").val(++quantity);
@@ -479,16 +456,15 @@ $(".minus_btn").on("click", function(){
 /* 수량 수정 버튼 */
 $(".quantity_modify_btn").on("click", function(){
 	let cartid = $(this).data("cartid");
-	//alert(cartid);
 	let custid = $(this).data("custid");
-	//alert(custid);
 	let menuid = $(this).data("menuid");
-	//alert(menuid);
 	let menuname = $(this).data("menuname");
 	let price = $(this).data("price");
 	let menuimg = $(this).data("menuimg");
 	let totalprice = $(this).data("totalprice");
+	
 	let cnt = $(this).parent("td").find("input").val();
+	// 위에서 설정한 변수들을 업데이트 시킴
 	$(".update_cartid").val(cartid);
 	$(".update_cnt").val(cnt);
 	$(".update_custid").val(custid);
@@ -500,7 +476,6 @@ $(".quantity_modify_btn").on("click", function(){
 	$(".quantity_update_form").submit();
 	
 });
-
 
 	$("#datepicker").datepicker({
 		language: 'ko',
