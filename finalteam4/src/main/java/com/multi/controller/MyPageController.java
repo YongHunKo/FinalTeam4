@@ -1,5 +1,6 @@
 package com.multi.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,13 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.multi.dto.CustDTO;
 import com.multi.dto.OrderlistDTO;
 import com.multi.dto.ReserveDTO;
 import com.multi.dto.ReviewDTO;
 import com.multi.dto.WishlistDTO;
 import com.multi.service.CustService;
 import com.multi.service.OrderlistService;
+import com.multi.service.ReserveService;
 import com.multi.service.ReviewService;
 import com.multi.service.WishlistService;
 
@@ -29,6 +30,9 @@ public class MyPageController {
 
 	@Autowired
 	ReviewService review_service;
+	
+	@Autowired
+	ReserveService reserve_service;
 	
 	@Autowired
 	WishlistService wishservice;
@@ -66,7 +70,18 @@ public class MyPageController {
 	
 	@RequestMapping("/orderdetail")
 	public String orderdetail(Integer id, Model model) {
-		
+		List<ReserveDTO> list = null;
+		int total = 0;
+		try {
+			list = reserve_service.myreserve(id);
+			for (ReserveDTO r : list)
+				total += r.getOrderprice();
+			model.addAttribute("list", list);
+			model.addAttribute("total", total);
+			model.addAttribute("center", dir + "orderdetail");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "index";
 	}
 

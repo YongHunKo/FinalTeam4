@@ -27,5 +27,5 @@ public class ReserveDTO {
 	private String storename;
 	private String reservedate;
 	private String reservetime;
-	private String orderprice;
+	private Integer orderprice;
 }
