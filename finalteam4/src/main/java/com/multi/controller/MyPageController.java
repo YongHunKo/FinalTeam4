@@ -128,4 +128,16 @@ public class MyPageController {
 		model.addAttribute("center", dir + "wishlist");
 		return "index";
 	}
+	
+	@RequestMapping("/deletewishlist")
+	public String deletewishlist(Model model, int wishlistid, String id) {
+		System.out.println(wishlistid);
+		System.out.println(id);
+		try {
+			wishservice.remove(wishlistid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:mypage/wishlist?id"+id;
+	}
 }
