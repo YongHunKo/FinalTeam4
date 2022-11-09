@@ -18,6 +18,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		INNER JOIN storeimgs ss ON  ss.storeid = s. storeid
 		WHERE cateid=#{cateid}
 	</select>
+	
 	<select id="selectall" resultType="StoreDTO">
 		SELECT * FROM store
 	</select>

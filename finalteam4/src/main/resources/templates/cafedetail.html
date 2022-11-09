@@ -64,7 +64,7 @@ $(document).ready(function(){
 						  <tbody>
 						    <tr class="alert" role="alert" th:each="a : ${all}">
 							
-							<td><img th:src="@{/img/}+${a.menuimg}" style="width:200px; border-radius:40px;"></td>
+							<td><img th:src="@{/menuimg/}+${a.menuimg}" style="width:200px; border-radius:40px;"></td>
 							<td th:text="${a.storename}"></td>
 							<!-- <td><a th:href="@{/storedetail(storeid=${m.storeid})}">
 							<img th:src="@{/img/}+${m.menuimg}" style="width:200px; border-radius:40px;"></a></td> -->
