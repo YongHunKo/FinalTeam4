@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.multi.dto.StoreDTO;
 import com.multi.dto.StoreimgDTO;
+import com.multi.dto.WishlistDTO;
 import com.multi.service.StoreService;
 import com.multi.service.StoreimgService;
+import com.multi.service.WishlistService;
 
 @Controller
 public class StoreController {
@@ -18,6 +20,8 @@ public class StoreController {
 	StoreimgService storeimgservice;
 	@Autowired
 	StoreService storeservice;
+	@Autowired
+	WishlistService wishservice;
 	
 	@RequestMapping("/storedetail")
 	public String storedetail(Model model, Integer storeid) {
@@ -38,5 +42,14 @@ public class StoreController {
 		return "index";
 	}
 	
+	@RequestMapping("/insertwishlist")
+	public String insertwishlist(Model mode, WishlistDTO wish) {
+		try {
+			wishservice.register(wish);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/storedetail?storeid="+wish.getStoreid();
+	}
 
 }
