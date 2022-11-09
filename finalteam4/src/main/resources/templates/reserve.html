@@ -369,7 +369,7 @@ table.table th {
 									<tbody>
 										<tr>
 											<td><strong>총 결제 예상 금액</strong></td>
-											<td><span class="finalTotalPrice_span">70000</span> 원</td>
+											<td id=totalpricespan><span class="finalTotalPrice_span">70000</span> 원</td>
 										</tr>
 									</tbody>
 								</table>
@@ -489,7 +489,6 @@ $(".quantity_modify_btn").on("click", function(){
 	let menuimg = $(this).data("menuimg");
 	let totalprice = $(this).data("totalprice");
 	let cnt = $(this).parent("td").find("input").val();
-	//alert(cnt);
 	$(".update_cartid").val(cartid);
 	$(".update_cnt").val(cnt);
 	$(".update_custid").val(custid);
@@ -511,17 +510,16 @@ $(".quantity_modify_btn").on("click", function(){
 
 	
 	$('#reserve_btn2').click(function(){
-    	var reservedate=$('#datepicker').val();
-		var reservetime=$('#datepicker').val();
-		var custid='[[${session.logincust.custid}]]'
-		location.href="[[@{/reserveimpl2?custid=}]]"+custid+'&reservedate='+reservedate+'&reservetime='+reservetime
+		//location.href="[[@{/reserveimpl2?custid=}]]"+custid+'&reservedate='+reservedate+'&reservetime='+reservetime
 
-		//requestPay();
+		requestPay();
 	});
 	//I'mpot api test
 	var IMP = window.IMP; // 생략 가능
     IMP.init("imp34244488");
 	
+    var custid='[[${session.logincust.custid}]]';//requestPay내부에서 사용할 변수들은 여기서 다 정의해 준다
+
     var today = new Date();   
     var hours = today.getHours(); // 시
     var minutes = today.getMinutes();  // 분
@@ -530,33 +528,36 @@ $(".quantity_modify_btn").on("click", function(){
     var makeMerchantUid = hours +  minutes + seconds + milliseconds;	
 	
     function requestPay() {
+    	var reservedate=$('#datepicker').val();//여기에 두면 반응함
+    	var reservetime=$('#datepicker').val();
+    	var totalPrice=$('#totalpricespan span').text();//얘도 확인함
+    	var totalPrice2=parseInt(totalPrice);
+       	var reservedate=$('#datepicker').val();
+   		var reservetime=$('#datepicker').val();
         // IMP.request_pay(param, callback) 결제창 호출
         IMP.request_pay({ // param
             pg: "html5_inicis",
             pay_method: "card",
-            merchant_uid: "ORD20180131-0000011",
-            name: "노르웨이 회전 의자",
-            amount: 64900,
+            merchant_uid: 'merchant_' + new Date().getTime(),
+            name: "Eat&Out",
+            amount: totalPrice2*2, //여기서 반드시 금액조절 원래는 *1000을 해야 맞는값
             buyer_email: "gildong@gmail.com",
-            buyer_name: "홍길동",
+            buyer_name: custid,
             buyer_tel: "010-4242-4242",
             buyer_addr: "서울특별시 강남구 신사동",
             buyer_postcode: "01181"
         }, function (rsp) { // callback
             if (rsp.success) {
             	jQuery.ajax({
-                    url: "/reserveimpl2", // 예: https://www.myservice.com/payments/complete
+                    url: "", // 예: https://www.myservice.com/payments/complete
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     data: {
-                        imp_uid: rsp.imp_uid,
+                    	imp_uid: rsp.imp_uid,            //결제 고유번호     
                         merchant_uid: rsp.merchant_uid
                     }
                 }).done(function (data) {
-                	var reservedate=$('#datepicker').val();
-            		var reservetime=$('#datepicker').val();
-            		var custid='[[${session.logincust.custid}]]'
-            		location.href="[[@{/reserveimpl2?custid=}]]"+custid+'&reservedate='+reservedate+'&reservetime='+reservetime
+                	location.href="[[@{/reserveimpl2?custid=}]]"+custid+'&reservedate='+reservedate+'&reservetime='+reservetime
                   // 가맹점 서버 결제 API 성공시 로직
                 })
             } else {

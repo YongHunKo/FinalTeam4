@@ -45,7 +45,7 @@ public class ReserveController {
 		}	
 		return "index";
 	}
-	
+	//일단 결제를 위해 주석처리
 	@RequestMapping("/reserveimpl2")
 	public String reserveimpl2(CartDTO cart,String custid, String reservedate, String reservetime) throws ParseException {
 		List<CartDTO> list = null;
