@@ -56,7 +56,17 @@ $(document).ready(function(){
 
 	
 	//1. wishlist_btn클릭시 식당id 고객id를 변수로 지정해서 로케이션으로 wishlist로 넘긴다
-	
+		$('#wishlist_btn').click(function(){ 
+		var storeid = $('#storeid').text();
+		var custid = '[[${session.logincust.custid}]]';
+		$.ajax({
+			url:'/insertwishlist', 
+			data:{'storeid':storeid, 'custid':custid},
+			success:function(data){
+				alert("위시리스트에 추가되었습니다");
+				}
+		});
+	});
 	//2. reserve_btn클릭시 
 	$('#reserve_btn').click(function(){
 		var storeid=$('#storeid').text();
