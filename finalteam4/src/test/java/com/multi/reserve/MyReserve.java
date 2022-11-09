@@ -11,28 +11,24 @@ import com.multi.dto.ReserveDTO;
 import com.multi.service.ReserveService;
 
 @SpringBootTest
-class GetAllReserve {
+class MyReserve {
 
 	@Autowired
 	ReserveService service;
-	
+
 	@Test
 	void contextLoads() {
 		List<ReserveDTO> list = null;
 		try {
-			list = service.getall();
+			list = service.myreserve(1);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		for(ReserveDTO c:list) {
-			System.out.println(c);
+
+		for (ReserveDTO r : list) {
+			System.out.println(r);
 		}
-		
+
 	}
 
 }
-
-
-
-

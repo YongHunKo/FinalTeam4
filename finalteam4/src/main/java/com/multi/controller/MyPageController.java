@@ -63,21 +63,12 @@ public class MyPageController {
 		}
 		return "index";
 	}
-//	@RequestMapping("/orderdetail")
-//	public String orderdetail(Integer id, Model model) {
-//		OrderlistDTO list_one = null;
-//		List<OrderlistDTO> list = null;
-//		try {
-//			list_one = order_service.myorder_1(id);
-//			list = order_service.myorder(id);
-//			model.addAttribute("list_one", list_one);
-//			model.addAttribute("orderlist", list);
-//			model.addAttribute("center", dir + "orderdetail");
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return "index";
-//	}
+	
+	@RequestMapping("/orderdetail")
+	public String orderdetail(Integer id, Model model) {
+		
+		return "index";
+	}
 
 	@RequestMapping("/review")
 	public String review(String id, Model model) {
