@@ -62,19 +62,14 @@ $(document).ready(function(){
 						    </tr>
 						  </thead>
 						  <tbody>
-						    <tr class="alert" role="alert" th:each="a : ${all}">
-							
-							<td><img th:src="@{/menuimg/}+${a.menuimg}" style="width:200px; border-radius:40px;"></td>
-							<td th:text="${a.storename}"></td>
-							<!-- <td><a th:href="@{/storedetail(storeid=${m.storeid})}">
-							<img th:src="@{/img/}+${m.menuimg}" style="width:200px; border-radius:40px;"></a></td> -->
-						 	<td th:text="${a.storeaddr}"></td>
-			            	<td th:text="${a.menuname}">store_name</td>
-			            	
-			            	<td th:text="${#numbers.formatInteger(a.menuprice, 3, 'COMMA')}"></td>
-			            	
+						    <tr class="alert" role="alert" th:each="a : ${all}">		
+								<td><a th:href="@{/storedetail(storeid=${a.storeid})}">
+									<img th:src="@{/menuimg/}+${a.menuimg}" style="width:200px; border-radius:40px;"></a></td>
+								<td th:text="${a.storename}"></td>
+							 	<td th:text="${a.storeaddr}"></td>
+				            	<td th:text="${a.menuname}">store_name</td>
+				            	<td th:text="${#numbers.formatInteger(a.menuprice, 3, 'COMMA')}"></td>			            	
 						    </tr>
-						    
 						  </tbody>
 						</table>
 					</div>

@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM store WHERE storeid=#{storeid}
 	</select>
 	<select id="detailimg" parameterType="Integer" resultType="StoreDTO">
-		SELECT s.cateid,s.storename, s.storeaddr, s.storestatus, m.menuname, m.menuprice, mm.menuimg FROM store s
+		SELECT s.storeid,s.cateid,s.storename, s.storeaddr, s.storestatus, m.menuname, m.menuprice, mm.menuimg FROM store s
 		INNER JOIN menu m ON m.storeid = s.storeid
         INNER JOIN menuimgs mm ON mm.menuid = m.menuid
 		WHERE cateid=#{cateid}
