@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.MenuMapper">
+	
+	<select id="select" parameterType="Integer" resultType="MenuDTO">
+		SELECT * FROM menu WHERE menuid = #{menuid}
+	</select>
+	<select id="selectall" resultType="MenuDTO">
+		SELECT * FROM menu
+	</select>
+	
+	<select id="selectcatemenu" parameterType="Integer" resultType="MenuDTO">
+		SELECT menuid, storeid, menuname, menuprice, menuinfo FROM menu WHERE menucateid = #{menucateid}
+	</select>
+	<select id="searchmenu" parameterType="String" resultType="MenuDTO">
+		SELECT * FROM menu m
+		LEFT OUTER  JOIN menuimgs ms ON m.menuid = ms.menuid
+		INNER JOIN store s ON m.storeid = s.storeid
+		WHERE menuname LIKE CONCAT('%',#{txt},'%')
+	</select>
+	
+	<insert id="insert" parameterType="MenuDTO">
+		INSERT INTO menu VALUES (#{menuid}, #{storeid}, #{menucateid}, 
+		#{menuname}, #{menuprice}, #{menuinfo})
+	</insert>
+	<update id="update" parameterType="MenuDTO">
+		UPDATE menu SET storeid = #{storeid}, menucateid = #{menucateid}, 
+		menuname = #{menuname}, menuprice = #{menuprice}, menuinfo = #{menuinfo}
+		WHERE menuid = #{menuid}
+	</update>
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM menu WHERE menuid = #{menuid}
+	</delete>
+
+</mapper>
