@@ -98,7 +98,7 @@ public class ReserveController {
 				if(cnt2 == 0) {
 					cartservice.remove(c.getCartid());
 				}else {
-					ReserveDTO reserve = new ReserveDTO(null, r, c.getMenuid(), c.getCnt(), c.getPrice(), null, null, null, null, null, null, null);
+					ReserveDTO reserve = new ReserveDTO(null, r, c.getMenuid(), c.getCnt(), c.getPrice(), null, null, null, null, null, null, null, null);
 					reserveservice.register(reserve);
 					cartservice.remove(c.getCartid());					
 				}
