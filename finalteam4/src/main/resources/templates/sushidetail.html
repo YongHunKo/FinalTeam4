@@ -4,41 +4,6 @@
 <script src="/assets/js/jquery.flexslider.js"></script>
 
 
-<!-- <script>
-
-$(document).ready(function(){
-	 $('#carousel').flexslider({
-		    animation: "slide",
-		    controlNav: false,
-		    animationLoop: false,
-		    slideshow: false,
-		    itemWidth: 210,
-		    itemMargin: 5,
-		    asNavFor: '#slider'
-		  });
-		 
-		  $('#slider').flexslider({
-		    animation: "slide",
-		    controlNav: false,
-		    animationLoop: false,
-		    slideshow: false,
-		    sync: "#carousel"
-		  });
-});
-
-
-</script>
-
-
-<div id="slider" class="flexslider">
-  <ul class="slides" th:each="d : ${detail}">
-    <li>
-      <img th:src="@{/img/}+${d.storeimg}" style="width:300px; height:300px; border-radius:40px; margin-top:20px;" />
-      
-    </li>
-  </ul>
-</div> -->
-
 <section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -64,7 +29,7 @@ $(document).ready(function(){
 						  <tbody>
 						    <tr class="alert" role="alert" th:each="a : ${all}">		
 								<td><a th:href="@{/storedetail(storeid=${a.storeid})}">
-									<img th:src="@{/menuimg/}+${a.menuimg}" style="width:200px; border-radius:40px;"></a></td>
+									<img th:src="@{/menuimg/}+${a.menuimg}" style="width:200px; height:200px; border-radius:60px;"></a></td>
 								<td th:text="${a.storename}"></td>
 							 	<td th:text="${a.storeaddr}"></td>
 				            	<td th:text="${a.menuname}">store_name</td>

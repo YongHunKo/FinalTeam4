@@ -43,6 +43,21 @@ img {
   
 }
 
+/*Search - 축소형  */
+
+
+/* dettail 축소형 */
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+  display: -webkit-box;
+
+ position:realative;
+ left:-40%;
+ margin-right:40%;
+ 
+  }
+}
 
 
 #profile{
@@ -6558,6 +6573,8 @@ p {
   display: flex;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
+  object-fit:cover;
+  overflow:hidden;
 }
 
 @media (max-width: 767px) {
@@ -6576,9 +6593,11 @@ p {
   }
 }
 
-.header-style-1 .header-big .single-header-item {
+.header-style-1 .header-big .single-header-item{
   position: relative;
   height: 760px;
+  object-fit:cover;
+  overflow:hidden;
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
@@ -6612,6 +6631,8 @@ p {
   width: 35%;
   padding: 25px;
   background-color: rgba(255, 255, 255, 0.74);
+  object-fit:cover;
+  overflow:hidden;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -6674,6 +6695,8 @@ p {
   line-height: 24px;
   color: #542DED;
   margin-top: 24px;
+  object-fit:cover;
+  overflow:hidden;
 }
 
 @media (max-width: 767px) {
