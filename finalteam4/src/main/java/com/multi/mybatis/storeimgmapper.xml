@@ -19,6 +19,34 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		ORDER BY RAND()
 		LIMIT 3
 	</select>
+	
+	<select id="today"  resultType="StoreimgDTO">
+		SELECT * FROM menu m
+		LEFT OUTER JOIN menuimgs ms ON m.menuid = ms.menuid
+		INNER JOIN store s ON m.storeid = s.storeid
+		INNER JOIN storeimgs ss ON ss.storeid = s.storeid
+		ORDER BY RAND()
+		LIMIT 1;
+	</select>
+	<select id="today2"  resultType="StoreimgDTO">
+		SELECT * FROM menu m
+		LEFT OUTER JOIN menuimgs ms ON m.menuid = ms.menuid
+		INNER JOIN store s ON m.storeid = s.storeid
+		INNER JOIN storeimgs ss ON ss.storeid = s.storeid
+		ORDER BY RAND()
+		LIMIT 1;
+	</select>
+	
+	<select id="today3"  resultType="StoreimgDTO">
+		SELECT * FROM menu m
+		LEFT OUTER JOIN menuimgs ms ON m.menuid = ms.menuid
+		INNER JOIN store s ON m.storeid = s.storeid
+		INNER JOIN storeimgs ss ON ss.storeid = s.storeid
+		ORDER BY RAND()
+		LIMIT 1;
+	</select>
+	
+	
 	<select id="selectrandominfo"  resultType="StoreimgDTO">
 		SELECT * FROM menu m
 		LEFT OUTER JOIN menuimgs ms ON m.menuid = ms.menuid

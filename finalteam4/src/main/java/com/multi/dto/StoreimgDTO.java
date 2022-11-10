@@ -23,5 +23,5 @@ public class StoreimgDTO {
 	private String storeintroduce;
 	private String storestatus;
 	private  String menuimg;
-	
+	private String storeaddr;
 }

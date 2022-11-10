@@ -2610,7 +2610,11 @@ p {
 /* Today's Pick img 조절 */
 .product-style-1 .product-image .product-active .product-item img {
   width: 100%;
-  height:350px;
+  height:300px;
+  border-radius:30px;
+  object-fit:cover;
+  overflow:hidden;
+  
 }
 
 .product-style-1 .product-image .product-active .slick-arrow {
@@ -2692,7 +2696,7 @@ p {
 
 .product-style-1 .product-content .title a {
   font-weight: 500;
-  font-size: 24px;
+  font-size: 10px;
   line-height: 30px;
   color: #fff;
   -webkit-transition: all 0.3s linear;
@@ -2723,9 +2727,9 @@ p {
 
 .product-style-1 .product-content p {
   color: rgba(255, 255, 255, 0.74);
-  font-size: 16px;
+  font-size: 12px;
   line-height: 22px;
-  font-weight: 400;
+  font-weight: 500;
   margin-top: 8px;
 }
 
@@ -2793,6 +2797,7 @@ p {
 
 .product-style-7 .product-image .product-active .product-item img {
   width: 100%;
+  border-radius:10%;
 }
 
 .product-style-7 .product-image .product-active .slick-arrow {
@@ -2916,13 +2921,13 @@ p {
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .product-style-7 .product-content .title a {
-    font-size: 20px;
+    font-size: 12px;
   }
 }
 
 @media (max-width: 767px) {
   .product-style-7 .product-content .title a {
-    font-size: 18px;
+    font-size: 12px;
   }
 }
 
@@ -2932,7 +2937,7 @@ p {
 
 .product-style-7 .product-content p {
   color: rgba(0, 0, 0, 0.74);
-  font-size: 16px;
+  font-size: 10px;
   line-height: 22px;
   font-weight: 400;
   margin-top: 8px;
@@ -2968,10 +2973,12 @@ p {
 
 .product-style-25 .product-image {
   position: relative;
+  border-radius:40px;
 }
 
 .product-style-25 .product-image img {
   width: 100%;
+  border-radius:40px;
 }
 
 .product-style-25 .product-content {
@@ -3033,8 +3040,8 @@ p {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-  .product-style-25 .product-content .title a {
-    font-size: 20px;
+  .product-style-25 .product-content .title a p {
+    font-size: 12px;
   }
 }
 
@@ -3050,7 +3057,7 @@ p {
 
 .product-style-25 .product-content p {
   color: rgba(0, 0, 0, 0.74);
-  font-size: 14px;
+  font-size: 12px;
   line-height: 22px;
   font-weight: 400;
 }
@@ -5691,7 +5698,7 @@ p {
 }
 
 .product-details-style-1 .product-details-content .sub-title {
-  font-size: 24px;
+  font-size: 10px;
   line-height: 30px;
   color: rgba(0, 0, 0, 0.64);
 }
@@ -5747,7 +5754,7 @@ p {
 }
 
 .product-details-style-1 .product-details-content .product-items .item-title {
-  font-size: 16px;
+  font-size: 11px;
   font-weight: 400;
   line-height: 22px;
   color: #000;

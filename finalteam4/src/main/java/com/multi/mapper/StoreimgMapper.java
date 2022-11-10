@@ -13,5 +13,8 @@ public interface StoreimgMapper extends MyMapper<Integer, StoreimgDTO>{
 	public List<StoreimgDTO> selectstoreid(Integer storeid);
 	public List<StoreimgDTO> selectrandom();
 	public List<StoreimgDTO> selectrandominfo();
+	public List<StoreimgDTO> today();
+	public List<StoreimgDTO> today2();
+	public List<StoreimgDTO> today3();
 
 }

@@ -41,11 +41,20 @@ public class LoginController {
 	public String logout(HttpSession session,Model model) {
 		List<StoreimgDTO> list2=null;
 		List<StoreimgDTO> list3=null;
+		List<StoreimgDTO> list4=null;
+		List<StoreimgDTO> list5=null;
+		List<StoreimgDTO> list6=null;
 		try {
 			list2 = imgservice.selectrandom();
 			list3 = imgservice.selectrandominfo();
+			list4 = imgservice.today();
+			list5 = imgservice.today2();
+			list6 = imgservice.today3();
 			model.addAttribute("randomimg", list2);
 	     	model.addAttribute("randominfo", list3);
+	     	model.addAttribute("today", list4);
+			model.addAttribute("todaytwo", list5);
+			model.addAttribute("todaythree", list6);
 	     	model.addAttribute("center","maincenter");
 		} catch (Exception e) {
 			
@@ -82,17 +91,26 @@ public class LoginController {
 		CustDTO cust = null;
 		List<StoreimgDTO> list2=null;
 		List<StoreimgDTO> list3=null;
+		List<StoreimgDTO> list4=null;
+		List<StoreimgDTO> list5=null;
+		List<StoreimgDTO> list6=null;
 		
 		try {
 			cust = service.get(custid);
 			list2=imgservice.selectrandom();
 			list3=imgservice.selectrandominfo();
+			list4 = imgservice.today();
+			list5 = imgservice.today2();
+			list6 = imgservice.today3();
 			if(cust != null) {
 				if(cust.getCustpwd().equals(custpwd)) {	
 				session.setAttribute("logincust", cust);
 				model.addAttribute("center", "maincenter");
 				model.addAttribute("randomimg", list2);
 				model.addAttribute("randominfo", list3);
+				model.addAttribute("today", list4);
+				model.addAttribute("todaytwo", list5);
+				model.addAttribute("todaythree", list6);
 				}else {
 					model.addAttribute("center", "loginfail");
 				}

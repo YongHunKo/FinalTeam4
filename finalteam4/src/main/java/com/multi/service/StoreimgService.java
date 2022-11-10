@@ -52,6 +52,18 @@ public class StoreimgService implements MyService<Integer, StoreimgDTO>{
 		return mapper.selectrandominfo();
 	}
 	
+	public List<StoreimgDTO> today() throws Exception{
+		return mapper.today();
+	}
+	
+	public List<StoreimgDTO> today2() throws Exception{
+		return mapper.today2();
+	}
+	
+	public List<StoreimgDTO> today3() throws Exception{
+		return mapper.today3();
+	}
+	
 	
 	}
 

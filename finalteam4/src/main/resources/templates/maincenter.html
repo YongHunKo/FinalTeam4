@@ -7,7 +7,7 @@
                     th:style="'background-image: url('+@{'/storeimg/'+${r.storeimg}}+');'">
                     <div class="header-item-content">
                         <h3 class="title" th:text="${r.storename}"></h3>
-                        <a href="javascript:void(0)" class="link" th:text="${r.storeintroduce}"></a>
+                        <a th:href="@{/storedetail(storeid=${r.storeid})}" class="link" th:text="${r.storeintroduce}"></a>
                     </div>
                 </div>
                 
@@ -19,7 +19,7 @@
                 <div class="product-content">
                     <h4 class="title"><a href="product-details-page.html" th:text="${ra.storename}"></a></h4>
                     <p th:text="${ra.storeintroduce}"></p>
-                    <a href="javascript:void(0)" class="main-btn primary-btn-border" th:text="${ra.storestatus}">
+                    <a th:href="@{/storedetail(storeid=${ra.storeid})}" class="main-btn primary-btn-border" th:text="${ra.storestatus}">
                         </a>
                 </div>
             </div>
@@ -77,8 +77,8 @@
     <!--====== Content Card Style 4 Part Ends ======-->
 
     <!--====== Product Style 1 Part Start ======-->
-    <section class="product-wrapper pt-100 pb-70">
-        <div class="container">
+    <section class="product-wrapper pt-100 pb-70" >
+        <div class="container" >
             <div class="row">
                 <div class="col-lg-12">
                     <div class="mb-50">
@@ -87,79 +87,80 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-sm-6">
+                <div class="col-lg-4 col-sm-6" >
                     <div class="product-style-1 mt-30">
-                        <div class="product-image">
-                            <span class="icon-text text-style-1">NEW</span>
-                            <div class="product-active">
-                                <div class="product-item active">
-                                    <img src="/assets/images/zouma1.jpg" alt="product">
+                        <div class="product-image" th:each=" t : ${today}">
+                            <span class="icon-text text-style-1" th:text=${t.storestatus}></span>
+                            <div class="product-active" th:each=" t : ${today}">
+                                <div class="product-item active" >
+                                    <img th:src="@{/storeimg/}+${t.storeimg}" alt="product">
                                 </div>
-                                <div class="product-item">
-                                    <img src="/assets/images/zouma.jpg" alt="product">
+                                <div class="product-item" >
+                                    <img th:src="@{/menuimg/}+${t.menuimg}" alt="product">
                                 </div>
                             </div>
                             <a class="add-wishlist" href="javascript:void(0)">
                                 <i class="mdi mdi-heart-outline"></i>
                             </a>
                         </div>
-                        <div class="product-content text-center">
-                            <h4 class="title"><a href="product-details-page.html">송도-ZOUMA</a></h4>
-                            <p>인천광역시 연수구 센트럴로 194</p>
-                            <a href="javascript:void(0)" class="main-btn secondary-1-btn">
-                                
-                                감각적인 이탈리안 레스토랑
+                        <div class="product-content text-center" th:each=" t : ${today}">
+                            <h5 class="title" th:text="${t.storename}" style="color:white; font-weight:500;"><a href="#"></a></h5>
+                            <p th:text="${t.storeaddr}"></p>
+                            <a th:href="@{/storedetail(storeid=${t.storeid})}" class="main-btn secondary-1-btn" style="width:auto;">
+                                <p th:text="${t.storeintroduce}" style="font-weight:900; color:white;"></p>
+ 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-lg-4 col-sm-6">
+                    <div class="product-style-1 mt-30">
+                        <div class="product-image" th:each=" tw : ${todaytwo}">
+                            <span class="icon-text text-style-1" th:text="${tw.storestatus}"></span>
+                            <div class="product-active">
+                                <div class="product-item active">
+                                    <img th:src="@{/storeimg/}+${tw.storeimg}"  alt="product">
+                                </div>
+                                <div class="product-item">
+                                    <img th:src="@{/menuimg/}+${tw.menuimg}" alt="product">
+                                </div>
+                            </div>
+                            <a class="add-wishlist" href="javascript:void(0)">
+                                <i class="mdi mdi-heart-outline"></i>
+                            </a>
+                        </div>
+                        <div class="product-content text-center" th:each=" tw : ${todaytwo}">
+                            <h5 class="title" th:text="${tw.storename}" style="color:white; font-weight:500;"><a href="product-details-page.html" ></a></h5>
+                            <p th:text="${tw.storeaddr}"></p>
+                            <a th:href="@{/storedetail(storeid=${tw.storeid})}" class="main-btn secondary-1-btn">
+                                <p th:text="${tw.storeintroduce}" style="font-weight:900; color:white;"></p>
+                               
                             </a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6">
                     <div class="product-style-1 mt-30">
-                        <div class="product-image">
-                            <span class="icon-text text-style-1">따뜻한국물</span>
+                        <div class="product-image" th:each=" th : ${todaythree}">
+                            <span class="icon-text text-style-1" th:text="${th.storestatus}"></span>
                             <div class="product-active">
                                 <div class="product-item active">
-                                    <img src="/assets/images/example.jpg" alt="product">
+                                    <img th:src="@{/storeimg/}+${th.storeimg}"  alt="product">
                                 </div>
                                 <div class="product-item">
-                                    <img src="/assets/images/example1.jpg" alt="product">
+                                    <img th:src="@{/menuimg/}+${th.menuimg}" alt="product">
                                 </div>
                             </div>
                             <a class="add-wishlist" href="javascript:void(0)">
                                 <i class="mdi mdi-heart-outline"></i>
                             </a>
                         </div>
-                        <div class="product-content text-center">
-                            <h4 class="title"><a href="product-details-page.html">송도-깨비옥</a></h4>
-                            <p>인천광역시 연수구 컨벤시아대로 116</p>
-                            <a href="javascript:void(0)" class="main-btn secondary-1-btn">
+                        <div class="product-content text-center" th:each="th : ${todaythree}">
+                            <h5 class="title"  th:text="${th.storename}" style="color:white; font-weight:500;"><a href="product-details-page.html"></a></h5>
+                            <p th:text="${th.storeaddr}"></p>
+                            <a th:href="@{/storedetail(storeid=${th.storeid})}" class="main-btn secondary-1-btn">
                                 
-                                쌀쌀해진날씨! 담백한국물한모금
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="product-style-1 mt-30">
-                        <div class="product-image">
-                            <div class="product-active">
-                                <div class="product-item active">
-                                    <img src="/assets/images/teppan1.jpg" alt="product">
-                                </div>
-                                <div class="product-item">
-                                    <img src="/assets/images/teppan.jpg" alt="product">
-                                </div>
-                            </div>
-                            <a class="add-wishlist" href="javascript:void(0)">
-                                <i class="mdi mdi-heart-outline"></i>
-                            </a>
-                        </div>
-                        <div class="product-content text-center">
-                            <h4 class="title"><a href="product-details-page.html">송도-대판1985</a></h4>
-                            <p>인천광역시 연수구 컨벤시아대로 116</p>
-                            <a href="javascript:void(0)" class="main-btn secondary-1-btn">
-                                
-                                정통 일본식 대판음식점
+                                <p th:text="${th.storeintroduce}" style="font-weight:900; color:white;"></p>
                             </a>
                         </div>
                     </div>
