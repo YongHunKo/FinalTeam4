@@ -299,6 +299,12 @@
 	position:relative;
 	top:1px;
 }
+.cropped {
+	width: 300px; 
+	height: 300px; 
+	object-fit: cover;
+	object-position: 20% 10%; 
+}
 </style>
 
 <script>
@@ -381,16 +387,16 @@ function del(wishlistid){
 					위시리스트<span>Wishlist</span>
 				</h3>
 				<div class="row">
-					<div class="col-xl-3 col-lg-4 col-md-6 mb-4"
+					<div class="col-xl-2 col-lg-4 col-md-6 mb-4"
 						th:each="vw : ${viewwish}">
 						<div class="bg-white rounded shadow-sm">
 							<img th:src="@{/storeimg/} + ${vw.storeimg}" alt=""
-								class="img-fluid card-img-top">
+								class="cropped">
 							<div class="p-4">
 								<h5>
 									<a th:href="@{/storedetail(storeid=${vw.storeid})}" class="text-dark" th:text="${vw.storename}"></a>
 								</h5>
-								<p class="small text-muted mb-0" th:text="${vw.storeintroduce}"></p>
+								<p class="small text-muted mb-0"> </p>
 								<center><a th:onclick="del([[${vw.wishlistid}]])" class="myButton">DELETE</a></center>
 							</div>
 						</div>
