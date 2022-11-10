@@ -24,6 +24,7 @@ public class ReserveDTO {
 	private Date orderdate;
 	private String menuname;
 	private String menuimg;
+	private String storeid;
 	private String storename;
 	private String reservedate;
 	private String reservetime;

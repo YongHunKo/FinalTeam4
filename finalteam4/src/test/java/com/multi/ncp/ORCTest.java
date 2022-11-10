@@ -23,13 +23,14 @@ class ORCTest {
 
 	@Test
 	void contextLoads() {
-		String apiURL = "https://8yige8oulk.apigw.ntruss.com/custom/v1/18811/fc8085c312a614ef5f60fb796f3f9996ba5c6d29bb250a5437ba11bafc58f0bf/infer";
-		String secretKey = "ZGtmR1VseUNlZ3RXR1hDRmF3b1pkd1dTcldybExSWkY=";
-	    String imgpath = Paths.get(System.getProperty("user.dir"), "src", "main", "resources", "static","img").toString();
-	    String imageFile = imgpath +"\\sample.png";
+		String apiURL = "https://6bdyzr1ytz.apigw.ntruss.com/custom/v1/18933/d65e547f9736729838578e2a05d4db3f174e9401ee790a80d2d9a57dbb6fe05f/infer";
+		String secretKey = "RXpab3JQbHFIbmFRSktzeW90aWJKY1RsSUVMZlRBWng=";
+		String imgpath = Paths.get(System.getProperty("user.dir"), "src", "main", "resources", "static", "img")
+				.toString();
+		String imageFile = imgpath + "/receipt1.jpg";
 		try {
 			URL url = new URL(apiURL);
-			HttpURLConnection con = (HttpURLConnection)url.openConnection();
+			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			con.setUseCaches(false);
 			con.setDoInput(true);
 			con.setDoOutput(true);
@@ -55,9 +56,9 @@ class ORCTest {
 			DataOutputStream wr = new DataOutputStream(con.getOutputStream());
 			long start = System.currentTimeMillis();
 			File file = new File(imageFile);
-			System.out.println("----------"+file.getName());
-			System.out.println("----------"+file.getPath());
-			System.out.println("----------"+file.getAbsolutePath());
+			System.out.println("----------" + file.getName());
+			System.out.println("----------" + file.getPath());
+			System.out.println("----------" + file.getAbsolutePath());
 			writeMultiPart(wr, postParams, file, boundary);
 			wr.close();
 
@@ -75,53 +76,60 @@ class ORCTest {
 			}
 			br.close();
 			System.out.println("REsult:");
-			System.out.println(response);
-			
+			System.out.println("image result JSON : " + response);
+
 			JSONParser jsonparser = new JSONParser();
-			JSONObject jo = (JSONObject)jsonparser.parse(response.toString());
-			//System.out.println(jo.toString());
-			JSONArray ja1 =  (JSONArray) jo.get("images");
-			JSONObject jo1 = (JSONObject) ja1.get(0);
-			JSONArray ja2 = (JSONArray) jo1.get("fields");
+			Object obj = jsonparser.parse(response.toString());
+			System.out.println(obj);
+//			JSONObject jsonObj = (JSONObject) jsonparser.parse(response.toString());
+//			System.out.println(jsonObj.toString());
+						
+//			JSONParser 
+//			JSONParser jsonparser = new JSONParser();
+//			JSONObject jsonObj = (JSONObject)jsonparser.parse(response.toString());
+//			System.out.println(jsonObj.toString());
 			
-			
-			JSONObject f1 = (JSONObject) ja2.get(0);
-			JSONObject f2 = (JSONObject) ja2.get(1);
-			JSONObject f3 = (JSONObject) ja2.get(2);
-			
-			String name1 = (String) f1.get("inferText");
-			String name2 = (String) f2.get("inferText");
-			String no = (String) f3.get("inferText");
-			
-			System.out.println(name1);
-			System.out.println(name2);
-			System.out.println(no);
-			
+//			JSONArray jsonArray = (JSONArray) jsonObj.get("images");
+//			JSONObject jsonObj1 = (JSONObject) jsonArray.get(0);
+//			JSONArray ja2 = (JSONArray) jo1.get("fields");
+//			
+//			
+//			JSONObject f1 = (JSONObject) ja2.get(0);
+//			JSONObject f2 = (JSONObject) ja2.get(1);
+//			JSONObject f3 = (JSONObject) ja2.get(2);
+//			
+//			String name1 = (String) f1.get("inferText");
+//			String name2 = (String) f2.get("inferText");
+//			String no = (String) f3.get("inferText");
+//			
+//			System.out.println(name1);
+//			System.out.println(name2);
+//			System.out.println(no);
+
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 	}
-	private void writeMultiPart(OutputStream out, String jsonMessage, File file, String boundary) throws
-	IOException {
+
+	private void writeMultiPart(OutputStream out, String jsonMessage, File file, String boundary) throws IOException {
 		StringBuilder sb = new StringBuilder();
 		sb.append("--").append(boundary).append("\r\n");
 		sb.append("Content-Disposition:form-data; name=\"message\"\r\n\r\n");
 		sb.append(jsonMessage);
 		sb.append("\r\n");
-	
+
 		out.write(sb.toString().getBytes("UTF-8"));
 		out.flush();
-	
+
 		if (file != null && file.isFile()) {
 			out.write(("--" + boundary + "\r\n").getBytes("UTF-8"));
 			StringBuilder fileString = new StringBuilder();
-			fileString
-				.append("Content-Disposition:form-data; name=\"file\"; filename=");
+			fileString.append("Content-Disposition:form-data; name=\"file\"; filename=");
 			fileString.append("\"" + file.getName() + "\"\r\n");
 			fileString.append("Content-Type: application/octet-stream\r\n\r\n");
 			out.write(fileString.toString().getBytes("UTF-8"));
 			out.flush();
-	
+
 			try (FileInputStream fis = new FileInputStream(file)) {
 				byte[] buffer = new byte[8192];
 				int count;
@@ -130,9 +138,9 @@ class ORCTest {
 				}
 				out.write("\r\n".getBytes());
 			}
-	
+
 			out.write(("--" + boundary + "--\r\n").getBytes("UTF-8"));
 		}
 		out.flush();
-	}	
+	}
 }
