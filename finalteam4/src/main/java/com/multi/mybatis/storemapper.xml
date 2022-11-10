@@ -24,9 +24,8 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</select>
 	<select id="searchstore" resultType="StoreDTO">
 		SELECT * FROM store s
-		LEFT OUTER JOIN storeimgs ss ON s.storeid = ss.storeid
-		GROUP BY storename
-		HAVING storename LIKE CONCAT('%',#{txt},'%')
+		INNER JOIN storeimgs ss ON s.storeid = ss.storeid
+		WHERE storename LIKE CONCAT('%',#{txt},'%')
 	</select>
 	<select id="detail" resultType="StoreDTO">
 		SELECT 	s.storeid, s.storename, s.storeintroduce, s.storetel, s.storeinfo, 
