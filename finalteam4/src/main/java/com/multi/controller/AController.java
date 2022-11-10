@@ -79,6 +79,9 @@ public class AController {
 	public String addcart(Model model, String custid, Integer cnt, Integer storeid) {
 		List<StoreDTO> list = null;
 		try {
+			if(cartservice.selectcart(custid) != null) {
+				cartservice.deletecart(custid);
+			}	
 			list = storeservice.detail(storeid);
 			for(StoreDTO s:list) {
 				cartservice.register(new CartDTO(null, custid, s.getMenuid(), cnt,s.getMenuname(),s.getMenuprice(),s.getMenuimg(),(cnt*s.getMenuprice())));			

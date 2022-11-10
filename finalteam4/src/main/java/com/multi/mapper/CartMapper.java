@@ -13,5 +13,6 @@ import com.multi.frame.MyMapper;
 public interface CartMapper extends MyMapper<Integer, CartDTO>{
 	public List<CartDTO> selectcart(String custid);
 	public Integer modifyCount(CartDTO cart);
+	public void deletecart(String custid);
 
 }

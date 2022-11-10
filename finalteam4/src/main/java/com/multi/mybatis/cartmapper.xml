@@ -26,5 +26,8 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<delete id="delete" parameterType="Integer">
 		DELETE FROM cart WHERE cartid=#{cartid}
 	</delete>
+	<delete id="deletecart" parameterType="String">
+		DELETE FROM cart WHERE custid=#{custid}
+	</delete>
 	
 </mapper>
