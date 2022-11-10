@@ -1,6 +1,5 @@
 package com.multi.controller;
 
-
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -33,10 +32,10 @@ public class MyPageController {
 
 	@Autowired
 	ReviewService review_service;
-	
+
 	@Autowired
 	ReserveService reserve_service;
-	
+
 	@Autowired
 	WishlistService wishservice;
 
@@ -70,33 +69,54 @@ public class MyPageController {
 		}
 		return "index";
 	}
-	
+
 	@RequestMapping("/orderdetail")
 	public String orderdetail(Integer id, Model model, HttpSession session) {
 		Object obj = session.getAttribute("logincust");
-		CustDTO cust = (CustDTO)obj;
+		CustDTO cust = (CustDTO) obj;
 		String custid = cust.getCustid();
-		
+
 		OrderlistDTO list_one = null;
 		List<ReserveDTO> list = null;
+		String storeid = null;
 		int cnt = 0;
 		int total = 0;
 		try {
 			list_one = order_service.myorder_1(custid);
 			list = reserve_service.myreserve(id);
+			storeid = list.get(0).getStoreid();
 			for (ReserveDTO r : list) {
-				cnt += r.getCnt(); 
+				cnt += r.getCnt();
 				total += r.getOrderprice();
 			}
 			model.addAttribute("list_one", list_one);
 			model.addAttribute("list", list);
+			model.addAttribute("storeid", storeid);
 			model.addAttribute("cnt", cnt);
 			model.addAttribute("total", total);
 			model.addAttribute("center", dir + "orderdetail");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(custid);
+		System.out.println(list);
+		return "index";
+	}
+
+	@RequestMapping("/ocr")
+	public String ocr(String id, Model model, HttpSession session) {
+		Object obj = session.getAttribute("logincust");
+		CustDTO cust = (CustDTO) obj;
+		String custid = cust.getCustid();
+
+		OrderlistDTO list_one = null;
+		try {
+			list_one = order_service.myorder_1(custid);
+			model.addAttribute("list_one", list_one);
+			model.addAttribute("storeid", id);
+			model.addAttribute("center", dir + "ocr");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "index";
 	}
 
@@ -142,7 +162,7 @@ public class MyPageController {
 		model.addAttribute("center", dir + "info");
 		return "index";
 	}
-	
+
 	@RequestMapping("/wishlist")
 	public String wishlist(String id, Model model) {
 		List<WishlistDTO> list = null;
@@ -158,7 +178,7 @@ public class MyPageController {
 		model.addAttribute("center", dir + "wishlist");
 		return "index";
 	}
-	
+
 	@RequestMapping("/deletewishlist")
 	public String deletewishlist(Model model, int wishlistid, String id) {
 		try {
@@ -166,6 +186,6 @@ public class MyPageController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:/mypage/wishlist?id="+id;
+		return "redirect:/mypage/wishlist?id=" + id;
 	}
 }
