@@ -251,31 +251,17 @@
 	padding-top: 50px;
 }
 
-.contents2 {
-	margin: 0px auto;
-	height: 220px;
-	width: 1200px;
-	padding-top: 500px;
-}
-
 .my_tit {
 	position: relative;
 	padding-bottom: 10px;
 	border-bottom: 4px solid #000;
 }
 
-.my_tit2 {
-	position: relative;
-	padding-bottom: 10px;
-	border-bottom: 4px solid #000;
-}
-
-.review_btn {
-	float: right;
-	width: 80px;
-	height: 35px;
-	font-size: 20px;
-	background: gray;
+.my_tit span {
+	display: inline-block;
+	margin-left: 10px;
+	font-size: 18px;
+	font-weight: 400;
 }
 
 .btn_next {
@@ -291,83 +277,14 @@
 	background: #000;
 }
 
-.my_order_tbl .my_order_tit>div {
-	height: 50px;
-	border-bottom: 1px solid #303033;
-	font-weight: 700;
-	font-size: 13px;
-	text-align: center;
+.main_recipt {
+	padding: 20px;
 }
 
-.my_order_tbl .my_tbl {
-	display: -webkit-box;
-	display: flex;
-	-webkit-box-align: center;
-	align-items: center;
-	position: relative;
-	height: 230px;
-	padding: 10px 0;
-	border-bottom: 1px solid #d4d4d4;
-}
-
-.my_order_tbl .my_tbl>div {
-	-webkit-box-flex: 0;
-	flex: none;
-	font-size: 14px;
-	color: #303033;
-	box-sizing: border-box;
-}
-
-.my_order_tbl .date {
-	width: 110px;
-	text-align: center;
-}
-
-.my_order_tbl .my_order_tit .history {
-	height: auto;
-}
-
-.my_order_tbl .history {
-	position: relative;
-	width: -webkit-calc(100% - 440px);
-	width: calc(100% - 440px);
-	height: 100%;
-	box-sizing: border-box;
-}
-
-.my_order_tbl .num {
-	width: 210px;
-	font-weight: 700;
-	text-align: center;
-}
-
-.my_order_tbl .my_tbl>.amount {
-	width: 120px;
-	padding-right: 20px;
-	text-align: right;
-}
-
-.imgin>img {
-	height: auto;
-	height: 180px;
-	width: 150px;
-}
-
-.summary {
-	padding-top: 25px;
-	position: absolute;
-	left: 80%;
-}
-
-.sumli>div {
-	width: 110px;
-	border-bottom: 1px solid #303033;
-	font-weight: 700;
-	font-size: 13px;
-	text-align: center;
+.main_recipt .recipt {
+	display: inline-block;
 }
 </style>
-
 <script>
 	$(document).ready(function() {
 		$("#menu-toggle").click(function(e) {
@@ -435,49 +352,21 @@
 			</div>
 			<div class="contents">
 				<h3 class="my_tit">
-					테이블 내역
-					<button class="review_btn" th:onclick="|location.href='@{ocr(id=${storeid})}'|">리뷰쓰기</button>
+					영수증 체크<span>방문하신 영수증을 인증하고 리뷰를 작성해주세요.</span>
 				</h3>
-				<div class="form-group">
-					<ul class="my_order_tbl">
-						<li class="my_order_tit">
-							<div class="my_tbl">
-								<div class="date">테이블</div>
-								<div class="history">메뉴정보</div>
-								<div class="num">수량</div>
-								<div class="amount">가격</div>
-							</div>
-						</li>
-						<ul class="my_order_tbl2" th:each="li : ${list}">
-							<li class="ng-star-inserted"><a
-								class="my_tbl ng-star-inserted"
-								href="/mypage/my-order/detail/15347295">
-									<div class="date" th:text="${li.storename}"></div>
-									<div class="history">
-										<div class="imgbx">
-											<div class="imgin" style="float: center">
-												<img th:src="'/menuimg/' + ${li.menuimg}">
-											</div>
-										</div>
-										<div class="prd_order">
-											<div class="prd_order_flex">
-												<div class="prd_order_in">
-													<span th:text="${li.menuname}"></span>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="num" th:text="${li.cnt}"></div>
-									<div class="amount" th:text="${li.orderprice}"></div>
-							</a></li>
-						</ul>
-					</ul>
-					<div class="summary">
-						<h3 class="my_tit">Detail</h3>
-						<ul>
-							<li>총수량 : <span th:text="${cnt}"></span></li>
-							<li>결제금액 : <span th:text="${total}"></span></li>
-						</ul>
+				<div class="main_recipt">
+					<div class="recipt">
+						<form id="upload">
+							<label for="rcpt">이미지<input type="file" id="rcpt"></input></label>
+						</form>
+					</div>
+					<div class="recipt">
+						<div>
+							<button onclick="upload()">확인</button>
+						</div>
+						<div>
+							<img id="uploadimg"></img>
+						</div>
 					</div>
 				</div>
 			</div>
