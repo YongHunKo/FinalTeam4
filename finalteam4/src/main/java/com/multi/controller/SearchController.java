@@ -14,12 +14,19 @@ import com.multi.service.StoreService;
 
 @Controller
 public class SearchController {
-	
+
 	@Autowired
 	MenuService menuservice;
 	@Autowired
 	StoreService storeservice;
-	
+
+	/**
+	 * searchimpl 해당 메소드는 파라메터 txt값을 이용하여 메뉴, 가게이름을 찾기 위한 목적이다.
+	 * 
+	 * @param model
+	 * @param txt
+	 * @return
+	 */
 	@RequestMapping("/searchimpl")
 	public String logout(Model model, String txt) {
 		List<MenuDTO> list = null;
@@ -27,9 +34,9 @@ public class SearchController {
 		try {
 			list = menuservice.searchmenu(txt);
 			list2 = storeservice.searchstore(txt);
-			model.addAttribute("menulist",list);
-			model.addAttribute("storelist",list2);
-			model.addAttribute("center","search");
+			model.addAttribute("menulist", list);
+			model.addAttribute("storelist", list2);
+			model.addAttribute("center", "search");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

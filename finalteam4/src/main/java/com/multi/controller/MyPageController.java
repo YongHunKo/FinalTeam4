@@ -13,7 +13,6 @@ import com.multi.dto.CustDTO;
 import com.multi.dto.OrderlistDTO;
 import com.multi.dto.ReserveDTO;
 import com.multi.dto.ReviewDTO;
-import com.multi.dto.WishlistDTO;
 import com.multi.service.CustService;
 import com.multi.service.OrderlistService;
 import com.multi.service.ReserveService;
@@ -26,21 +25,29 @@ public class MyPageController {
 
 	@Autowired
 	CustService cust_service;
-
 	@Autowired
 	OrderlistService order_service;
-
 	@Autowired
 	ReviewService review_service;
-
 	@Autowired
 	ReserveService reserve_service;
-
 	@Autowired
 	WishlistService wishservice;
 
 	String dir = "mypage/";
 
+	/**
+	 * mypage
+	 * 해당 메소드는 mypage를 연결하기 위한 메소드이다.
+	 * 해당 메소드가 발동하면 mypage에는 orderlist에
+	 * 파라메터 id와 일치하는 custid의 DTO들을 
+	 * list_one에 저장하여 mypage에 출력한다.
+	 * 이 컨트롤러에서는 String dir을 설정하였기 때문에
+	 * dir 입력시 조심하여야한다.
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("")
 	public String mypage(String id, Model model) {
 		OrderlistDTO list_one = null;
@@ -54,6 +61,13 @@ public class MyPageController {
 		return "index";
 	}
 
+	/**
+	 * order
+	 * 해당 메소드는 중복같은데
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/order")
 	public String order(String id, Model model) {
 		OrderlistDTO list_one = null;
@@ -70,6 +84,17 @@ public class MyPageController {
 		return "index";
 	}
 
+	/**
+	 * orderdetail
+	 * 해당 메소드는 session의 저장된 logincust를 obj에 저장하고,
+	 * obj를 CustDTO에 담아서 custid를 추출하여
+	 * 해당 custid의 주문내역과 파라메터 id의 예약내역을 각각의 list에 담아
+	 * orderdetail에 출력을 해주는 목적이다.
+	 * @param id
+	 * @param model
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("/orderdetail")
 	public String orderdetail(Integer id, Model model, HttpSession session) {
 		Object obj = session.getAttribute("logincust");
@@ -102,6 +127,14 @@ public class MyPageController {
 		return "index";
 	}
 
+	/**
+	 * ocr
+	 * 작업중
+	 * @param id
+	 * @param model
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("/ocr")
 	public String ocr(String id, Model model, HttpSession session) {
 		Object obj = session.getAttribute("logincust");
@@ -120,6 +153,14 @@ public class MyPageController {
 		return "index";
 	}
 
+	/**
+	 * review
+	 * 해당 메소드는 파라메터id의 review 내용을
+	 * review페이지에 출력하는 목적이다.
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/review")
 	public String review(String id, Model model) {
 		OrderlistDTO list_one = null;
@@ -137,6 +178,13 @@ public class MyPageController {
 		return "index";
 	}
 
+	/**
+	 * edit
+	 * 해당 메소드는 edit페이지를 가기 위한 메소드이다.
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/edit")
 	public String edit(String id, Model model) {
 		OrderlistDTO list_one = null;
@@ -150,6 +198,13 @@ public class MyPageController {
 		return "index";
 	}
 
+	/**
+	 * info
+	 * 해당 메소드는 info페이지를 가기 위한 메소드이다.
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/info")
 	public String info(String id, Model model) {
 		OrderlistDTO list_one = null;
@@ -163,13 +218,4 @@ public class MyPageController {
 		return "index";
 	}
 
-	@RequestMapping("/deletewishlist")
-	public String deletewishlist(Model model, int wishlistid, String id) {
-		try {
-			wishservice.remove(wishlistid);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "redirect:/mypage/wishlist?id=" + id;
-	}
 }

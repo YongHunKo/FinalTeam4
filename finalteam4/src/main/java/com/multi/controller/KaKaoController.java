@@ -32,7 +32,7 @@ public class KaKaoController {
 	
 	 /**
 	  * kakaologin
-	  * 해당 메소드는  oauth2.0을 기반으로한
+	  * 해당 메소드는  oauth를 기반으로한
 	  * accessToken을 통해 카카오서버에서 인증허가토큰을통해 유저DB를 받아오고
 	  * HashMap으로 키값은 String, value값은 JSONObject로 userInfo에 담아서
 	  * userInfo에 담긴 값들을 추출하여 
@@ -76,6 +76,7 @@ public class KaKaoController {
 	    String profile =String.valueOf(userInfo.get("profile"));
 	    
 	    /*소셜로그인을 하는 부분*/
+		/*여기서 "1"값을 준 이유는 네이버 소셜로그인과 동일한 계정을 등록하지 않기 위함이다*/
 	    if(custservice.get(email+"1") != null) {
 	    	if(custservice.get(email+"1").getCustpwd().equals("1")) {
 	    		session.setAttribute("logincust", custservice.get(email+"1"));
