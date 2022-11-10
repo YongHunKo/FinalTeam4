@@ -247,7 +247,10 @@ $(document).ready(function(){
                     <div class="container-lg">
                         <nav class="main-navbar d-lg-flex  align-items-center">
                             <!-- desktop logo Start -->
-                            <div class="desktop-logo d-none d-lg-block">
+                            <div class="desktop-logo d-none d-lg-block" th:if="${session.logincust != null}">
+                                <a th:href="@{/(id=${session.logincust.custid})}"><img src="/assets/images/logo7.svg" alt="Logo" style="width:100px;"></a>
+                            </div>
+                            <div class="desktop-logo d-none d-lg-block" th:if="${session.logincust == null}">
                                 <a href="/"><img src="/assets/images/logo7.svg" alt="Logo" style="width:100px;"></a>
                             </div>
                             <!-- desktop logo Ends -->

@@ -163,22 +163,6 @@ public class MyPageController {
 		return "index";
 	}
 
-	@RequestMapping("/wishlist")
-	public String wishlist(String id, Model model) {
-		List<WishlistDTO> list = null;
-		OrderlistDTO list_one = null;
-		try {
-			list = wishservice.viewwish(id);
-			list_one = order_service.myorder_1(id);
-			model.addAttribute("list_one", list_one);
-			model.addAttribute("viewwish", list);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		model.addAttribute("center", dir + "wishlist");
-		return "index";
-	}
-
 	@RequestMapping("/deletewishlist")
 	public String deletewishlist(Model model, int wishlistid, String id) {
 		try {
