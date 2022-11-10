@@ -16,7 +16,7 @@ class InsertReserve {
 	@Test
 	void contextLoads() {
 		try {
-			service.register(new ReserveDTO(null, 2, 6, 7, 60000, null, null, null, null, null, null, null));
+			service.register(new ReserveDTO(null, 2, 6, 7, 60000, null, null, null, null, null, null, null, null));
 			System.out.println("OK");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
