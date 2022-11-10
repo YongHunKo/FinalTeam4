@@ -3,11 +3,14 @@ package com.multi.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.multi.dto.CustDTO;
 import com.multi.dto.OrderlistDTO;
 import com.multi.dto.ReserveDTO;
 import com.multi.dto.ReviewDTO;
@@ -69,16 +72,23 @@ public class MyPageController {
 	}
 	
 	@RequestMapping("/orderdetail")
-	public String orderdetail(Integer id, Model model) {
+	public String orderdetail(Integer id, Model model, HttpSession session) {
+		Object obj = session.getAttribute("logincust");
+		CustDTO cust = (CustDTO)obj;
+		String custid = cust.getCustid();
+		
+		OrderlistDTO list_one = null;
 		List<ReserveDTO> list = null;
 		int cnt = 0;
 		int total = 0;
 		try {
+			list_one = order_service.myorder_1(custid);
 			list = reserve_service.myreserve(id);
 			for (ReserveDTO r : list) {
 				cnt += r.getCnt(); 
 				total += r.getOrderprice();
 			}
+			model.addAttribute("list_one", list_one);
 			model.addAttribute("list", list);
 			model.addAttribute("cnt", cnt);
 			model.addAttribute("total", total);
@@ -86,6 +96,7 @@ public class MyPageController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println(custid);
 		return "index";
 	}
 

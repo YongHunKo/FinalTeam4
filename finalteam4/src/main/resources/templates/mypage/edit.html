@@ -10,7 +10,7 @@
 	z-index: 1;
 	position: absolute;
 	width: 0;
-	height: 100%;
+	height: 150%;
 	overflow-y: hidden;
 	opacity: 0.9;
 	transition: all .5s;
@@ -279,7 +279,6 @@
 	font-size: 18px;
 	font-weight: 700;
 }
-
 </style>
 <script>
 	$(document).ready(function() {
@@ -302,6 +301,8 @@
 						$("#pspan").text("비밀번호를 다시 확인해주세요.");
 						$("#pspan").css("color", "#ff4800");
 						$("#next_btn").attr("disabled", true);
+					} else if (pwd == null) {
+						$("#next_btn").attr("disabled", false);
 					} else {
 						$("#pspan").text("비밀번호 일치.");
 						$("#pspan").css("color", "green");
@@ -310,11 +311,14 @@
 				}
 			});
 		});
-		
+
 		$("#next_btn").click(function() {
-			var custid = "[[${session.logincust.custid}]]";
-			alert(custid);
-			location.href = "/mypage/info?id=" + custid;
+			if ($('#inputPassword').val == '') {
+				alert();
+				return false;
+			}
+			/* var custid = "[[${session.logincust.custid}]]";
+			location.href = "/mypage/info?id=" + custid; */
 		});
 
 	});
@@ -327,7 +331,9 @@
 			<li><a th:text="${session.logincust.custname}"
 				style="padding: 20px 0 10px 0; font-size: 40px; font-weight: 700"></a></li>
 			<li><h4 href="#">나의 EAT & OUT 정보</h4></li>
-			<li><a th:href="@{/mypage/order(id=${session.logincust.custid})}">테이블 조회</a></li>
+			<li><a
+				th:href="@{/mypage/order(id=${session.logincust.custid})}">테이블
+					조회</a></li>
 			<li><a
 				th:href="@{/mypage/review(id=${session.logincust.custid})}">나의
 					리뷰</a></li>
@@ -387,11 +393,10 @@
 						</div>
 					</div>
 					<div class="form-group row" style="margin-top: 10px">
-						<label for="inputPassword" class="col-sm-2 col-form-label"
-							th:value="${session.logincust.custpwd}" id="sessionpwd">비밀번호</label>
+						<label for="inputPassword" class="col-sm-2 col-form-label">비밀번호</label>
 						<div class="col-sm-10">
 							<input type="password" class="form-control" id="inputPassword"
-								placeholder="Password" style="width: 250px" name="custpwd">
+								placeholder="비밀번호" style="width: 250px" name="custpwd" required>
 							<span id="pspan" style="margin-top: 5px"></span>
 						</div>
 					</div>
