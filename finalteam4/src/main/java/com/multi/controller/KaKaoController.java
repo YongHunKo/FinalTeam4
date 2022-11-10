@@ -24,77 +24,100 @@ import com.multi.service.StoreimgService;
 public class KaKaoController {
 
 	 @Autowired
-	public KaKaoService kakao;
+	 public KaKaoService kakao;
 	 @Autowired
 	 CustService custservice;
-	 
 	 @Autowired
 	 StoreimgService imgservice;
 	
+	 /**
+	  * kakaologin
+	  * 해당 메소드는 accessToken을 통해 카카오로 유저DB를 받아오고
+	  * HashMap으로 키값은 String, value값은 JSONObject로 userInfo에 담아서
+	  * userInfo에 담긴 값들을 추출하여 
+	  * cust에 해당 카카오로그인 데이터가 없을 시 register,
+	  * cust에 해당 카카오로그인 데이터가 있을 시 일반적인 로그인방식으로
+	  * 쉽게 로그인하는 것이 목적이다.
+	  * 부가적으로 랜덤이미지,랜덤정보를 출력한다.
+	  * @param code
+	  * @param session
+	  * @param model
+	  * @return
+	  * @throws Exception
+	  */
 	 @RequestMapping(value="/callback")
 	 public String login(@RequestParam("code") String code, HttpSession session,Model model) throws Exception {
-		 String access_Token = kakao.getAccessToken(code);
-		    HashMap<String, Object> userInfo = kakao.getUserInfo(access_Token);
-		    List<StoreimgDTO> list2=null;
-		    List<StoreimgDTO> list3=null;
-		    list2 = imgservice.selectrandom();
-		    list3 = imgservice.selectrandominfo();
-//		    System.out.println("login Controller : " + userInfo); //나중에 막을것
-		    model.addAttribute("randomimg", list2);
-		    model.addAttribute("randominfo", list3);
-		    model.addAttribute("userId", userInfo);
-		    model.addAttribute("center", "maincenter");
-		    //    클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
-//		    System.out.println(userInfo.get("nickname")); 확인용
-		    String nickname = String.valueOf(userInfo.get("nickname"));
-		    String email = String.valueOf(userInfo.get("email"));
-		    String profile =String.valueOf(userInfo.get("profile"));
-//		    System.out.println(nickname); 확인용
-//		    System.out.println(userInfo.get("email"));
-		    if(custservice.get(email+"1") != null) {
-		    	if(custservice.get(email+"1").getCustpwd().equals("1")) {
-		    		session.setAttribute("logincust", custservice.get(email+"1"));
-		    		model.addAttribute("center","maincenter");
-		    	}
-		    	
-		    }else {
-		    	try {
-		    		custservice.register(new CustDTO(email+"1", "1", nickname, null, null, null,profile));
-		    		session.setAttribute("logincust", custservice.get(email+"1"));
-//		    		System.out.println("register_ok"); // 나중에 막을 것
-		    	} catch (Exception e) {
-		    		e.printStackTrace();
-		    	} 	
-		    }
-		    
-		    
-		    
-		    if (userInfo.get("email") != null) {
-		        session.setAttribute("userId", userInfo.get("email"));
-		        session.setAttribute("access_Token", access_Token);
-		    }
-	 
-		    	return "index";
+		String access_Token = kakao.getAccessToken(code);
+	    HashMap<String, Object> userInfo = kakao.getUserInfo(access_Token);
+	    
+	    /*랜덤이미지, 랜덤정보 부분*/
+	    List<StoreimgDTO> list2=null;
+	    List<StoreimgDTO> list3=null;
+	    list2 = imgservice.selectrandom();
+	    list3 = imgservice.selectrandominfo();
+	    model.addAttribute("randomimg", list2);
+	    model.addAttribute("randominfo", list3);
+	    
+	    /*소셜로그인 데이터를 userInfo에 담아서 추출하는 부분*/
+	    model.addAttribute("userId", userInfo);
+	    model.addAttribute("center", "maincenter");
+	    String nickname = String.valueOf(userInfo.get("nickname"));
+	    String email = String.valueOf(userInfo.get("email"));
+	    String profile =String.valueOf(userInfo.get("profile"));
+	    
+	    /*소셜로그인을 하는 부분*/
+	    if(custservice.get(email+"1") != null) {
+	    	if(custservice.get(email+"1").getCustpwd().equals("1")) {
+	    		session.setAttribute("logincust", custservice.get(email+"1"));
+	    		model.addAttribute("center","maincenter");
+	    	}
+	    }else {
+	    	try {
+	    		custservice.register(new CustDTO(email+"1", "1", nickname, null, null, null,profile));
+	    		session.setAttribute("logincust", custservice.get(email+"1"));
+	    	} catch (Exception e) {
+	    		e.printStackTrace();
+	    	} 	
+	    }
+	    
+	    /*소셜로그인을 로그아웃하도록 하는 session저장 하는 부분*/
+	    if (userInfo.get("email") != null) {
+	        session.setAttribute("userId", userInfo.get("email"));
+	        session.setAttribute("access_Token", access_Token);
+	    }
+	    return "index";
 	 }
 
+	 /**
+	  * 소셜logout
+	  * 해당 메소드는 기본적인 로그아웃과 같지만
+	  * 소셜login 작동시 session에 저장했던
+	  * userId와 access_Token을 이용하여
+	  * 로그아웃을 하는 것이 목적이다.
+	  * 부가적으로 랜덤이미지,랜점정보가 출력된다.
+	  * @param session
+	  * @param model
+	  * @return
+	  * @throws Exception
+	  */
 	 @RequestMapping(value="/logout")
 	 public String logout(HttpSession session, Model model) throws Exception {
-		 	List<StoreimgDTO> list2=null;
-		    List<StoreimgDTO> list3=null;
-		    list2 = imgservice.selectrandom();
-		    list3 = imgservice.selectrandominfo();
-	     kakao.kakaoLogout((String)session.getAttribute("access_Token"));
-	     	model.addAttribute("randomimg", list2);
-	     	model.addAttribute("randominfo", list3);
-	     	model.addAttribute("center","maincenter");
-	     
-	     session.removeAttribute("access_Token");
-	     session.removeAttribute("userId");
-	     return "index";
-	 }
-
-
-    }
+		 /*랜덤이미지, 랜덤정보 부분*/
+		 List<StoreimgDTO> list2=null;
+		 List<StoreimgDTO> list3=null;
+		 list2 = imgservice.selectrandom();
+		 list3 = imgservice.selectrandominfo();
+		 model.addAttribute("randomimg", list2);
+		 model.addAttribute("randominfo", list3);
+		 model.addAttribute("center","maincenter");
+		 
+		 /*소셜로그인을 로그아웃하도록 하는 session을 이용하는 부분*/
+		 kakao.kakaoLogout((String)session.getAttribute("access_Token"));
+		 session.removeAttribute("access_Token");
+		 session.removeAttribute("userId");
+		 return "index";
+		 }
+}
 
     
     
