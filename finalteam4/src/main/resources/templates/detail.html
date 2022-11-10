@@ -3,13 +3,42 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <link rel="stylesheet" href="/assets/css/table.css">
-
+<script src="/assets/js/bootstrap.min.js"></script>
 <script src="/assets/js/jquery.flexslider.js"></script>
 
 
 
 
 <style>
+.modal {
+        text-align: center;
+}
+ 
+@media screen and (min-width: 768px) { 
+        .modal:before {
+                display: inline-block;
+                vertical-align: middle;
+                content: " ";
+                height: 100%;
+        }
+}
+
+.modal-dialog {
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+}
+
+#button{
+	margin:500px;
+	text-align:center;
+	position:relative;
+	display:inline=block;
+	margin-top:0px;
+	justify-content:space between;
+	padding:10px;
+
+}
 
 
 
@@ -63,7 +92,7 @@ $(document).ready(function(){
 			url:'/insertwishlist', 
 			data:{'storeid':storeid, 'custid':custid},
 			success:function(data){
-				alert("위시리스트에 추가되었습니다");
+				$('#Modal').modal()
 				}
 		});
 	});
@@ -159,7 +188,28 @@ $(document).ready(function(){
 	<div id="button">
 <button id="reserve_btn" th:if="${session.logincust != null}" class="btn btn-primary">예약하러가기</button>
 <button th:if="${session.logincust == null}" onclick="location.href='/login'" class="btn btn-primary">로그인하러가기</button>
-<button id="wishlist_btn" th:if="${session.logincust != null}" class="btn btn-primary">위시리스트 넣기</button>
+<button id="wishlist_btn" th:if="${session.logincust != null}" class="btn btn-primary" href="#"  data-toggle="modal" data-target="#Modal">위시리스트 넣기</button>
 </div>
 	</section>
 <br>
+ <!-- Modal -->
+  	<div class="modal fade" id="Modal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">위시리스트에 추가되었습니다.</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">위시리스트로 가기</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+						data-dismiss="modal">취소</button>
+					<a class="btn btn-primary" th:href="@{/mypage/wishlist(id=${session.logincust.custid})}">확인</a>
+				</div>
+			</div>
+		</div>
+	</div>
