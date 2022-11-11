@@ -6,6 +6,11 @@
 	position: relative;
 }
 
+ #wrapper ul li a:hover {
+	color: tomato;
+	font-weight:600;
+}
+
 /* Sidebar */
 #sidebar-wrapper {
 	z-index: 1;
@@ -369,12 +374,20 @@
 </style>
 
 <script>
-	$(document).ready(function() {
-		$("#menu-toggle").click(function(e) {
-			e.preventDefault();
-			$("#wrapper").toggleClass("menuDisplayed");
-		});
+$(document).ready(function() {
+	const menu=document.querySelector('#menu-toggle')
+	
+	$("#menu-toggle").click(function(e) {
+		
+		
+		e.preventDefault();
+		$("#wrapper").toggleClass("menuDisplayed");
+		/*클릭시 숨김  */
+		menu.style.display ='none';
+		
+		
 	});
+}); 
 </script>
 
 <body>
@@ -411,7 +424,7 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12">
-						<a href="#" class="btn" id="menu-toggle">click<span
+						<a href="#" class="btn" id="menu-toggle">메뉴보기<span
 							class="glyphicon glyphicon-menu-hamburger"></span></a>
 						<div class="weather-card one" th:with="list1=${list_one}">
 							<div class="top">

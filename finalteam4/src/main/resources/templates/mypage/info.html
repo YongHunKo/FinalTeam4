@@ -6,6 +6,10 @@
 	position: relative;
 }
 
+ #wrapper ul li a:hover {
+	color: tomato;
+	font-weight:600;
+}
 /* Sidebar */
 #sidebar-wrapper {
 	z-index: 1;
@@ -279,9 +283,13 @@
 </style>
 <script>
 	$(document).ready(function() {
+		const menu=document.querySelector('#menu-toggle')
 		$("#menu-toggle").click(function(e) {
 			e.preventDefault();
 			$("#wrapper").toggleClass("menuDisplayed");
+			/*클릭시 숨김  */
+			menu.style.display ='none';
+			
 		});
 
 		/* $("#inputPassword").keyup(function() {

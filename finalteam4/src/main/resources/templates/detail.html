@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
-<link rel="stylesheet" href="/assets/css/table.css">
+<link rel="stylesheet" th:href="@{/assets/css/table.css}">
 
 
 
@@ -118,10 +118,10 @@ $(document).ready(function(){
 
 </script>
 
-<script src="/assets/js/jquery.flexslider.js"></script>
+<script th:src="@{/assets/js/jquery.flexslider.js}"></script>
 
 
-
+<!-- 슬라이더 -->
 <div id="slider" class="flexslider">
   <ul class="slides" th:each="s : ${storeimglist}">
     <li>
@@ -130,29 +130,7 @@ $(document).ready(function(){
     </li>
   </ul>
 </div>
-<!-- <table>
-    <thead>
-        <tr>
-        	<th>메뉴사진</th>
-            <th>메뉴이름</th>
-            <th>메뉴정보</th>
-            <th>메뉴가격</th>
-        </tr>
-    </thead>
-    <tbody>
-    타임리프 작동되는 것 확인함
-        <tr th:each="d : ${detaillist}">
-        	<td><img th:src="@{/img/}+${d.menuimg}" style="width:200px; height:200px; border-radius:60px;"></td>
-            <td th:text="${d.menuname}"></td><br><br>
-            <td th:text="${d.menuinfo}"></td><br>
-            <td th:text="${d.menuprice}"></td>
-            
-        </tr>
-    </tbody>
-    단순히 버튼 하나를 놓고 메뉴마다 예약?
-    or 예약하기 페이지로 넘어가서 날짜 시간 선택하고 결제?
-    위시리스트 버튼도 만들어야함
-</table><br> -->
+
 <body>
 <section class="ftco-section">
 		<div class="container">

@@ -47,15 +47,27 @@ img {
 
 
 /* dettail 축소형 */
-@media (max-width: 768px) {
-  .container {
-    width: 100%;
-  display: -webkit-box;
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .ftco-section{
+    height: 300px;
+  }
+}
 
- position:realative;
- left:-40%;
- margin-right:40%;
- 
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .ftco-section {
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .ftco-section {
+    width: 70%;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .ftco-section {
+    width: 70%;
   }
 }
 
@@ -4485,7 +4497,7 @@ p {
 }
 
 /*==================================================================
-                           12. Navbar css
+                           12. ` css
 ==================================================================*/
 /*=====  Navbar Style 7 =====*/
 .navbar-style-7 {
