@@ -51,6 +51,11 @@ public class AController {
 	public Object checkid(String cid) {
 		String result = "";
 		CustDTO cust = null;
+		
+		if (cid.equals("") || cid == null) {
+			return "f";
+		}
+		
 		try {
 			cust = cust_service.get(cid);
 			if(cust != null) {
