@@ -438,8 +438,7 @@ $(document).ready(function() {
 						</li>
 						<ul class="my_order_tbl2" th:each="ordlist : ${orderlist}">
 							<li class="ng-star-inserted"><a th:href="@{/mypage/orderdetail(id=${ordlist.orderlistno})}"
-								class="my_tbl ng-star-inserted"
-								th:href="@{/mypage/my-order/detail/15347295}">
+								class="my_tbl ng-star-inserted">
 									<div class="date"
 										th:text="${#dates.format(ordlist.orderdate, 'yyyy-MM-dd')}"></div>
 									<div class="history">
