@@ -210,23 +210,7 @@
 	</style>
 
 <script>
-function onSuccess(googleUser) {
-    console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-  }
-  function onFailure(error) {
-    console.log(error);
-  }
-  function renderButton() {
-    gapi.signin2.render('my-signin2', {
-      'scope': 'profile email',
-      'width': 230,
-      'height': 50,
-      'longtitle': true,
-      'theme': 'dark',
-      'onsuccess': onSuccess,
-      'onfailure': onFailure
-    });
-  }
+
   
 /* 기본 로그인버튼 */
 $(document).ready(function(){
@@ -298,7 +282,20 @@ $(document).ready(function(){
         <img th:src="@{assets/images/client-logo/naver_login.png}" alt="네이버 로그인" id="naver_img" style="width:180px; margin-left:-20px;">
         </a><br>
         <br>
-        <div id="my-signin2" data-onsuccess="rendorButton"></div>	
+         <div id="g_id_onload"
+         data-client_id="414674411151-8otfjo97eobc9r4lk262bvegl1e27so6.apps.googleusercontent.com"
+         data-login_uri="http://localhost:80"
+         data-callback="http://localhost:80/login"
+         data-auto_prompt="false">
+      </div>
+      <div class="g_id_signin"
+         data-type="standard"
+         data-size="large"
+         data-theme="outline"
+         data-text="sign_in_with"
+         data-shape="circle"
+         data-logo_alignment="left" style="width:210px; text-align:center; margin-left:10px; border-radius:100px;">
+      </div>	
        
  
         </ul>
@@ -306,7 +303,7 @@ $(document).ready(function(){
       </div>
 
     </div>
-	<div id="naverIdLogin"></div>
+	
     </form>
 
       
@@ -325,7 +322,7 @@ $(document).ready(function(){
 	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script> 
 	
 	
-	<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+	<script src="https://accounts.google.com/gsi/client" async defer></script>
         <script th:src="@{/assets/js/count-up.min.js}"></script>
 	<script th:src="@{/assets/js/main.js}"></script>
  
