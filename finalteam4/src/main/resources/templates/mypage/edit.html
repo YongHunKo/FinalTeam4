@@ -297,30 +297,38 @@
 					"custpwd" : pwd
 				},
 				success : function(result) {
-					if (result == "false") {
+					if ($("#inputPassword").val() == "") {
+						$("#pspan").css("visibility", "hidden");
+						$("#next_btn").attr("disabled", false);
+					} else if (result == "false") {
 						$("#pspan").text("비밀번호를 다시 확인해주세요.");
 						$("#pspan").css("color", "#ff4800");
+						$("#pspan").css("visibility", "visible");
 						$("#next_btn").attr("disabled", true);
-					} else if (pwd == null) {
-						$("#next_btn").attr("disabled", false);
 					} else {
 						$("#pspan").text("비밀번호 일치.");
 						$("#pspan").css("color", "green");
+						$("#pspan").css("visibility", "visible");
 						$("#next_btn").attr("disabled", false);
 					}
+					return
+
 				}
 			});
 		});
 
 		$("#next_btn").click(function() {
-			if ($('#inputPassword').val == '') {
-				alert();
-				return false;
-			}
-			/* var custid = "[[${session.logincust.custid}]]";
-			location.href = "/mypage/info?id=" + custid; */
-		});
+			if ($("#inputPassword").val() == "") {
+				$("#pspan").css("visibility", "visible");
+				$("#pspan").text("비밀번호를 입력해주세요.");
+				$("#pspan").css("color", "#ff4800");
+				$("#pspan").focus();
+				return
 
+			}
+			var custid = "[[${session.logincust.custid}]]";
+			location.href = "/mypage/info?id=" + custid;
+		});
 	});
 </script>
 
@@ -396,8 +404,8 @@
 						<label for="inputPassword" class="col-sm-2 col-form-label">비밀번호</label>
 						<div class="col-sm-10">
 							<input type="password" class="form-control" id="inputPassword"
-								placeholder="비밀번호" style="width: 250px" name="custpwd" required>
-							<span id="pspan" style="margin-top: 5px"></span>
+								placeholder="" style="width: 250px" name="custpwd"> <span
+								id="pspan" style="margin-top: 5px"></span>
 						</div>
 					</div>
 				</div>

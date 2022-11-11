@@ -276,7 +276,6 @@
 	margin: 0 auto;
 	background: #000;
 }
-
 </style>
 <script>
 	$(document).ready(function() {
@@ -284,6 +283,61 @@
 			e.preventDefault();
 			$("#wrapper").toggleClass("menuDisplayed");
 		});
+
+		/* $("#inputPassword").keyup(function() {
+			var pwd = $(this).val();
+		}); */
+
+		$("#checkPassword").keyup(function() {
+			var pwd1 = $("#inputPassword").val();
+			var pwd2 = $("#checkPassword").val();
+
+			if (pwd1 == pwd2) {
+				$("#pspan_check1").text("√");
+				$("#pspan_check2").text("√");
+				$("#pspan_check1").css("color", "green");
+				$("#pspan_check2").css("color", "green");
+			} else {
+				$("#pspan_check1").css("visibility", "hidden");
+				$("#pspan_check2").text("비밀번호를 다시 확인해주세요.");
+				$("#pspan_check2").css("color", "#ff4800");
+			}
+		});
+
+		$("#next_btn").click(function() {
+			if ($("#inputPassword").val() == "") {
+				$("#pspan_check1").text("비밀번호를 입력해주세요.");
+				$("#pspan_check1").css("color", "#ff4800");
+				$("#inputPassword").focus();
+				return;
+			}
+			if ($("#checkPassword").val() == "") {
+				$("#pspan_check2").text("비밀번호를 입력해주세요.");
+				$("#pspan_check2").css("color", "#ff4800");
+				$("#checkPassword").focus();
+				return;
+			}
+			if ($("#inputName").val() == "") {
+				$("#pspan_name").text("비밀번호를 입력해주세요.");
+				$("#pspan_name").css("color", "#ff4800");
+				$("#inputName").focus();
+				return;
+			}
+			if ($("#inputTel").val() == "") {
+				$("#pspan_tel").text("비밀번호를 입력해주세요.");
+				$("#pspan_tel").css("color", "#ff4800");
+				$("#inputTel").focus();
+				return;
+			}
+
+			$("#update_form").attr({
+				"method" : "post",
+				"action" : "/mypage/update"
+			})
+			$("#update_form").submit();
+			alert("회원정보가 수정되었습니다.")
+		});
+
 	});
 </script>
 
@@ -295,7 +349,9 @@
 				<li><a th:text="${session.logincust.custname}"
 					style="padding: 20px 0 10px 0; font-size: 40px; font-weight: 700"></a></li>
 				<li><h4 href="#">나의 EAT & OUT 정보</h4></li>
-				<li><a th:href="@{/mypage/order(id=${session.logincust.custid})}">테이블 조회</a></li>
+				<li><a
+					th:href="@{/mypage/order(id=${session.logincust.custid})}">테이블
+						조회</a></li>
 				<li><a
 					th:href="@{/mypage/review(id=${session.logincust.custid})}">나의
 						리뷰</a></li>
@@ -326,11 +382,9 @@
 								<div class="wrapper">
 									<div class="mynav"></div>
 									<h1 class="heading" th:text="${list1.storename}"></h1>
-									<h3 class="location"
-										th:text="${list1.reservedate}"></h3>
+									<h3 class="location" th:text="${list1.reservedate}"></h3>
 									<p class="temp">
-										<span class="temp-value"
-											th:text="${list1.reservetime}"></span>
+										<span class="temp-value" th:text="${list1.reservetime}"></span>
 									</p>
 								</div>
 								<div class="wrapper2">
@@ -344,11 +398,56 @@
 				</div>
 			</div>
 			<div class="contents">
-				<form id="reconfirm_form">
+				<form id="update_form">
 					<h3 class="my_tit">
-						회원정보 수정<span>회원님의 소중한 정보보호를 위해 비밀번호를 재확인하고 있습니다.</span>
+						회원정보 수정<span></span>
 					</h3>
+					<div class="form-group" style="padding: 36px 0">
+						<div class="form-group row">
+							<label for="staticId" class="col-sm-2 col-form-label">아이디</label>
+							<div class="col-sm-10">
+								<input type="text" readonly class="form-control-plaintext"
+									id="staticId" th:value="${session.logincust.custid}"
+									name="custid">
+							</div>
+						</div>
+						<div class="form-group row" style="margin-top: 10px">
+							<label for="inputPassword" class="col-sm-2 col-form-label">비밀번호</label>
+							<div class="col-sm-10">
+								<input type="password" class="form-control" id="inputPassword"
+									placeholder="" style="width: 250px" name="custpwd"> <span
+									id="pspan_check1" style="margin-top: 5px"></span>
+							</div>
+						</div>
+						<div class="form-group row" style="margin-top: 10px">
+							<label for="checkPassword" class="col-sm-2 col-form-label">비밀번호</label>
+							<div class="col-sm-10">
+								<input type="password" class="form-control" id="checkPassword"
+									placeholder="" style="width: 250px" name="custpwd2"> <span
+									id="pspan_check2" style="margin-top: 5px"></span>
+							</div>
+						</div>
+						<div class="form-group row" style="margin-top: 10px">
+							<label for="inputName" class="col-sm-2 col-form-label">이름</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="inputName"
+									placeholder="" style="width: 250px" name="custname"> <span
+									id="pspan_name" style="margin-top: 5px"></span>
+							</div>
+						</div>
+						<div class="form-group row" style="margin-top: 10px">
+							<label for="inputTel" class="col-sm-2 col-form-label">전화번호</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="inputTel"
+									placeholder="" style="width: 250px" name="tel"> <span
+									id="pspan_tel" style="margin-top: 5px"></span>
+							</div>
+						</div>
+					</div>
 				</form>
+				<div class="btn_next">
+					<button id="next_btn" class="btn-primary">다 음</button>
+				</div>
 			</div>
 		</div>
 	</div>

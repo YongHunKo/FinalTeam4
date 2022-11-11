@@ -283,6 +283,7 @@
 
 .main_recipt .recipt {
 	display: inline-block;
+	float: center;
 }
 </style>
 <script>
@@ -292,6 +293,17 @@
 			$("#wrapper").toggleClass("menuDisplayed");
 		});
 	});
+
+	function readURL(input) {
+		var reader = new FileReader();
+
+		reader.onload = function(e) {
+			$("#showimg").attr("src", e.target.result);
+			$("#showimg").attr("style", "width: 40px; height: 50px");
+		};
+		reader.readAsDateURL(input.target.files[0]);
+		alert('reader.readAsDataURL : ' + input.target.files[0]);
+	}
 </script>
 
 <body>
@@ -356,16 +368,16 @@
 				</h3>
 				<div class="main_recipt">
 					<div class="recipt">
-						<form id="upload">
-							<label for="rcpt">이미지<input type="file" id="rcpt"></input></label>
+						<img id="showimg">
+						<form id="uploadimg">
+							<label for="rcpt" style="font-size: 50px">+</label> <input
+								type="file" id="rcpt" onchange="readURL(this);"
+								style="display: none">
 						</form>
 					</div>
 					<div class="recipt">
 						<div>
 							<button onclick="upload()">확인</button>
-						</div>
-						<div>
-							<img id="uploadimg"></img>
 						</div>
 					</div>
 				</div>
