@@ -63,7 +63,7 @@ public class MyPageController {
 
 	/**
 	 * order
-	 * 해당 메소드는 중복같은데
+	 * 해당 메소드는 중복같은데ㅋㅋㅋ
 	 * @param id
 	 * @param model
 	 * @return
