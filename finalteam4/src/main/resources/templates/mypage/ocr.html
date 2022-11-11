@@ -278,14 +278,16 @@
 }
 
 .main_recipt {
+	width: 500px;
+	height: 400px;
 	padding: 20px;
 }
 
-.main_recipt .recipt {
-	display: inline-block;
-	float: center;
+.label {
+	cursor: pointer;
 }
 </style>
+
 <script>
 	$(document).ready(function() {
 		$("#menu-toggle").click(function(e) {
@@ -295,14 +297,40 @@
 	});
 
 	function readURL(input) {
-		var reader = new FileReader();
+		var reader = new FileReader(); // File 객체를 이용해 파일의 내용을 읽고 사용자의 컴퓨터에 저장하는 것을 가능
 
+		// FileReader.onload - load 이벤트의 핸들러, 읽기 동작이 성공적으로 완료 되었을 때마다 발생
 		reader.onload = function(e) {
 			$("#showimg").attr("src", e.target.result);
-			$("#showimg").attr("style", "width: 40px; height: 50px");
+			$("#showimg").attr("style", "max-width: 300px;", "width:400px;");
 		};
-		reader.readAsDateURL(input.target.files[0]);
-		alert('reader.readAsDataURL : ' + input.target.files[0]);
+		// 컨텐츠를 File에서 읽어 오는 역할
+		reader.readAsDataURL(input.files[0]);
+		alert("reader.readAsDataURL : " + input.files[0]);
+	}
+
+	function upload() {
+		const imageInput = $("#rcpt")[0];
+		console.log("rcpt: ", imageInput.files)
+
+		if (imageInput.files.lenght === 0) {
+			alert("영수증 사진을 첨부해주세요.");
+			return;
+		}
+
+		const formData = new FormData();
+		formData.append("image", imageInput.files[0]);
+
+		$.ajax({
+			type : "POST",
+			url : "/ocr/ocrresult",
+			processData : false,
+			contentType : false,
+			data : formData,
+			success : function(data) {
+				alert(data);
+			}
+		});
 	}
 </script>
 
@@ -368,16 +396,17 @@
 				</h3>
 				<div class="main_recipt">
 					<div class="recipt">
-						<img id="showimg">
 						<form id="uploadimg">
-							<label for="rcpt" style="font-size: 50px">+</label> <input
-								type="file" id="rcpt" onchange="readURL(this);"
-								style="display: none">
+							<label class="label" for="rcpt">+</label> <input type="file"
+								id="rcpt" onchange="readURL(this);" style="display: none">
 						</form>
-					</div>
-					<div class="recipt">
 						<div>
-							<button onclick="upload()">확인</button>
+							<img id="showimg">
+						</div>
+						<div class="recipt" style="padding-top: 20px">
+							<div>
+								<button onclick="upload()">C h e c k</button>
+							</div>
 						</div>
 					</div>
 				</div>

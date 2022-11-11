@@ -1,12 +1,16 @@
 package com.multi.controller;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.multi.OcrApi;
 import com.multi.dto.CartDTO;
 import com.multi.dto.CustDTO;
 import com.multi.dto.StoreDTO;
@@ -32,13 +36,13 @@ public class AController {
 	OrderlistService orderlistservice;
 	@Autowired
 	ReserveService reserveservice;
-	
+	@Autowired
+	OcrApi ocr;
+
 	/**
-	 * checkid
-	 * 해당 메소드는 cid를 통해
-	 * cust에서 해당 cid와 맞는
-	 * custid를 검색하여 일치 여부를
-	 * result로 return해주기 위한 목적이다.
+	 * checkid 해당 메소드는 cid를 통해 cust에서 해당 cid와 맞는 custid를 검색하여 일치 여부를 result로
+	 * return해주기 위한 목적이다.
+	 * 
 	 * @param cid
 	 * @return
 	 */
@@ -46,16 +50,16 @@ public class AController {
 	public Object checkid(String cid) {
 		String result = "";
 		CustDTO cust = null;
-		
+
 		if (cid.equals("") || cid == null) {
 			return "f";
 		}
-		
+
 		try {
 			cust = cust_service.get(cid);
-			if(cust != null) {
+			if (cust != null) {
 				result = "f";
-			}else {
+			} else {
 				result = "t";
 			}
 		} catch (Exception e) {
@@ -63,12 +67,11 @@ public class AController {
 		}
 		return result;
 	}
-	
+
 	/**
-	 * addcart
-	 * 해당 메소드는 storeid를 통해
-	 * store-menu-menuimgs로 묶인 관계에서
-	 * 검색된 데이터들을 cart에 register하는 것이 목적이다.
+	 * addcart 해당 메소드는 storeid를 통해 store-menu-menuimgs로 묶인 관계에서 검색된 데이터들을 cart에
+	 * register하는 것이 목적이다.
+	 * 
 	 * @param model
 	 * @param custid
 	 * @param cnt
@@ -79,25 +82,24 @@ public class AController {
 	public String addcart(Model model, String custid, Integer cnt, Integer storeid) {
 		List<StoreDTO> list = null;
 		try {
-			if(cartservice.selectcart(custid) != null) {
+			if (cartservice.selectcart(custid) != null) {
 				cartservice.deletecart(custid);
-			}	
+			}
 			list = storeservice.detail(storeid);
-			for(StoreDTO s:list) {
-				cartservice.register(new CartDTO(null, custid, s.getMenuid(), cnt,s.getMenuname(),s.getMenuprice(),s.getMenuimg(),(cnt*s.getMenuprice())));			
+			for (StoreDTO s : list) {
+				cartservice.register(new CartDTO(null, custid, s.getMenuid(), cnt, s.getMenuname(), s.getMenuprice(),
+						s.getMenuimg(), (cnt * s.getMenuprice())));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "";
 	}
-	
+
 	/**
-	 * reconfirm
-	 * 해당 메소드는 회원정보 수정에 관한 메소드이며
-	 * 파라메터로 받아온 custid와 custpwd를 통해
-	 * cust에서 해당 custid의 custpwd와 비교하여,
-	 * 일치 여부를 result로 리턴시키는 것이 목적이다.
+	 * reconfirm 해당 메소드는 회원정보 수정에 관한 메소드이며 파라메터로 받아온 custid와 custpwd를 통해 cust에서 해당
+	 * custid의 custpwd와 비교하여, 일치 여부를 result로 리턴시키는 것이 목적이다.
+	 * 
 	 * @param custid
 	 * @param custpwd
 	 * @return
@@ -121,5 +123,26 @@ public class AController {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	@RequestMapping("/ocr/ocrresult")
+	public Object orcresult(MultipartHttpServletRequest filelist) {
+		Object obj = null;
+		String fieldName = "";
+		MultipartFile mfile = null;
+		System.out.println("orcresult 실행 ... ");
+
+		Iterator<String> iter = filelist.getFileNames();
+		while (iter.hasNext()) {
+			fieldName = (String) iter.next();
+			mfile = filelist.getFile(fieldName);
+			
+			System.out.println(mfile);
+			System.out.println(fieldName);
+			System.out.println(mfile.getOriginalFilename());
+
+		}
+		obj = ocr.ocrresult(mfile.getOriginalFilename());
+		return obj;
 	}
 }
