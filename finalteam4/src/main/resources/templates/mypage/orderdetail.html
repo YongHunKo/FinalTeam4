@@ -451,12 +451,12 @@
 						<ul class="my_order_tbl2" th:each="li : ${list}">
 							<li class="ng-star-inserted"><a
 								class="my_tbl ng-star-inserted"
-								href="/mypage/my-order/detail/15347295">
+								th:href="@{/mypage/my-order/detail/15347295}">
 									<div class="date" th:text="${li.storename}"></div>
 									<div class="history">
 										<div class="imgbx">
 											<div class="imgin" style="float: center">
-												<img th:src="'/menuimg/' + ${li.menuimg}">
+												<img th:src="@{/menuimg/} + ${li.menuimg}">
 											</div>
 										</div>
 										<div class="prd_order">

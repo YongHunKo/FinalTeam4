@@ -291,7 +291,7 @@
 			var id = $("#staticId").val();
 			var pwd = $("#inputPassword").val();
 			$.ajax({
-				url : "/edit/reconfirm",
+				url : "[[@{/edit/reconfirm}]]",
 				data : {
 					"custid" : id,
 					"custpwd" : pwd
@@ -327,7 +327,7 @@
 
 			}
 			var custid = "[[${session.logincust.custid}]]";
-			location.href = "/mypage/info?id=" + custid;
+			location.href = "[[@{/mypage/info?id=}]]" + custid;
 		});
 	});
 </script>

@@ -13,7 +13,7 @@
    
 
 
-    <link href="/img/favicon.png" rel="shortcut icon" />
+    <link th:href="@{/img/favicon.png}" rel="shortcut icon" />
 
     <!-- Bootstrap CSS -->
 
@@ -157,7 +157,7 @@
 	$(document).ready(function(){
 		$('#signup_btn').click(function(){
 			$('#signup_form').attr({
-				'action':'/signupimpl',
+				'action':'[[@{/signupimpl}]]',
 				'method':'post'
 			});
 			$('#signup_form').submit();
@@ -176,7 +176,7 @@
 		$('#id').keyup(function(){
 			var custid = $(this).val();
 			$.ajax({
-				url:'/checkid',
+				url:'[[@{/checkid}]]',
 				data:{'cid':custid},
 				success:function(result){
 					if(result == 't'){
@@ -204,7 +204,7 @@
 
       <p class="logo" style="padding-bottom:20px;">
 
-        <img src="assets/images/Logo8.svg">
+        <img th:src="@{assets/images/Logo8.svg}">
 
       </p><br>
 

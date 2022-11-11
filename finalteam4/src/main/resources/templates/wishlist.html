@@ -327,7 +327,7 @@ function del(wishlistid){
 	var id = '[[${session.logincust.custid}]]';
 	var c = confirm('삭제하시겠습니까?');
 	if(c == true){
-		location.href='/deletewishlist?wishlistid='+wishlistid+'&id='+id;
+		location.href='[[@{/deletewishlist?wishlistid=}]]'+wishlistid+'&id='+id;
 	}
 }
 

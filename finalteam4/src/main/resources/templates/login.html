@@ -6,48 +6,48 @@
 	  
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	<script src="http://code.jquery.com/jquery-latest.js"></script> 
-	<link rel="stylesheet" href="@{assets/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{assets/css/bootstrap.min.css}">
 
     <!--====== Default CSS ======-->
-    <link rel="stylesheet" href="@{assets/css/default.css}">
+    <link rel="stylesheet" th:href="@{assets/css/default.css}">
     
-    <link rel="stylesheet" href="@{/assets/css/slick.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/slick.css}">
 
     <!--====== Line Icons CSS ======-->
-    <link rel="stylesheet" href="@{/assets/css/LineIcons.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/LineIcons.css}">
 
     <!--====== Material Design Icons CSS ======-->
-    <link rel="stylesheet" href="@{/assets/css/materialdesignicons.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/materialdesignicons.min.css}">
 
     <!--====== Jquery Ui CSS ======-->
-    <link rel="stylesheet" href="@{/assets/css/jquery-ui.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/jquery-ui.min.css}">
 
     <!--====== nice select CSS ======-->
-    <link rel="stylesheet" href="@{/assets/css/nice-select.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/nice-select.css}">
     
 
 
-    <script src="@{/assets/js/vendor/jquery-3.5.1.min.js}"></script>
-    <script src="@{/assets/js/popper.min.js}"></script>
-    <script src="@{/assets/js/bootstrap.min.js}"></script>
-    <script src="@{/assets/js/vendor/modernizr-3.7.1.min.js}"></script>
+    <script th:src="@{/assets/js/vendor/jquery-3.5.1.min.js}"></script>
+    <script th:src="@{/assets/js/popper.min.js}"></script>
+    <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+    <script th:src="@{/assets/js/vendor/modernizr-3.7.1.min.js}"></script>
     <!--====== Slick js ======-->
-    <script src="@{/assets/js/slick.min.js}"></script>
+    <script th:src="@{/assets/js/slick.min.js}"></script>
 
     <!--====== Accordion Steps Form js ======-->
-    <script src="@{/assets/js/jquery-vj-accordion-steps.js}"></script>
+    <script th:src="@{/assets/js/jquery-vj-accordion-steps.js}"></script>
 
     <!--====== Jquery Ui js ======-->
-    <script src="@{/assets/js/jquery-ui.min.js}"></script>
+    <script th:src="@{/assets/js/jquery-ui.min.js}"></script>
 
     <!--====== Form validator js ======-->
-    <script src="@{/assets/js/jquery.form-validator.min.js}"></script>
+    <script th:src="@{/assets/js/jquery.form-validator.min.js}"></script>
 
     <!--====== nice select js ======-->
-    <script src="@{/assets/js/jquery.nice-select.min.js}"></script>
+    <script th:src="@{/assets/js/jquery.nice-select.min.js}"></script>
 
     <!--====== formatter js ======-->
-    <script src="@{/assets/js/jquery.formatter.min.js}"></script>
+    <script th:src="@{/assets/js/jquery.formatter.min.js}"></script>
 
     <!--====== Main js ======-->
   
@@ -258,7 +258,7 @@ $(document).ready(function(){
 
       <p class="logo" style="padding-bottom:20px;">
 
-        <img src="@{assets/images/Logo8.svg}">
+        <img th:src="@{assets/images/Logo8.svg}">
 
       </p><br>
 
@@ -295,7 +295,7 @@ $(document).ready(function(){
         <br>
         <a  id="naverIdLogin_loginButton" href="https://nid.naver.com/oauth2.0/authorize?client_id=MAK4QIbORyQCqNxpf2Oc&state=test&redirect_uri=http://127.0.0.1/naver/callback&response_type=code&auth_type=reprompt">
         <!-- <a  id="naverIdLogin_loginButton" href="https://nid.naver.com/oauth2.0/authorize?client_id=MAK4QIbORyQCqNxpf2Oc&state=test&redirect_uri=http://http:118.67.131.90/naver/callback&response_type=code&auth_type=reprompt"> -->
-        <img src="@{assets/images/client-logo/naver_login.png}" alt="네이버 로그인" id="naver_img" style="width:180px; margin-left:-20px;">
+        <img th:src="@{assets/images/client-logo/naver_login.png}" alt="네이버 로그인" id="naver_img" style="width:180px; margin-left:-20px;">
         </a><br>
         <br>
         <div id="my-signin2" data-onsuccess="rendorButton"></div>	
@@ -326,8 +326,8 @@ $(document).ready(function(){
 	
 	
 	<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
-        <script src="@{/assets/js/count-up.min.js}"></script>
-	<script src="@{/assets/js/main.js}"></script>
+        <script th:src="@{/assets/js/count-up.min.js}"></script>
+	<script th:src="@{/assets/js/main.js}"></script>
  
 
   

@@ -30,7 +30,7 @@ margin: 0 auto;
      	<h4 th:text="|User NickName = ${naver.nickname}|"></h4>
      	<h4 th:text="|User Email = ${naver.email}|"></h4>
 		<br>
-		<a href="/logout" style="width:150px;">Logout</a>
+		<a th:href="@{/logout}" style="width:150px;">Logout</a>
      </div>
   
  </div>
