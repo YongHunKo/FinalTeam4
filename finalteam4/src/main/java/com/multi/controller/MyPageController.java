@@ -217,5 +217,20 @@ public class MyPageController {
 		model.addAttribute("center", dir + "info");
 		return "index";
 	}
+	
+	@RequestMapping("/update")
+	public String update(CustDTO cust, Model model, HttpSession session) {
+		CustDTO logincust = (CustDTO) session.getAttribute("logincust");
+		cust.setCustrdate(logincust.getCustrdate());
+		cust.setBirth(logincust.getBirth());
+		cust.setProfileimg(logincust.getProfileimg());
+		try {
+			cust_service.modify(cust);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "redirect:/mypage?id=" + cust.getCustid();
+	}
 
 }
