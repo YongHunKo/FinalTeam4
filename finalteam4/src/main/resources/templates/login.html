@@ -282,21 +282,11 @@ $(document).ready(function(){
         <img th:src="@{assets/images/client-logo/naver_login.png}" alt="네이버 로그인" id="naver_img" style="width:180px; margin-left:-20px;">
         </a><br>
         <br>
-         <div id="g_id_onload"
-         data-client_id="414674411151-8otfjo97eobc9r4lk262bvegl1e27so6.apps.googleusercontent.com"
-         data-login_uri="http://localhost:80"
-         data-callback="http://localhost:80/login"
-         data-auto_prompt="false">
-      </div>
-      <div class="g_id_signin"
-         data-type="standard"
-         data-size="large"
-         data-theme="outline"
-         data-text="sign_in_with"
-         data-shape="circle"
-         data-logo_alignment="left" style="width:210px; text-align:center; margin-left:10px; border-radius:100px;">
-      </div>	
-       
+        <a  id="googleIdLogin_loginButton" href="https://accounts.google.com/o/oauth2/v2/auth?scope=profile&response_type=code&client_id=
+		414674411151-8otfjo97eobc9r4lk262bvegl1e27so6.apps.googleusercontent.com&redirect_uri=http://localhost:80/auth/google/callback">
+        <!-- <a  id="naverIdLogin_loginButton" href="https://nid.naver.com/oauth2.0/authorize?client_id=MAK4QIbORyQCqNxpf2Oc&state=test&redirect_uri=http://http:118.67.131.90/naver/callback&response_type=code&auth_type=reprompt"> -->
+        <img th:src="@{assets/images/client-logo/google.png}" alt="구글 로그인" id="google_img" style="width:180px; margin-left:-20px;">
+        </a>
  
         </ul>
 
