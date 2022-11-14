@@ -86,9 +86,9 @@ $(document).ready(function(){
 	//1. wishlist_btn클릭시 식당id 고객id를 변수로 지정해서 로케이션으로 wishlist로 넘긴다
 		$('#wishlist_btn').click(function(){ 
 		var storeid = $('#storeid').text();
-		var custid = '[[${session.logincust.custid}]]';
+		var custid = $('#custid').text();
 		$.ajax({
-			url:'/insertwishlist', 
+			url:'[[@{/insertwishlist}]]', 
 			data:{'storeid':storeid, 'custid':custid},
 			success:function(data){
 				$('#Modal').modal()
@@ -100,7 +100,7 @@ $(document).ready(function(){
 		var storeid=$('#storeid').text();
 		var custid=$('#custid').text();
 		$.ajax({
-			url:'[[@{addcart}]]',
+			url:'[[@{/addcart}]]',
 			data:{
 				'custid':custid,
 				'storeid':storeid,
@@ -190,7 +190,7 @@ $(document).ready(function(){
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">취소</button>
-					<a class="btn btn-primary" th:href="@{/mypage/wishlist(id=${session.logincust.custid})}">확인</a>
+					<a class="btn btn-primary" th:if="${session.logincust != null}" th:href="@{/wishlist(id=${session.logincust.custid})}">확인</a>
 				</div>
 			</div>
 		</div>
