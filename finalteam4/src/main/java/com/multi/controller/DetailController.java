@@ -31,7 +31,7 @@ public class DetailController {
 		List<StoreDTO> list = null;
 		List<StoreDTO> list2 =null;
 		try {
-			list=service.cafedetail(200);
+			list=service.catedetail(200);
 			list2=service.detailimg(200);
 			model.addAttribute("center", "cafedetail");
 			model.addAttribute("detail", list);
@@ -47,7 +47,7 @@ public class DetailController {
 		List<StoreDTO> list = null;
 		List<StoreDTO> list2 =null;
 		try {
-			list=service.cafedetail(310);
+			list=service.catedetail(310);
 			list2=service.detailimg(310);
 			model.addAttribute("center", "sushidetail");
 			model.addAttribute("detail", list);
@@ -63,7 +63,7 @@ public class DetailController {
 		List<StoreDTO> list = null;
 		List<StoreDTO> list2 =null;
 		try {
-			list=service.cafedetail(110);
+			list=service.catedetail(110);
 			list2=service.detailimg(110);
 			model.addAttribute("center", "porkdetail");
 			model.addAttribute("detail", list);

@@ -47,8 +47,8 @@ public class StoreService implements MyService<Integer, StoreDTO>{
 		return mapper.detail(storeid);
 	}
 
-	public List<StoreDTO> cafedetail(Integer cateid) throws Exception{
-		return mapper.cafedetail(cateid);
+	public List<StoreDTO> catedetail(Integer cateid) throws Exception{
+		return mapper.catedetail(cateid);
 	}
 
 	public List<StoreDTO> detailimg(Integer cateid) throws Exception{

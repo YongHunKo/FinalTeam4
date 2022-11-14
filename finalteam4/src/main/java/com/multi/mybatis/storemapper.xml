@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         INNER JOIN menuimgs mm ON mm.menuid = m.menuid
 		WHERE cateid=#{cateid}
 	</select>
-	<select id="cafedetail" parameterType="Integer" resultType="StoreDTO">
+	<select id="catedetail" parameterType="Integer" resultType="StoreDTO">
 		SELECT ss.storeimg FROM store s
 		INNER JOIN storeimgs ss ON  ss.storeid = s. storeid
 		WHERE cateid=#{cateid}

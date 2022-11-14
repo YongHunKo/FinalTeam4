@@ -12,7 +12,7 @@ import com.multi.frame.MyMapper;
 public interface StoreMapper extends MyMapper<Integer, StoreDTO>{
 	public List<StoreDTO> searchstore(String txt);
 	public List<StoreDTO> detail(Integer storeid);
-	public List<StoreDTO> cafedetail(Integer cateid);
+	public List<StoreDTO> catedetail(Integer cateid);
 	public List<StoreDTO> detailimg(Integer cateid);
 
 }
