@@ -14,10 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.multi.dto.CartDTO;
 import com.multi.dto.OrderlistDTO;
 import com.multi.dto.ReserveDTO;
+import com.multi.dto.StoreimgDTO;
+import com.multi.dto.WishlistDTO;
 import com.multi.service.CartService;
 import com.multi.service.OrderlistService;
 import com.multi.service.ReserveService;
 import com.multi.service.StoreService;
+import com.multi.service.StoreimgService;
+import com.multi.service.WishlistService;
 
 @Controller
 public class ReserveController {
@@ -29,6 +33,12 @@ public class ReserveController {
 	OrderlistService orderlistservice;
 	@Autowired
 	ReserveService reserveservice;
+	@Autowired
+	StoreimgService imgservice;
+	@Autowired
+	WishlistService wishservice;
+	@Autowired
+	OrderlistService orderservice;
 
 	/**
 	 * reserveimpl 해당 메소드는 cart에 저장되어 있는 DB를 파라메터 custid 값을 통해 selectcart를 사용하여 찾아서,
@@ -66,9 +76,19 @@ public class ReserveController {
 	 * @throws ParseException
 	 */
 	@RequestMapping("/reserveimpl2")
-	public String reserveimpl2(CartDTO cart, String custid, String reservedate, String reservetime)
+	public String reserveimpl2(CartDTO cart, String custid, String reservedate, String reservetime, Model model)
 			throws ParseException {
 		List<CartDTO> list = null;
+		
+		List<StoreimgDTO> list2 = null;
+		List<StoreimgDTO> list3 = null;
+		List<StoreimgDTO> list4 = null;
+		List<StoreimgDTO> list5 = null;
+		List<StoreimgDTO> list6 = null;
+		
+		List<WishlistDTO> list7 = null;
+		OrderlistDTO list8 = null;
+		
 		int cnt = 0;
 		int totalprice = 0;
 		int price = 0;
@@ -99,6 +119,23 @@ public class ReserveController {
 					cartservice.remove(c.getCartid());
 				}
 			}
+			/* 랜덤이미지, 랜덤정보 관련 model */
+			list2 = imgservice.selectrandom();
+			list3 = imgservice.selectrandominfo();
+			list4 = imgservice.today();
+			list5 = imgservice.today2();
+			list6 = imgservice.today3();
+			model.addAttribute("randomimg", list2);
+			model.addAttribute("randominfo", list3);
+			model.addAttribute("today", list4);
+			model.addAttribute("todaytwo", list5);
+			model.addAttribute("todaythree", list6);
+			model.addAttribute("center", "maincenter");
+			/* 위시리스트 관련 model */
+			list7 = wishservice.viewwish(custid);
+			list8 = orderservice.myorder_1(custid);
+			model.addAttribute("viewwish", list7);
+			model.addAttribute("list_one", list8);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
