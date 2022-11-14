@@ -20,6 +20,8 @@
 <link rel="stylesheet" th:href="@{/assets/css/style.css}">
 <link th:href="@{/assets/css/datepicker.min.css}" rel="stylesheet" type="text/css" media="all">
 <link rel="stylesheet" th:href="@{/assets/css/nice-select.css}">
+<script type="text/JavaScript" src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+
 <style>
 *{
 	margin: 0;
@@ -397,7 +399,16 @@ table.table th {
 						<button type="button" id="reserve_btn2" class="btn btn-primary">예약하기
 <!-- 							<a th:href="@{/reserveimpl2(custid=${session.logincust.custid},datepicker=${datepicker})}">예약하기</a>
  -->						</button>
+ 						<input type="button" onClick="sendLinkDefault();" value="Default"/>
 				</div>
+				<script type="text/javascript">
+    function sendLinkCustom() {
+        Kakao.init("5391a7213215108e6b8dc6ea778851ac");
+        Kakao.Link.sendCustom({
+            templateId: [85849]
+        });
+    }
+</script>
 			<!-- 수량 조정 form -->
 			<form th:action="@{/updatecart}" method="post" class="quantity_update_form">
 				<input type="hidden" name="cartid" class="update_cartid"> 
@@ -502,7 +513,6 @@ $(".quantity_modify_btn").on("click", function(){
 	
 	$('#reserve_btn2').click(function(){
 		//location.href="[[@{/reserveimpl2?custid=}]]"+custid+'&reservedate='+reservedate+'&reservetime='+reservetime
-
 		requestPay();
 	});
 	//I'mpot api test
@@ -536,7 +546,8 @@ $(".quantity_modify_btn").on("click", function(){
             buyer_name: custid,
             buyer_tel: "010-4242-4242",
             buyer_addr: "서울특별시 강남구 신사동",
-            buyer_postcode: "01181"
+            buyer_postcode: "01181",
+            m_redirect_url: "118.67.131.90/reserveimpl2?custid="+custid+"&reservedate="+reservedate+"&reservetime="+reservetime
         }, function (rsp) { // callback
             if (rsp.success) {
             	jQuery.ajax({
@@ -557,6 +568,46 @@ $(".quantity_modify_btn").on("click", function(){
         });
       }
     //pay api end
+    try {
+  function sendLinkDefault() {
+    Kakao.init('5391a7213215108e6b8dc6ea778851ac')
+    Kakao.Link.sendDefault({
+      objectType: 'feed',
+      content: {
+        title: '딸기 치즈 케익',
+        description: '#케익 #딸기 #삼평동 #카페 #분위기 #소개팅',
+        imageUrl:
+          'http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+        link: {
+          mobileWebUrl: 'https://developers.kakao.com',
+          webUrl: 'https://developers.kakao.com',
+        },
+      },
+      social: {
+        likeCount: 286,
+        commentCount: 45,
+        sharedCount: 845,
+      },
+      buttons: [
+        {
+          title: '웹으로 보기',
+          link: {
+            mobileWebUrl: 'https://developers.kakao.com',
+            webUrl: 'https://developers.kakao.com',
+          },
+        },
+        {
+          title: '앱으로 보기',
+          link: {
+            mobileWebUrl: 'https://developers.kakao.com',
+            webUrl: 'https://developers.kakao.com',
+          },
+        },
+      ],
+    })
+  }
+; window.kakaoDemoCallback && window.kakaoDemoCallback() }
+catch(e) { window.kakaoDemoException && window.kakaoDemoException(e) }
 	
 </script>
 
