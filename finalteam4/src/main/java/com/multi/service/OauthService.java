@@ -22,7 +22,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.multi.controller.SocialLoginType;
-import com.multi.mapper.SocialOauth;
+
 
 import lombok.RequiredArgsConstructor;
 
@@ -122,12 +122,12 @@ public class OauthService {
 		        String name = element.getAsJsonObject().get("name").getAsString();
 		        String email = element.getAsJsonObject().get("email").getAsString();
 		        String id = "GOOGLE_"+element.getAsJsonObject().get("id").getAsString();
-		        
+		        String profile=element.getAsJsonObject().get("picture").getAsString();
 		        googleUserInfo.put("name", name);
 		        googleUserInfo.put("email", email);
 		        googleUserInfo.put("id", id);
+		        googleUserInfo.put("profile", profile);
 		        
-		        System.out.println("login Controller : " + googleUserInfo);
 	        }
 	    } catch (IOException e) {
 	        e.printStackTrace();

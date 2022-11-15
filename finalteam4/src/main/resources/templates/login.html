@@ -210,13 +210,7 @@
 	</style>
 
 <script>
-function onSignIn(googleUser) {
-	  var profile = googleUser.getBasicProfile();
-	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-	  console.log('Name: ' + profile.getName());
-	  console.log('Image URL: ' + profile.getImageUrl());
-	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-	}
+
 /* 기본 로그인버튼 */
 $(document).ready(function(){
 	$('#login_btn').click(function(){
@@ -287,13 +281,11 @@ $(document).ready(function(){
         <img th:src="@{assets/images/client-logo/naver_login.png}" alt="네이버 로그인" id="naver_img" style="width:180px; margin-left:-20px;">
         </a><br>
         <br>
-        <a  id="googleIdLogin_loginButton" href="https://accounts.google.com/o/oauth2/auth?client_id=414674411151-8otfjo97eobc9r4lk262bvegl1e27so6.apps.googleusercontent.com&redirect_uri=http://localhost:80/google/callback&access_type=offline&response_type=code&scope=email%20profile&state=url_parameter">
-        <!-- <a  id="naverIdLogin_loginButton" href="https://nid.naver.com/oauth2.0/authorize?client_id=MAK4QIbORyQCqNxpf2Oc&state=test&redirect_uri=http://http:118.67.131.90/naver/callback&response_type=code&auth_type=reprompt"> -->
-        <img th:src="@{assets/images/client-logo/google.png}" alt="구글 로그인" id="google_img" style="width:180px; margin-left:-20px;">
+        <a  id="googleIdLogin_loginButton" href="https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A//www.googleapis.com/auth/drive.metadata.readonly&access_type=offline&include_granted_scopes=true&response_type=code&state=state_parameter_passthrough_value&redirect_uri=http%3A//localhost:80/google/callback&client_id=414674411151-8otfjo97eobc9r4lk262bvegl1e27so6.apps.googleusercontent.com&prompt=consent">
+        <img th:src="@{assets/images/client-logo/google.png}" alt="구글 로그인" id="google_img" style="width:180px; margin-left:-20px; border-radius:10px;">
         </a>
- 		<div class="g-signin2" data-onsuccess="onSignIn"></div>
+ 		
         </ul>
-
       </div>
 
     </div>
