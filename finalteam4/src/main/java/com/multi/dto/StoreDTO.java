@@ -29,5 +29,8 @@ public class StoreDTO {
 	private String menuinfo;
 	private String menuimg;
 	private Integer menucnt;
+	
+	private Float storelat;
+	private Float storelong;
 
 }
