@@ -59,6 +59,7 @@ public class StoreController {
 	@RequestMapping("/insertwishlist")
 	public String insertwishlist(WishlistDTO wish) {
 		try {
+			wishservice.deletewishlist(new WishlistDTO(null, wish.getStoreid(), wish.getCustid(), null, null, null, null));
 			wishservice.register(wish);
 		} catch (Exception e) {
 			e.printStackTrace();

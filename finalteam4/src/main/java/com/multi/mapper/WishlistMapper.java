@@ -12,4 +12,7 @@ import com.multi.frame.MyMapper;
 @Repository
 public interface WishlistMapper extends MyMapper<Integer,WishlistDTO> {
 	public List<WishlistDTO> viewwish(String custid);
+	public List<WishlistDTO> selectcustid(String custid);
+	public List<WishlistDTO> selectstoreid(Integer storeid);
+	public void deletewishlist(WishlistDTO wish);
 }

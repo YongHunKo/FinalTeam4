@@ -10,41 +10,56 @@ import com.multi.frame.MyService;
 import com.multi.mapper.WishlistMapper;
 
 @Service
-public class WishlistService implements MyService<Integer,WishlistDTO>{
+public class WishlistService implements MyService<Integer, WishlistDTO> {
 
 	@Autowired
 	WishlistMapper mapper;
-	
+
 	@Override
 	public void register(WishlistDTO v) throws Exception {
 		mapper.insert(v);
-		
+
 	}
 
 	@Override
 	public void remove(Integer k) throws Exception {
 		mapper.delete(k);
-		
+
 	}
 
 	@Override
 	public void modify(WishlistDTO v) throws Exception {
 		mapper.update(v);
-		
+
 	}
 
 	@Override
 	public WishlistDTO get(Integer k) throws Exception {
-		
+
 		return mapper.select(k);
 	}
 
 	@Override
 	public List<WishlistDTO> getall() throws Exception {
-		
+
 		return mapper.selectall();
 	}
-	public List<WishlistDTO> viewwish(String custid) throws Exception{
+
+	public List<WishlistDTO> viewwish(String custid) throws Exception {
 		return mapper.viewwish(custid);
+	}
+
+	public List<WishlistDTO> selectcustid(String custid) throws Exception {
+		return mapper.selectcustid(custid);
+	}
+
+	public List<WishlistDTO> selectstoreid(Integer storeid) throws Exception {
+
+		return mapper.selectstoreid(storeid);
+	}
+	
+	public void deletewishlist(WishlistDTO wish) throws Exception {
+		mapper.deletewishlist(wish);
+
 	}
 }
