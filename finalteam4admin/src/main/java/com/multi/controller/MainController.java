@@ -60,7 +60,7 @@ public class MainController {
 		return "index";
 	}
 	
-	@RequestMapping("signupimpl")
+	@RequestMapping("/signupimpl")
 	public String signupimpl(Model model, EatAdmDTO adm, HttpSession session) {
 		try {
 			admservice.register(adm);
