@@ -119,23 +119,7 @@ public class ReserveController {
 					cartservice.remove(c.getCartid());
 				}
 			}
-			/* 랜덤이미지, 랜덤정보 관련 model */
-			list2 = imgservice.selectrandom();
-			list3 = imgservice.selectrandominfo();
-			list4 = imgservice.today();
-			list5 = imgservice.today2();
-			list6 = imgservice.today3();
-			model.addAttribute("randomimg", list2);
-			model.addAttribute("randominfo", list3);
-			model.addAttribute("today", list4);
-			model.addAttribute("todaytwo", list5);
-			model.addAttribute("todaythree", list6);
-			model.addAttribute("center", "maincenter");
-			/* 위시리스트 관련 model */
-			list7 = wishservice.viewwish(custid);
-			list8 = orderservice.myorder_1(custid);
-			model.addAttribute("viewwish", list7);
-			model.addAttribute("list_one", list8);
+			model.addAttribute("center", "/reservesuccess");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

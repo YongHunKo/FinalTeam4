@@ -11,230 +11,257 @@
 <!DOCTYPE html>
 <html>
 <meta charset="utf-8">
-	
+
 
 
 
 <head>
 
 <link rel="stylesheet" th:href="@{/assets/css/style.css}">
-<link th:href="@{/assets/css/datepicker.min.css}" rel="stylesheet" type="text/css" media="all">
+<link th:href="@{/assets/css/datepicker.min.css}" rel="stylesheet"
+	type="text/css" media="all">
 <link rel="stylesheet" th:href="@{/assets/css/nice-select.css}">
-<script type="text/JavaScript" src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type="text/JavaScript"
+	src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 <style>
-*{
+* {
 	margin: 0;
-	padding:0;
-	
+	padding: 0;
 }
-a{
+
+a {
 	text-decoration: none;
 }
 
-.navi_bar_area{
+.navi_bar_area {
 	width: 100%;
-    height: 70px;
-    background-color: #7696fd;
+	height: 70px;
+	background-color: #7696fd;
 }
 
-.content_area{
+.content_area {
 	width: 100%;
-    min-height: 1000px;
+	min-height: 1000px;
 }
-	 table{
-	 	border-collapse: collapse;
-	 	width: 100%;
-	 }
-	 .table_text_align_center{
-				text-align: center;
-	 }	
-	 caption{
-	    visibility: hidden;
-	    width: 0;
-	    height: 0;
-	    font-size: 0;
-	    line-height: 0;
-	    overflow: hidden; 
-	 }	  
 
-	 .content_subject{
-		height: 110px;
-	    line-height: 110px;
-	    background-color: #5080bd;
-	    margin-bottom: 60px; 
-	 
-	 }
-		 .content_subject span{ 
-		    padding-left: 30 px;
-		    display: inline-block;
-		    color: white;
-		    font-size: 50px;
-		    font-weight: bolder; 
-		 }
-	 
-	 .content_totalCount_section{
-	 	margin-bottom: 12px;
-	 }
-	 .content_btn_section{
-	 	margin-top: 20px;
-	 	text-align: right;
-	 }
-	 	.content_btn_section a{
-	    color: #fefeff;
-	    min-width: 125px;
-	    padding: 2.5px 10px;
-	    display: inline-block;
-	    height: 39px;
-	    font-size: 23px;
-	    font-weight: bold;
-	    text-align: center;
-	    margin-right: -2px;
-	    line-height: 39px; 	
-	 	}
-	 
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
 
-	 .subject_table{
-		font-size: 14px;
-	    line-height: 20px;
-	    width: 100%;
-	    text-align: center; 	
-	 }
+.table_text_align_center {
+	text-align: center;
+}
 
-		 th{
-		text-align: center;
-	    color: #333;
-	    border-bottom: 1px solid #e7e7e7;
-	    border-top: 1px solid #3084d9;
-	    background: #f4f9fd;
-	    padding: 2px 0;	 
-		 }
-		.td_width_1{
-			width: 1%;
-		}	 	 	 
-		.td_width_2{
-			width: 20%;
-		}	 	 
-		.td_width_3{
-			width: 12%;
-		}	 
-		.td_width_4{
-			width: 15%;
-		}	
-		.cart_table{
-			font-size: 14px;
-			line-height: 20px;
-		}  
-			.cart_table tr{
-				height: 110px;
-			}
-			.price_td{
-				padding-left: 5px;
-			}
-				.red_color{
-					color : red;
-				}
-				.green_color{
-					color : green;
-				}
-			.cart_table td{
-				border-bottom: 1px solid #e7e7e7;
-			}
-			.quantity_div{
-				position: relative;
-			    width: 42px;
-			    height: 25px;
-			    text-align: left;
-			    margin: 5px auto;		
-			}
-			.quantity_input{
-				position: absolute;
-				width: 27px;
-			    height: 23px;
-			    text-align: center;
-			    border: 1px solid #c6c6c6;
-			    border-right: 0px;
-			    line-height: 19px;
-			    font-size: 16px;
-			    color: #4c4848;	
-			    left: 0;
-			}
-			.quantity_btn{
-				position: absolute;
-			    border: 1px solid #aaa;
-			    color: #FE6B00;
-			    width: 14px;
-			    height: 13px;
-			    padding: 0px;
-			    background-color: #fff;
-			    font-weight: bold;
-			    font-size: 7px;
-			    line-height: 6px;
-			    vertical-align: middle;	
-			}
-			.plus_btn{
-				top: 0;
-				right: 0
-			}
-			.minus_btn{
-				bottom: 0;
-				right: 0
-			}		
-			.quantity_modify_btn{
-				border: 1px solid #d0d0d0;
-			    height: 25px;
-			    line-height: 13px;
-			    background-color: #fff;
-			    text-align: center;
-			    width: 46px;
-			    display: inline-block;
-			    padding: 3px 6px 2px;
-			    margin-top: 3px;		
-			}
-			.table_text_align_center{
-				text-align: center;
-			}
-			
-		
-	.content_total_section{
-		    background-color: rgb(227, 237, 247);
-	}		
-		.total_wrap{
-			width: 80%;
-		    margin: auto;
-		    padding: 10px 0 10px 0;	
-		}
-			.total_wrap td{
-				width : 50%;
-			}
-			.finalTotalPrice_span{
-				color: #854A72;
-				font-size: 17px;
-				font-weight: bold;
-			}
-			
-			.boundary_div{
-				font-size: 0;
-			    border: 1px dotted #d1c7c7;
-			    margin: 5px 0 5px 0;		
-			}
-			
-		.input_size_20{
-			width:20px;
-			height:20px;
-		}
-		.all_check_input{
-			margin: 18px 0 18px 18px;
-		}
-		.all_chcek_span{
-			padding-left: 8px;
-	    	font-size: 20px;
-	    	font-weight: bold;		
-		}			
+caption {
+	visibility: hidden;
+	width: 0;
+	height: 0;
+	font-size: 0;
+	line-height: 0;
+	overflow: hidden;
+}
+
+.content_subject {
+	height: 110px;
+	line-height: 110px;
+	background-color: #5080bd;
+	margin-bottom: 60px;
+}
+
+.content_subject span {
+	padding-left: 30 px;
+	display: inline-block;
+	color: white;
+	font-size: 50px;
+	font-weight: bolder;
+}
+
+.content_totalCount_section {
+	margin-bottom: 12px;
+}
+
+.content_btn_section {
+	margin-top: 20px;
+	text-align: right;
+}
+
+.content_btn_section a {
+	color: #fefeff;
+	min-width: 125px;
+	padding: 2.5px 10px;
+	display: inline-block;
+	height: 39px;
+	font-size: 23px;
+	font-weight: bold;
+	text-align: center;
+	margin-right: -2px;
+	line-height: 39px;
+}
+
+.subject_table {
+	font-size: 14px;
+	line-height: 20px;
+	width: 100%;
+	text-align: center;
+}
+
+th {
+	text-align: center;
+	color: #333;
+	border-bottom: 1px solid #e7e7e7;
+	border-top: 1px solid #3084d9;
+	background: #f4f9fd;
+	padding: 2px 0;
+}
+
+.td_width_1 {
+	width: 1%;
+}
+
+.td_width_2 {
+	width: 20%;
+}
+
+.td_width_3 {
+	width: 12%;
+}
+
+.td_width_4 {
+	width: 15%;
+}
+
+.cart_table {
+	font-size: 14px;
+	line-height: 20px;
+}
+
+.cart_table tr {
+	height: 110px;
+}
+
+.price_td {
+	padding-left: 5px;
+}
+
+.red_color {
+	color: red;
+}
+
+.green_color {
+	color: green;
+}
+
+.cart_table td {
+	border-bottom: 1px solid #e7e7e7;
+}
+
+.quantity_div {
+	position: relative;
+	width: 42px;
+	height: 25px;
+	text-align: left;
+	margin: 5px auto;
+}
+
+.quantity_input {
+	position: absolute;
+	width: 27px;
+	height: 23px;
+	text-align: center;
+	border: 1px solid #c6c6c6;
+	border-right: 0px;
+	line-height: 19px;
+	font-size: 16px;
+	color: #4c4848;
+	left: 0;
+}
+
+.quantity_btn {
+	position: absolute;
+	border: 1px solid #aaa;
+	color: #FE6B00;
+	width: 14px;
+	height: 13px;
+	padding: 0px;
+	background-color: #fff;
+	font-weight: bold;
+	font-size: 7px;
+	line-height: 6px;
+	vertical-align: middle;
+}
+
+.plus_btn {
+	top: 0;
+	right: 0
+}
+
+.minus_btn {
+	bottom: 0;
+	right: 0
+}
+
+.quantity_modify_btn {
+	border: 1px solid #d0d0d0;
+	height: 25px;
+	line-height: 13px;
+	background-color: #fff;
+	text-align: center;
+	width: 46px;
+	display: inline-block;
+	padding: 3px 6px 2px;
+	margin-top: 3px;
+}
+
+.table_text_align_center {
+	text-align: center;
+}
+
+.content_total_section {
+	background-color: rgb(227, 237, 247);
+}
+
+.total_wrap {
+	width: 80%;
+	margin: auto;
+	padding: 10px 0 10px 0;
+}
+
+.total_wrap td {
+	width: 50%;
+}
+
+.finalTotalPrice_span {
+	color: #854A72;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.boundary_div {
+	font-size: 0;
+	border: 1px dotted #d1c7c7;
+	margin: 5px 0 5px 0;
+}
+
+.input_size_20 {
+	width: 20px;
+	height: 20px;
+}
+
+.all_check_input {
+	margin: 18px 0 18px 18px;
+}
+
+.all_chcek_span {
+	padding-left: 8px;
+	font-size: 20px;
+	font-weight: bold;
+}
 
 table>tbody>tr>td>img {
 	width: 100px;
-	object-fit:cover;
+	object-fit: cover;
 }
 
 table>tbody>tr>td>img:hover {
@@ -264,144 +291,152 @@ table.table th {
 }
 </style>
 
- 
+
 
 
 
 
 </head>
-	
-    
-    <!-- Air datepicker css -->
+
+
+<!-- Air datepicker css -->
 <script th:src="@{/assets/js/vendor/jquery-3.5.1.min.js}"></script>
 <script th:src="@{/assets/js/jquery.nice-select.min.js}"></script>
- <!-- 값 제어를 위해 jquery -->
-<script th:src="@{/assets/js/datepicker.js}"></script> 
-	<!-- Air datepicker js -->
-<script th:src="@{/assets/js/datepicker.ko.js}"></script> 
-	<!-- 달력 한글 추가를 위해 커스텀 --> 
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-     
+<!-- 값 제어를 위해 jquery -->
+<script th:src="@{/assets/js/datepicker.js}"></script>
+<!-- Air datepicker js -->
+<script th:src="@{/assets/js/datepicker.ko.js}"></script>
+<!-- 달력 한글 추가를 위해 커스텀 -->
+<script type="text/javascript"
+	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
 <body>
 	<div class="wrapper">
 		<div class="wrap">
-		<div class="content_area">
-			<div class="container-fluid">
-				<h3 style="font-weight:700; text-align:center; margin-top:20px;">예약페이지</h3>
-			</div>
-			<div class="content_middle_section"></div>
-			<div class="content_totalCount_section">
-			
-				<!-- 체크박스 전체 여부 -->
-				<div class="all_check_input_div">
-					<input type="checkbox" class="all_check_input input_size_20"
-						checked="checked"><span class="all_chcek_span">전체선택</span>
+			<div class="content_area">
+				<div class="container-fluid">
+					<h3 style="font-weight: 700; text-align: center; margin-top: 20px;">예약페이지</h3>
 				</div>
-				
-				<table class="table table-hover">
-					<tbody>
-						<tr>
-							<th class="td_width_1"></th>
-							<th class="td_width_2">메뉴 이미지</th>
-							<th class="td_width_3">메뉴명</th>
-							<th class="td_width_4">가격</th>
-							<th class="td_width_4">수량</th>
-							<th class="td_width_4">합계</th>
-						</tr>
-							</thead>
-							<tbody>
-								<tr th:each="c : ${menulist}">
-									<td class="td_width_1 cart_info_td">
-										<input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked"> 
-										<input type="hidden" class="individual_Price_input" th:value="${c.price}">
-										<input type="hidden" class="individual_Cnt_input" th:value="${c.cnt}"> 
-										<input type="hidden" class="individual_totalPrice_input" th:value="${c.price*c.cnt}"> 
-										<input type="hidden" class="individual_itemId_input" th:value="${c.menuid}">
-									</td>
-									<td class="td_width_2"><img th:src="@{/menuimg/}+${c.menuimg}" style="width:200px; height:200px; border-radius:60px; ">
-									</td>
-									<td class="td_width_3" th:text="${c.menuname}">Item Name</td>
-									<td class="td_width_4 price_td"
-										th:text="${#numbers.formatInteger(c.price, 3, 'COMMA')}+'원'">
-									</td>
-									<td class="td_width_4 table_text_align_center">
-										<div class="table_text_align_center quantity_div">
-											<input type="text" th:value="${c.cnt}" class="quantity_input">
-											<button class="quantity_btn plus_btn">+</button>
-											<button class="quantity_btn minus_btn">-</button>
-										</div>
-										<button type="button" class="quantity_modify_btn" th:data-cartid="${c.cartid}" th:data-custid="${c.custid}" th:data-menuid="${c.menuid}" th:data-menuname="${c.menuname}" th:data-price="${c.price}" th:data-menuimg="${c.menuimg}">수정
-										</button>
-									</td>
-									<td>
-										<div>
-											<span th:if="${c.cnt*c.price != 0}" th:text="${#numbers.formatInteger(c.cnt*c.price, 3, 'COMMA')}+'원'"></span>
-											<span th:if="${c.cnt*c.price == 0}">0원</span>
-										</div>
-									</td>
-								</tr>
+				<div class="content_middle_section"></div>
+				<div class="content_totalCount_section">
+
+					<!-- 체크박스 전체 여부 -->
+					<div class="all_check_input_div">
+						<input type="checkbox" class="all_check_input input_size_20"
+							checked="checked"><span class="all_chcek_span">전체선택</span>
+					</div>
+
+					<table class="table table-hover">
+						<tbody>
+							<tr>
+								<th class="td_width_1"></th>
+								<th class="td_width_2">메뉴 이미지</th>
+								<th class="td_width_3">메뉴명</th>
+								<th class="td_width_4">가격</th>
+								<th class="td_width_4">수량</th>
+								<th class="td_width_4">합계</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="c : ${menulist}">
+								<td class="td_width_1 cart_info_td"><input type="checkbox"
+									class="individual_cart_checkbox input_size_20"
+									checked="checked"> <input type="hidden"
+									class="individual_Price_input" th:value="${c.price}"> <input
+									type="hidden" class="individual_Cnt_input" th:value="${c.cnt}">
+									<input type="hidden" class="individual_totalPrice_input"
+									th:value="${c.price*c.cnt}"> <input type="hidden"
+									class="individual_itemId_input" th:value="${c.menuid}">
+								</td>
+								<td class="td_width_2"><img
+									th:src="@{/menuimg/}+${c.menuimg}"
+									style="width: 200px; height: 200px; border-radius: 60px;">
+								</td>
+								<td class="td_width_3" th:text="${c.menuname}">Item Name</td>
+								<td class="td_width_4 price_td"
+									th:text="${#numbers.formatInteger(c.price, 3, 'COMMA')}+'원'">
+								</td>
+								<td class="td_width_4 table_text_align_center">
+									<div class="table_text_align_center quantity_div">
+										<input type="text" th:value="${c.cnt}" class="quantity_input">
+										<button class="quantity_btn plus_btn">+</button>
+										<button class="quantity_btn minus_btn">-</button>
+									</div>
+									<button type="button" class="quantity_modify_btn"
+										th:data-cartid="${c.cartid}" th:data-custid="${c.custid}"
+										th:data-menuid="${c.menuid}" th:data-menuname="${c.menuname}"
+										th:data-price="${c.price}" th:data-menuimg="${c.menuimg}">수정
+									</button>
+								</td>
+								<td>
+									<div>
+										<span th:if="${c.cnt*c.price != 0}"
+											th:text="${#numbers.formatInteger(c.cnt*c.price, 3, 'COMMA')}+'원'"></span>
+										<span th:if="${c.cnt*c.price == 0}">0원</span>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<form method="post">
+										예약일 선택하기 : <input type="text" id="datepicker"
+											name="datepicker">
+									</form>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- 가격 종합 -->
+					<div class="content_total_section">
+						<div class="total_wrap">
+							<table>
 								<tr>
 									<td>
-										<form method = "post"> 예약일 선택하기 :
-											<input type="text" id="datepicker" name="datepicker" >
-										</form>
+										<table>
+											<tr>
+												<td>총 상품 가격</td>
+												<td><span class="totalPrice_span">70000</span> 원</td>
+											</tr>
+											<tr>
+												<td>총 주문 상품수</td>
+												<td><span class="totalKind_span"></span>종&nbsp&nbsp<span
+													class="totalCount_span"></span>개</td>
+											</tr>
+										</table>
+									</td>
+									<td>
+										<table>
+											<tr>
+												<td></td>
+												<td></td>
+											</tr>
+										</table>
 									</td>
 								</tr>
-					</tbody>
-				</table>
-			<!-- 가격 종합 -->
-			<div class="content_total_section">
-				<div class="total_wrap">
-					<table>
-						<tr>
-							<td>
-								<table>
-									<tr>
-										<td>총 상품 가격</td>
-										<td><span class="totalPrice_span">70000</span> 원</td>
-									</tr>
-									<tr>
-										<td>총 주문 상품수</td>
-										<td><span class="totalKind_span"></span>종&nbsp&nbsp<span
-											class="totalCount_span"></span>개</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table>
-									<tr>
-										<td></td>
-										<td></td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-					</table>
-					<div class="boundary_div">구분선</div>
-					<table>
-						<tr>
-							<td>
-								<table>
-									<tbody>
-										<tr>
-											<td><strong>총 결제 예상 금액</strong></td>
-											<td id=totalpricespan><span class="finalTotalPrice_span">70000</span> 원</td>
-										</tr>
-									</tbody>
-								</table>
-							</td>
-						</tr>
-					</table>
-				</div>
-			</div>
-			<!-- 예약 버튼 영역 -->
-			<div class="content_btn_section" >
-						<button type="button" id="reserve_btn2" class="btn btn-primary">예약하기
-<!-- 							<a th:href="@{/reserveimpl2(custid=${session.logincust.custid},datepicker=${datepicker})}">예약하기</a>
- -->						</button>
- 						<input type="button" onClick="sendLinkDefault();" value="Default"/>
-				</div>
-				<script type="text/javascript">
+							</table>
+							<div class="boundary_div">구분선</div>
+							<table>
+								<tr>
+									<td>
+										<table>
+											<tbody>
+												<tr>
+													<td><strong>총 결제 예상 금액</strong></td>
+													<td id=totalpricespan><span
+														class="finalTotalPrice_span">70000</span> 원</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<!-- 예약 버튼 영역 -->
+					<div class="content_btn_section">
+						<button type="button" id="reserve_btn2" class="btn btn-primary">예약하기</button>
+					</div>
+					<script type="text/javascript">
     function sendLinkCustom() {
         Kakao.init("5391a7213215108e6b8dc6ea778851ac");
         Kakao.Link.sendCustom({
@@ -409,23 +444,25 @@ table.table th {
         });
     }
 </script>
-			<!-- 수량 조정 form -->
-			<form th:action="@{/updatecart}" method="post" class="quantity_update_form">
-				<input type="hidden" name="cartid" class="update_cartid"> 
-				<input type="hidden" name="cnt" class="update_cnt"> 
-				<input type="hidden" name="menuid" class="update_menuid"> 
-				<input type="hidden" name="menuname" class="update_menuname"> 
-				<input type="hidden" name="price" class="update_price"> 
-				<input type="hidden" name="menuimg" class="update_menuimg"> 
-				<input type="hidden" name="custid" th:value="${custid}" class="update_custid">
-			</form>
+					<!-- 수량 조정 form -->
+					<form th:action="@{/updatecart}" method="post"
+						class="quantity_update_form">
+						<input type="hidden" name="cartid" class="update_cartid">
+						<input type="hidden" name="cnt" class="update_cnt"> <input
+							type="hidden" name="menuid" class="update_menuid"> <input
+							type="hidden" name="menuname" class="update_menuname"> <input
+							type="hidden" name="price" class="update_price"> <input
+							type="hidden" name="menuimg" class="update_menuimg"> <input
+							type="hidden" name="custid" th:value="${custid}"
+							class="update_custid">
+					</form>
+				</div>
+			</div>
+			<!-- class="wrap" -->
 		</div>
-	</div>
-	<!-- class="wrap" -->
-	</div>
-	<!-- class="wrapper" -->
+		<!-- class="wrapper" -->
 
-	<script>
+		<script>
 $(document).ready(function(){
 	setTotalInfo();	
 });	
@@ -514,6 +551,7 @@ $(".quantity_modify_btn").on("click", function(){
 	$('#reserve_btn2').click(function(){
 		//location.href="[[@{/reserveimpl2?custid=}]]"+custid+'&reservedate='+reservedate+'&reservetime='+reservetime
 		requestPay();
+		
 	});
 	//I'mpot api test
 	var IMP = window.IMP; // 생략 가능
@@ -542,7 +580,7 @@ $(".quantity_modify_btn").on("click", function(){
             merchant_uid: 'merchant_' + new Date().getTime(),
             name: "Eat&Out",
             amount: totalPrice2*2, //여기서 반드시 금액조절 원래는 *1000을 해야 맞는값
-            buyer_email: "gildong@gmail.com",
+            buyer_email: "",
             buyer_name: custid,
             buyer_tel: "010-4242-4242",
             buyer_addr: "서울특별시 강남구 신사동",
@@ -559,6 +597,7 @@ $(".quantity_modify_btn").on("click", function(){
                         merchant_uid: rsp.merchant_uid
                     }
                 }).done(function (data) {
+                sendLinkDefault();
                 	location.href="[[@{/reserveimpl2?custid=}]]"+custid+'&reservedate='+reservedate+'&reservetime='+reservetime
                   // 가맹점 서버 결제 API 성공시 로직
                 })
@@ -574,13 +613,12 @@ $(".quantity_modify_btn").on("click", function(){
     Kakao.Link.sendDefault({
       objectType: 'feed',
       content: {
-        title: '딸기 치즈 케익',
-        description: '#케익 #딸기 #삼평동 #카페 #분위기 #소개팅',
+        title: 'Eat & Out 예약내역 안내',
         imageUrl:
           'http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
         link: {
-          mobileWebUrl: 'https://developers.kakao.com',
-          webUrl: 'https://developers.kakao.com',
+          mobileWebUrl: 'http://118.67.131.90/login',
+          webUrl: 'http://118.67.131.90/login',
         },
       },
       social: {
@@ -592,15 +630,15 @@ $(".quantity_modify_btn").on("click", function(){
         {
           title: '웹으로 보기',
           link: {
-            mobileWebUrl: 'https://developers.kakao.com',
-            webUrl: 'https://developers.kakao.com',
+            mobileWebUrl: 'http://118.67.131.90/login',
+            webUrl: 'http://118.67.131.90/login',
           },
         },
         {
           title: '앱으로 보기',
           link: {
-            mobileWebUrl: 'https://developers.kakao.com',
-            webUrl: 'https://developers.kakao.com',
+            mobileWebUrl: 'http://118.67.131.90/login',
+            webUrl: 'http://118.67.131.90/login',
           },
         },
       ],
@@ -612,11 +650,11 @@ catch(e) { window.kakaoDemoException && window.kakaoDemoException(e) }
 </script>
 
 
-    </div>
+	</div>
 
-    
-    
-    
-    </body> 
-     
+
+
+
+</body>
+
 </html>
