@@ -314,7 +314,7 @@
 		<!-- Sidebar -->
 		<div id="sidebar-wrapper">
 			<ul class="sidebar-nav">
-				<li><a th:text="${session.logincust.custname}+'님'"
+				<li><a th:if="${session.logincust.custname!=null}" th:text="${session.logincust.custname}+'님'"
 					style="padding: 20px 0 10px 0; font-size: 40px; font-weight: 600"></a></li>
 				<li><h4 href="#">나의 EAT & OUT 정보</h4></li>
 				<li><a
