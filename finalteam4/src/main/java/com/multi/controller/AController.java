@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.multi.OcrApi;
 import com.multi.dto.CartDTO;
 import com.multi.dto.CustDTO;
 import com.multi.dto.StoreDTO;
 import com.multi.service.CartService;
 import com.multi.service.CustService;
 import com.multi.service.MenuService;
+import com.multi.service.OcrService;
 import com.multi.service.OrderlistService;
 import com.multi.service.ReserveService;
 import com.multi.service.StoreService;
@@ -37,7 +37,7 @@ public class AController {
 	@Autowired
 	ReserveService reserveservice;
 	@Autowired
-	OcrApi ocr;
+	OcrService ocr;
 
 	/**
 	 * checkid 해당 메소드는 cid를 통해 cust에서 해당 cid와 맞는 custid를 검색하여 일치 여부를 result로
@@ -130,19 +130,15 @@ public class AController {
 		Object obj = null;
 		String fieldName = "";
 		MultipartFile mfile = null;
-		System.out.println("orcresult 실행 ... ");
 
 		Iterator<String> iter = filelist.getFileNames();
 		while (iter.hasNext()) {
 			fieldName = (String) iter.next();
 			mfile = filelist.getFile(fieldName);
 			
-			System.out.println(mfile);
-			System.out.println(fieldName);
-			System.out.println(mfile.getOriginalFilename());
-
 		}
 		obj = ocr.ocrresult(mfile.getOriginalFilename());
+		System.out.println(obj);
 		return obj;
 	}
 }

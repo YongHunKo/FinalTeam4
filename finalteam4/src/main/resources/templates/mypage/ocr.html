@@ -288,7 +288,11 @@
 }
 </style>
 
-<script>
+<script th:inline="javascript">
+	var storename = [[${order.storename}]];
+	var reservedate = [[${order.reservedate}]];
+	var orderprice = [[${order.orderprice}]];
+
 	$(document).ready(function() {
 		$("#menu-toggle").click(function(e) {
 			e.preventDefault();
@@ -306,12 +310,10 @@
 		};
 		// 컨텐츠를 File에서 읽어 오는 역할
 		reader.readAsDataURL(input.files[0]);
-		alert("reader.readAsDataURL : " + input.files[0]);
 	}
 
 	function upload() {
 		const imageInput = $("#rcpt")[0];
-		console.log("rcpt: ", imageInput.files)
 
 		if (imageInput.files.lenght === 0) {
 			alert("영수증 사진을 첨부해주세요.");
@@ -328,9 +330,15 @@
 			contentType : false,
 			data : formData,
 			success : function(data) {
-				alert(data);
+				check(data);
 			}
 		});
+		
+		function check(data) {
+			alert(storename);
+			alert(reservedate);
+			alert(orderprice);
+		}
 	}
 </script>
 
