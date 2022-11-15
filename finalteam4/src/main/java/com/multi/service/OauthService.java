@@ -39,7 +39,7 @@ public class OauthService {
 	public String getGoogleAccessToken(String authorize_code) {
 		String access_Token = "";
 		String reqURL = "https://www.googleapis.com/oauth2/v4/token";
-		
+		String prompt="";
 	    try {
 	        URL url = new URL(reqURL);
 	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -56,6 +56,7 @@ public class OauthService {
 	        sb.append("&redirect_uri=http://localhost:80/google/callback");
 	        sb.append("&code="+authorize_code);
 	        sb.append("&state=url_parameter");
+	        sb.append("&prompt=consent");
 	        bw.write(sb.toString());
 	        bw.flush();
 	        
