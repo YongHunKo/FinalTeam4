@@ -65,7 +65,7 @@ public class MainController {
 		try {
 			admservice.register(adm);
 			session.setAttribute("loginadmin", adm);
-			model.addAttribute("center", "signupok");
+			model.addAttribute("center", "maincenter");
 			model.addAttribute("rid", adm);
 		} catch (Exception e) {
 			model.addAttribute("center", "signupfail");
