@@ -21,10 +21,10 @@ import org.springframework.stereotype.Service;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.multi.controller.SocialLoginType;
 
 
-import lombok.RequiredArgsConstructor;
+
+
 
 @Service
 public class OauthService {
