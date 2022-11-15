@@ -54,4 +54,23 @@ public class MainController {
 		return "index";
 	}
 	
+	@RequestMapping("/signup")
+	public String signup(Model model) {
+		model.addAttribute("center", "signup");
+		return "index";
+	}
+	
+	@RequestMapping("signupimpl")
+	public String signupimpl(Model model, EatAdmDTO adm, HttpSession session) {
+		try {
+			admservice.register(adm);
+			session.setAttribute("loginadmin", adm);
+			model.addAttribute("center", "signupok");
+			model.addAttribute("rid", adm);
+		} catch (Exception e) {
+			model.addAttribute("center", "signupfail");
+			model.addAttribute("fid", adm.getAdminid());
+		}
+		return "index";
+	}
 }
