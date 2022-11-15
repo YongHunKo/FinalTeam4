@@ -3,11 +3,11 @@
 <html lang="ko">
 
   <head>
-	  
+	<script src="https://accounts.google.com/gsi/client" async defer></script>
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	<script src="http://code.jquery.com/jquery-latest.js"></script> 
+	<meta name="google-signin-client_id" content="414674411151-8otfjo97eobc9r4lk262bvegl1e27so6.apps.googleusercontent.com">
 	<link rel="stylesheet" th:href="@{assets/css/bootstrap.min.css}">
-
     <!--====== Default CSS ======-->
     <link rel="stylesheet" th:href="@{assets/css/default.css}">
     
@@ -210,8 +210,13 @@
 	</style>
 
 <script>
-
-  
+function onSignIn(googleUser) {
+	  var profile = googleUser.getBasicProfile();
+	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+	  console.log('Name: ' + profile.getName());
+	  console.log('Image URL: ' + profile.getImageUrl());
+	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+	}
 /* 기본 로그인버튼 */
 $(document).ready(function(){
 	$('#login_btn').click(function(){
@@ -282,12 +287,11 @@ $(document).ready(function(){
         <img th:src="@{assets/images/client-logo/naver_login.png}" alt="네이버 로그인" id="naver_img" style="width:180px; margin-left:-20px;">
         </a><br>
         <br>
-        <a  id="googleIdLogin_loginButton" href="https://accounts.google.com/o/oauth2/v2/auth?scope=profile&response_type=code&client_id=
-		414674411151-8otfjo97eobc9r4lk262bvegl1e27so6.apps.googleusercontent.com&redirect_uri=http://localhost:80/auth/google/callback">
+        <a  id="googleIdLogin_loginButton" href="https://accounts.google.com/o/oauth2/auth?client_id=414674411151-8otfjo97eobc9r4lk262bvegl1e27so6.apps.googleusercontent.com&redirect_uri=http://localhost:80/google/callback&access_type=offline&response_type=code&scope=email%20profile&state=url_parameter">
         <!-- <a  id="naverIdLogin_loginButton" href="https://nid.naver.com/oauth2.0/authorize?client_id=MAK4QIbORyQCqNxpf2Oc&state=test&redirect_uri=http://http:118.67.131.90/naver/callback&response_type=code&auth_type=reprompt"> -->
         <img th:src="@{assets/images/client-logo/google.png}" alt="구글 로그인" id="google_img" style="width:180px; margin-left:-20px;">
         </a>
- 
+ 		<div class="g-signin2" data-onsuccess="onSignIn"></div>
         </ul>
 
       </div>
@@ -312,7 +316,7 @@ $(document).ready(function(){
 	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script> 
 	
 	
-	<script src="https://accounts.google.com/gsi/client" async defer></script>
+	
         <script th:src="@{/assets/js/count-up.min.js}"></script>
 	<script th:src="@{/assets/js/main.js}"></script>
  
