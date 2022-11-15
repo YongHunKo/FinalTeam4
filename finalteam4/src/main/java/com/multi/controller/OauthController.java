@@ -60,15 +60,15 @@ public class OauthController {
 				System.out.println(profile);
 				System.out.println(email);
 			
-				  if(custservice.get(email+"1") != null) {
-				    	if(custservice.get(email+"1").getCustpwd().equals("1")) {
-				    		session.setAttribute("logincust", custservice.get(email+"1"));
+				  if(custservice.get(email+"3") != null) {
+				    	if(custservice.get(email+"3").getCustpwd().equals("3")) {
+				    		session.setAttribute("logincust", custservice.get(email+"3"));
 				    		model.addAttribute("center","maincenter");
 				    	}
 				    }else {
 				    	try {
-				    		custservice.register(new CustDTO(email+"1", "1", name, null, null, null,profile));
-				    		session.setAttribute("logincust", custservice.get(email+"1"));
+				    		custservice.register(new CustDTO(email+"3", "3", name, null, null, null,profile));
+				    		session.setAttribute("logincust", custservice.get(email+"3"));
 				    	} catch (Exception e) {
 				    		e.printStackTrace();
 				    	} 
