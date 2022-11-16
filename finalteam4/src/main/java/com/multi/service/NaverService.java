@@ -40,6 +40,7 @@ public class NaverService {
             sb.append("&client_id=MAK4QIbORyQCqNxpf2Oc");
             sb.append("&client_secret=jgzzekxRIT");
             sb.append("&redirect_uri=http://127.0.0.1/naver/callback");
+			/* sb.append("&redirect_uri=http://118.67.131.90/naver/callback"); 서버전용 */
             sb.append("&code=" + authorize_code);
             sb.append("&state="+"test");
             bw.write(sb.toString());
