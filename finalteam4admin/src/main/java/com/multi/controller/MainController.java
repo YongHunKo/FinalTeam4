@@ -1,5 +1,7 @@
 package com.multi.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,13 +10,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.multi.dto.EatAdmDTO;
+import com.multi.dto.MenuDTO;
 import com.multi.service.EatAdmService;
+import com.multi.service.MenuService;
 
 @Controller
 public class MainController {
 	
 	@Autowired
 	EatAdmService admservice;
+	@Autowired
+	MenuService menuservice;
 	
 	@RequestMapping("/")
 	public String main() {
@@ -70,6 +76,19 @@ public class MainController {
 		} catch (Exception e) {
 			model.addAttribute("center", "signupfail");
 			model.addAttribute("fid", adm.getAdminid());
+		}
+		return "index";
+	}
+	
+	@RequestMapping("/menu")
+	public String menu(Model model) {
+		List<MenuDTO> list = null;
+		try {
+			list = menuservice.getall();
+			model.addAttribute("list",list);
+			model.addAttribute("center", "menu");
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return "index";
 	}
