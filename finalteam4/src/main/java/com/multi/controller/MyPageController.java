@@ -162,6 +162,17 @@ public class MyPageController {
 //		System.out.println(rv.getStorename());
 		return "index";
 	}
+	
+	@RequestMapping("/reviewregist")
+	public String reviewregist(ReviewDTO review, Model model, HttpSession session) {
+		String custid = review.getCustid();
+			try {
+				review_service.register(review);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		return "redirect:/mypage/review?id=" + custid;
+	}
 
 	/**
 	 * review

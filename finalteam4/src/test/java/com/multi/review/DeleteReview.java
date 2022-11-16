@@ -16,7 +16,7 @@ public class DeleteReview {
 	@Test
 	void contextLoads() {
 		try {
-			review_service.remove(6);
+			review_service.remove(4);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
