@@ -1,7 +1,8 @@
 
 <meta charset="utf-8">
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
 <link rel="stylesheet" th:href="@{/assets/css/table.css}">
 
 
@@ -68,116 +69,127 @@
 	height: 400px;
 	border: 1px solid black;
 }
-
-
-
 </style>
 
 
 <script>
+	function display(storelat, storelong) {
+		var storelat = $('#storelat').text();
+		var storelong = $('#storelong').text();
+		var storename = $('#storename').text();
+		var map;
+		var mapContainer = document.querySelector('#map')
+		var mapOption = {
+			center : new kakao.maps.LatLng(storelat, storelong),
+			level : 3
+		};
+		var map = new kakao.maps.Map(mapContainer, mapOption);
 
-function display(storelat,storelong){
-var storelat = $('#storelat').text();
-var storelong = $('#storelong').text();
-var map;
-	var mapContainer = document.querySelector('#map')
-	var mapOption = {
-		 center: new kakao.maps.LatLng(storelat,storelong), 
-	        level: 3
-	};
-	map = new kakao.maps.Map(mapContainer, mapOption);
-
-	var markerPosition  = new kakao.maps.LatLng(storelat, storelong);
-	var marker = new kakao.maps.Marker({
-	    position: markerPosition
-	});
-	marker.setMap(map);
-	
-	var mapTypeControl = new kakao.maps.MapTypeControl();
-	map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
-	var zoomControl = new kakao.maps.ZoomControl();
-	map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-}
-
-$(document).ready(function(){
-	$('#refund').click(function(){
-		var tmpp = $(this).prop('checked');
-		if(tmpp){
-			$('#reserve_btn').prop("disabled",false);
-		}else{
-			$('#reserve_btn').prop("disabled",true);
-		}
-	});
-	
-	display(storelat,storelong);
-	
-	$(window).scroll(function(){
-		if ($(this).scrollTop() > 300){
-			$('.btn_gotop').show();
-		} else{
-			$('.btn_gotop').hide();
-		}
-	});
-	$('.btn_gotop').click(function(){
-		$('html, body').animate({scrollTop:0},400);
-		return false;
-	});
-	
-	// 이미지 슬라이더 js
-	
-	 $('#carousel').flexslider({
-		    animation: "slide",
-		    controlNav: false,
-		    animationLoop: false,
-		    slideshow: false,
-		    itemWidth: 210,
-		    itemMargin: 5,
-		    asNavFor: '#slider'
-		  });
-		 
-		  $('#slider').flexslider({
-		    animation: "slide",
-		    controlNav: false,
-		    animationLoop: false,
-		    slideshow: false,
-		    sync: "#carousel"
-		  });
-	// 이미지 js 끝
-
-	
-	//1. wishlist_btn클릭시 식당id 고객id를 변수로 지정해서 로케이션으로 wishlist로 넘긴다
-		$('#wishlist_btn').click(function(){ 
-		var storeid = $('#storeid').text();
-		var custid = $('#custid').text();
-		$.ajax({
-			url:'[[@{/insertwishlist}]]', 
-			data:{'storeid':storeid, 'custid':custid},
-			success:function(data){
-				$('#Modal').modal()
-				}
+		var markerPosition = new kakao.maps.LatLng(storelat, storelong);
+		var marker = new kakao.maps.Marker({
+			position : markerPosition
 		});
-	});
-	//2. reserve_btn클릭시 
-	$('#reserve_btn').click(function(){
-		var storeid=$('#storeid').text();
-		var custid=$('#custid').text();
-		$.ajax({
-			url:'[[@{/addcart}]]',
-			data:{
-				'custid':custid,
-				'storeid':storeid,
-				'cnt':0
-			}
-		})
-		var timeout = function(){
-			location.href="[[@{/reserveimpl?custid=}]]"+custid;			
-			}
-			setTimeout(timeout,500);
-	});
-	
-});
+		marker.setMap(map);
 
+		var mapTypeControl = new kakao.maps.MapTypeControl();
+		map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+		var zoomControl = new kakao.maps.ZoomControl();
+		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
+		var iwContent = storename, iwPosition = new kakao.maps.LatLng(storelat,
+				storelong);
+
+		// 인포윈도우를 생성합니다
+		var infowindow = new kakao.maps.InfoWindow({
+			position : iwPosition,
+			content : iwContent
+		});
+
+		// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+		infowindow.open(map, marker);
+	}
+
+	$(document).ready(function() {
+		$('#refund').click(function() {
+			var tmpp = $(this).prop('checked');
+			if (tmpp) {
+				$('#reserve_btn').prop("disabled", false);
+			} else {
+				$('#reserve_btn').prop("disabled", true);
+			}
+		});
+
+		display(storelat, storelong);
+
+		$(window).scroll(function() {
+			if ($(this).scrollTop() > 300) {
+				$('.btn_gotop').show();
+			} else {
+				$('.btn_gotop').hide();
+			}
+		});
+		$('.btn_gotop').click(function() {
+			$('html, body').animate({
+				scrollTop : 0
+			}, 400);
+			return false;
+		});
+
+		// 이미지 슬라이더 js
+
+		$('#carousel').flexslider({
+			animation : "slide",
+			controlNav : false,
+			animationLoop : false,
+			slideshow : false,
+			itemWidth : 210,
+			itemMargin : 5,
+			asNavFor : '#slider'
+		});
+
+		$('#slider').flexslider({
+			animation : "slide",
+			controlNav : false,
+			animationLoop : false,
+			slideshow : false,
+			sync : "#carousel"
+		});
+		// 이미지 js 끝
+
+		//1. wishlist_btn클릭시 식당id 고객id를 변수로 지정해서 로케이션으로 wishlist로 넘긴다
+		$('#wishlist_btn').click(function() {
+			var storeid = $('#storeid').text();
+			var custid = $('#custid').text();
+			$.ajax({
+				url : '[[@{/insertwishlist}]]',
+				data : {
+					'storeid' : storeid,
+					'custid' : custid
+				},
+				success : function(data) {
+					$('#Modal').modal()
+				}
+			});
+		});
+		//2. reserve_btn클릭시 
+		$('#reserve_btn').click(function() {
+			var storeid = $('#storeid').text();
+			var custid = $('#custid').text();
+			$.ajax({
+				url : '[[@{/addcart}]]',
+				data : {
+					'custid' : custid,
+					'storeid' : storeid,
+					'cnt' : 0
+				}
+			})
+			var timeout = function() {
+				location.href = "[[@{/reserveimpl?custid=}]]" + custid;
+			}
+			setTimeout(timeout, 500);
+		});
+
+	});
 </script>
 
 <script th:src="@{/assets/js/jquery.flexslider.js}"></script>
@@ -199,6 +211,8 @@ $(document).ready(function(){
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
+					<button>상세정보</button>
+					<button>리뷰</button>
 					<h2 class="heading-section">상세정보</h2>
 				</div>
 			</div>
@@ -227,12 +241,20 @@ $(document).ready(function(){
 									<td id="storelat" th:text="${d.storelat}" style="display: none"></td>
 									<td id="storelong" th:text="${d.storelong}"
 										style="display: none"></td>
+									<td id="storename" th:text="${d.storename}"
+										style="display: none"></td>
 								</tr>
 							</tbody>
 						</table>
+
+						<!-- storereview -->
+						<div>리뷰</div>
+
+						<!-- map -->
 						<div id="map">매장 위치</div>
-						
-						<div>
+
+						<!-- refund -->
+						<div th:if="${session.logincust != null}">
 							<div>
 								<h4>예약 취소시 환급정책</h4>
 								<table>
@@ -265,11 +287,13 @@ $(document).ready(function(){
 							<h6>환급 %는 매장마다 차이가 있으니 이용예정 매장의 환급정책을 확인해야합니다</h6>
 							<h6>환불 불가구간 이후부터는 환급이 불가능합니다</h6>
 							<h6>메뉴 결제 금액 환급 기준의 취소 시점은 이용 예정일시와 취소 발생 일시의 차이로 적용됩니다</h6>
-							<h6>이용예정 매장에서 정한 환불 불가 정책과 전자 상거래 등에서의 '소비자 보호에 관한 법률'등 관련 법령에서 정한 청약철회 제출 사요에 해당하는 경우 결제금의 전액 혹은 일부가 환급이 불가합니다</h6>
+							<h6>이용예정 매장에서 정한 환불 불가 정책과 전자 상거래 등에서의 '소비자 보호에 관한 법률'등 관련
+								법령에서 정한 청약철회 제출 사요에 해당하는 경우 결제금의 전액 혹은 일부가 환급이 불가합니다</h6>
 							<!-- 체크박스로 해당 내용을 확인 후 reserve버튼 누르기 가능 -->
-							<input type="checkbox" id="refund" name="refund" value="checked"> 네, 해당 내용을 확인했습니다
+							<input type="checkbox" id="refund" name="refund" value="checked">
+							네, 해당 내용을 확인했습니다
 						</div>
-						
+
 					</div>
 				</div>
 			</div>
@@ -279,7 +303,7 @@ $(document).ready(function(){
 			<button id="reserve_btn" th:if="${session.logincust != null}"
 				class="btn btn-primary" disabled="disabled">예약하러가기</button>
 			<button th:if="${session.logincust == null}"
-				onclick="location.href='/login'" class="btn btn-primary" >로그인하러가기</button>
+				onclick="location.href='/login'" class="btn btn-primary">로그인하러가기</button>
 			<button id="wishlist_btn" th:if="${session.logincust != null}"
 				class="btn btn-primary" href="#" data-toggle="modal"
 				data-target="#Modal">위시리스트 넣기</button>
