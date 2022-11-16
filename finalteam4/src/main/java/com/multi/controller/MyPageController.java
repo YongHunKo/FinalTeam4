@@ -103,20 +103,20 @@ public class MyPageController {
 
 		OrderlistDTO list_one = null;
 		List<ReserveDTO> list = null;
-		ReserveDTO rvdto = null;
+		ReserveDTO rv = null;
 		int cnt = 0;
 		int total = 0;
 		try {
 			list_one = order_service.myorder_1(custid);
 			list = reserve_service.myreserve(id);
-			rvdto = list.get(0);
+			rv = list.get(0);
 			for (ReserveDTO r : list) {
 				cnt += r.getCnt();
 				total += r.getOrderprice();
 			}
 			model.addAttribute("list_one", list_one);
 			model.addAttribute("list", list);
-			model.addAttribute("rvdto", rvdto);
+			model.addAttribute("rvdto", rv);
 			model.addAttribute("cnt", cnt);
 			model.addAttribute("total", total);
 			model.addAttribute("center", dir + "orderdetail");
@@ -143,12 +143,18 @@ public class MyPageController {
 		OrderlistDTO list_one = null;
 		List<ReserveDTO> list = null;
 		ReserveDTO rv = null;
+		int total = 0;
 		try {
-			list_one = order_service.myorder_1(custid);
-			list = reserve_service.myreserve(id);
-			rv = list.get(0);
+		list_one = order_service.myorder_1(custid);
+		list = reserve_service.myreserve(id);
+		rv = list.get(0);
+		for (ReserveDTO r : list) {
+			total += r.getOrderprice();
+		}
 			model.addAttribute("list_one", list_one);
+			model.addAttribute("list", list);
 			model.addAttribute("order", rv);
+			model.addAttribute("total", total);
 			model.addAttribute("center", dir + "ocr");
 		} catch (Exception e) {
 			e.printStackTrace();

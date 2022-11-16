@@ -289,10 +289,11 @@
 </style>
 
 <script th:inline="javascript">
-	var storename = [[${order.storename}]];
-	var reservedate = [[${order.reservedate}]];
-	var orderprice = [[${order.orderprice}]];
-
+	var order_storename = [[${order.storename}]];
+	var date = [[${order.reservedate}]];
+	var order_reservedate = new Date(date.substr(0, 4), date.substr(5, 2), date.substr(8, 2));
+	var order_orderprice = [[${total}]];
+	
 	$(document).ready(function() {
 		$("#menu-toggle").click(function(e) {
 			e.preventDefault();
@@ -333,13 +334,31 @@
 				check(data);
 			}
 		});
+	}
 		
 		function check(data) {
-			alert(storename);
-			alert(reservedate);
-			alert(orderprice);
-		}
-	}
+			var rcp_storename = data.images[0].fields[0].inferText;
+			var rcp_date = data.images[0].fields[1].inferText;
+			var rcp_reservedate = new Date(rcp_date.substr(0, 4), rcp_date.substr(5, 2), rcp_date.substr(8, 2));
+			var rcp_orderprice = data.images[0].fields[4].inferText;
+			
+			if (order_storename == rcp_storename && order_reservedate == rcp_reservedate) {
+				if (order_orderprice == rcp_orderprice) {
+					$("#result_msg").text("영수증 정보가 일치합니다.");
+					$("#result_msg").css("color", "green");
+				} else {
+					$("#result_msg").text("결제하신 내역의 정보와 상이합니다. *주문 음식 불일치");
+					$("#result_msg").css("color", "orange");
+				}
+				} else {
+					$("#result_msg").text("해당 가게의 영수증이 아니거나 결제일이 맞지 않습니다.");
+					$("#result_msg").css("color", "orange");
+				}
+				return
+			}	
+			
+		
+
 </script>
 
 <body>
@@ -414,6 +433,7 @@
 						<div class="recipt" style="padding-top: 20px">
 							<div>
 								<button onclick="upload()">C h e c k</button>
+								<span class="result_msg" style="padding-left: 20px">msg</span>
 							</div>
 						</div>
 					</div>
