@@ -1,10 +1,56 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<meta charset="utf-8">
+<style>
+	tbody > tr > td > img{
+		width:50px; 
+	}
 
-</body>
-</html>
+</style>
+
+<!-- Page Heading -->
+
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">매장 목록</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>storeid</th>
+                        <th>cateid</th>
+                        <th>storename</th>
+                        <th>storeintroduce</th>
+                        <th>storetel</th>
+                        <th>storestatus</th>
+                        <th>storeinfo</th>
+                        <th>storeaddr</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                   	<tr th:each="st:${list}">
+                   		<td th:text="${st.storeid}"></td>
+                   		<td th:text="${st.cateid}"></td>
+                   		<td th:text="${st.storename}"></td>
+                   		<td th:text="${st.storeintroduce}"></td>
+                   		<td th:text="${st.storetel}"></td>
+                   		<td th:text="${st.storestatus}"></td>
+                   		<td th:text="${st.storeinfo}"></td>
+                   		<td th:text="${st.storeaddr}"></td>
+                   	</tr>      
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- Page level plugins -->
+<script th:src="@{/vendor/datatables/jquery.dataTables.min.js}"></script>
+<script th:src="@{/vendor/datatables/dataTables.bootstrap4.min.js}"></script>
+
+<!-- Page level custom scripts -->
+<script th:src="@{/js/demo/datatables-demo.js}"></script>

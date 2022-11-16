@@ -29,7 +29,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</select>
 	<select id="detail" resultType="StoreDTO">
 		SELECT 	s.storeid, s.storename, s.storeintroduce, s.storetel, s.storeinfo, 
-		        s.storeaddr, m.menuid, m.menuname, m.menuprice, m.menuinfo, 
+		        s.storeaddr,s.storelat,s.storelong, m.menuid, m.menuname, m.menuprice, m.menuinfo, 
 		        mi.menuimg 
 		FROM store s
 		INNER JOIN menu m ON s.storeid = m.storeid

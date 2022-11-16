@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.multi.dto.EatAdmDTO;
 import com.multi.dto.MenuDTO;
+import com.multi.dto.StoreDTO;
 import com.multi.service.EatAdmService;
 import com.multi.service.MenuService;
+import com.multi.service.StoreService;
 
 @Controller
 public class MainController {
@@ -21,6 +23,8 @@ public class MainController {
 	EatAdmService admservice;
 	@Autowired
 	MenuService menuservice;
+	@Autowired
+	StoreService storeservice;
 	
 	@RequestMapping("/")
 	public String main() {
@@ -90,6 +94,19 @@ public class MainController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return "index";
+	}
+	
+	@RequestMapping("/store")
+	public String store(Model model) {
+		List<StoreDTO> list = null;
+		try {
+			list = storeservice.getall();
+			model.addAttribute("list", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("center", "store");
 		return "index";
 	}
 }

@@ -167,7 +167,7 @@ $(document).ready(function(){
 <div class="col-6">
     <!-- desktop logo Start -->
 <div class="mobile-logo text-center">
-    <a th:href="@{/}"><img th:src="@{/assets/images/logo7.svg}" alt="Logo"></a>
+    <a th:href="@{/}"><img th:src="@{/assets/images/logo7.png}" alt="Logo"></a>
 </div>
 <!-- desktop logo Ends -->
 </div>
@@ -242,23 +242,24 @@ $(document).ready(function(){
                 <!-- navbar top Ends -->
     
     
+    
                 <!-- main navbar Start -->
                 <div class="navbar-wrapper">
                     <div class="container-lg">
                         <nav class="main-navbar d-lg-flex  align-items-center">
                             <!-- desktop logo Start -->
                             <div class="desktop-logo d-none d-lg-block" th:if="${session.logincust != null}">
-                                <a th:href="@{/(id=${session.logincust.custid})}"><img th:src="@{/assets/images/logo7.svg}" alt="Logo" style="width:100px;"></a>
+                                <a th:href="@{/(id=${session.logincust.custid})}"><img th:src="@{/assets/images/Logo7.svg}" alt="Logo" style="width:100px;"></a>
                             </div>
                             <div class="desktop-logo d-none d-lg-block" th:if="${session.logincust == null}">
-                                <a th:href="@{/}"><img th:src="@{/assets/images/logo7.svg}" alt="Logo" style="width:100px;"></a>
+                                <a th:href="@{/}"><img th:src="@{/assets/images/Logo7.svg}" alt="Logo" style="width:100px;"></a>
                             </div>
                             <!-- desktop logo Ends -->
                             <!-- navbar menu Start -->
                             <!-- navbar menu Ends -->
                             <div class="navbar-search-cart d-none d-lg-flex"  style="margin-left:280px;">
                                 <!-- navbar search start -->
-                                <div class="navbar-search search-style-5">
+                                <div class="navbar-search search-style-5" >
                                     <div class="search-select">
                                         <select>
                                             <option value="">All</option>
@@ -346,7 +347,7 @@ $(document).ready(function(){
                     <div class="col-lg-5 col-md-7 col-sm-8">
                         <div class="footer-logo text-center">
                             <a th:href="@{/}">
-                                <img th:src="@{/assets/images/logo7.svg}" alt="" style="width:100px;">
+                                <img th:src="@{/assets/images/Logo7.svg}" alt="" style="width:100px;">
                             </a>
                         </div>
                         <h5 class="heading-5 text-center mt-30">Follow Us</h5>
