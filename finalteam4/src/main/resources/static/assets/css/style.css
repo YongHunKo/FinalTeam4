@@ -49,7 +49,7 @@ img {
 /* dettail 축소형 */
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .ftco-section{
-    height: 300px;
+    height: auto;
   }
 }
 
