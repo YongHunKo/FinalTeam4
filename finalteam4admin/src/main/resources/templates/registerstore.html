@@ -1,0 +1,69 @@
+<meta charset="utf-8">
+<style>
+.right-box {
+  float: right;
+}
+</style>
+<script>
+$(document).ready(function(){
+	$('#register_btn').click(function(){
+		$('#register_form').attr({
+			'enctype':'multipart/form-data',
+			'method':'post',
+			'action':'[[@{/registerstoreimpl}]]'
+		});
+		$('#register_form').submit();
+	});
+});
+
+</script>
+
+
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+</div>
+
+<!-- Detail Area -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">매장 추가</h6>
+    </div>
+    <div class="card-body">
+       <form id="register_form">
+		    <div class="form-group">
+		      <label for="cateid">카테고리:</label>
+		      <input type="number" class="form-control" id="cateid"  name="cateid">
+		      <span id="ispan"></span>
+		    </div>
+		    <div class="form-group">
+		      <label for="storename">이름:</label>
+		      <input type="text" class="form-control" id="storename" name="storename">
+		    </div>
+		    <div class="form-group">
+		      <label for="storeintroduce">소개:</label>
+		      <input type="text" class="form-control" id="storeintroduce" name="storeintroduce">
+		    </div>
+		    <div class="form-group">
+		      <label for="storetel">전화번호:</label>
+		      <input type="text" class="form-control" id="storetel" name="storetel">
+		    </div>
+		    <div class="form-group">
+		      <label for="storestatus">예약상태:</label>
+		      <input type="text" class="form-control" id="storestatus" name="storestatus">
+		    </div>
+		    <div class="form-group">
+		      <label for="storeinfo">영업시간:</label>
+		      <input type="text" class="form-control" id="storeinfo" name="storeinfo">
+		    </div>
+		    <div class="form-group">
+		      <label for="storeaddr">주소:</label>
+		      <input type="text" class="form-control" id="storeaddr" name="storeaddr">
+		    </div>
+		    <div class="right-box">
+		    <a id="register_btn" class="btn btn-default"><img th:src="@{img/31287.png}" style="width:60px;"></a>
+		    </div>
+  		</form>
+    </div>
+</div>

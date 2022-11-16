@@ -3,9 +3,20 @@
 	tbody > tr > td > img{
 		width:50px; 
 	}
+.right-box {
+  float: right;
+}
 
 </style>
+<script>
+function del(storeid){
+	var c = confirm('삭제하시겠습니까?');
+	if(c == true){
+		location.href='[[@{/deletestore?storeid=}]]'+storeid;
+	}
+}
 
+</script>
 <!-- Page Heading -->
 
 
@@ -13,20 +24,25 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">매장 목록</h6>
+       	<div class="right-box">
+        	<a th:href="@{/registerstore}">매장 추가</a>
+        </div>
     </div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>storeid</th>
-                        <th>cateid</th>
-                        <th>storename</th>
-                        <th>storeintroduce</th>
-                        <th>storetel</th>
-                        <th>storestatus</th>
-                        <th>storeinfo</th>
-                        <th>storeaddr</th>
+                        <th>매장id</th>
+                        <th>카테고리</th>
+                        <th>매장이름</th>
+                        <th>매장소개</th>
+                        <th>매장번호</th>
+                        <th>예약상태</th>
+                        <th>영업시간</th>
+                        <th>매장주소</th>
+                        <th>수정</th>
+                        <th>삭제</th>
                     </tr>
                 </thead>
 
@@ -40,6 +56,8 @@
                    		<td th:text="${st.storestatus}"></td>
                    		<td th:text="${st.storeinfo}"></td>
                    		<td th:text="${st.storeaddr}"></td>
+                   		<td></td>
+                   		<td><a th:onclick="del([[${st.storeid}]])"><img th:src="@{img/5974771.png}" style="width:30px;"></a></td>
                    	</tr>      
                 </tbody>
             </table>

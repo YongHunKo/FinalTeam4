@@ -109,4 +109,30 @@ public class MainController {
 		model.addAttribute("center", "store");
 		return "index";
 	}
+	
+	@RequestMapping("/deletestore")
+	public String deletestore(Model model, int storeid) {
+		try {
+			storeservice.remove(storeid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/store";
+	}	
+	
+	@RequestMapping("/registerstore")
+	public String registerstore(Model model) {
+		model.addAttribute("center", "registerstore");
+		return "index";
+	}
+	
+	@RequestMapping("/registerstoreimpl")
+	public String registerstoreimpl(Model model, StoreDTO sto) {
+		try {
+			storeservice.register(sto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/store";
+	}
 }
