@@ -38,6 +38,12 @@ public class MainController {
 		return "index";
 	}
 	
+	@RequestMapping("/websocket")
+	public String websocket(Model model) {
+		model.addAttribute("center", "websocket");
+		return "index";
+	}
+	
 	@RequestMapping("/loginimpl")
 	public String loginimpl(HttpSession session, String adminid, String pwd, Model model) {
 		EatAdmDTO adm = null;

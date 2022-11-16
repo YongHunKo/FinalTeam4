@@ -43,6 +43,9 @@
 	<script src="/assets/js/bootstrap.min.js"></script>
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    
+    <script th:src="@{/webjars/sockjs-client/sockjs.min.js}"></script>
+	<script th:src="@{/webjars/stomp-websocket/stomp.min.js}"></script>
 </head>
 
 <body>
@@ -69,7 +72,7 @@
                     <a href="/store" class="nav-item nav-link"><i class="fa fa-laptop me-2"></i>매장 관리</a>
                     <a href="/menu" class="nav-item nav-link"><i class="fa fa-th me-2"></i>메뉴 관리</a>
                     <a href="/user" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>회원 관리</a>
-                    <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
+                    <a th:href="@{/websocket}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>웹소켓</a>
                     <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Pages</a>
