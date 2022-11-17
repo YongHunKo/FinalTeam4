@@ -280,6 +280,12 @@
 	height: 200px;
 	width: 150px;
 }
+
+.small > span {
+	font-size: 20px;
+	letter-spacing: 10px;
+	color: orange;
+}
 </style>
 
 <script>
@@ -372,8 +378,13 @@ $(document).ready(function() {
 								<p class="small text-muted mb-0" th:text="${rv.revtext}"></p>
 								<div
 									class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
-									<p class="small mb-0">
-										<i class="fa fa-picture-o mr-2">Star</i><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+									<p class="small">
+										<i class="star" style="padding-right: 10px">S t a r</i>
+										<span th:if="${rv.star == 1}">★</span>
+										<span th:if="${rv.star == 2}">★★</span>
+										<span th:if="${rv.star == 3}">★★★</span>
+										<span th:if="${rv.star == 4}">★★★★</span>
+										<span th:if="${rv.star == 5}">★★★★★</span>
 									</p>
 								</div>
 							</div>

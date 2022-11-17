@@ -350,10 +350,10 @@
 							<div class="top">
 								<div class="wrapper">
 									<div class="mynav"></div>
-									<h1 class="heading" th:if="${storename != null}" th:text="${list1.storename}"></h1>
-									<h3 class="location" th:if="${reservedate != null}" th:text="${list1.reservedate}"></h3>
+									<h1 class="heading" th:if="${list1.storename != null}" th:text="${list1.storename}"></h1>
+									<h3 class="location" th:if="${list1.reservedate != null}" th:text="${list1.reservedate}"></h3>
 									<p class="temp">
-										<span class="temp-value" th:if="${reservetime != null}" th:text="${list1.reservetime}"></span>
+										<span class="temp-value" th:if="${list1.reservetime != null}" th:text="${list1.reservetime}"></span>
 									</p>
 								</div>
 								<div class="wrapper2">
