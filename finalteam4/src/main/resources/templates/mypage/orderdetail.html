@@ -464,7 +464,7 @@ $(document).ready(function() {
 						<ul class="my_order_tbl2" th:each="li : ${list}">
 							<li class="ng-star-inserted"><a
 								class="my_tbl ng-star-inserted"
-								th:href="@{/mypage/my-order/detail/15347295}">
+								th:href="@{/storedetail(storeid=${li.storeid})}">
 									<div class="date" th:text="${li.storename}"></div>
 									<div class="history">
 										<div class="imgbx">
