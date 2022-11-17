@@ -80,15 +80,6 @@ public class ReserveController {
 			throws ParseException {
 		List<CartDTO> list = null;
 		
-		List<StoreimgDTO> list2 = null;
-		List<StoreimgDTO> list3 = null;
-		List<StoreimgDTO> list4 = null;
-		List<StoreimgDTO> list5 = null;
-		List<StoreimgDTO> list6 = null;
-		
-		List<WishlistDTO> list7 = null;
-		OrderlistDTO list8 = null;
-		
 		int cnt = 0;
 		int totalprice = 0;
 		int price = 0;
@@ -117,6 +108,9 @@ public class ReserveController {
 							null, null, null, null, null, null);
 					reserveservice.register(reserve);
 					cartservice.remove(c.getCartid());
+					
+					List<ReserveDTO> list2 = reserveservice.myreserve(r);
+					model.addAttribute("list2",list2);
 				}
 			}
 			model.addAttribute("center", "/reservesuccess");
