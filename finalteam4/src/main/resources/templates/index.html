@@ -169,8 +169,8 @@ $(document).ready(function(){
 </div>
 <div class="col-6">
     <!-- desktop logo Start -->
-<div class="mobile-logo text-center">
-    <a th:href="@{/}"><img th:src="@{/assets/images/Logo7.png}" alt="Logo"></a>
+<div class="mobile-logo text-center" style="width:120px; text-align:center; position:flex; margin:auto; margin-right:auto;">
+    <a th:href="@{/}"><img th:src="@{/assets/images/Logo7.svg}" alt="Logo"></a>
 </div>
 <!-- desktop logo Ends -->
 </div>
@@ -192,7 +192,7 @@ $(document).ready(function(){
                         </div>
                         <div class="search-input">
                           	<form id="search_form">
-                               <input id="search_input" name="txt" type="text" placeholder="지역 및 식당을 검색해주세요!" onkeyup="enterkey()">
+                               <input id="search_input" name="txt" type="text" placeholder="맛집검색하러가기" onkeyup="enterkey()">
                                <input type="text" style="display:none" onkeyup="enterkey2()">
                           	</form>
                         </div>
@@ -260,7 +260,7 @@ $(document).ready(function(){
                             <!-- desktop logo Ends -->
                             <!-- navbar menu Start -->
                             <!-- navbar menu Ends -->
-                            <div class="navbar-search-cart d-none d-lg-flex"  style="margin-left:280px;">
+                            <div class="navbar-search-cart d-none d-lg-flex"  style="margin-left:220px;">
                                 <!-- navbar search start -->
                                 <div class="navbar-search search-style-5" >
                                     <div class="search-select">
@@ -273,7 +273,7 @@ $(document).ready(function(){
                                     </div>
                                     <div class="search-input">
                                     	<form id="search_form2">
-	                                        <input id="search_input" name="txt" type="text" placeholder="지역 및 식당을 검색해주세요!" onkeyup="enterkey2()">
+	                                        <input id="search_input" name="txt" type="text" placeholder="맛집검색하러가기!" onkeyup="enterkey2()">
 	                                        <input type="text" style="display:none" onkeyup="enterkey2()">
                                     	</form>
                                     </div>
