@@ -437,13 +437,13 @@ table.table th {
 						<button type="button" id="reserve_btn2" class="btn btn-primary">예약하기</button>
 					</div>
 					<script type="text/javascript">
-    function sendLinkCustom() {
-        Kakao.init("5391a7213215108e6b8dc6ea778851ac");
-        Kakao.Link.sendCustom({
-            templateId: [85849]
-        });
-    }
-</script>
+						function sendLinkCustom() {
+							Kakao.init("5391a7213215108e6b8dc6ea778851ac");
+							Kakao.Link.sendCustom({
+								templateId : [ 85849 ]
+							});
+						}
+					</script>
 					<!-- 수량 조정 form -->
 					<form th:action="@{/updatecart}" method="post"
 						class="quantity_update_form">
@@ -463,191 +463,215 @@ table.table th {
 		<!-- class="wrapper" -->
 
 		<script>
-$(document).ready(function(){
-	setTotalInfo();	
-});	
+			$(document).ready(function() {
+				setTotalInfo();
+			});
 
-$(".individual_cart_checkbox").on("change", function(){
-	setTotalInfo($(".cart_info_td"));
-});
+			$(".individual_cart_checkbox").on("change", function() {
+				setTotalInfo($(".cart_info_td"));
+			});
 
-$(".all_check_input").on("click", function(){
-	if($(".all_check_input").prop("checked")){
-		$(".individual_cart_checkbox").attr("checked", true);
-	} else{
-		$(".individual_cart_checkbox").attr("checked", false);
-	}
-	setTotalInfo($(".cart_info_td"));	
-	
-});
+			$(".all_check_input").on("click", function() {
+				if ($(".all_check_input").prop("checked")) {
+					$(".individual_cart_checkbox").attr("checked", true);
+				} else {
+					$(".individual_cart_checkbox").attr("checked", false);
+				}
+				return
+				setTotalInfo($(".cart_info_td"));
 
-function setTotalInfo(){
-	
-	let totalPrice = 0;				// 총 가격
-	let totalCount = 0;				// 총 갯수
-	let totalKind = 0;				// 총 종류
-	let totalPoint = 0;				// 총 마일리지
+			});
 
-	
-	$(".cart_info_td").each(function(index, element){
-		
-		if($(element).find(".individual_cart_checkbox").is(":checked") === true){
-			totalPrice += parseInt($(element).find(".individual_totalPrice_input").val());
-			totalCount += parseInt($(element).find(".individual_Cnt_input").val());
-			totalKind += 1;	
-		}
+			function setTotalInfo() {
 
-	});
-	
-	$(".totalPrice_span").text(totalPrice.toLocaleString());
-	$(".totalCount_span").text(totalCount);
-	$(".totalKind_span").text(totalKind);
-	$(".finalTotalPrice_span").text(totalPrice.toLocaleString());		
-}
+				let totalPrice = 0; // 총 가격
+				let totalCount = 0; // 총 갯수
+				let totalKind = 0; // 총 종류
+				let totalPoint = 0; // 총 마일리지
 
-$(".plus_btn").on("click", function(){
-	let quantity = $(this).parent("div").find("input").val();
-	$(this).parent("div").find("input").val(++quantity);
-});
-$(".minus_btn").on("click", function(){
-	let quantity = $(this).parent("div").find("input").val();
-	if(quantity > 1){
-		$(this).parent("div").find("input").val(--quantity);		
-	}
-});
+				$(".cart_info_td").each(
+						function(index, element) {
 
+							if ($(element).find(".individual_cart_checkbox")
+									.is(":checked") === true) {
+								totalPrice += parseInt($(element).find(
+										".individual_totalPrice_input").val());
+								totalCount += parseInt($(element).find(
+										".individual_Cnt_input").val());
+								totalKind += 1;
+							}
 
-/* 수량 수정 버튼 */
-$(".quantity_modify_btn").on("click", function(){
-	let cartid = $(this).data("cartid");
-	let custid = $(this).data("custid");
-	let menuid = $(this).data("menuid");
-	let menuname = $(this).data("menuname");
-	let price = $(this).data("price");
-	let menuimg = $(this).data("menuimg");
-	let totalprice = $(this).data("totalprice");
-	
-	let cnt = $(this).parent("td").find("input").val();
-	// 위에서 설정한 변수들을 업데이트 시킴
-	$(".update_cartid").val(cartid);
-	$(".update_cnt").val(cnt);
-	$(".update_custid").val(custid);
-	$(".update_menuid").val(menuid);
-	$(".update_menuname").val(menuname);
-	$(".update_price").val(price);
-	$(".update_menuimg").val(menuimg);
-	$(".update_totalprice").val(totalprice);
-	$(".quantity_update_form").submit();
-	
-});
+						});
 
-	$("#datepicker").datepicker({
-		language: 'ko',
-		timepicker: true,
-	    timeFormat: "hh:ii"
-	}); 
+				$(".totalPrice_span").text(totalPrice.toLocaleString());
+				$(".totalCount_span").text(totalCount);
+				$(".totalKind_span").text(totalKind);
+				$(".finalTotalPrice_span").text(totalPrice.toLocaleString());
+			}
 
-	
-	$('#reserve_btn2').click(function(){
-		//location.href="[[@{/reserveimpl2?custid=}]]"+custid+'&reservedate='+reservedate+'&reservetime='+reservetime
-		requestPay();
-		
-	});
-	//I'mpot api test
-	var IMP = window.IMP; // 생략 가능
-    IMP.init("imp34244488");
-	
-    var custid='[[${session.logincust.custid}]]';//requestPay내부에서 사용할 변수들은 여기서 다 정의해 준다
+			$(".plus_btn").on("click", function() {
+				let quantity = $(this).parent("div").find("input").val();
+				$(this).parent("div").find("input").val(++quantity);
+			});
+			$(".minus_btn").on("click", function() {
+				let quantity = $(this).parent("div").find("input").val();
+				if (quantity > 1) {
+					$(this).parent("div").find("input").val(--quantity);
+				}
+			});
 
-    var today = new Date();   
-    var hours = today.getHours(); // 시
-    var minutes = today.getMinutes();  // 분
-    var seconds = today.getSeconds();  // 초
-    var milliseconds = today.getMilliseconds();
-    var makeMerchantUid = hours +  minutes + seconds + milliseconds;	
-	
-    function requestPay() {
-    	var reservedate=$('#datepicker').val();//여기에 두면 반응함
-    	var reservetime=$('#datepicker').val();
-    	var totalPrice=$('#totalpricespan span').text();//얘도 확인함
-    	var totalPrice2=parseInt(totalPrice);
-       	var reservedate=$('#datepicker').val();
-   		var reservetime=$('#datepicker').val();
-        // IMP.request_pay(param, callback) 결제창 호출
-        IMP.request_pay({ // param
-            pg: "html5_inicis",
-            pay_method: "card",
-            merchant_uid: 'merchant_' + new Date().getTime(),
-            name: "Eat&Out",
-            amount: totalPrice2*2, //여기서 반드시 금액조절 원래는 *1000을 해야 맞는값
-            buyer_email: "",
-            buyer_name: custid,
-            buyer_tel: "010-4242-4242",
-            buyer_addr: "서울특별시 강남구 신사동",
-            buyer_postcode: "01181",
-            m_redirect_url: "118.67.131.90/reserveimpl2?custid="+custid+"&reservedate="+reservedate+"&reservetime="+reservetime
-        }, function (rsp) { // callback
-            if (rsp.success) {
-            	jQuery.ajax({
-                    url: "", // 예: https://www.myservice.com/payments/complete
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    data: {
-                    	imp_uid: rsp.imp_uid,            //결제 고유번호     
-                        merchant_uid: rsp.merchant_uid
-                    }
-                }).done(function (data) {
-                sendLinkDefault();
-                	location.href="[[@{/reserveimpl2?custid=}]]"+custid+'&reservedate='+reservedate+'&reservetime='+reservetime
-                  // 가맹점 서버 결제 API 성공시 로직
-                })
-            } else {
-            	alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
-            }
-        });
-      }
-    //pay api end
-    try {
-  function sendLinkDefault() {
-    Kakao.init('5391a7213215108e6b8dc6ea778851ac')
-    Kakao.Link.sendDefault({
-      objectType: 'feed',
-      content: {
-        title: 'Eat & Out 예약내역 안내',
-        imageUrl:
-          'http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
-        link: {
-          mobileWebUrl: 'http://118.67.131.90/login',
-          webUrl: 'http://118.67.131.90/login',
-        },
-      },
-      social: {
-        likeCount: 286,
-        commentCount: 45,
-        sharedCount: 845,
-      },
-      buttons: [
-        {
-          title: '웹으로 보기',
-          link: {
-            mobileWebUrl: 'http://118.67.131.90/login',
-            webUrl: 'http://118.67.131.90/login',
-          },
-        },
-        {
-          title: '앱으로 보기',
-          link: {
-            mobileWebUrl: 'http://118.67.131.90/login',
-            webUrl: 'http://118.67.131.90/login',
-          },
-        },
-      ],
-    })
-  }
-; window.kakaoDemoCallback && window.kakaoDemoCallback() }
-catch(e) { window.kakaoDemoException && window.kakaoDemoException(e) }
-	
-</script>
+			/* 수량 수정 버튼 */
+			$(".quantity_modify_btn").on("click", function() {
+				let cartid = $(this).data("cartid");
+				let custid = $(this).data("custid");
+				let menuid = $(this).data("menuid");
+				let menuname = $(this).data("menuname");
+				let price = $(this).data("price");
+				let menuimg = $(this).data("menuimg");
+				let totalprice = $(this).data("totalprice");
+
+				let cnt = $(this).parent("td").find("input").val();
+				// 위에서 설정한 변수들을 업데이트 시킴
+				$(".update_cartid").val(cartid);
+				$(".update_cnt").val(cnt);
+				$(".update_custid").val(custid);
+				$(".update_menuid").val(menuid);
+				$(".update_menuname").val(menuname);
+				$(".update_price").val(price);
+				$(".update_menuimg").val(menuimg);
+				$(".update_totalprice").val(totalprice);
+				$(".quantity_update_form").submit();
+
+			});
+
+			$("#datepicker").datepicker({
+				language : 'ko',
+				timepicker : true,
+				timeFormat : "hh:ii"
+			});
+
+			$('#reserve_btn2').click(function() {
+				//location.href="[[@{/reserveimpl2?custid=}]]"+custid+'&reservedate='+reservedate+'&reservetime='+reservetime
+				requestPay();
+
+			});
+			//I'mpot api test
+			var IMP = window.IMP; // 생략 가능
+			IMP.init("imp34244488");
+
+			var custid = '[[${session.logincust.custid}]]';//requestPay내부에서 사용할 변수들은 여기서 다 정의해 준다
+
+			var today = new Date();
+			var hours = today.getHours(); // 시
+			var minutes = today.getMinutes(); // 분
+			var seconds = today.getSeconds(); // 초
+			var milliseconds = today.getMilliseconds();
+			var makeMerchantUid = hours + minutes + seconds + milliseconds;
+
+			function requestPay() {
+				var reservedate = $('#datepicker').val();//여기에 두면 반응함
+				var reservetime = $('#datepicker').val();
+				var totalPrice = $('#totalpricespan span').text();//얘도 확인함
+				var totalPrice2 = parseInt(totalPrice);
+				var reservedate = $('#datepicker').val();
+				var reservetime = $('#datepicker').val();
+				// IMP.request_pay(param, callback) 결제창 호출
+				IMP
+						.request_pay(
+								{ // param
+									pg : "html5_inicis",
+									pay_method : "card",
+									merchant_uid : 'merchant_'
+											+ new Date().getTime(),
+									name : "Eat&Out",
+									amount : totalPrice2 * 2, //여기서 반드시 금액조절 원래는 *1000을 해야 맞는값
+									buyer_email : "",
+									buyer_name : custid,
+									buyer_tel : "010-4242-4242",
+									buyer_addr : "서울특별시 강남구 신사동",
+									buyer_postcode : "01181",
+									m_redirect_url : "118.67.131.90/reserveimpl2?custid="
+											+ custid
+											+ "&reservedate="
+											+ reservedate
+											+ "&reservetime="
+											+ reservetime
+								},
+								function(rsp) { // callback
+									if (rsp.success) {
+										jQuery
+												.ajax(
+														{
+															url : "", // 예: https://www.myservice.com/payments/complete
+															method : "POST",
+															headers : {
+																"Content-Type" : "application/json"
+															},
+															data : {
+																imp_uid : rsp.imp_uid, //결제 고유번호     
+																merchant_uid : rsp.merchant_uid
+															}
+														})
+												.done(
+														function(data) {
+															sendLinkDefault();
+															location.href = "[[@{/reserveimpl2?custid=}]]"
+																	+ custid
+																	+ '&reservedate='
+																	+ reservedate
+																	+ '&reservetime='
+																	+ reservetime
+															// 가맹점 서버 결제 API 성공시 로직
+														})
+									} else {
+										alert("결제에 실패하였습니다. 에러 내용: "
+												+ rsp.error_msg);
+									}
+								});
+			}
+			//pay api end
+			try {
+				function sendLinkDefault() {
+					Kakao.init('5391a7213215108e6b8dc6ea778851ac')
+					Kakao.Link
+							.sendDefault({
+								objectType : 'feed',
+								content : {
+									title : 'Eat & Out 예약내역 안내',
+									imageUrl : 'http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+									link : {
+										mobileWebUrl : 'http://118.67.131.90/login',
+										webUrl : 'http://118.67.131.90/login',
+									},
+								},
+								social : {
+									likeCount : 286,
+									commentCount : 45,
+									sharedCount : 845,
+								},
+								buttons : [
+										{
+											title : '웹으로 보기',
+											link : {
+												mobileWebUrl : 'http://118.67.131.90/login',
+												webUrl : 'http://118.67.131.90/login',
+											},
+										},
+										{
+											title : '앱으로 보기',
+											link : {
+												mobileWebUrl : 'http://118.67.131.90/login',
+												webUrl : 'http://118.67.131.90/login',
+											},
+										}, ],
+							})
+				}
+				;
+				window.kakaoDemoCallback && window.kakaoDemoCallback()
+			} catch (e) {
+				window.kakaoDemoException && window.kakaoDemoException(e)
+			}
+		</script>
 
 
 	</div>
