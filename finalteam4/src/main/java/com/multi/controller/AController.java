@@ -126,7 +126,7 @@ public class AController {
 	}
 
 	@RequestMapping("/ocr/ocrresult")
-	public Object orcresult(MultipartHttpServletRequest filelist) {
+	public Object ocrresult(MultipartHttpServletRequest filelist) {
 		Object obj = null;
 		String fieldName = "";
 		MultipartFile mfile = null;

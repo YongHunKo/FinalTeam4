@@ -159,7 +159,6 @@ public class MyPageController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-//		System.out.println(rv.getStorename());
 		return "index";
 	}
 	

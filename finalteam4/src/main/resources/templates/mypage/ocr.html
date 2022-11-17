@@ -314,12 +314,12 @@
 }
 </style>
 
-<script th:inline="javascript">
-	var order_storename = [[${order.storename}]];
-	var date = [[${order.reservedate}]];
+<script>
+	var order_storename = "[[${order.storename}]]";
+	var date = "[[${order.reservedate}]]";
 	var order_reservedate = new Date(date.substr(0, 4), date.substr(5, 2), date.substr(8, 2));
 	var order_reserve = order_reservedate.toString();
-	var order_orderprice = [[${total}]];
+	var order_orderprice = "[[${total}]]";
 	
 	$(document).ready(function() {
 		$("#menu-toggle").click(function(e) {
@@ -480,10 +480,13 @@
 						<form id="review">
 							<h4 th:text="${order.storename}"
 								style="padding-bottom: 12px; border-bottom: 1px solid #d4d4d4;"></h4>
-							<input th:value="${order.storeid}" name="storeid" style="display: none"></input>
-							<input th:value="${session.logincust.custid}" name="custid" style="display: none"></input>
+							<input th:value="${order.storeid}" name="storeid"
+								style="display: none"></input> <input
+								th:value="${session.logincust.custid}" name="custid"
+								style="display: none"></input>
 							<div class="textarea">
-								<textarea id="revtext" class="textarea_form" name="revtext" disabled></textarea>
+								<textarea id="revtext" class="textarea_form" name="revtext"
+									disabled></textarea>
 							</div>
 							<div style="margin-top: 12px">
 								<select id="star" name="star">
