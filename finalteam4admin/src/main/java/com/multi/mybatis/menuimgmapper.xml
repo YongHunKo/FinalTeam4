@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.MenuimgMapper">
+	
+	<select id="select" parameterType="Integer" resultType="MenuimgDTO">
+		SELECT * FROM menuimgs WHERE menuimgno=#{menuimgno}
+	</select>
+	<select id="selectall" resultType="MenuimgDTO">
+		SELECT * FROM menuimgs
+	</select>
+	<insert id="insert" parameterType="MenuimgDTO">
+		INSERT INTO menuimgs VALUES (0,#{menuid},#{menuimg})
+	</insert>
+	<update id="update" parameterType="MenuimgDTO">
+		UPDATE menuimgs SET menuid=#{menuid}, menuimg=#{menuimg} WHERE menuimgno=#{menuimgno}
+	</update>
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM menuimgs WHERE menuimgno=#{menuimgno}
+	</delete>
+	
+</mapper>

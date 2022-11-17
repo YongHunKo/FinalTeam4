@@ -25,7 +25,9 @@ function del(storeid){
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">매장 목록</h6>
        	<div class="right-box">
-        	<a th:href="@{/registerstore}">매장 추가</a>
+        	<a th:href="@{/registerstore}">매장추가&nbsp</a>
+        	<a th:href="@{/updatestore}">매장수정&nbsp</a>
+        	<a th:href="@{/storeimg}">매장사진</a>
         </div>
     </div>
     <div class="card-body">
@@ -41,7 +43,6 @@ function del(storeid){
                         <th>예약상태</th>
                         <th>영업시간</th>
                         <th>매장주소</th>
-                        <th>수정</th>
                         <th>삭제</th>
                     </tr>
                 </thead>
@@ -56,7 +57,6 @@ function del(storeid){
                    		<td th:text="${st.storestatus}"></td>
                    		<td th:text="${st.storeinfo}"></td>
                    		<td th:text="${st.storeaddr}"></td>
-                   		<td></td>
                    		<td><a th:onclick="del([[${st.storeid}]])"><img th:src="@{img/5974771.png}" style="width:30px;"></a></td>
                    	</tr>      
                 </tbody>

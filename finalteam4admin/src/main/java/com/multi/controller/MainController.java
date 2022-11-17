@@ -11,10 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.multi.dto.EatAdmDTO;
 import com.multi.dto.MenuDTO;
+import com.multi.dto.MenuimgDTO;
 import com.multi.dto.StoreDTO;
+import com.multi.dto.StoreimgDTO;
 import com.multi.service.EatAdmService;
 import com.multi.service.MenuService;
+import com.multi.service.MenuimgService;
 import com.multi.service.StoreService;
+import com.multi.service.StoreimgService;
 
 @Controller
 public class MainController {
@@ -25,6 +29,10 @@ public class MainController {
 	MenuService menuservice;
 	@Autowired
 	StoreService storeservice;
+	@Autowired
+	StoreimgService storeimgservice;
+	@Autowired
+	MenuimgService menuimgservice;
 	
 	@RequestMapping("/")
 	public String main() {
@@ -90,19 +98,6 @@ public class MainController {
 		return "index";
 	}
 	
-	@RequestMapping("/menu")
-	public String menu(Model model) {
-		List<MenuDTO> list = null;
-		try {
-			list = menuservice.getall();
-			model.addAttribute("list",list);
-			model.addAttribute("center", "menu");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "index";
-	}
-	
 	@RequestMapping("/store")
 	public String store(Model model) {
 		List<StoreDTO> list = null;
@@ -132,13 +127,137 @@ public class MainController {
 		return "index";
 	}
 	
-	@RequestMapping("/registerstoreimpl")
-	public String registerstoreimpl(Model model, StoreDTO sto) {
+	@RequestMapping("/registerstoreimgimpl")
+	public String registerstoreimgimpl(Model model, StoreimgDTO sto) {
+
 		try {
-			storeservice.register(sto);
+			storeimgservice.register(sto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/storeimg";
+	}
+	
+	@RequestMapping("/updatestore")
+	public String updatestore(Model model) {
+		model.addAttribute("center", "updatestore");
+		return "index";
+	}
+	
+	@RequestMapping("/updatestoreimpl")
+	public String updatestoreimpl(Model model, StoreDTO sto) {
+		try {
+			storeservice.modify(sto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "redirect:/store";
 	}
+	
+	@RequestMapping("/storeimg")
+	public String storeimg(Model model) {
+		List<StoreimgDTO> list = null;
+		try {
+			list = storeimgservice.getall();
+			model.addAttribute("list", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("center", "storeimg");
+		return "index";
+	}
+	
+	@RequestMapping("/deletestoreimg")
+	public String deletestoreimg(Model model, int storeimgno) {
+		try {
+			storeimgservice.remove(storeimgno);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/storeimg";
+	}
+	
+	@RequestMapping("/registerstoreimg")
+	public String registerimg(Model model) {
+		model.addAttribute("center", "registerstoreimg");
+		return "index";
+	}
+	
+	@RequestMapping("/menu")
+	public String menu(Model model) {
+		List<MenuDTO> list = null;
+		try {
+			list = menuservice.getall();
+			model.addAttribute("list", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("center", "menu");
+		return "index";
+	}
+	
+	@RequestMapping("/deletemenu")
+	public String deletemenu(Model model, int menuid) {
+		try {
+			menuservice.remove(menuid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/menu";
+	}	
+	
+	@RequestMapping("/regmenu")
+	public String regmenu(Model model) {
+		model.addAttribute("center", "regmenu");
+		return "index";
+	}
+	
+	@RequestMapping("/regmenuimpl")
+	public String regmenuimpl(Model model, MenuDTO menu) {
+		try {
+			menuservice.register(menu);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/menu";
+	}
+	
+	@RequestMapping("/updatemenu")
+	public String updatemenu(Model model) {
+		model.addAttribute("center", "updatemenu");
+		return "index";
+	}
+	
+	@RequestMapping("/updatemenuimpl")
+	public String updatemenuimpl(Model model, MenuDTO menu) {
+		try {
+			menuservice.modify(menu);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/menu";
+	}
+	
+	@RequestMapping("/menuimg")
+	public String menuimg(Model model) {
+		List<MenuimgDTO> list = null;
+		try {
+			list = menuimgservice.getall();
+			model.addAttribute("list", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("center", "menuimg");
+		return "index";
+	}
+	
+	@RequestMapping("/deletemenuimg")
+	public String deletemenuimg(Model model, int menuimgno) {
+		try {
+			menuimgservice.remove(menuimgno);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/menuimg";
+	}	
 }

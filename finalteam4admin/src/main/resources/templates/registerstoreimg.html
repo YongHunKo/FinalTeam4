@@ -1,0 +1,43 @@
+<meta charset="utf-8">
+
+<script>
+$(document).ready(function(){
+	$('#register_btn').click(function(){
+		$('#register_form').attr({
+			'enctype':'multipart/form-data',
+			'method':'post',
+			'action':'[[@{/registerstoreimgimpl}]]'
+		});
+		$('#register_form').submit();
+	});
+});
+
+</script>
+
+
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+</div>
+
+<!-- Detail Area -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">이미지 추가</h6>
+    </div>
+    <div class="card-body">
+       <form id="register_form">
+		    <div class="form-group">
+		      <label for="storeid">매장ID:</label>
+		      <input type="text" class="form-control" id="storeid"  name="storeid">
+		      <span id="ispan"></span>
+		    </div>
+		    <div class="form-group">
+		      <label for="storeimg">Image:</label>
+		      <input type="file" class="form-control" id="storeimg" name="storeimg">
+		    </div>
+		   
+		    <button id="register_btn" class="btn btn-default">REGISTER</button>
+  		</form>
+    </div>
+</div>

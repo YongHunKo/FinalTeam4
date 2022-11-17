@@ -9,10 +9,10 @@
 
 </style>
 <script>
-function del(storeid){
+function del(menuimgno){
 	var c = confirm('삭제하시겠습니까?');
 	if(c == true){
-		location.href='[[@{/deletemenu?menuid=}]]'+storeid;
+		location.href='[[@{/deletemenuimg?menuimgno=}]]'+menuimgno;
 	}
 }
 
@@ -23,11 +23,9 @@ function del(storeid){
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">메뉴 목록</h6>
+        <h6 class="m-0 font-weight-bold text-primary">이미지 목록</h6>
        	<div class="right-box">
-        	<a th:href="@{/regmenu}">메뉴추가&nbsp</a>
-        	<a th:href="@{/updatemenu}">메뉴수정&nbsp</a>
-        	<a th:href="@{/menuimg}">메뉴사진</a>
+        	<a th:href="@{/regmenuimg}">이미지 추가</a>
         </div>
     </div>
     <div class="card-body">
@@ -35,25 +33,19 @@ function del(storeid){
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>메뉴id</th>
+                        <th>이미지 번호</th>
                         <th>매장id</th>
-                        <th>카테고리</th>
-                        <th>메뉴이름</th>
-                        <th>가격</th>
-                        <th>메뉴정보</th>
+                        <th>이미지</th>
                         <th>삭제</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                   	<tr th:each="m:${list}">
-                   		<td th:text="${m.menuid}"></td>
-                   		<td th:text="${m.storeid}"></td>
-                   		<td th:text="${m.menucateid}"></td>
-                   		<td th:text="${m.menuname}"></td>
-                   		<td th:text="${m.menuprice}"></td>
-                   		<td th:text="${m.menuinfo}"></td>
-                   		<td><a th:onclick="del([[${m.menuid}]])"><img th:src="@{img/5974771.png}" style="width:30px;"></a></td>
+                   	<tr th:each="i:${list}">
+                   		<td th:text="${i.menuimgno}"></td>
+                   		<td th:text="${i.menuid}"></td>
+                   		<td><img th:src="@{/menuimg/}+${i.menuimg}"></td>
+                   		<td><a th:onclick="del([[${i.menuimgno}]])"><img th:src="@{img/5974771.png}" style="width:30px;"></a></td>
                    	</tr>      
                 </tbody>
             </table>

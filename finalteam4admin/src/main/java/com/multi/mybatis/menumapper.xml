@@ -22,8 +22,8 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="insert" parameterType="MenuDTO">
-		INSERT INTO menu VALUES (#{menuid}, #{storeid}, #{menucateid}, 
-		#{menuname}, #{menuprice}, #{menuinfo})
+		INSERT INTO menu VALUES (0, #{storeid}, #{menucateid}, 
+		#{menuname}, #{menuprice}, #{menuinfo}, 0)
 	</insert>
 	<update id="update" parameterType="MenuDTO">
 		UPDATE menu SET storeid = #{storeid}, menucateid = #{menucateid}, 
