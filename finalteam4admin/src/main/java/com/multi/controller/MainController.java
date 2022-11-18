@@ -10,12 +10,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.multi.dto.CustDTO;
 import com.multi.dto.EatAdmDTO;
 import com.multi.dto.MenuDTO;
 import com.multi.dto.MenuimgDTO;
 import com.multi.dto.StoreDTO;
 import com.multi.dto.StoreimgDTO;
 import com.multi.frame.Util;
+import com.multi.service.CustService;
 import com.multi.service.EatAdmService;
 import com.multi.service.MenuService;
 import com.multi.service.MenuimgService;
@@ -43,6 +45,8 @@ public class MainController {
 	StoreimgService storeimgservice;
 	@Autowired
 	MenuimgService menuimgservice;
+	@Autowired
+	CustService custservice;
 	
 	@RequestMapping("/")
 	public String main() {
@@ -291,4 +295,27 @@ public class MainController {
 		}
 		return "redirect:/menuimg";
 	}
+	
+	@RequestMapping("/user")
+	public String user(Model model) {
+		List<CustDTO> list = null;
+		try {
+			list = custservice.getall();
+			model.addAttribute("list", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("center", "user");
+		return "index";
+	}
+	
+	@RequestMapping("/deleteuser")
+	public String deleteuser(Model model, String custid) {
+		try {
+			custservice.remove(custid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/user";
+	}	
 }
