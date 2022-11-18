@@ -106,10 +106,12 @@ public class MyPageController {
 		ReserveDTO rv = null;
 		int cnt = 0;
 		int total = 0;
+		String rvdate = null;
 		try {
 			list_one = order_service.myorder_1(custid);
 			list = reserve_service.myreserve(id);
 			rv = list.get(0);
+			rvdate = rv.getReservedate();
 			for (ReserveDTO r : list) {
 				cnt += r.getCnt();
 				total += r.getOrderprice();
@@ -117,6 +119,7 @@ public class MyPageController {
 			model.addAttribute("list_one", list_one);
 			model.addAttribute("list", list);
 			model.addAttribute("rvdto", rv);
+			model.addAttribute("rvdate", rvdate);
 			model.addAttribute("cnt", cnt);
 			model.addAttribute("total", total);
 			model.addAttribute("center", dir + "orderdetail");
