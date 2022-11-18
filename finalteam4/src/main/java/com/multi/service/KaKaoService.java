@@ -46,9 +46,10 @@ public class KaKaoService {
 	            sb.append("&client_id=8f091ec537ce9700f5864824e26f19d9"); // APPLICATION Client ID
 	            sb.append("&redirect_uri=http://127.0.0.1/kakao/callback"); // Redirect URL
 				/* 서버전용
-				 * sb.append("&redirect_uri=http://118.67.131.90/kakao/callback"); // Redirect
-				 * URL
-				 */	            sb.append("&code=" + authorize_code);
+				 * sb.append("&redirect_uri=http://118.67.131.90/kakao/callback"); 
+				 * 
+				 */	            
+	            sb.append("&code=" + authorize_code);
 	            bw.write(sb.toString());
 	            bw.flush();
 	            

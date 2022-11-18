@@ -43,14 +43,25 @@ img {
   
 }
 
-/*Search - 축소형  */
+
 .navbar-wrapper{
 	
-	background: url("/img/mypage_recent.jpg") center center / cover no-repeat ;
-	background-size: cover;
-	box-shadow: 0 1px 38px rgba(0, 0, 0, 0.15), 0 5px 12px
-		rgba(0, 0, 0, 0.25);
+	background: linear-gradient(
+	rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)
+	), url("https://i.ytimg.com/vi/7Y_C6YyIwaI/maxresdefault.jpg");
+	background-size:cover;
+	background-repeat:no repeat;
+	background-position: 20% 80%;
+
 }
+
+
+
+		
+	
+	
+	
+
 
 /* dettail 축소형 */
 @media only screen and (min-width: 768px) and (max-width: 991px) {
