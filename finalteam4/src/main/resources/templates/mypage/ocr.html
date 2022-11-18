@@ -28,7 +28,7 @@
 
 #menu-toggle {
 	transition: all .3s;
-	font-size: 2em;
+	font-size: 20px;
 }
 /* Change the width of the sidebar to display it*/
 #wrapper.menuDisplayed #sidebar-wrapper {
@@ -77,8 +77,8 @@
 
 .weather-card {
 	margin: 0px auto;
-	height: 200px;
-	width: 1200px;
+	height: 180px;
+	width: 900px;
 	background: #fff;
 	box-shadow: 0 1px 38px rgba(0, 0, 0, 0.15), 0 5px 12px
 		rgba(0, 0, 0, 0.25);
@@ -114,7 +114,7 @@
 }
 
 .weather-card .top .wrapper .mynav {
-	height: 20px;
+	height: 10px;
 }
 
 .weather-card .top .wrapper .mynav .lnr {
@@ -247,7 +247,7 @@
 .contents {
 	margin: 0px auto;
 	height: 220px;
-	width: 1200px;
+	width: 1000px;
 	padding-top: 50px;
 }
 
@@ -291,14 +291,14 @@
 }
 
 .main_review {
-	width: 600px;
+	width: 500px;
 	height: 400px;
 	padding: 20px;
 	float: right;
 }
 
 .textarea {
-	width: 560px;
+	width: 460px;
 	height: 400px;
 	padding-top: 20px;
 }
@@ -312,28 +312,38 @@
 	margin-top: 12px;
 	margin-left: 390px;
 }
+
+.btns {
+	float: right;
+	width: 96px;
+	line-height: 32px;
+	font-size: 18px;
+	background: #FFBB45;
+	border: none;
+}
 </style>
 
 <script>
 	var order_storename = "[[${order.storename}]]";
 	var date = "[[${order.reservedate}]]";
-	var order_reservedate = new Date(date.substr(0, 4), date.substr(5, 2), date.substr(8, 2));
+	var order_reservedate = new Date(date.substr(0, 4), date.substr(5, 2), date
+			.substr(8, 2));
 	var order_reserve = order_reservedate.toString();
 	var order_orderprice = "[[${total}]]";
-	
+
 	$(document).ready(function() {
 		$("#menu-toggle").click(function(e) {
 			e.preventDefault();
 			$("#wrapper").toggleClass("menuDisplayed");
 		});
-		
+
 		$("#savereview").click(function() {
 			$("#review").attr({
 				"action" : "/mypage/reviewregist",
 				"method" : "GET"
-				});
-			$("#review").submit();
 			});
+			$("#review").submit();
+		});
 	});
 
 	function readURL(input) {
@@ -370,34 +380,54 @@
 			}
 		});
 	}
-		
-		function check(data) {
-			var rcp_storename = data.images[0].fields[0].inferText;
-			var rcp_date = data.images[0].fields[1].inferText;
-			var rcp_reservedate = new Date(rcp_date.substr(0, 4), rcp_date.substr(5, 2), rcp_date.substr(8, 2));
-			var rcp_reserve = rcp_reservedate.toString();
-			var rcp_orderprice = data.images[0].fields[4].inferText;
-			
-			if (order_storename == rcp_storename && order_reserve == rcp_reserve) {
-				if (order_orderprice == rcp_orderprice) {
-					$("#result_msg").text("영수증 정보가 일치합니다.");
-					$("#result_msg").css("color", "green");
-					$("#revtext").attr("disabled", false);
-					$("#savereview").attr("disabled", false);
-					return
+
+	function check(data) {
+		var rcp_storename = data.images[0].fields[0].inferText;
+		var rcp_date = data.images[0].fields[1].inferText;
+		var rcp_reservedate = new Date(rcp_date.substr(0, 4), rcp_date.substr(
+				5, 2), rcp_date.substr(8, 2));
+		var rcp_reserve = rcp_reservedate.toString();
+		var rcp_orderprice = data.images[0].fields[4].inferText;
+
+		if (order_storename == rcp_storename && order_reserve == rcp_reserve) {
+			if (order_orderprice == rcp_orderprice) {
+				$("#result_msg").text("영수증 정보가 일치합니다.");
+				$("#result_msg").css("color", "green");
+				$("#revtext").attr("disabled", false);
+				$("#savereview").attr("disabled", false);
+				return
+
+				
+
+								
+
+				
+
 			} else {
 				$("#result_msg").text("결제하신 내역의 정보와 상이합니다. *주문 음식 불일치");
 				$("#result_msg").css("color", "#ff4800");
 				return
-			}
-			} else {
-				$("#result_msg").text("해당 가게의 영수증이 아니거나 결제 날짜가 맞지 않습니다.");
-				$("#result_msg").css("color", "#ff4800");
-				return
-			}
-			}
-		
 
+				
+
+								
+
+				
+
+			}
+		} else {
+			$("#result_msg").text("해당 가게의 영수증이 아니거나 결제 날짜가 맞지 않습니다.");
+			$("#result_msg").css("color", "#ff4800");
+			return
+
+			
+
+						
+
+			
+
+		}
+	}
 </script>
 
 <body>
@@ -434,7 +464,7 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12">
-						<a href="#" class="btn" id="menu-toggle">click<span
+						<a href="#" class="btn" id="menu-toggle">메뉴 ><span
 							class="glyphicon glyphicon-menu-hamburger"></span></a>
 						<div class="weather-card one" th:with="list1=${list_one}">
 							<div class="top">
@@ -465,13 +495,15 @@
 						<label class="label" for="rcpt">+</label> <input type="file"
 							id="rcpt" onchange="readURL(this);" style="display: none">
 					</form>
-					<div>
+					<div style="text-align: center">
 						<img id="showimg">
 					</div>
 					<div class="recipt" style="padding-top: 20px; padding-bottom: 20px">
+						<div style="text-align: center">
+							<span id="result_msg"></span>
+						</div>
 						<div>
-							<button onclick="upload()">C h e c k</button>
-							<span id="result_msg" style="padding-left: 10px"></span>
+							<button class="btns" onclick="upload()">C h e c k</button>
 						</div>
 					</div>
 				</div>
@@ -488,7 +520,7 @@
 								<textarea id="revtext" class="textarea_form" name="revtext"
 									disabled></textarea>
 							</div>
-							<div style="margin-top: 12px">
+							<div style="margin-top: 20px">
 								<select id="star" name="star">
 									<option value="5">★★★★★</option>
 									<option value="4">★★★★</option>
@@ -499,8 +531,9 @@
 							</div>
 						</form>
 					</div>
-					<button class="review_button" type="button" id="savereview"
-						disabled>등록하기</button>
+					<div>
+						<button class="btns" type="button" id="savereview" disabled>등록하기</button>
+					</div>
 				</div>
 			</div>
 		</div>

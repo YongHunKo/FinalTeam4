@@ -32,7 +32,7 @@
 
 #menu-toggle {
 	transition: all .3s;
-	font-size: 2em;
+	font-size: 20px;
 }
 /* Change the width of the sidebar to display it*/
 #wrapper.menuDisplayed #sidebar-wrapper {
@@ -81,8 +81,8 @@
 
 .weather-card {
 	margin: 0px auto;
-	height: 200px;
-	width: 1200px;
+	height: 180px;
+	width: 900px;
 	background: #fff;
 	box-shadow: 0 1px 38px rgba(0, 0, 0, 0.15), 0 5px 12px
 		rgba(0, 0, 0, 0.25);
@@ -118,7 +118,7 @@
 }
 
 .weather-card .top .wrapper .mynav {
-	height: 20px;
+	height: 10px;
 }
 
 .weather-card .top .wrapper .mynav .lnr {
@@ -251,7 +251,7 @@
 .contents {
 	margin: 0px auto;
 	height: 220px;
-	width: 1200px;
+	width: 1000px;
 	padding-top: 50px;
 }
 
@@ -400,7 +400,7 @@ $(document).ready(function() {
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12">
-						<a href="#" class="btn" id="menu-toggle">메뉴보기<span
+						<a href="#" class="btn" id="menu-toggle">메뉴 ><span
 							class="glyphicon glyphicon-menu-hamburger"></span></a>
 						<div class="weather-card one" th:with="list1=${list_one}">
 							<div class="top">
@@ -424,7 +424,7 @@ $(document).ready(function() {
 			</div>
 			<div class="contents">
 				<h3 class="my_tit">
-					테이블 내역<span>txt</span>
+					테이블 조회<span></span>
 				</h3>
 				<div class="form-group">
 					<ul class="my_order_tbl">
