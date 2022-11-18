@@ -29,6 +29,14 @@ body {
   color: rgba(0, 0, 0, 0.64);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  vertical-align:baseline;
+  margin-left:8%;
+  padding-left:5%;
+  margin-right:8%;
+  padding-right:5%;
+  	box-shadow: 0 1px 38px rgba(0, 0, 0, 0.15), 0 5px 12px
+		rgba(0, 0, 0, 0.25);
+  position:relative;
 }
 
 * {
@@ -36,6 +44,7 @@ body {
   padding: 0;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  
 }
 
 img {
@@ -44,15 +53,16 @@ img {
 }
 
 
-
-.navbar-wrapper{
+ .navbar-wrapper{
 	
-	background: linear-gradient(
+	/* background: linear-gradient(
 	rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)
 	), url("https://i.ytimg.com/vi/7Y_C6YyIwaI/maxresdefault.jpg");
 	background-size:cover;
 	background-repeat:no repeat;
 	background-position: 20% 80%;
+	z-index:1;
+	border-collapse:collapse; */
 
 }
 
@@ -4615,12 +4625,16 @@ p {
 .navbar-style-7 .navbar-container .navbar-top-wrapper {
   
    /* 보라 */
-   /* background: linear-gradient(to right, #5f2c82, #49a09d); */
+   /*  background: linear-gradient(to right, #5f2c82, #49a09d); */
    
     /* 주황 */
-    /*  background: linear-gradient(to right, #fdc830, #f37335); */ 
+      /* background: linear-gradient(to right, #fdc830, #f37335); */ 
    /* 블랙 */
   /*  background: linear-gradient(to right, #232526, #414345); */
+  
+  /* background: linear-gradient(
+	rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)
+	), url("https://i.ytimg.com/vi/7Y_C6YyIwaI/maxresdefault.jpg"); */
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {

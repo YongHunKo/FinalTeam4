@@ -35,10 +35,11 @@
 
     .card-image img {
         height: 250px;
-        width: 350px;
+        width: 520px;
         border-radius: 8px 8px 0px 0;
         object-fit:cover;
         overflow:hidden;
+        z-index:1;
     }
 
     .card-action {
@@ -319,9 +320,20 @@
 <body>
 
 
- <div class="container" style="margin-top:100px;" >
+ <div class="container" style="margin-top:50px; margin-bottom:50px;" >
         <div class="row" >
-            <div class="col-md-4 sm-4" th:each="d : ${detaillist}" style="padding-top:20px;">
+            <div class="col-md-4 sm-4" th:each="d : ${detaillist}"  style="padding-top:20px;">
+                <div th:if="${session.logincust != null}" id="custid"
+										th:text="${session.logincust.custid}"style="display: none" >
+									<h4 id="storelat" th:text="${d.storelat}"></h4>
+									<h4 id="storelong" th:text="${d.storelong}"
+										></h4>
+									<h4 id="storename" th:text="${d.storename}"
+										style="display: none"></h4>
+									<h4 id="storeaddr" th:text="${d.storeaddr}"
+										style="display: none"></h4>
+            
+            	</div>
                 <div class="card-sl">
                     <div class="card-image">
                         
@@ -342,22 +354,12 @@
                     </div>
                     <a href="#" class="card-button"> 예약하러가기</a>
                 </div>
-            	<div th:if="${session.logincust != null}" id="custid"
-										th:text="${session.logincust.custid}" style="display: none">
-									<div id="storelat" th:text="${d.storelat}" style="display: none"></div>
-									<div id="storelong" th:text="${d.storelong}"
-										style="display: none"></div>
-									<div id="storename" th:text="${d.storename}"
-										style="display: none"></div>
-									<div id="storeaddr" th:text="${d.storeaddr}"
-										style="display: none"></div>
-            
-            	</div>
+            	
             </div>
         </div>  
 
 </div>
-	<section class="ftco-section">
+	<!--  <section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
@@ -398,8 +400,8 @@
 								</tr>
 							</tbody>
 						</table>
-
-
+ -->
+ 
 						<div id="map">매장 위치</div>
 						<!-- storereview -->
 						<div>리뷰</div>

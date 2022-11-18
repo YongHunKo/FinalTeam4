@@ -13,6 +13,12 @@
 
     <!--====== Favicon Icon ======-->
     <link rel="shortcut icon" th:href="@{/assets/images/Logo7.svg}" th:type="@{image/svg}">
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css"
+    />
 
     <!--====== Slick CSS ======-->
     <link rel="stylesheet" th:href="@{/assets/css/slick.css}">
@@ -212,9 +218,8 @@ $(document).ready(function(){
                 </div>
                 <!-- navbar close  Ends -->
     
-    
                 <!-- navbar top Start -->
-                <div class="navbar-top-wrapper" id="wrap">
+                <div class="navbar-top-wrapper" id="wrap" >
                     <div class="container-lg">
                         <div class="navbar-top d-lg-flex justify-content-between">
                             <!-- navbar top left Start -->
@@ -249,20 +254,20 @@ $(document).ready(function(){
     
                 <!-- main navbar Start -->
                 
-                <div class="navbar-wrapper" style="height:110px;">
+                <div class="navbar-wrapper" style="height:120px;">
                     <div class="container-lg">
-                        <nav class="main-navbar d-lg-flex  align-items-center" style="padding-top:0px; padding-bottom:0px;">
+                        <nav class="main-navbar d-lg-flex  align-items-center" >
                             <!-- desktop logo Start -->
-                            <div class="desktop-logo d-none d-lg-block" th:if="${session.logincust != null}" style="width:110px; padding-top:0px; padding-bottom:0px;">
-                                <a th:href="@{/(id=${session.logincust.custid})}"><img th:src="@{/assets/images/eLogo.png}" alt="Logo"></a>
+                            <div class="desktop-logo d-none d-lg-block" th:if="${session.logincust != null}" style="display:flex; margin-left:150px; margin-right:auto;  padding-top:5px; padding-bottom:5px; justify-content:space between;">
+                                <a th:href="@{/(id=${session.logincust.custid})}"><img th:src="@{/assets/images/eLogo.png}" alt="Logo" style=" width:100px;  padding-left:10%; padding-top:0px; padding-bottom:0px;"></a>
                             </div>
-                            <div class="desktop-logo d-none d-lg-block" th:if="${session.logincust == null}" style="width:110px; padding-top:0px; padding-bottom:0px;">
+                            <div class="desktop-logo d-none d-lg-block" th:if="${session.logincust == null}" style="width:100px; padding-top:0px; padding-bottom:0px;">
                                 <a th:href="@{/}"><img th:src="@{/assets/images/eLogo.png}" alt="Logo" ></a>
                             </div>
                             <!-- desktop logo Ends -->
                             <!-- navbar menu Start -->
                             <!-- navbar menu Ends -->
-                            <div class="navbar-search-cart d-none d-lg-flex"  style="margin-left:400px; padding-top:0px;">
+                            <div class="navbar-search-cart"  style="text-align:center; padding-top:0; padding-bottom:0;margin-left:200px; margin-right:500px; display:flex;">
                                 <!-- navbar search start -->
                                 <div class="navbar-search search-style-5" >
                                     <div class="search-select">
