@@ -93,7 +93,7 @@
 .weather-card {
 	margin: 0px auto;
 	height: 180px;
-	width: 900px;
+	width: 1000px;
 	background: #fff;
 	box-shadow: 0 1px 38px rgba(0, 0, 0, 0.15), 0 5px 12px
 		rgba(0, 0, 0, 0.25);
@@ -353,13 +353,13 @@
 									<h1 class="heading" th:if="${list1.storename != null}" th:text="${list1.storename}"></h1>
 									<h3 class="location" th:if="${list1.reservedate != null}" th:text="${list1.reservedate}"></h3>
 									<p class="temp">
-										<span class="temp-value" th:if="${list1.reservetime != null}" th:text="${list1.reservetime}"></span>
+										<span class="temp-value" th:if="${list1.reservetime != null}" th:text="${session.banner_rsvdate}"></span>
 									</p>
 								</div>
 								<div class="wrapper2">
 									<div class="mynav"></div>
 									<h2 class="heading">가까운 예약</h2>
-									<h2 class="heading">D - 13</h2>
+									<h2 class="heading" th:text="'D' + ${session.banner_time}"></h2>
 								</div>
 							</div>
 						</div>

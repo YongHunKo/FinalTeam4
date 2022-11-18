@@ -1,5 +1,7 @@
 package com.multi.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -37,22 +39,36 @@ public class MyPageController {
 	String dir = "mypage/";
 
 	/**
-	 * mypage
-	 * 해당 메소드는 mypage를 연결하기 위한 메소드이다.
-	 * 해당 메소드가 발동하면 mypage에는 orderlist에
-	 * 파라메터 id와 일치하는 custid의 DTO들을 
-	 * list_one에 저장하여 mypage에 출력한다.
-	 * 이 컨트롤러에서는 String dir을 설정하였기 때문에
-	 * dir 입력시 조심하여야한다.
+	 * mypage 해당 메소드는 mypage를 연결하기 위한 메소드이다. 해당 메소드가 발동하면 mypage에는 orderlist에 파라메터
+	 * id와 일치하는 custid의 DTO들을 list_one에 저장하여 mypage에 출력한다. 이 컨트롤러에서는 String dir을
+	 * 설정하였기 때문에 dir 입력시 조심하여야한다.
+	 * 
 	 * @param id
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping("")
-	public String mypage(String id, Model model) {
+	public String mypage(String id, Model model, HttpSession session) {
 		OrderlistDTO list_one = null;
+		
+		Date date = new Date();
+		SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd");
+		String today = formatter2.format(date);
+
 		try {
 			list_one = order_service.myorder_1(id);
+			Date format1 = formatter2.parse(today);
+			Date format2 = formatter2.parse(list_one.getReservedate());
+			
+			long diffSec = (format1.getTime() - format2.getTime()) / 1000;
+			long diffDays = diffSec / (24 * 60 * 60);
+			
+			String reservedate = list_one.getReservetime();
+			String reservedate2 = reservedate.substring(0, 5);
+			System.out.println(reservedate2);
+			
+			session.setAttribute("banner_rsvdate", reservedate2);
+			session.setAttribute("banner_dday", diffDays);
 			model.addAttribute("list_one", list_one);
 			model.addAttribute("center", dir + "mypage");
 		} catch (Exception e) {
@@ -62,8 +78,8 @@ public class MyPageController {
 	}
 
 	/**
-	 * order
-	 * 해당 메소드는 중복같은데
+	 * order 해당 메소드는 중복같은데
+	 * 
 	 * @param id
 	 * @param model
 	 * @return
@@ -85,11 +101,10 @@ public class MyPageController {
 	}
 
 	/**
-	 * orderdetail
-	 * 해당 메소드는 session의 저장된 logincust를 obj에 저장하고,
-	 * obj를 CustDTO에 담아서 custid를 추출하여
-	 * 해당 custid의 주문내역과 파라메터 id의 예약내역을 각각의 list에 담아
-	 * orderdetail에 출력을 해주는 목적이다.
+	 * orderdetail 해당 메소드는 session의 저장된 logincust를 obj에 저장하고, obj를 CustDTO에 담아서
+	 * custid를 추출하여 해당 custid의 주문내역과 파라메터 id의 예약내역을 각각의 list에 담아 orderdetail에 출력을
+	 * 해주는 목적이다.
+	 * 
 	 * @param id
 	 * @param model
 	 * @param session
@@ -130,8 +145,8 @@ public class MyPageController {
 	}
 
 	/**
-	 * ocr
-	 * 작업중
+	 * ocr 작업중
+	 * 
 	 * @param id
 	 * @param model
 	 * @param session
@@ -148,12 +163,12 @@ public class MyPageController {
 		ReserveDTO rv = null;
 		int total = 0;
 		try {
-		list_one = order_service.myorder_1(custid);
-		list = reserve_service.myreserve(id);
-		rv = list.get(0);
-		for (ReserveDTO r : list) {
-			total += r.getOrderprice();
-		}
+			list_one = order_service.myorder_1(custid);
+			list = reserve_service.myreserve(id);
+			rv = list.get(0);
+			for (ReserveDTO r : list) {
+				total += r.getOrderprice();
+			}
 			model.addAttribute("list_one", list_one);
 			model.addAttribute("list", list);
 			model.addAttribute("order", rv);
@@ -164,22 +179,21 @@ public class MyPageController {
 		}
 		return "index";
 	}
-	
+
 	@RequestMapping("/reviewregist")
 	public String reviewregist(ReviewDTO review, Model model, HttpSession session) {
 		String custid = review.getCustid();
-			try {
-				review_service.register(review);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		try {
+			review_service.register(review);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "redirect:/mypage/review?id=" + custid;
 	}
 
 	/**
-	 * review
-	 * 해당 메소드는 파라메터id의 review 내용을
-	 * review페이지에 출력하는 목적이다.
+	 * review 해당 메소드는 파라메터id의 review 내용을 review페이지에 출력하는 목적이다.
+	 * 
 	 * @param id
 	 * @param model
 	 * @return
@@ -202,8 +216,8 @@ public class MyPageController {
 	}
 
 	/**
-	 * edit
-	 * 해당 메소드는 edit페이지를 가기 위한 메소드이다.
+	 * edit 해당 메소드는 edit페이지를 가기 위한 메소드이다.
+	 * 
 	 * @param id
 	 * @param model
 	 * @return
@@ -222,8 +236,8 @@ public class MyPageController {
 	}
 
 	/**
-	 * info
-	 * 해당 메소드는 info페이지를 가기 위한 메소드이다.
+	 * info 해당 메소드는 info페이지를 가기 위한 메소드이다.
+	 * 
 	 * @param id
 	 * @param model
 	 * @return
@@ -240,7 +254,7 @@ public class MyPageController {
 		model.addAttribute("center", dir + "info");
 		return "index";
 	}
-	
+
 	@RequestMapping("/update")
 	public String update(CustDTO cust, Model model, HttpSession session) {
 		CustDTO logincust = (CustDTO) session.getAttribute("logincust");
