@@ -113,6 +113,10 @@ public class ReserveController {
 					model.addAttribute("list2",list2);
 				}
 			}
+			OrderlistDTO list3 = null;
+			list3 = orderlistservice.get(r);
+			
+			model.addAttribute("list3", list3);
 			model.addAttribute("center", "/reservesuccess");
 		} catch (Exception e) {
 			e.printStackTrace();
