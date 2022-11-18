@@ -16,4 +16,7 @@ public class EatAdmDTO {
 	private String pwd;
 	private String adminname;
 	private int alevel;
+	
+	//조인
+	private int storeid;
 }

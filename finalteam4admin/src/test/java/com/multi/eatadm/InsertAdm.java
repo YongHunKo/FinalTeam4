@@ -15,7 +15,7 @@ class InsertAdm {
 	
 	@Test
 	void contextLoads() {
-		EatAdmDTO adm = new EatAdmDTO("admin04", "pwd04", "김성진", 3);
+		EatAdmDTO adm = new EatAdmDTO("admin04", "pwd04", "김성진", 3, 1);
 		try {
 			service.register(adm);
 			System.out.println("OK");

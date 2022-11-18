@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM eatadmin
 	</select>
 	<insert id="insert" parameterType="EatAdmDTO">
-		INSERT INTO eatadmin VALUES (#{adminid},#{pwd},#{adminname},1)
+		INSERT INTO eatadmin VALUES (#{adminid},#{pwd},#{adminname},1,#{storeid})
 	</insert>
 	<update id="update" parameterType="EatAdmDTO">
 		UPDATE eatadmin SET pwd=#{pwd},adminname=#{adminname},alevel=#{alevel} WHERE adminid=#{adminid}
