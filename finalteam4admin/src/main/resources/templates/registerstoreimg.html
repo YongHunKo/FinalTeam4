@@ -1,5 +1,9 @@
 <meta charset="utf-8">
-
+<style>
+.right-box {
+  float: right;
+}
+</style>
 <script>
 $(document).ready(function(){
 	$('#register_btn').click(function(){
@@ -33,11 +37,12 @@ $(document).ready(function(){
 		      <span id="ispan"></span>
 		    </div>
 		    <div class="form-group">
-		      <label for="storeimg">Image:</label>
-		      <input type="file" class="form-control" id="storeimg" name="storeimg">
+		      <label for="simg">Image:</label>
+		      <input type="file" class="form-control" id="simg" name="simg">
 		    </div>
-		   
-		    <button id="register_btn" class="btn btn-default">REGISTER</button>
+		    <div class="right-box">
+			    <a id="register_btn" class="btn btn-default"><img th:src="@{img/31287.png}" style="width:60px;"></a>
+		    </div>
   		</form>
     </div>
 </div>

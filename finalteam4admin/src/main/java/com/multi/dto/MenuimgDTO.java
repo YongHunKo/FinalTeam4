@@ -1,5 +1,7 @@
 package com.multi.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,4 +17,6 @@ public class MenuimgDTO {
 	private Integer menuimgno;
 	private Integer menuid;
 	private String menuimg;
+	
+	private MultipartFile mimg;
 }

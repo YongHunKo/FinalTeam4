@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import com.multi.dto.MenuDTO;
 import com.multi.dto.MenuimgDTO;
 import com.multi.dto.StoreDTO;
 import com.multi.dto.StoreimgDTO;
+import com.multi.frame.Util;
 import com.multi.service.EatAdmService;
 import com.multi.service.MenuService;
 import com.multi.service.MenuimgService;
@@ -23,6 +25,14 @@ import com.multi.service.StoreimgService;
 @Controller
 public class MainController {
 	
+	@Value("${adminstore}")
+	String adminstore;
+	@Value("${custstore}")
+	String custstore;
+	@Value("${adminmenu}")
+	String adminmenu;
+	@Value("${custmenu}")
+	String custmenu;
 	@Autowired
 	EatAdmService admservice;
 	@Autowired
@@ -129,8 +139,10 @@ public class MainController {
 	
 	@RequestMapping("/registerstoreimgimpl")
 	public String registerstoreimgimpl(Model model, StoreimgDTO sto) {
-
+		String storeimg = sto.getSimg().getOriginalFilename();
+		sto.setStoreimg(storeimg);
 		try {
+			Util.saveFile(sto.getSimg(), adminstore, custstore);
 			storeimgservice.register(sto);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -260,4 +272,23 @@ public class MainController {
 		}
 		return "redirect:/menuimg";
 	}	
+	
+	@RequestMapping("/regmenuimg")
+	public String regmenuimg(Model model) {
+		model.addAttribute("center", "regmenuimg");
+		return "index";
+	}
+	
+	@RequestMapping("/regmenuimgimpl")
+	public String regmenuimgimpl(Model model, MenuimgDTO menu) {
+		String menuimg = menu.getMimg().getOriginalFilename();
+		menu.setMenuimg(menuimg);
+		try {
+			Util.saveFile(menu.getMimg(), adminmenu, custmenu);
+			menuimgservice.register(menu);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/menuimg";
+	}
 }
