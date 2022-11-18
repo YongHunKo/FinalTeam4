@@ -40,6 +40,7 @@ public class KaKaoService {
 	            conn.setDoOutput(true);
 	          
 	            
+	            
 	            //    POST 요청에 필요로 요구하는 파라미터 스트림을 통해 전송
 	            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 	            StringBuilder sb = new StringBuilder();
