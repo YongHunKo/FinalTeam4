@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.multi.dto.CartDTO;
 import com.multi.dto.CustDTO;
 import com.multi.dto.StoreDTO;
+import com.multi.frame.Util;
 import com.multi.service.CartService;
 import com.multi.service.CustService;
 import com.multi.service.MenuService;
@@ -38,6 +40,9 @@ public class AController {
 	ReserveService reserveservice;
 	@Autowired
 	OcrService ocr;
+
+	@Value("${imgdir}")
+	String imgdir;
 
 	/**
 	 * checkid 해당 메소드는 cid를 통해 cust에서 해당 cid와 맞는 custid를 검색하여 일치 여부를 result로
@@ -135,10 +140,9 @@ public class AController {
 		while (iter.hasNext()) {
 			fieldName = (String) iter.next();
 			mfile = filelist.getFile(fieldName);
-			
+			Util.saveFile(mfile, imgdir);
 		}
 		obj = ocr.ocrresult(mfile.getOriginalFilename());
-		System.out.println(obj);
 		return obj;
 	}
 }

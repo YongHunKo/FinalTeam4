@@ -190,7 +190,7 @@ public class MyPageController {
 		}
 		return "redirect:/mypage/review?id=" + custid;
 	}
-
+	
 	/**
 	 * review 해당 메소드는 파라메터id의 review 내용을 review페이지에 출력하는 목적이다.
 	 * 

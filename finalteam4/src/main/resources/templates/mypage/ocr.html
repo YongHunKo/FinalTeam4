@@ -344,6 +344,7 @@
 			});
 			$("#review").submit();
 		});
+
 	});
 
 	function readURL(input) {
@@ -360,7 +361,7 @@
 
 	function upload() {
 		const imageInput = $("#rcpt")[0];
-
+		
 		if (imageInput.files.lenght === 0) {
 			alert("영수증 사진을 첨부해주세요.");
 			return;
@@ -370,11 +371,11 @@
 		formData.append("image", imageInput.files[0]);
 
 		$.ajax({
-			type : "POST",
 			url : "/ocr/ocrresult",
+			data : formData,
 			processData : false,
 			contentType : false,
-			data : formData,
+			type : "POST",
 			success : function(data) {
 				check(data);
 			}
@@ -397,34 +398,16 @@
 				$("#savereview").attr("disabled", false);
 				return
 
-				
-
-								
-
-				
-
 			} else {
 				$("#result_msg").text("결제하신 내역의 정보와 상이합니다. *주문 음식 불일치");
 				$("#result_msg").css("color", "#ff4800");
 				return
-
-				
-
-								
-
-				
 
 			}
 		} else {
 			$("#result_msg").text("해당 가게의 영수증이 아니거나 결제 날짜가 맞지 않습니다.");
 			$("#result_msg").css("color", "#ff4800");
 			return
-
-			
-
-						
-
-			
 
 		}
 	}
