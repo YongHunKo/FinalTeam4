@@ -383,12 +383,6 @@ table.table th {
 								name="datepicker">
 						</form>
 						<div id="time_button"></div>
-						<div id="time_button2">
-							<button id="select9" value="09:00" onclick="selecttime(this.value)">09:00</button>
-							<button id="" value="10:00" onclick="selecttime(this.value)">10:00</button>
-							<button id="" value="11:00" onclick="selecttime(this.value)">11:00</button>
-							<button id="" value="12:00" onclick="selecttime(this.value)">12:00</button>
-						</div>
 					<!-- 가격 종합 -->
 					<div class="content_total_section">
 						<div class="total_wrap">
@@ -468,40 +462,9 @@ table.table th {
 		<script>
 			$(document).ready(function() {
 				setTotalInfo();
-				
-				var str_html = '';
-	            
-	            // 버튼을 15개 추가한다.
-	            for (var i = 9; i < 24; i++) {
-	                var html_btn = '<button type="button" class="btn btn-success m-1" id="btn" style="width:100px">{}시</button>';
-	                html_btn = html_btn.replace('{}', i);
-	                str_html = str_html + html_btn + '\n';
-	            }
-	            
-	            $('#time_button').html(str_html);
-	            
-	            // 버튼을 동적연결한다.
-	            $(document).on("click", "#btn", function(){
-	                var idx = $(this).index();
-	                var idx2 = idx+9;
-	                // idx+9로 누르면 해당 시간이 뜨도록 표현이됨
-	                if(idx2<10){
-	                alert('0{}:00'.replace('{}', idx2))	                	
-	                var reservetime = $('#btn').val(idx2);
-	                alert(reservetime);
-	                }else{
-	                alert('{}:00'.replace('{}', idx2))             	
-	                var reservetime = ('{}:00'.replace('{}', idx2))
-	                alert(reservetime);
-	                }
-	            });
 
 			});
-			
-			function selecttime(value){
-				var reservetime=value;
-				alert(reservetime);
-			}
+
 
 			$(".individual_cart_checkbox").on("change", function() {
 				setTotalInfo($(".cart_info_td"));
