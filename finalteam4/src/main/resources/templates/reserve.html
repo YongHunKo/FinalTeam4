@@ -274,7 +274,7 @@ table>tbody>tr>td>img:hover {
 	color: white;
 }
 
-table th, td {
+table th, td, tr {
 	text-align: center;
 }
 
@@ -376,16 +376,13 @@ table.table th {
 									</div>
 								</td>
 							</tr>
-							<tr>
-								<td>
-									<form method="post">
-										예약일 선택하기 : <input type="text" id="datepicker"
-											name="datepicker">
-									</form>
-								</td>
-							</tr>
 						</tbody>
 					</table>
+						<form method="post">
+							예약일 선택하기 : <input type="text" id="datepicker"
+								name="datepicker">
+						</form>
+						<div id="time_button"></div>
 					<!-- 가격 종합 -->
 					<div class="content_total_section">
 						<div class="total_wrap">
@@ -465,6 +462,25 @@ table.table th {
 		<script>
 			$(document).ready(function() {
 				setTotalInfo();
+				
+				var str_html = '';
+	            
+	            // 버튼을 10개 추가한다.
+	            for (var i = 9; i < 24; i++) {
+	                var html_btn = '<button type="button" class="btn btn-success m-1" id="btn" style="width:100px">{}시</button>';
+	                html_btn = html_btn.replace('{}', i);
+	                str_html = str_html + html_btn + '\n';
+	            }
+	            
+	            $('#time_button').html(str_html);
+	            
+	            // 버튼을 동적연결한다.
+	            $(document).on("click", "#btn", function(){
+	                var idx = $(this).index();
+	                
+	                alert('버튼 {}을 눌렀습니다.'.replace('{}', idx))
+	            });
+
 			});
 
 			$(".individual_cart_checkbox").on("change", function() {
