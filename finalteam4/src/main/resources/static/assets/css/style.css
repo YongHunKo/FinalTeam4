@@ -33,8 +33,14 @@ body {
   vertical-align:baseline;
   margin-left:9%;
   margin-right:9%;
-  box-shadow: 0 1px 38px rgba(0, 0, 0, 0.15), 0 5px 12px	rgba(0, 0, 0, 0.25);
-  
+  box-shadow: 0 1px 38px rgba(0, 0, 0, 0.2), 0 5px 12px	rgba(0, 0, 0, 0.35);
+  background: linear-gradient(
+        rgba(255, 255, 255, 0.5),
+        rgba(255, 255, 255, 0.5)
+      ),
+  url("https://cdn.pixabay.com/photo/2020/06/22/16/40/leaves-5329790_960_720.jpg");
+  background-size:no repeat;
+   
 }
 
 * {
@@ -2616,6 +2622,7 @@ p {
 /*===== All Product Style 1 =====*/
 .product-style-1 .product-image {
   position: relative;
+
   
 }
 

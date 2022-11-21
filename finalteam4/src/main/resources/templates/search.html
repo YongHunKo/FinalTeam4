@@ -5,11 +5,16 @@
 <style>
    body {
         font-family: Varela Round;
-        background: #f1f1f1;
+        background-color: #fff;
         justify-content:space between;
         display:flex;
         flex-direction: column; /*수직 정렬*/
         padding-top:20px;
+        background:linear-gradient(
+        rgba(255, 255, 255, 0.5),
+        rgba(255, 255, 255, 0.5)
+      ),
+  url("https://cdn.pixabay.com/photo/2020/06/22/16/40/leaves-5329790_960_720.jpg");
     }
 
     a {
@@ -122,7 +127,7 @@
 </head>
 
 <body>
-  <div class="container" style="margin-top:100px;" >
+  <div class="container" style="margin-top:80px; background-color:#fff; " >
         <div class="row" >
             <div class="col-md-4 sm-4" th:each="m : ${menulist}" style="padding-top:20px;">
                 <div class="card-sl">
