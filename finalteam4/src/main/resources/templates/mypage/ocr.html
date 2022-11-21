@@ -447,22 +447,21 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12">
-						<a href="#" class="btn" id="menu-toggle">메뉴 ><span
-							class="glyphicon glyphicon-menu-hamburger"></span></a>
-						<div class="weather-card one" th:with="list1=${list_one}">
+						<a href="#" class="btn" id="menu-toggle">메뉴 ></a>
+						<div class="weather-card one" th:with="list1 = ${session.list_one}">
 							<div class="top">
 								<div class="wrapper">
 									<div class="mynav"></div>
 									<h1 class="heading" th:text="${list1.storename}"></h1>
 									<h3 class="location" th:text="${list1.reservedate}"></h3>
 									<p class="temp">
-										<span class="temp-value" th:text="${list1.reservetime}"></span>
+										<span class="temp-value" th:text="${session.banner_rsvdate}"></span>
 									</p>
 								</div>
 								<div class="wrapper2">
 									<div class="mynav"></div>
 									<h2 class="heading">가까운 예약</h2>
-									<h2 class="heading">D - 13</h2>
+									<h2 class="heading" th:text="'D' + ${session.banner_dday}"></h2>
 								</div>
 							</div>
 						</div>

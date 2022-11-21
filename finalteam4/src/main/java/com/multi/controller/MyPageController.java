@@ -65,11 +65,12 @@ public class MyPageController {
 			
 			String reservedate = list_one.getReservetime();
 			String reservedate2 = reservedate.substring(0, 5);
+			System.out.println(diffDays);
 			System.out.println(reservedate2);
 			
 			session.setAttribute("banner_rsvdate", reservedate2);
 			session.setAttribute("banner_dday", diffDays);
-			model.addAttribute("list_one", list_one);
+			session.setAttribute("list_one", list_one);
 			model.addAttribute("center", dir + "mypage");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -86,12 +87,9 @@ public class MyPageController {
 	 */
 	@RequestMapping("/order")
 	public String order(String id, Model model) {
-		OrderlistDTO list_one = null;
 		List<OrderlistDTO> list = null;
 		try {
-			list_one = order_service.myorder_1(id);
 			list = order_service.myorder(id);
-			model.addAttribute("list_one", list_one);
 			model.addAttribute("orderlist", list);
 			model.addAttribute("center", dir + "order");
 		} catch (Exception e) {
@@ -111,19 +109,13 @@ public class MyPageController {
 	 * @return
 	 */
 	@RequestMapping("/orderdetail")
-	public String orderdetail(Integer id, Model model, HttpSession session) {
-		Object obj = session.getAttribute("logincust");
-		CustDTO cust = (CustDTO) obj;
-		String custid = cust.getCustid();
-
-		OrderlistDTO list_one = null;
+	public String orderdetail(Integer id, Model model) {
 		List<ReserveDTO> list = null;
 		ReserveDTO rv = null;
 		int cnt = 0;
 		int total = 0;
 		String rvdate = null;
 		try {
-			list_one = order_service.myorder_1(custid);
 			list = reserve_service.myreserve(id);
 			rv = list.get(0);
 			rvdate = rv.getReservedate();
@@ -131,7 +123,6 @@ public class MyPageController {
 				cnt += r.getCnt();
 				total += r.getOrderprice();
 			}
-			model.addAttribute("list_one", list_one);
 			model.addAttribute("list", list);
 			model.addAttribute("rvdto", rv);
 			model.addAttribute("rvdate", rvdate);
@@ -153,23 +144,16 @@ public class MyPageController {
 	 * @return
 	 */
 	@RequestMapping("/ocr")
-	public String ocr(Integer id, Model model, HttpSession session) {
-		Object obj = session.getAttribute("logincust");
-		CustDTO cust = (CustDTO) obj;
-		String custid = cust.getCustid();
-
-		OrderlistDTO list_one = null;
+	public String ocr(Integer id, Model model) {
 		List<ReserveDTO> list = null;
 		ReserveDTO rv = null;
 		int total = 0;
 		try {
-			list_one = order_service.myorder_1(custid);
 			list = reserve_service.myreserve(id);
 			rv = list.get(0);
 			for (ReserveDTO r : list) {
 				total += r.getOrderprice();
 			}
-			model.addAttribute("list_one", list_one);
 			model.addAttribute("list", list);
 			model.addAttribute("order", rv);
 			model.addAttribute("total", total);
@@ -200,12 +184,9 @@ public class MyPageController {
 	 */
 	@RequestMapping("/review")
 	public String review(String id, Model model) {
-		OrderlistDTO list_one = null;
 		List<ReviewDTO> review = null;
 		try {
-			list_one = order_service.myorder_1(id);
 			review = review_service.myreview(id);
-			model.addAttribute("list_one", list_one);
 			model.addAttribute("review", review);
 			model.addAttribute("center", dir + "review");
 		} catch (Exception e) {
@@ -224,13 +205,6 @@ public class MyPageController {
 	 */
 	@RequestMapping("/edit")
 	public String edit(String id, Model model) {
-		OrderlistDTO list_one = null;
-		try {
-			list_one = order_service.myorder_1(id);
-			model.addAttribute("list_one", list_one);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		model.addAttribute("center", dir + "edit");
 		return "index";
 	}
@@ -244,13 +218,6 @@ public class MyPageController {
 	 */
 	@RequestMapping("/info")
 	public String info(String id, Model model) {
-		OrderlistDTO list_one = null;
-		try {
-			list_one = order_service.myorder_1(id);
-			model.addAttribute("list_one", list_one);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		model.addAttribute("center", dir + "info");
 		return "index";
 	}
@@ -268,6 +235,12 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 		return "redirect:/mypage?id=" + cust.getCustid();
+	}
+	
+	@RequestMapping("/question")
+	public String question(Model model) {
+		model.addAttribute("center", dir + "question");
+		return "index";
 	}
 
 }

@@ -6,9 +6,9 @@
 	position: relative;
 }
 
- #wrapper ul li a:hover {
+#wrapper ul li a:hover {
 	color: tomato;
-	font-weight:600;
+	font-weight: 600;
 }
 /* Sidebar */
 #sidebar-wrapper {
@@ -248,7 +248,7 @@
 	margin-top: 10px;
 }
 
-.reconfirm {
+.question {
 	margin: 0px auto;
 	height: 220px;
 	width: 1200px;
@@ -287,59 +287,13 @@
 </style>
 <script>
 	$(document).ready(function() {
-		const menu=document.querySelector('#menu-toggle')
-		
+		const menu = document.querySelector('#menu-toggle')
+
 		$("#menu-toggle").click(function(e) {
-			
-			
 			e.preventDefault();
 			$("#wrapper").toggleClass("menuDisplayed");
 			/*클릭시 숨김  */
-			menu.style.display ='none';
-			
-		});
-
-		$('#inputPassword').keyup(function() {
-			var id = $("#staticId").val();
-			var pwd = $("#inputPassword").val();
-			$.ajax({
-				url : "[[@{/edit/reconfirm}]]",
-				data : {
-					"custid" : id,
-					"custpwd" : pwd
-				},
-				success : function(result) {
-					if ($("#inputPassword").val() == "") {
-						$("#pspan").css("visibility", "hidden");
-						$("#next_btn").attr("disabled", false);
-					} else if (result == "false") {
-						$("#pspan").text("비밀번호를 다시 확인해주세요.");
-						$("#pspan").css("color", "#ff4800");
-						$("#pspan").css("visibility", "visible");
-						$("#next_btn").attr("disabled", true);
-					} else {
-						$("#pspan").text("비밀번호 일치.");
-						$("#pspan").css("color", "green");
-						$("#pspan").css("visibility", "visible");
-						$("#next_btn").attr("disabled", false);
-					}
-					return
-
-				}
-			});
-		});
-
-		$("#next_btn").click(function() {
-			if ($("#inputPassword").val() == "") {
-				$("#pspan").css("visibility", "visible");
-				$("#pspan").text("비밀번호를 입력해주세요.");
-				$("#pspan").css("color", "#ff4800");
-				$("#pspan").focus();
-				return
-
-			}
-			var custid = "[[${session.logincust.custid}]]";
-			location.href = "[[@{/mypage/info?id=}]]" + custid;
+			menu.style.display = 'none';
 		});
 	});
 </script>
@@ -397,33 +351,11 @@
 				</div>
 			</div>
 		</div>
-		<div class="reconfirm">
-			<form id="reconfirm_form">
-				<h3 class="my_tit">
-					비밀번호 재확인<span>회원님의 소중한 정보보호를 위해 비밀번호를 재확인하고 있습니다.</span>
-				</h3>
-				<div class="form-group" style="padding: 36px 0">
-					<div class="form-group row">
-						<label for="staticId" class="col-sm-2 col-form-label">아이디</label>
-						<div class="col-sm-10">
-							<input type="text" readonly class="form-control-plaintext"
-								id="staticId" th:value="${session.logincust.custid}"
-								name="custid">
-						</div>
-					</div>
-					<div class="form-group row" style="margin-top: 10px">
-						<label for="inputPassword" class="col-sm-2 col-form-label">비밀번호</label>
-						<div class="col-sm-10">
-							<input type="password" class="form-control" id="inputPassword"
-								placeholder="" style="width: 250px" name="custpwd"> <span
-								id="pspan" style="margin-top: 5px"></span>
-						</div>
-					</div>
-				</div>
-			</form>
-			<div class="btn_next">
-				<button id="next_btn" class="btn-primary">다 음</button>
-			</div>
+		<div class="question">
+			<h3 class="my_tit">
+				1 : 1 문의<span>채팅을 통해 문의를 남겨주세요.</span>
+			</h3>
+
 		</div>
 	</div>
 </div>
