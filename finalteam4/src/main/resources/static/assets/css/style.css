@@ -2,6 +2,7 @@
 /*-----------------------------------------------------------------------------------
 
     Template Name: eStore
+    
     Author URI: graygrids.com
     Author: GrayGrids
 
@@ -30,10 +31,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   vertical-align:baseline;
-  margin-left:8%;
-  padding-left:7%;
-  margin-right:8%;
-  padding-right:7%;
+  margin-left:9%;
+  margin-right:9%;
   	box-shadow: 0 1px 38px rgba(0, 0, 0, 0.15), 0 5px 12px
 		rgba(0, 0, 0, 0.25);
   
@@ -44,7 +43,6 @@ body {
   padding: 0;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  
 }
 
 img {
@@ -53,51 +51,7 @@ img {
 }
 
 
- .navbar-wrapper{
-	
-	/* background: linear-gradient(
-	rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)
-	), url("https://i.ytimg.com/vi/7Y_C6YyIwaI/maxresdefault.jpg");
-	background-size:cover;
-	background-repeat:no repeat;
-	background-position: 20% 80%;
-	z-index:1;
-	border-collapse:collapse; */
 
-}
-
-
-
-		
-	
-	
-	
-
-
-/* dettail 축소형 */
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-  .ftco-section{
-    height: auto;
-  }
-}
-
-@media only screen and (min-width: 576px) and (max-width: 767px) {
-  .ftco-section {
-    width: 50%;
-  }
-}
-
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
-  .ftco-section {
-    width: 70%;
-  }
-}
-
-@media only screen and (min-width: 576px) and (max-width: 767px) {
-  .ftco-section {
-    width: 70%;
-  }
-}
 
 
 #profile{
@@ -109,7 +63,6 @@ img {
 	margin-left:auto;
 	display:flex;
 	object-fit:cover;
-	padding-top:0 auto;
 	overflow:hidden;
 	margin-right:auto; 
 	
@@ -215,6 +168,8 @@ p {
   width: 100%;
   -webkit-transition: all 0.3s linear;
   transition: all 0.3s linear;
+  margin-left:9%;
+  margin-right:9%;
 }
 
 /*===== All Preloader Style =====*/
@@ -229,6 +184,8 @@ p {
   /* Change Background Color */
   background: #fff;
   z-index: 99999;
+   margin-left:9%;
+  margin-right:9%;
 }
 
 .preloader .loader {
@@ -4064,31 +4021,29 @@ p {
 
 /* 상단 SEARCH BAR */
 
-
+.navbar-wrapper .container{
+	display:flex;
+	flex-direction:row;
+	justify-content:space-between;
+	position:relative;
+  text-align:center;
+	
+}
 
 .search-style-5 {
-  position: relative;
+   position: relative;
   display: -moz-flex;
   display: -ms-flex;
   display: -o-flex;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width:280px;
-  padding-top:20px;
-  padding-bottom:20px;
-  margin:0 auto;
-  left:auto; 
-  right:5px; 
-  margin-left:0 auto; 
-  margin-right:0 auto;
-   
-
+  margin-left:10%;
   
 	}
 
 .search-style-5 .search-select .nice-select {
-  float: none;
+  float: left;
   border: 1px solid #D1D1D1;
   background-color: #fff;
   height: 40px;
@@ -4539,17 +4494,19 @@ p {
 }
 
 
-.desktop-logo{
-	padding-top:30px;
-	width:100px;
-	padding-bottom:30px;
-	position: relative;
-	margin:0px;
+.navbar-wrapper .container{
+	position:relative;
+	display:flex;
+	justify-content:space-between;
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:30px;
+	margin-bottom:30px;
+	align-items:center;
+	left:100px;
+	bottom:10px;
 	
-}
-
-.navbar-style-7 {
-  margin-right: 10px;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
