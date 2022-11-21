@@ -383,6 +383,12 @@ table.table th {
 								name="datepicker">
 						</form>
 						<div id="time_button"></div>
+						<div id="time_button2">
+							<button id="select9" value="09:00" onclick="selecttime(this.value)">09:00</button>
+							<button id="" value="10:00" onclick="selecttime(this.value)">10:00</button>
+							<button id="" value="11:00" onclick="selecttime(this.value)">11:00</button>
+							<button id="" value="12:00" onclick="selecttime(this.value)">12:00</button>
+						</div>
 					<!-- 가격 종합 -->
 					<div class="content_total_section">
 						<div class="total_wrap">
@@ -481,7 +487,7 @@ table.table th {
 	                // idx+9로 누르면 해당 시간이 뜨도록 표현이됨
 	                if(idx2<10){
 	                alert('0{}:00'.replace('{}', idx2))	                	
-	                var reservetime = ('0{}:00'.replace('{}', idx2))
+	                var reservetime = $('#btn').val(idx2);
 	                alert(reservetime);
 	                }else{
 	                alert('{}:00'.replace('{}', idx2))             	
@@ -491,6 +497,11 @@ table.table th {
 	            });
 
 			});
+			
+			function selecttime(value){
+				var reservetime=value;
+				alert(reservetime);
+			}
 
 			$(".individual_cart_checkbox").on("change", function() {
 				setTotalInfo($(".cart_info_td"));
@@ -595,7 +606,9 @@ table.table th {
 
 			function requestPay() {
 				var reservedate = $('#datepicker').val();//여기에 두면 반응함
-				var reservetime = $('#datepicker').val();
+				/* var reservetime = $('#datepicker').val(); */
+				var reservetime = $('#select9').val();//직접적으로 id를 따와야하는상황
+				alert(reservetime);
 				var totalPrice = $('#totalpricespan span').text();//얘도 확인함
 				var totalPrice2 = parseInt(totalPrice);
 				var reservedate = $('#datepicker').val();
