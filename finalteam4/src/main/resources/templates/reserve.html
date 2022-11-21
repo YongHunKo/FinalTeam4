@@ -465,7 +465,7 @@ table.table th {
 				
 				var str_html = '';
 	            
-	            // 버튼을 10개 추가한다.
+	            // 버튼을 15개 추가한다.
 	            for (var i = 9; i < 24; i++) {
 	                var html_btn = '<button type="button" class="btn btn-success m-1" id="btn" style="width:100px">{}시</button>';
 	                html_btn = html_btn.replace('{}', i);
@@ -477,8 +477,17 @@ table.table th {
 	            // 버튼을 동적연결한다.
 	            $(document).on("click", "#btn", function(){
 	                var idx = $(this).index();
-	                
-	                alert('버튼 {}을 눌렀습니다.'.replace('{}', idx))
+	                var idx2 = idx+9;
+	                // idx+9로 누르면 해당 시간이 뜨도록 표현이됨
+	                if(idx2<10){
+	                alert('0{}:00'.replace('{}', idx2))	                	
+	                var reservetime = ('0{}:00'.replace('{}', idx2))
+	                alert(reservetime);
+	                }else{
+	                alert('{}:00'.replace('{}', idx2))             	
+	                var reservetime = ('{}:00'.replace('{}', idx2))
+	                alert(reservetime);
+	                }
 	            });
 
 			});
