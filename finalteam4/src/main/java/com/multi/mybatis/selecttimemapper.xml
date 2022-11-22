@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.SelecttimeMapper">
+	
+	<select id="select" parameterType="Integer" resultType="SelecttimeDTO">
+		SELECT * FROM selecttime WHERE selecttimeid=#{selecttimeid}
+	</select>
+	<select id="selectall" resultType="SelecttimeDTO">
+		SELECT * FROM selecttime
+	</select>
+	<insert id="insert" parameterType="SelecttimeDTO">
+		INSERT INTO selecttime VALUES (#{selecttimeid},#{selecttimes})
+	</insert>
+	<update id="update" parameterType="SelecttimeDTO">
+		UPDATE selecttime SET selecttimes=#{selecttimes} WHERE selecttimeid=#{selecttimeid}
+	</update>
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM selecttime WHERE selecttimeid=#{selecttimeid}
+	</delete>
+	
+</mapper>
