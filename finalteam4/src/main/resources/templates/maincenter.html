@@ -1,6 +1,83 @@
  <meta charset="utf-8">
  <head>
+ <style>
  
+ .modal {
+	text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+	.modal:before {
+		display: inline-block;
+		vertical-align: middle;
+		content: " ";
+		height: 100%;
+	}
+}
+
+.modal-dialog {
+	display: inline-block;
+	text-align: left;
+	vertical-align: middle;
+}
+ 
+ 
+ 
+ </style>
+ <script>
+ 
+$(document).ready(function(){
+	$('#wishlist_btn').click(function() {
+		var storeid = $('#storeid').text();
+		var custid = $('#custid').text();
+		$.ajax({
+			url : '[[@{/insertwishlist}]]',
+			data : {
+				'storeid' : storeid,
+				'custid' : custid
+			},
+			success : function(data) {
+				$('#Modal').modal()
+			}
+		});
+	});
+	
+	
+	$('#wishlist_btntwo').click(function() {
+		var storeidtwo = $('#storeidtwo').text();
+		var custidtwo = $('#custidtwo').text();
+		$.ajax({
+			url : '[[@{/insertwishlist}]]',
+			data : {
+				'storeid' : storeidtwo,
+				'custid' : custidtwo
+			},
+			success : function(data) {
+				$('#Modal').modal()
+			}
+		});
+	});
+	
+	
+	$('#wishlist_btnth').click(function() {
+		var storeidth = $('#storeidth').text();
+		var custidth = $('#custidth').text();
+		$.ajax({
+			url : '[[@{/insertwishlist}]]',
+			data : {
+				'storeid' : storeidth,
+				'custid' : custidth
+			},
+			success : function(data) {
+				$('#Modal').modal()
+			}
+		});
+	});
+	
+	
+});
+ 
+ </script>
  
  </head>
  <body>
@@ -86,7 +163,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="mb-50">
-                        <h1 class="heading-1 font-weight-700">💯오늘의 추천맛집</h1>
+                        <h1 class="heading-1 font-weight-600" style="font-size:45px;">💯오늘의 추천맛집</h1>
                     </div>
                 </div>
             </div>
@@ -104,12 +181,16 @@
                                 </div>
                             </div>
                             <a class="add-wishlist" href="javascript:void(0)">
-                                <i class="mdi mdi-heart-outline"></i>
+                                <img th:src="@{/img/love.png}" style="width:30px;" id="wishlist_btn" data-toggle="modal"
+				data-target="#Modal">
                             </a>
                         </div>
                         <div class="product-content text-center" th:each=" t : ${today}">
                             <h5 class="title" th:text="${t.storename}" style="color:white; font-weight:500;"><a href="#"></a></h5>
                             <p th:text="${t.storeaddr}"></p>
+                            <p th:if="${session.logincust != null}" id="custid"
+							th:text="${session.logincust.custid}" style="display: none"></p>
+                            <p  id="storeid" th:text="${t.storeid}" style="display:none;"></p>
                             <a th:href="@{/storedetail(storeid=${t.storeid})}" class="main-btn secondary-1-btn" style="width:auto;">
                                 <p th:text="${t.storeintroduce}" style="font-weight:900; color:white;"></p>
  
@@ -130,12 +211,16 @@
                                 </div>
                             </div>
                             <a class="add-wishlist" href="javascript:void(0)">
-                                <i class="mdi mdi-heart-outline"></i>
+                                <img th:src="@{/img/love.png}" id="wishlist_btntwo"  style="width:30px;"  data-toggle="modal"
+				data-target="#Modal">
                             </a>
                         </div>
                         <div class="product-content text-center" th:each=" tw : ${todaytwo}">
                             <h5 class="title" th:text="${tw.storename}" style="color:white; font-weight:500;"><a href="product-details-page.html" ></a></h5>
                             <p th:text="${tw.storeaddr}"></p>
+                            <p th:if="${session.logincust != null}" id="custidtwo"
+							th:text="${session.logincust.custid}" style="display: none"></p>
+                            <p  id="storeidtwo" th:text="${tw.storeid}" style="display:none;"></p>
                             <a th:href="@{/storedetail(storeid=${tw.storeid})}" class="main-btn secondary-1-btn">
                                 <p th:text="${tw.storeintroduce}" style="font-weight:900; color:white;"></p>
                                
@@ -156,13 +241,18 @@
                                 </div>
                             </div>
                             <a class="add-wishlist" href="javascript:void(0)">
-                                <i class="mdi mdi-heart-outline"></i>
+                                <img th:src="@{/img/love.png}" style="width:30px;" id="wishlist_btnth" data-toggle="modal"
+				data-target="#Modal">
                             </a>
                         </div>
                         <div class="product-content text-center" th:each="th : ${todaythree}">
                             <h5 class="title"  th:text="${th.storename}" style="color:white; font-weight:500;"><a href="product-details-page.html"></a></h5>
                             <p th:text="${th.storeaddr}"></p>
+                            <p th:if="${session.logincust != null}" id="custidth"
+							th:text="${session.logincust.custid}" style="display: none"></p>
+                            <span id="storeidth" th:text="${th.storeid}" style="display:none;"></span>
                             <a th:href="@{/storedetail(storeid=${th.storeid})}" class="main-btn secondary-1-btn">
+                            
                                 
                                 <p th:text="${th.storeintroduce}" style="font-weight:900; color:white;"></p>
                             </a>
@@ -207,6 +297,29 @@
             </div>
         </div>
     </article>
+    
+    <div class="modal fade" id="Modal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">위시리스트에 추가되었습니다.</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">위시리스트로 가기</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+						data-dismiss="modal">취소</button>
+					<a class="btn btn-primary" th:if="${session.logincust != null}"
+						th:href="@{/wishlist(id=${session.logincust.custid})}">확인</a>
+				</div>
+			</div>
+		</div>
+	</div>
+    
     
     </body>
     
