@@ -50,7 +50,7 @@
         padding: 15px;
         font-size: 15px;
         box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
-        display:flex;
+    
     }
 
     .card-action:hover {
@@ -127,7 +127,7 @@
 </head>
 
 <body>
-  <div class="container" style="margin-top:80px; background-color:#fff; " >
+  <div class="container" style="background:#fff; padding-left:2px; padding-right:2px; margin-left:50px; margin-right:50px; " >
         <div class="row" >
             <div class="col-md-4 sm-4" th:each="m : ${menulist}" style="padding-top:20px;">
                 <div class="card-sl">
@@ -137,8 +137,9 @@
                            th:src="@{/menuimg/}+${m.menuimg}" style="justify-content:space between;"/>
                            </a>
                     </div>
-
-                    <a class="card-action" href="#"><i class="fa fa-heart"></i></a>
+					<div>
+                    <a class="card-action" href="#"><img th:src="@{/img/love.png}" style="width:30px;"></a>
+                    </div>
                     <div class="card-heading" th:text="${m.menuname}">
                        
                     </div>
@@ -148,7 +149,7 @@
                     <div class="card-text" th:text="${#numbers.formatInteger(m.menuprice, 3, 'COMMA')}">
                         
                     </div>
-                    <a href="#" class="card-button"> 예약하러가기</a>
+                    <a th:href="@{/storedetail(storeid=${m.storeid})}" class="card-button"> 예약하러가기</a>
                 </div>
             </div>
         </div>  
