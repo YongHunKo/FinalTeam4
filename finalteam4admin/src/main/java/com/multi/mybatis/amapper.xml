@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 
 	<select id="chart1" resultType="ChartDTO">
 		SELECT DATE_FORMAT(orderdate,'%d') AS day, SUM(totalprice) AS total FROM orderlist
-		GROUP BY day;
+		GROUP BY day
 	</select>
 	
 </mapper>

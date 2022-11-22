@@ -50,7 +50,7 @@
 
 </style>
 <script>
-function display1(data){
+function display(data){
 	Highcharts.chart('container', {
 	    chart: {
 	        type: 'column'
@@ -90,17 +90,16 @@ function display1(data){
 	    series: data['result']
 	});
 };
-function getdata1(){
-	$ajax({
+function getdata(){
+	$.ajax({
 		url:'[[@{/chart1}]]',
 		success:function(data){
-			//alert(data);
-			display1(data);
+			display(data);
 		}
 	});
 };
 $(document).ready(function(){
-	getdata1();
+	getdata();
 });
 
 </script>
