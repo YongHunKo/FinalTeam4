@@ -284,7 +284,90 @@
 	font-size: 18px;
 	font-weight: 700;
 }
+
+#chat1 .form-outline .form-control ~.form-notch div {
+	pointer-events: none;
+	border: 1px solid;
+	border-color: #eee;
+	box-sizing: border-box;
+	background: transparent;
+}
+
+#chat1 .form-outline .form-control ~.form-notch .form-notch-leading {
+	left: 0;
+	top: 0;
+	height: 100%;
+	border-right: none;
+	border-radius: .65rem 0 0 .65rem;
+}
+
+#chat1 .form-outline .form-control ~.form-notch .form-notch-middle {
+	flex: 0 0 auto;
+	max-width: calc(100% - 1rem);
+	height: 100%;
+	border-right: none;
+	border-left: none;
+}
+
+#chat1 .form-outline .form-control ~.form-notch .form-notch-trailing {
+	flex-grow: 1;
+	height: 100%;
+	border-left: none;
+	border-radius: 0 .65rem .65rem 0;
+}
+
+#chat1 .form-outline .form-control:focus ~.form-notch .form-notch-leading
+	{
+	border-top: 0.125rem solid #39c0ed;
+	border-bottom: 0.125rem solid #39c0ed;
+	border-left: 0.125rem solid #39c0ed;
+}
+
+#chat1 .form-outline .form-control:focus ~.form-notch .form-notch-leading,
+	#chat1 .form-outline .form-control.active ~.form-notch .form-notch-leading
+	{
+	border-right: none;
+	transition: all 0.2s linear;
+}
+
+#chat1 .form-outline .form-control:focus ~.form-notch .form-notch-middle
+	{
+	border-bottom: 0.125rem solid;
+	border-color: #39c0ed;
+}
+
+#chat1 .form-outline .form-control:focus ~.form-notch .form-notch-middle,
+	#chat1 .form-outline .form-control.active ~.form-notch .form-notch-middle
+	{
+	border-top: none;
+	border-right: none;
+	border-left: none;
+	transition: all 0.2s linear;
+}
+
+#chat1 .form-outline .form-control:focus ~.form-notch .form-notch-trailing
+	{
+	border-top: 0.125rem solid #39c0ed;
+	border-bottom: 0.125rem solid #39c0ed;
+	border-right: 0.125rem solid #39c0ed;
+}
+
+#chat1 .form-outline .form-control:focus ~.form-notch .form-notch-trailing,
+	#chat1 .form-outline .form-control.active ~.form-notch .form-notch-trailing
+	{
+	border-left: none;
+	transition: all 0.2s linear;
+}
+
+#chat1 .form-outline .form-control:focus ~.form-label {
+	color: #39c0ed;
+}
+
+#chat1 .form-outline .form-control ~.form-label {
+	color: #bfbfbf;
+}
 </style>
+
 <script>
 	$(document).ready(function() {
 		const menu = document.querySelector('#menu-toggle')
@@ -295,7 +378,83 @@
 			/*클릭시 숨김  */
 			menu.style.display = 'none';
 		});
+
+		$("#connect").click(function() {
+			connect();
+		});
+
+		$("#disconnect").click(function() {
+			disconnect();
+		});
+
+		$("#sendme").click(function() {
+			sendMe();
+		});
+
+		$("#sendto").click(function() {
+			sendTo();
+		});
 	});
+
+	var stompClient = null;
+	var id = "[[${session.logincust.custid}]]";
+	// 서버소켓에 연결
+	function connect() {
+		var socket = new SockJS("/ws");
+		stompClient = Stomp.over(socket);
+
+		stompClient.connect({}, function(frame) {
+			setConnected(true);
+			console.log('Connected: ' + frame);
+			stompClient.subscribe('/send/' + id, function(msg) {
+				$("#me").prepend(
+						"<p>" + JSON.parse(msg.body).sendid + ":"
+								+ JSON.parse(msg.body).content1 + ":"
+								+ JSON.parse(msg.body).content2 + "</p>");
+			});
+			stompClient.subscribe('/send/to/' + id, function(msg) {
+				$("#to").prepend(
+						"<h4>" + JSON.parse(msg.body).sendid + ":"
+								+ JSON.parse(msg.body).content1 + "</h4>");
+			});
+		});
+	}
+
+	// 서버소켓에 연결끊기
+	function disconnect() {
+		if (stompClient !== null) {
+			stompClient.disconnect();
+		}
+		setConnected(false);
+		console.log("Disconnected");
+	}
+
+	// connect&disconnect버턴 활성화/비활성화
+	function setConnected(connected) {
+		if (connected) {
+			$("#status").text("Connected");
+		} else {
+			$("#status").text("Disconnected");
+		}
+
+	}
+
+	// 서버에 메세지 요청 메서드
+	function sendMe() {
+		var msg = JSON.stringify({
+			'sendid' : id,
+			'content1' : $('#metext').val()
+		});
+		stompClient.send("/receiveme", {}, msg);
+	}
+	function sendTo() {
+		var msg = JSON.stringify({
+			'sendid' : id,
+			'receiveid' : $('#target').val(),
+			'content1' : $('#totext').val()
+		});
+		stompClient.send('/receiveto', {}, msg);
+	}
 </script>
 
 <div id="wrapper">
@@ -354,8 +513,65 @@
 		<div class="question">
 			<h3 class="my_tit">
 				1 : 1 문의<span>채팅을 통해 문의를 남겨주세요.</span>
+				<button id="connect" class="btn btn-default">연결</button>
 			</h3>
+			<div class="container py-5">
 
+				<div class="row d-flex justify-content-center">
+					<div class="col-md-8 col-lg-6 col-xl-4">
+
+						<div class="card" id="chat1" style="border-radius: 15px;">
+							<div
+								class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0"
+								style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
+								<i class="fas fa-angle-left"></i>
+								<p class="mb-0 fw-bold">Live eatNout</p>
+								<i class="fas fa-times"></i>
+							</div>
+							<div class="card-body">
+
+								<div class="d-flex flex-row justify-content-start mb-4">
+									<img
+										src="/assets/images/eLogo.png"
+										alt="avatar 1" style="width: 45px; height: 100%;">
+									<div id="me" class="p-3 ms-3"
+										style="border-radius: 15px; background-color: rgba(57, 192, 237, .2);">
+									</div>
+								</div>
+
+								<div class="d-flex flex-row justify-content-end mb-4">
+									<div class="p-3 me-3 border"
+										style="border-radius: 15px; background-color: #fbfbfb;">
+										<p class="small mb-0">Thank you, I really like your
+											product.</p>
+									</div>
+									<img
+										src="/assets/images/eLogo.png"
+										alt="avatar 1" style="width: 45px; height: 100%;">
+								</div>
+
+
+
+								<div class="form-outline">
+									<textarea class="form-control" id="metext" rows="4"></textarea>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+
+			<div>
+				<div id="me">
+					<div class="send">
+						<textarea type="text" id="metext"></textarea>
+						<button id="sendme">Send</button>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
