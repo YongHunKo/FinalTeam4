@@ -19,4 +19,8 @@ public class MenuimgDTO {
 	private String menuimg;
 	
 	private MultipartFile mimg;
+	
+	//조인
+		private String storename;
+		private String menuname;
 }

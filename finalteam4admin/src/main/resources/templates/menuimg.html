@@ -34,7 +34,9 @@ function del(menuimgno){
                 <thead>
                     <tr>
                         <th>이미지 번호</th>
-                        <th>매장id</th>
+                        <th>매장 이름</th>
+                        <th>메뉴id</th>
+                        <th>메뉴 이름</th>
                         <th>이미지</th>
                         <th>삭제</th>
                     </tr>
@@ -43,10 +45,12 @@ function del(menuimgno){
                 <tbody>
                    	<tr th:each="i:${list}">
                    		<td th:text="${i.menuimgno}"></td>
+                   		<td th:text="${i.storename}"></td>
                    		<td th:text="${i.menuid}"></td>
+                   		<td th:text="${i.menuname}"></td>
                    		<td><img th:src="@{/menuimg/}+${i.menuimg}"></td>
                    		<td><a th:onclick="del([[${i.menuimgno}]])"><img th:src="@{img/5974771.png}" style="width:30px;"></a></td>
-                   	</tr>      
+                   	</tr> 
                 </tbody>
             </table>
         </div>

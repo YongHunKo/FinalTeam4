@@ -8,7 +8,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM menuimgs WHERE menuimgno=#{menuimgno}
 	</select>
 	<select id="selectall" resultType="MenuimgDTO">
-		SELECT * FROM menuimgs
+		SELECT mi.menuimgno, mi.menuid, mi.menuimg, m.menuname, s.storename
+		FROM menuimgs mi
+		INNER JOIN menu m ON mi.menuid = m.menuid
+		INNER JOIN store s ON s.storeid = m.storeid
 	</select>
 	<insert id="insert" parameterType="MenuimgDTO">
 		INSERT INTO menuimgs VALUES (0,#{menuid},#{menuimg})
