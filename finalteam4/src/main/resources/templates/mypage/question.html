@@ -366,6 +366,23 @@
 #chat1 .form-outline .form-control ~.form-label {
 	color: #bfbfbf;
 }
+
+#connect {
+	width: 96px;
+	font-size: 18px;
+	background: #FFBB45;
+	border: none;
+}
+
+#sendme {
+	float: right;
+	width: 96px;
+	line-height: 32px;
+	font-size: 18px;
+	background: #FFBB45;
+	border: none;
+}
+
 </style>
 
 <script>
@@ -407,15 +424,10 @@
 			setConnected(true);
 			console.log('Connected: ' + frame);
 			stompClient.subscribe('/send/' + id, function(msg) {
-				$("#me").prepend(
-						"<p>" + JSON.parse(msg.body).sendid + ":"
-								+ JSON.parse(msg.body).content1 + ":"
-								+ JSON.parse(msg.body).content2 + "</p>");
-			});
-			stompClient.subscribe('/send/to/' + id, function(msg) {
-				$("#to").prepend(
-						"<h4>" + JSON.parse(msg.body).sendid + ":"
-								+ JSON.parse(msg.body).content1 + "</h4>");
+				$("#card-body").append(
+						"<div class='d-flex flex-row justify-content-end mb-4'><div class='p-3 me-3 border' style='border-radius: 15px; background-color: #fbfbfb'><p>" + JSON.parse(msg.body).content1 + "</p></div><img src='/assets/images/eLogo.png' style='width: 45px; height: 100%'></div>");
+				$("#card-body").append(
+						"<div class='d-flex flex-row justify-content-start mb-4'><img src='/assets/images/eLogo.png' style='width: 45px; height: 100%''><div class='p-3 ms-3' style='border-radius: 15px; background-color: rgba(57, 192, 237, .2)'><p>" + JSON.parse(msg.body).content2 + "</p></div></div>");
 			});
 		});
 	}
@@ -447,14 +459,7 @@
 		});
 		stompClient.send("/receiveme", {}, msg);
 	}
-	function sendTo() {
-		var msg = JSON.stringify({
-			'sendid' : id,
-			'receiveid' : $('#target').val(),
-			'content1' : $('#totext').val()
-		});
-		stompClient.send('/receiveto', {}, msg);
-	}
+	
 </script>
 
 <div id="wrapper">
@@ -513,7 +518,7 @@
 		<div class="question">
 			<h3 class="my_tit">
 				1 : 1 문의<span>채팅을 통해 문의를 남겨주세요.</span>
-				<button id="connect" class="btn btn-default">연결</button>
+				<button id="connect" class="btn btn-default">대화시작</button>
 			</h3>
 			<div class="container py-5">
 
@@ -523,58 +528,29 @@
 						<div class="card" id="chat1" style="border-radius: 15px;">
 							<div
 								class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0"
-								style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
+								style="border-top-left-radius: 15px; border-top-right-radius: 15px">
 								<i class="fas fa-angle-left"></i>
-								<p class="mb-0 fw-bold">Live eatNout</p>
+								<p class="mb-0 fw-bold">Eat & Out</p>
 								<i class="fas fa-times"></i>
 							</div>
-							<div class="card-body">
-
+							<div id="card-body" class="card-body">
 								<div class="d-flex flex-row justify-content-start mb-4">
-									<img
-										src="/assets/images/eLogo.png"
-										alt="avatar 1" style="width: 45px; height: 100%;">
-									<div id="me" class="p-3 ms-3"
-										style="border-radius: 15px; background-color: rgba(57, 192, 237, .2);">
+									<img src="/assets/images/eLogo.png"
+										style="width: 45px; height: 100%">
+									<div class="p-3 ms-3"
+										style="border-radius: 15px; background-color: rgba(57, 192, 237, .2)">
+										<p>궁금하신 점 있으신가요? </p>
+										<p>저에게 물어봐주세요!</p>
 									</div>
 								</div>
-
-								<div class="d-flex flex-row justify-content-end mb-4">
-									<div class="p-3 me-3 border"
-										style="border-radius: 15px; background-color: #fbfbfb;">
-										<p class="small mb-0">Thank you, I really like your
-											product.</p>
-									</div>
-									<img
-										src="/assets/images/eLogo.png"
-										alt="avatar 1" style="width: 45px; height: 100%;">
-								</div>
-
-
-
-								<div class="form-outline">
-									<textarea class="form-control" id="metext" rows="4"></textarea>
-								</div>
-
+							</div>
+							<div class="form-outline">
+								<textarea class="form-control" id="metext" rows="3"></textarea>
+								<button id="sendme">></button>
 							</div>
 						</div>
-
-					</div>
-				</div>
-
-			</div>
-
-			<div>
-				<div id="me">
-					<div class="send">
-						<textarea type="text" id="metext"></textarea>
-						<button id="sendme">Send</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-
-
-</body>
