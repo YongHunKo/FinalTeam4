@@ -318,4 +318,10 @@ public class MainController {
 		}
 		return "redirect:/user";
 	}	
+	
+	@RequestMapping("/storesales")
+	public String storesales(Model model) {
+		model.addAttribute("center", "storesales");
+		return "index";
+	}
 }
