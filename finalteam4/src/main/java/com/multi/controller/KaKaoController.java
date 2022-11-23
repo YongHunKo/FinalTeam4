@@ -91,11 +91,7 @@ public class KaKaoController {
 	    	} 	
 	    }
 	    
-	    /*소셜로그인을 로그아웃하도록 하는 session저장 하는 부분*/
-	    if (userInfo.get("email") != null) {
-	        session.setAttribute("userId", userInfo.get("email"));
-	        session.setAttribute("access_Token", access_Token);
-	    }
+	   
 	    return "index";
 	 }
 
