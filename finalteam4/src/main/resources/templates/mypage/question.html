@@ -425,7 +425,7 @@
 			console.log('Connected: ' + frame);
 			stompClient.subscribe('/send/' + id, function(msg) {
 				$("#card-body").append(
-						"<div class='d-flex flex-row justify-content-end mb-4'><div class='p-3 me-3 border' style='border-radius: 15px; background-color: #fbfbfb'><p>" + JSON.parse(msg.body).content1 + "</p></div><img src='/assets/images/eLogo.png' style='width: 45px; height: 100%'></div>");
+						"<div class='d-flex flex-row justify-content-end mb-4'><div class='p-3 me-3 border' style='border-radius: 15px; background-color: #fbfbfb'><p>" + JSON.parse(msg.body).content1 + "</p></div><img src='/assets/images/thumbnail.png' style='width: 45px; height: 100%'></div>");
 				$("#card-body").append(
 						"<div class='d-flex flex-row justify-content-start mb-4'><img src='/assets/images/eLogo.png' style='width: 45px; height: 100%''><div class='p-3 ms-3' style='border-radius: 15px; background-color: rgba(57, 192, 237, .2)'><p>" + JSON.parse(msg.body).content2 + "</p></div></div>");
 			});
@@ -445,6 +445,7 @@
 	function setConnected(connected) {
 		if (connected) {
 			$("#status").text("Connected");
+			$("#metext").attr("disabled", false);
 		} else {
 			$("#status").text("Disconnected");
 		}
@@ -545,7 +546,7 @@
 								</div>
 							</div>
 							<div class="form-outline">
-								<textarea class="form-control" id="metext" rows="3"></textarea>
+								<textarea class="form-control" id="metext" rows="3" disabled></textarea>
 								<button id="sendme">></button>
 							</div>
 						</div>

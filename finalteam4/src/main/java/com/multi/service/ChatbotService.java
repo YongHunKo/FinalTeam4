@@ -19,8 +19,8 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class ChatbotService {
-	private String secretKey = "UFVBbHVsc2tqemNTaUpZUmdjUlNNdEdiZlNJdEJyaEE=";
-	private String apiURL = "https://5rg3w5fpd8.apigw.ntruss.com/custom/v1/8241/675ddbcbc9b8ae74a2737a31c33b056d8aeb2cfc89ef7a5132734f180376fe9d";
+	private String secretKey = "T0RrRHZuSGJ6bkNRVm1ObUpuSFNjdG1qZXd5REloYnY=";
+	private String apiURL = "https://5rg3w5fpd8.apigw.ntruss.com/custom/v1/8233/3556b72d172dfc3010e66d991ea89530888326af476ffe9be628f2c1b40acc44";
 
 	public String sendMessage(String chatMessage) throws IOException {
 		URL url = new URL(apiURL);
