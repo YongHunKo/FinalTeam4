@@ -23,6 +23,24 @@
 ==================================================================*/
 /*=====  Common Style =====*/
 @import url("https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900&display=swap");
+
+html{
+	 background: linear-gradient(
+        rgba(255, 255, 255, 0.5),
+        rgba(255, 255, 255, 0.5)
+      ),
+  url("https://cdn.pixabay.com/photo/2020/06/22/16/40/leaves-5329790_960_720.jpg");
+  background-repeat:no repeat;
+  background-size:fill;
+  background-position:bottom center;
+   
+	
+	
+	
+}
+
+
+
 body {
   font-family: "Rubik", sans-serif;
   font-weight: normal;
@@ -34,14 +52,13 @@ body {
   margin-left:9%;
   margin-right:9%;
   box-shadow: 0 1px 38px rgba(0, 0, 0, 0.2), 0 5px 12px	rgba(0, 0, 0, 0.35);
-  background: linear-gradient(
-        rgba(255, 255, 255, 0.5),
-        rgba(255, 255, 255, 0.5)
-      ),
-  url("https://cdn.pixabay.com/photo/2020/06/22/16/40/leaves-5329790_960_720.jpg");
-  background-size:no repeat;
-   
+ 
 }
+
+
+
+
+
 
 * {
   margin: 0;
