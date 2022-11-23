@@ -50,7 +50,7 @@ public class AController {
 		
 		JSONArray ja = new JSONArray();
 		JSONObject obj = new JSONObject();
-		obj.put("name", "Customer");
+		obj.put("name", "매출");
 		
 		JSONArray uja = new JSONArray();
 		
