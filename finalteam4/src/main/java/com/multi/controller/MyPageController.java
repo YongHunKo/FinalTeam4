@@ -74,6 +74,7 @@ public class MyPageController {
 			model.addAttribute("center", dir + "mypage");
 		} catch (Exception e) {
 			e.printStackTrace();
+			model.addAttribute("center", dir + "mypage");
 		}
 		return "index";
 	}
