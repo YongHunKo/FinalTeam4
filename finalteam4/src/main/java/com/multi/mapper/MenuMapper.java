@@ -13,4 +13,6 @@ import com.multi.frame.MyMapper;
 public interface MenuMapper extends MyMapper<Integer, MenuDTO>{
 	public List<MenuDTO> selectcatemenu(Integer menucateid);
 	public List<MenuDTO> searchmenu(String txt);
+	public List<MenuDTO> searchmenuasc(String txt);
+	public List<MenuDTO> searchmenudesc(String txt);
 }
