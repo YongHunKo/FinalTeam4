@@ -11,4 +11,5 @@ import com.multi.dto.ChartDTO;
 @Mapper
 public interface AMapper {
 	public List<ChartDTO> chart1();
+	public int getCustCnt();
 }

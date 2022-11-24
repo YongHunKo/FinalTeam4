@@ -3,10 +3,11 @@
 PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.multi.mapper.AMapper">
-
 	<select id="chart1" resultType="ChartDTO">
 		SELECT DATE_FORMAT(orderdate,'%d') AS day, SUM(totalprice) AS total FROM orderlist
 		GROUP BY day
 	</select>
-	
+	<select id="getCustCnt" resultType="Integer">
+		SELECT count(*) FROM cust
+	</select>
 </mapper>

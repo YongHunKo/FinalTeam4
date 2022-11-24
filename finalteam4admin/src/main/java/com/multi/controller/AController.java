@@ -21,6 +21,13 @@ public class AController {
 	@Autowired
 	AMapper amapper;
 	
+	@RequestMapping("/custcnt")
+	public String custcnt() {
+		int cnt = amapper.getCustCnt();
+		System.out.println(cnt);
+		return cnt+"";
+	}
+	
 	@RequestMapping("/checkid")
 	public Object checkid(String cid) {
 		String result = "";

@@ -50,6 +50,15 @@
 
 </style>
 <script>
+function getCustCnt(){
+	$.ajax({
+		url:'[[@{/custcnt}]]',
+		success:function(data){
+			$('#cust_cnt').text(data);
+		}
+	});
+};
+
 function display(data){
 	Highcharts.chart('container', {
 	    chart: {
@@ -100,6 +109,7 @@ function getdata(){
 };
 $(document).ready(function(){
 	getdata();
+	getCustCnt();
 });
 
 </script>
@@ -112,8 +122,10 @@ $(document).ready(function(){
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-line fa-3x text-primary"></i>
                             <div class="ms-3">
-                                <p class="mb-2">Today Sale</p>
-                                <h6 class="mb-0">$1234</h6>
+                                <p class="mb-2">총 회원수</p>
+                                <div>
+                        	        <h6 class="mb-0" id="cust_cnt"></h6>
+                                </div>
                             </div>
                         </div>
                     </div>
