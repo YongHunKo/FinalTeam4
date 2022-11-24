@@ -60,8 +60,33 @@ body {
   display: none;
 }
 
+@keyframes slide{
+	from{
+		left:-400px;
+		opacity:0;
+	}
+	to{
+		left:80px;
+		opacity:1;
+	}
+	
+	
+}
 
 
+@keyframes disappear{
+	from{
+		left:80px;
+		opacity:1;
+	}
+	
+	to{
+		left:-400px;
+		opacity:0;
+	}
+	
+	
+}
 
 * {
   margin: 0;
@@ -4637,20 +4662,10 @@ p {
 
 
 .navbar-style-7 .navbar-container .navbar-top-wrapper {
-  
-   /* 보라 */
-   /*  background: linear-gradient(to right, #5f2c82, #49a09d); */
-   
     /* 주황 */
       /* background: linear-gradient(to right, #fdc830, #f37335); */ 
    /* 블랙 */
   /*  background: linear-gradient(to right, #232526, #414345); */
-  
-  /* background: linear-gradient(
-	rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)
-	), url("https://i.ytimg.com/vi/7Y_C6YyIwaI/maxresdefault.jpg"); */
-
-
 background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
 background-size: 1800% 1800%;
 

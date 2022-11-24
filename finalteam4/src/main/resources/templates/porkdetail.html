@@ -1,47 +1,158 @@
 <meta charset="utf-8">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
 
-<link rel="stylesheet" th:href="@{/assets/css/table.css}">
+<style>
+
+  body {
+        font-family: Varela Round;
+        background-color: #fff;
+        justify-content:space between;
+        display:flex;
+        flex-direction: column; /*수직 정렬*/
+        padding-top:20px;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    /* Card Styles */
+
+    .card-sl {
+        border-radius: 8px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+
+    .card-image img {
+        height: 250px;
+        width: 520px;
+        border-radius: 8px 8px 0px 0;
+        object-fit:cover;
+        overflow:hidden;
+        z-index:1;
+    }
+
+    .card-action {
+        position: relative;
+        float: right;
+        margin-top: -25px;
+        margin-right: 20px;
+        z-index: 2;
+        color: #E26D5C;
+        background: #fff;
+        border-radius: 100%;
+        padding: 15px;
+        font-size: 15px;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
+    
+    }
+
+    .card-action:hover {
+        color: #fff;
+        background: #E26D5C;
+        -webkit-animation: pulse 1.5s infinite;
+    }
+
+    .card-heading {
+        font-size: 18px;
+        font-weight: bold;
+        background: #fff;
+        padding: 10px 15px;
+    }
+
+    .card-text {
+        padding: 10px 15px;
+        background: #fff;
+        font-size: 14px;
+        color: #636262;
+    }
+
+    .card-button {
+        display: flex;
+        justify-content: center;
+        padding: 10px 0;
+        width: 100%;
+        background-color: #1F487E;
+        color: #fff;
+        border-radius: 0 0 8px 8px;
+    }
+
+    .card-button:hover {
+        text-decoration: none;
+        background-color: #1D3461;
+        color: #fff;
+
+    }
+
+
+    @-webkit-keyframes pulse {
+        0% {
+            -moz-transform: scale(0.9);
+            -ms-transform: scale(0.9);
+            -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+        }
+
+        60% {
+            -moz-transform: scale(1);
+            -ms-transform: scale(1);
+            -webkit-transform: scale(1);
+            transform: scale(1);
+            box-shadow: 0 0 0 50px rgba(90, 153, 212, 0);
+        }
+
+        80% {
+            -moz-transform: scale(0.9);
+            -ms-transform: scale(0.9);
+            -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+            box-shadow: 0 0 0 0 rgba(90, 153, 212, 0);
+        }
+    }
+
+
+
+</style>
+
+
+
+
+</head>
 <script th:src="@{/assets/js/jquery.flexslider.js}"></script>
 
 
+<body>
+<div class="container" style="background:#fff;" >
+        <div class="row" >
+            <div class="col-md-4 sm-4" th:each="a : ${all}" style="padding-top:20px;">
+                <div class="card-sl">
+                    <div class="card-image">
+                        <a th:href="@{/storedetail(storeid=${a.storeid})}">
+                        <img
+                           th:src="@{/menuimg/}+${a.menuimg}" style="justify-content:space between;"/>
+                           </a>
+                    </div>
+					<div>
+                    <a class="card-action" href="#"><img th:src="@{/img/love.png}" style="width:30px;"></a>
+                    </div>
+                    <div class="card-heading" th:text="${a.menuname}">
+                       
+                    </div>
+                    <div class="card-text" th:text="${a.storename}">
+                       
+                    </div>
+                    <div class="card-text" th:text="${#numbers.formatInteger(a.menuprice, 3, 'COMMA')}">
+                        
+                    </div>
+                    <a th:href="@{/storedetail(storeid=${a.storeid})}" class="card-button"> 예약하러가기</a>
+                </div>
+            </div>
+        </div>  
+
+</div>
 
 
-<section class="ftco-section">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">흑돼지집모아보기</h2>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="table-wrap">
-						<table class="table" style="text-align:center;">
-						  <thead class="thead-dark">
-						    <tr>
-						     
-						      <th></th>
-						      <th>가게이름</th>
-						      <th>가게주소</th>
-						      <th>메뉴이름</th>
-						      <th>가격&nbsp;(원)</th>
-
-						    </tr>
-						  </thead>
-						  <tbody>
-						    <tr class="alert" role="alert" th:each="a : ${all}">		
-								<td><a th:href="@{/storedetail(storeid=${a.storeid})}">
-									<img th:src="@{/menuimg/}+${a.menuimg}" style="width:200px; height:200px; border-radius:60px;"></a></td>
-								<td th:text="${a.storename}"></td>
-							 	<td th:text="${a.storeaddr}"></td>
-				            	<td th:text="${a.menuname}">store_name</td>
-				            	<td th:text="${#numbers.formatInteger(a.menuprice, 3, 'COMMA')}"></td>			            	
-						    </tr>
-						  </tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-
-</section>
+</body>
+</html>
