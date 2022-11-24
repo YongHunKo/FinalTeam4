@@ -79,20 +79,69 @@
 
 
 @-webkit-keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@-webkit-keyframes snowflakes-shake{0%{-webkit-transform:translateX(0px);transform:translateX(0px)}50%{-webkit-transform:translateX(80px);transform:translateX(80px)}100%{-webkit-transform:translateX(0px);transform:translateX(0px)}}@keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@keyframes snowflakes-shake{0%{transform:translateX(0px)}50%{transform:translateX(80px)}100%{transform:translateX(0px)}}.snowflake{position:fixed;top:-10%;z-index:9999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;-webkit-animation-name:snowflakes-fall,snowflakes-shake;-webkit-animation-duration:10s,3s;-webkit-animation-timing-function:linear,ease-in-out;-webkit-animation-iteration-count:infinite,infinite;-webkit-animation-play-state:running,running;animation-name:snowflakes-fall,snowflakes-shake;animation-duration:10s,3s;animation-timing-function:linear,ease-in-out;animation-iteration-count:infinite,infinite;animation-play-state:running,running}.snowflake:nth-of-type(0){left:1%;-webkit-animation-delay:0s,0s;animation-delay:0s,0s}.snowflake:nth-of-type(1){left:10%;-webkit-animation-delay:1s,1s;animation-delay:1s,1s}.snowflake:nth-of-type(2){left:20%;-webkit-animation-delay:6s,.5s;animation-delay:6s,.5s}.snowflake:nth-of-type(3){left:30%;-webkit-animation-delay:4s,2s;animation-delay:4s,2s}.snowflake:nth-of-type(4){left:40%;-webkit-animation-delay:2s,2s;animation-delay:2s,2s}.snowflake:nth-of-type(5){left:50%;-webkit-animation-delay:8s,3s;animation-delay:8s,3s}.snowflake:nth-of-type(6){left:60%;-webkit-animation-delay:6s,2s;animation-delay:6s,2s}.snowflake:nth-of-type(7){left:70%;-webkit-animation-delay:2.5s,1s;animation-delay:2.5s,1s}.snowflake:nth-of-type(8){left:80%;-webkit-animation-delay:1s,0s;animation-delay:1s,0s}.snowflake:nth-of-type(9){left:90%;-webkit-animation-delay:3s,1.5s;animation-delay:3s,1.5s}
-
-
+        .container1{
+            display: flex;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+        /* 배너 컨테이너 */
+        .rollingbanner{
+            position: relative;
+            width: 380px;
+            height: 32px;
+            font-size: .875rem;
+            letter-spacing: -1px;
+            padding: 7px 15px;
+            box-sizing: border-box;
+            background-color: #f0f0f0;
+            border-radius: 16px;
+        }
+                /* 타이틀 */
+        .rollingbanner > .title{
+            font-weight: bold;
+            float: left;
+            padding-right: 10px;
+        }
+                /* 롤링 배너 */
+        .rollingbanner > .wrap{
+            position: relative;
+            width: auto;
+            height: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+        }        
+        .rollingbanner ul{
+            list-style: none;
+        }
+        .rollingbanner li{
+            position: absolute;
+            top: -36px;
+            left: 0;
+        }
+                /* 이전, 현재, 다음 롤링 배너 표시 */
+        .rollingbanner li.prev{
+            top: 36px;
+            transition: top 0.5s ease;
+        }
+        .rollingbanner li.current{
+            top: 0;
+            transition: top 0.5s ease;
+        }
+        .rollingbanner li.next{
+            top: -36px;
+        }
+        .rollingbanner a{
+            display: block;
+            display: -webkit-box;
+            text-decoration: none;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient:vertical;
+            overflow: hidden;
+            color: #000;
+        }
 </style>
-
-
-
-
 <script>
-	
-
-
-
-
-
 function enterkey2(){
 	if(window.event.keyCode == 13){
 		$('#search_form2').attr({
@@ -145,6 +194,31 @@ $(document).ready(function(){
 	
 	
 });
+//롤링
+document.addEventListener('DOMContentLoaded', ()=>{
+    var interval = window.setInterval(rollingCallback, 3000);
+})
+function rollingCallback(){
+    //.prev 클래스 삭제
+    document.querySelector('.rollingbanner .prev').classList.remove('prev');
+
+    //.current -> .prev
+    let current = document.querySelector('.rollingbanner .current');
+    current.classList.remove('current');
+    current.classList.add('prev');
+
+    //.next -> .current
+    let next = document.querySelector('.rollingbanner .next');
+    //다음 목록 요소가 널인지 체크
+    if(next.nextElementSibling == null){
+        document.querySelector('.rollingbanner ul li:first-child').classList.add('next');
+    }else{
+        //목록 처음 요소를 다음 요소로 선택
+        next.nextElementSibling.classList.add('next');
+    }
+    next.classList.remove('next');
+    next.classList.add('current');
+}
 </script>
 
 </head>
@@ -257,8 +331,24 @@ $(document).ready(function(){
                         </div>
                     </div>
                     <!-- navbar search Ends -->
+    <div class="container1">
+        <div class="rollingbanner">
+            <div class="title">실시간 뜨고있는 메뉴 > </div>
+            <div class="wrap">
+                <ul>
+                    <li><a href="#">storename1, menuname1</a></li>
+                    <li class="next"><a href="#">storename2, menuname2</a></li>
+                    <li class="current"><a href="#">storename3, menuname3</a></li>
+                    <li><a href="#">storename4, menuname4</a></li>
+                    <li class="prev"><a href="#">storename5, menuname5</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
                 </div>
                 <!-- navbar mobile Start -->
+
+
             </div>
     
             <div class="navbar-container navbar-sidebar-7">
