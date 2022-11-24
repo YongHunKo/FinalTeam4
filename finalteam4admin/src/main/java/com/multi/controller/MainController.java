@@ -320,7 +320,17 @@ public class MainController {
 	}	
 	
 	@RequestMapping("/storesales")
-	public String storesales(Model model) {
+	public String storesales(Model model, HttpSession session) {
+		List<EatAdmDTO> list = null;
+		Object obj = session.getAttribute("loginadmin");
+		EatAdmDTO adm = (EatAdmDTO) obj;
+		int storeid = adm.getStoreid();
+		try {
+			list = admservice.adminselect(storeid);
+			model.addAttribute("list", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		model.addAttribute("center", "storesales");
 		return "index";
 	}
