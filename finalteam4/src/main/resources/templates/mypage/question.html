@@ -25,6 +25,7 @@
 
 /* Main Content */
 #page-content-wrapper {
+	height: 1200px;
 	width: 100%;
 	padding: 15px;
 	transition: all .5s;
@@ -383,6 +384,14 @@
 	border: none;
 }
 
+.card {
+	height: 600px;
+	width: 400px;
+}
+
+#card-body > p {
+	padding: 10px 20px;
+}
 </style>
 
 <script>
@@ -398,10 +407,6 @@
 
 		$("#connect").click(function() {
 			connect();
-		});
-
-		$("#disconnect").click(function() {
-			disconnect();
 		});
 
 		$("#sendme").click(function() {
@@ -444,7 +449,9 @@
 	// connect&disconnect버턴 활성화/비활성화
 	function setConnected(connected) {
 		if (connected) {
-			$("#status").text("Connected");
+			$("#card-body").append(
+					"<p>챗봇과 연결되었습니다. 궁금하신점을 물어봐주세요.</p>"
+			);
 			$("#metext").attr("disabled", false);
 		} else {
 			$("#status").text("Disconnected");
@@ -540,7 +547,7 @@
 										style="width: 45px; height: 100%">
 									<div class="p-3 ms-3"
 										style="border-radius: 15px; background-color: rgba(57, 192, 237, .2)">
-										<p>궁금하신 점 있으신가요? </p>
+										<p>궁금하신 점 있으신가요?</p>
 										<p>저에게 물어봐주세요!</p>
 									</div>
 								</div>
