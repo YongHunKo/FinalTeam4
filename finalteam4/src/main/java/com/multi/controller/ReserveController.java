@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.multi.dto.CartDTO;
 import com.multi.dto.OrderlistDTO;
 import com.multi.dto.ReserveDTO;
-import com.multi.dto.StoreimgDTO;
-import com.multi.dto.WishlistDTO;
 import com.multi.service.CartService;
 import com.multi.service.OrderlistService;
 import com.multi.service.ReserveService;
@@ -76,8 +74,9 @@ public class ReserveController {
 	 * @throws ParseException
 	 */
 	@RequestMapping("/reserveimpl2")
-	public String reserveimpl2(CartDTO cart, String custid, String reservedate, String reservetime, Model model) {
+	public String reserveimpl2(CartDTO cart, String custid, String reservedate, Model model) {
 		List<CartDTO> list = null;
+
 		int cnt = 0;
 		int totalprice = 0;
 		int price = 0;
@@ -114,14 +113,16 @@ public class ReserveController {
 					model.addAttribute("list2", list2);
 				}
 			}
-//			OrderlistDTO list3 = null;
-//			list3 = orderlistservice.get(r);
-//			
-//			model.addAttribute("list3", list3);
-//			model.addAttribute("center", "/reservesuccess");
+
+			OrderlistDTO list3 = null;
+			list3 = orderlistservice.get(r);
+			model.addAttribute("list3", list3);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		// 이부분이 고장남 어떻게 해결해야할까
+		// 일단 냅두고 고쳐보자
+		model.addAttribute("center", "/reservesuccess");
 		return "index";
 	}
 
