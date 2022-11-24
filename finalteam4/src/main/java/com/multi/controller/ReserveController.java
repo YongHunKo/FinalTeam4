@@ -85,9 +85,9 @@ public class ReserveController {
 		int totalprice = 0;
 		int price = 0;
 	
-		SimpleDateFormat reserveFormat    = new SimpleDateFormat("YYYY.M.D H:mm");
+		SimpleDateFormat reserveFormat    = new SimpleDateFormat("yyyy.MM.dd HH:mm");
 		SimpleDateFormat reservedateFormat    = new SimpleDateFormat("yyyy-MM-dd");
-		SimpleDateFormat reservetimeFormat    = new SimpleDateFormat("H:mm");
+		SimpleDateFormat reservetimeFormat    = new SimpleDateFormat("HH:mm");
 			
 		//여기까지는 진행이됨
 //		Date dt1 = new SimpleDateFormat("YYYY.MM.DD H:mm").parse(reservetime);
