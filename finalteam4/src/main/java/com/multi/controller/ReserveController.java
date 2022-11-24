@@ -76,38 +76,19 @@ public class ReserveController {
 	 * @throws ParseException
 	 */
 	@RequestMapping("/reserveimpl2")
-	public String reserveimpl2(CartDTO cart, String custid, String reservedate, String reservetime, Model model)
-			{
+	public String reserveimpl2(CartDTO cart, String custid, String reservedate, String reservetime, Model model) {
 		List<CartDTO> list = null;
-		System.out.println(reservedate);
-		System.out.println(reservetime);
 		int cnt = 0;
 		int totalprice = 0;
 		int price = 0;
-	
-		SimpleDateFormat reserveFormat    = new SimpleDateFormat("yyyy.MM.dd HH:mm");
-		SimpleDateFormat reservedateFormat    = new SimpleDateFormat("yyyy-MM-dd");
-		SimpleDateFormat reservetimeFormat    = new SimpleDateFormat("HH:mm");
-			
-		//여기까지는 진행이됨
-//		Date dt1 = new SimpleDateFormat("YYYY.MM.DD H:mm").parse(reservetime);
-//		//여기가 문제인듯 왜 2021년으로 보내버리냐
-//		System.out.println(dt1);
-//		String reservedate2 = new SimpleDateFormat("YYYY.MM.dd").format(dt1);
-//		System.out.println(reservedate2);
-//		Date dt2 = new SimpleDateFormat("YYYY.MM.DD H:mm").parse(reservetime);
-//		System.out.println(dt2);
-//		String reservetime2 = new SimpleDateFormat("H:mm").format(dt2);
-//		System.out.println(reservetime2);
+
+		SimpleDateFormat reserveFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm");
+		SimpleDateFormat reservedateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat reservetimeFormat = new SimpleDateFormat("HH:mm");
 		try {
 			Date reserve2 = reserveFormat.parse(reservedate);
-			System.out.println(reserve2);
-			
 			String reservedate2 = reservedateFormat.format(reserve2);
-			System.out.println(reservedate2);
 			String reservetime2 = reservetimeFormat.format(reserve2);
-			System.out.println(reservetime2);
-			
 			list = cartservice.selectcart(custid);
 			for (CartDTO c : list) {
 				cnt += c.getCnt();
@@ -128,9 +109,9 @@ public class ReserveController {
 							null, null, null, null, null, null);
 					reserveservice.register(reserve);
 					cartservice.remove(c.getCartid());
-					
+
 					List<ReserveDTO> list2 = reserveservice.myreserve(r);
-					model.addAttribute("list2",list2);
+					model.addAttribute("list2", list2);
 				}
 			}
 //			OrderlistDTO list3 = null;
@@ -162,5 +143,3 @@ public class ReserveController {
 		return "redirect:reserveimpl?custid=" + cart.getCustid();
 	}
 }
-
-
