@@ -39,5 +39,7 @@ public class EatAdmService implements MyService<String, EatAdmDTO> {
 		return mapper.selectall();
 	}
 	
-	
+	public List<EatAdmDTO> adminselect(Integer storeid) throws Exception{
+		return mapper.adminselect(storeid);
+	}
 }

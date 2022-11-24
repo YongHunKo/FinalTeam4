@@ -19,4 +19,12 @@ public class EatAdmDTO {
 	
 	//조인
 	private int storeid;
+	private Integer reserveno;
+	private Integer orderlistno;
+	private Integer totalprice;
+	private Integer menuid;
+	private String storename;
+	private String menuname;
+	private String reservedate;
+	private String reservetime;
 }

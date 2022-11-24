@@ -125,13 +125,19 @@ jQuery('.pagination li:first-child').addClass("disabled");
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th></th>
+                        <th>주문 번호</th>
+                        <th>주문 메뉴</th>
+                        <th>예약일</th>
+                        <th>예약 시간</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                   	<tr>
-                   		<td></td>
+                   	<tr th:each="l:${list}">
+                   		<td th:text="${l.orderlistno}"></td>
+                   		<td th:text="${l.menuname}"></td>
+                   		<td th:text="${l.reservedate}"></td>
+                   		<td th:text="${l.reservetime}"></td>
                    	</tr>      
                 </tbody>
             </table>
