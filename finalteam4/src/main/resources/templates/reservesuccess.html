@@ -1,32 +1,117 @@
+<style>
+    /* Card Styles */
+
+    .card-sl {
+        border-radius: 8px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+
+    .card-image img {
+        height: 250px;
+        width: 520px;
+        border-radius: 8px 8px 0px 0;
+        object-fit:cover;
+        overflow:hidden;
+        z-index:1;
+    }
+
+    .card-action {
+        position: relative;
+        float: right;
+        margin-top: -25px;
+        margin-right: 20px;
+        z-index: 2;
+        color: #E26D5C;
+        background: #fff;
+        border-radius: 100%;
+        padding: 15px;
+        font-size: 15px;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
+    
+    }
+
+    .card-action:hover {
+        color: #fff;
+        background: #E26D5C;
+        -webkit-animation: pulse 1.5s infinite;
+    }
+
+    .card-heading {
+        font-size: 18px;
+        font-weight: bold;
+        background: #fff;
+        padding: 10px 15px;
+    }
+
+    .card-text {
+        padding: 10px 15px;
+        background: #fff;
+        font-size: 14px;
+        color: #636262;
+    }
+
+    .card-button {
+        display: flex;
+        justify-content: center;
+        padding: 10px 0;
+        width: 100%;
+        background-color: #1F487E;
+        color: #fff;
+        border-radius: 0 0 8px 8px;
+    }
+
+    .card-button:hover {
+        text-decoration: none;
+        background-color: #1D3461;
+        color: #fff;
+
+    }
+</style>
+<body>
 <!-- 결제 성공시 이동 -->
 <!-- 주문번호, 예약 날짜/시간, 예약한 메뉴 등을 보여준다 -->
 <!-- orderlist, reserve DB이용 -->
 <!-- 버튼을 이용하여 마이페이지에서 상세 예약내역 조회하도록 유도 -->
-<div>
 	<div>
-	<!-- 이것도 카드로 표현을 해볼까? -->
-		<table>
-			<thead>
-				<tr>
-					<th>메뉴 이름</th>
-					<th>개수</th>
-				</tr>
-			</thead>
-			</tbody>
-				<tr th:each="r : ${list2}">
-
-					<td th:text="${r.menuname}">메뉴 이름</td>
-					<td th:text="${r.cnt}">메뉴 이름</td>
-				</tr>
-			</tbody>
-		</table>
-					<h4 th:text="${session.logincust.custid}">예약자 id는 세션으로 따다가 쓰자</h4>
-					<h4 th:text="${list3.orderlistno}"></h4>
-					<h4 th:text="${list3.reservedate}"></h4>
-					<h4 th:text="${list3.reservetime}"></h4>
-					<h4 th:text="${list3.totalprice}"></h4>
-					
+		<div>
+		<!-- 이것도 카드로 표현을 해볼까? -->
+		       <div class="col-md-4 sm-4" th:each="r : ${list2}" style="padding-top:20px;">
+	                <div class="card-sl">
+	                    <div class="card-image">
+	                        <img src="#">
+	                    </div>
+	                    <div class="card-heading" th:text="${r.menuname}">           
+	                    </div>
+	                    <div class="card-text" th:text="${r.cnt}">
+	                        
+	                    </div>
+	                </div>
+	            </div>
+		
+			<table>
+				<thead>
+					<tr>
+						<th>메뉴 이름</th>
+						<th>개수</th>
+					</tr>
+				</thead>
+				</tbody>
+					<tr th:each="r : ${list2}">
+	
+						<td th:text="${r.menuname}">메뉴 이름</td>
+						<td th:text="${r.cnt}">메뉴 이름</td>
+					</tr>
+				</tbody>
+			</table>
+						<h4 th:text="${session.logincust.custid}">예약자 id는 세션으로 따다가 쓰자</h4>
+						<h4 th:text="${list3.orderlistno}"></h4>
+						<h4 th:text="${list3.reservedate}"></h4>
+						<h4 th:text="${list3.reservetime}"></h4>
+						<h4 th:text="${list3.totalprice}"></h4>
+						
+		</div>
 	</div>
-</div>
-<button><a href="@{/mypage}">상세 예약내역 조회</a></button>
-<button th:onclick="@{/}">홈으로</button>
+	<button><a th:href="@{/mypage}">상세 예약내역 조회</a></button>
+	<button th:onclick="@{/}">홈으로</button>
+</body>

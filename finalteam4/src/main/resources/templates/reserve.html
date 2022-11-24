@@ -310,6 +310,14 @@ table.table th {
 <!-- 달력 한글 추가를 위해 커스텀 -->
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="/assets/css/jquery.datetimepicker.css">
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/jquery.datetimepicker.full.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/ko.min.js"></script>
 
 <body>
 	<div class="wrapper">
@@ -380,10 +388,8 @@ table.table th {
 						</tbody>
 					</table>
 						<form method="post">
-							예약일 선택하기 : <input type="text" id="datepicker"
-								name="datepicker">
+							<input type="text" id="datetimepicker" name="datetimepicker">
 						</form>
-						<div id="time_button"></div>
 					<!-- 가격 종합 -->
 					<div class="content_total_section">
 						<div class="total_wrap">
@@ -544,14 +550,56 @@ table.table th {
 
 			});
 
-			$("#datepicker").datepicker({
-				language : 'ko',
-				timepicker : true,
-				timeFormat : "hh:ii"
+			$.datetimepicker.setLocale('ko');
+			$.datetimepicker.setDateFormatter({
+			    parseDate: function (date, format) {
+			        var d = moment(date, format);
+			        return d.isValid() ? d.toDate() : false;
+			    },
+
+			    formatDate: function (date, format) {
+			        return moment(date).format(format);
+			    },
+
+			    //Optional if using mask input
+			    formatMask: function(format){
+			        return format
+			            .replace(/Y{4}/g, '9999')
+			            .replace(/Y{2}/g, '99')
+			            .replace(/M{2}/g, '19')
+			            .replace(/D{2}/g, '39')
+			            .replace(/H{2}/g, '29')
+			            .replace(/m{2}/g, '59')
+			            .replace(/s{2}/g, '59');
+			    }
 			});
+			$('#datetimepicker').datetimepicker({
+				  format:'YYYY.M.D H:mm',
+				  formatTime:'H:mm',
+				  formatDate:'YYYY.M.D',
+				  minDate:0,
+					inline:true,
+					allowTimes:[
+						  '09:00', '09:30', '10:00','10:30','11:00', '11:30',
+						  '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30',
+						  '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30',
+						  '22:00', '22:30', '23:00', '23:30',
+						 ]
+				});
+			/* $("#datetimepicker").datetimepicker({
+				language : 'ko',
+				format:'d.m.Y',
+				minDate:0,
+				inline:true,
+				allowTimes:[
+					  '09:00', '09:30', '10:00','10:30','11:00', '11:30',
+					  '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30',
+					  '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30',
+					  '22:00', '22:30', '23:00', '23:30',
+					 ]
+			}); */
 
 			$('#reserve_btn2').click(function() {
-				//location.href="[[@{/reserveimpl2?custid=}]]"+custid+'&reservedate='+reservedate+'&reservetime='+reservetime
 				requestPay();
 
 			});
@@ -569,14 +617,10 @@ table.table th {
 			var makeMerchantUid = hours + minutes + seconds + milliseconds;
 
 			function requestPay() {
-				var reservedate = $('#datepicker').val();//여기에 두면 반응함
-				/* var reservetime = $('#datepicker').val(); */
-				var reservetime = $('#select9').val();//직접적으로 id를 따와야하는상황
-				alert(reservetime);
+				var reservedate = $('#datetimepicker').val();//여기에 두면 반응함
+				var reservetime = $('#datetimepicker').val();
 				var totalPrice = $('#totalpricespan span').text();//얘도 확인함
 				var totalPrice2 = parseInt(totalPrice);
-				var reservedate = $('#datepicker').val();
-				var reservetime = $('#datepicker').val();
 				// IMP.request_pay(param, callback) 결제창 호출
 				IMP
 						.request_pay(
