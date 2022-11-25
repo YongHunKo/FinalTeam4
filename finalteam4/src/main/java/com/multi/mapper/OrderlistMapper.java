@@ -12,4 +12,9 @@ import com.multi.frame.MyMapper;
 public interface OrderlistMapper extends MyMapper<Integer, OrderlistDTO>{
 	public OrderlistDTO myorder_1(String custid) throws Exception;
 	public List<OrderlistDTO> myorder(String custid) throws Exception;
+	public OrderlistDTO ranking() throws Exception;
+	public OrderlistDTO ranking2() throws Exception;
+	public OrderlistDTO ranking3() throws Exception;
+	public OrderlistDTO ranking4() throws Exception;
+	public OrderlistDTO ranking5() throws Exception;
 }

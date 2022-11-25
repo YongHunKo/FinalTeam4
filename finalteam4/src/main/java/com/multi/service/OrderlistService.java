@@ -46,4 +46,24 @@ public class OrderlistService implements MyService<Integer, OrderlistDTO>{
 	public List<OrderlistDTO> myorder(String k) throws Exception {
 		return mapper.myorder(k);
 	}
+	
+	public OrderlistDTO ranking() throws Exception {
+		return mapper.ranking();
+	}
+	
+	public OrderlistDTO ranking2() throws Exception {
+		return mapper.ranking2();
+	}
+	
+	public OrderlistDTO ranking3() throws Exception {
+		return mapper.ranking3();
+	}
+	
+	public OrderlistDTO ranking4() throws Exception {
+		return mapper.ranking4();
+	}
+	
+	public OrderlistDTO ranking5() throws Exception {
+		return mapper.ranking5();
+	}
 }

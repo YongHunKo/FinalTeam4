@@ -10,6 +10,46 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="selectall" resultType="OrderlistDTO">
 		SELECT * FROM orderlist
 	</select>
+	<select id="ranking" resultType="OrderlistDTO">
+		SELECT m.menuname, s.storename, COUNT(m.menuid) AS ranking FROM orderlist ol
+		INNER JOIN reserve r ON ol.orderlistno = r.orderlistno
+		INNER JOIN menu m ON r.menuid = m.menuid
+		INNER JOIN store s ON s.storeid = m.storeid
+		GROUP BY m.menuname, s.storename
+		ORDER BY ranking DESC LIMIT 0, 1
+	</select>
+	<select id="ranking2" resultType="OrderlistDTO">
+		SELECT m.menuname, s.storename, COUNT(m.menuid) AS ranking FROM orderlist ol
+		INNER JOIN reserve r ON ol.orderlistno = r.orderlistno
+		INNER JOIN menu m ON r.menuid = m.menuid
+		INNER JOIN store s ON s.storeid = m.storeid
+		GROUP BY m.menuname, s.storename
+		ORDER BY ranking DESC LIMIT 1, 1
+	</select>
+	<select id="ranking3" resultType="OrderlistDTO">
+		SELECT m.menuname, s.storename, COUNT(m.menuid) AS ranking FROM orderlist ol
+		INNER JOIN reserve r ON ol.orderlistno = r.orderlistno
+		INNER JOIN menu m ON r.menuid = m.menuid
+		INNER JOIN store s ON s.storeid = m.storeid
+		GROUP BY m.menuname, s.storename
+		ORDER BY ranking DESC LIMIT 2, 1
+	</select>
+	<select id="ranking4" resultType="OrderlistDTO">
+		SELECT m.menuname, s.storename, COUNT(m.menuid) AS ranking FROM orderlist ol
+		INNER JOIN reserve r ON ol.orderlistno = r.orderlistno
+		INNER JOIN menu m ON r.menuid = m.menuid
+		INNER JOIN store s ON s.storeid = m.storeid
+		GROUP BY m.menuname, s.storename
+		ORDER BY ranking DESC LIMIT 3, 1
+	</select>
+	<select id="ranking5" resultType="OrderlistDTO">
+		SELECT m.menuname, s.storename, COUNT(m.menuid) AS ranking FROM orderlist ol
+		INNER JOIN reserve r ON ol.orderlistno = r.orderlistno
+		INNER JOIN menu m ON r.menuid = m.menuid
+		INNER JOIN store s ON s.storeid = m.storeid
+		GROUP BY m.menuname, s.storename
+		ORDER BY ranking DESC LIMIT 4, 1
+	</select>
 	<insert id="insert" parameterType="OrderlistDTO">
 		INSERT INTO orderlist VALUES (#{orderlistno},#{custid},sysdate(),#{cnt},#{totalprice},#{reservedate},#{reservetime})
 		<selectKey keyProperty="orderlistno" resultType="Integer" order="AFTER"> 

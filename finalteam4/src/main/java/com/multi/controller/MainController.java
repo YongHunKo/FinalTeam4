@@ -43,6 +43,11 @@ public class MainController {
 		/* 위시리스트 관련 list */
 		List<WishlistDTO> list7 = null;
 		OrderlistDTO list8 = null;
+		OrderlistDTO list9 = null;
+		OrderlistDTO list10 = null;
+		OrderlistDTO list11 = null;
+		OrderlistDTO list12 = null;
+		OrderlistDTO list13 = null;
 		try {
 			/* 랜덤이미지, 랜덤정보 관련 model */
 			list2 = imgservice.selectrandom();
@@ -59,8 +64,18 @@ public class MainController {
 			/* 위시리스트 관련 model */
 			list7 = wishservice.viewwish(id);
 			list8 = orderservice.myorder_1(id);
+			list9 = orderservice.ranking();
+			list10 = orderservice.ranking2();
+			list11 = orderservice.ranking3();
+			list12 = orderservice.ranking4();
+			list13 = orderservice.ranking5();
 			model.addAttribute("viewwish", list7);
 			model.addAttribute("list_one", list8);
+			model.addAttribute("ranking", list9);
+			model.addAttribute("ranking2", list10);
+			model.addAttribute("ranking3", list11);
+			model.addAttribute("ranking4", list12);
+			model.addAttribute("ranking5", list13);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
