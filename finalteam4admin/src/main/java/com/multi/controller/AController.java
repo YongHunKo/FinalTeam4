@@ -24,7 +24,6 @@ public class AController {
 	@RequestMapping("/custcnt")
 	public String custcnt() {
 		int cnt = amapper.getCustCnt();
-		System.out.println(cnt);
 		return cnt+"";
 	}
 	
