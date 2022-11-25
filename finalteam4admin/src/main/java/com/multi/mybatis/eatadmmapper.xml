@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</delete>
 	<select id="adminselect" resultType="EatAdmDTO">
 		SELECT r.reserveno, r.orderlistno, o.totalprice, m.menuid,
-		s.storename, m.menuname, o.reservedate, o.reservetime
+		s.storename, m.menuname, r.cnt, o.reservedate, o.reservetime
 		FROM reserve r
 		INNER JOIN menu m on r.menuid = m.menuid
 		INNER JOIN store s on m.storeid = s.storeid

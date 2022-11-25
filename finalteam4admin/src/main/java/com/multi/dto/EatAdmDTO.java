@@ -27,4 +27,5 @@ public class EatAdmDTO {
 	private String menuname;
 	private String reservedate;
 	private String reservetime;
+	private Integer cnt;
 }

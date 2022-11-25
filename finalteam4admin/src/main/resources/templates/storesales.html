@@ -127,6 +127,7 @@ jQuery('.pagination li:first-child').addClass("disabled");
                     <tr>
                         <th>주문 번호</th>
                         <th>주문 메뉴</th>
+                        <th>주문 수량</th>
                         <th>예약일</th>
                         <th>예약 시간</th>
                     </tr>
@@ -136,6 +137,7 @@ jQuery('.pagination li:first-child').addClass("disabled");
                    	<tr th:each="l:${list}">
                    		<td th:text="${l.orderlistno}"></td>
                    		<td th:text="${l.menuname}"></td>
+                   		<td th:text="${l.cnt}"></td>
                    		<td th:text="${l.reservedate}"></td>
                    		<td th:text="${l.reservetime}"></td>
                    	</tr>      
