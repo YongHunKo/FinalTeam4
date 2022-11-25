@@ -4140,7 +4140,7 @@ p {
         .rollingbanner li{
             position: absolute;
             top: -36px;
-            left: 0;
+            left: -1px;
         }
                 /* 이전, 현재, 다음 롤링 배너 표시 */
         .rollingbanner li.prev{
@@ -4164,7 +4164,9 @@ p {
             color: #000;
         }
 	
-	 .container2{
+	
+	
+	.container2{
 	 		position:absolute;
             display: inline-block;
             left:55%;
@@ -4208,7 +4210,7 @@ p {
         .rollingbanner2 li{
             position: absolute;
             top: -36px;
-            left: 0;
+            left: -1px;
         }
                 /* 이전, 현재, 다음 롤링 배너 표시 */
         .rollingbanner2 li.prev2{
@@ -4231,14 +4233,27 @@ p {
             overflow: hidden;
             color: #000;
         }
-@media  all and (min-width:992px) and (max-width:1450px){
-	
+
+@media  all and (min-width:991px) and (max-width:1180px){
+	.search-style-5 {
+  position: relative;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width:85%;
+  margin-left:15%;
+  margin-right:15%;
+  margin-top:20%;
+  
+	}
 	.container2{
 	 		position:absolute;
             display: inline-block;
-            left:55%;
-            
-            height: 100%;
+            left:28%;
+            width:300px;
             justify-content: space-between;
             align-items: center;
             top:60px;
@@ -4246,7 +4261,7 @@ p {
         /* 배너 컨테이너 */
         .rollingbanner2{
         	position:absolute;
-            width: 240px;
+            width: 230px;
             height: 32px;
             font-size: .875rem;
             letter-spacing: -1px;
@@ -4307,7 +4322,93 @@ p {
 	
 }	
 	
+@media  all and (min-width:1181px) and (max-width:1390px){
+	.search-style-5 {
+  position: relative;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width:85%;
+  margin-left:15%;
+  margin-right:15%;
+  margin-top:20%;
+  
+	}
+	.container2{
+	 		position:absolute;
+            display: inline-block;
+            left:20%;
+            width:350px;
+            justify-content: space-between;
+            align-items: center;
+            top:60px;
+        }
+        /* 배너 컨테이너 */
+        .rollingbanner2{
+        	position:absolute;
+            width: 350px;
+            height: 32px;
+            font-size: .875rem;
+            letter-spacing: -1px;
+            padding: 7px 15px;
+            box-sizing: border-box;
+            background-color: #f0f0f0;
+            border-radius: 16px;
+            text-align:center;
+            left:80%;
+        	box-shadow: 0 1px 38px rgba(0, 0, 0, 0.2), 0 5px 12px	rgba(0, 0, 0, 0.35);
+        }
+                /* 타이틀 */
+        .rollingbanner2 > .title2{
+            font-weight: bold;
+            float: left;
+            padding-right: 10px;
+        }
+                /* 롤링 배너 */
+        .rollingbanner2 > .wrap2{
+            position: relative;
+            width: auto;
+            height: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+        }        
+        .rollingbanner2 ul{
+            list-style: none;
+        }
+        .rollingbanner2 li{
+            position: absolute;
+            top: -36px;
+            left: 0;
+        }
+                /* 이전, 현재, 다음 롤링 배너 표시 */
+        .rollingbanner2 li.prev2{
+            top: 36px;
+            transition: top 0.5s ease;
+        }
+        .rollingbanner2 li.current2{
+            top: 0;
+            transition: top 0.5s ease;
+        }
+        .rollingbanner2 li.next2{
+            top: -36px;
+        }
+        .rollingbanner2 a{
+            display: block;
+            display: -webkit-box;
+            text-decoration: none;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient:vertical;
+            overflow: hidden;
+            color: #000;
+        }
 	
+	
+	
+	
+}		
 @media all and (min-width: 768px) and (max-width: 868px){
 .search-style-5 {
   position: relative;
@@ -4397,7 +4498,7 @@ p {
 
 }	
 	
-@media  all and (min-width: 480px) and (max-width: 765px){
+@media  all and (min-width: 380px) and (max-width: 765px){
 .search-style-5 {
   position: relative;
   display: -moz-flex;
@@ -4458,7 +4559,7 @@ p {
         .rollingbanner li{
             position: absolute;
             top: -36px;
-            left: 0;
+            left: -14px;
         }
                 /* 이전, 현재, 다음 롤링 배너 표시 */
         .rollingbanner li.prev{
@@ -4490,94 +4591,7 @@ p {
 
 
 }
-@media  all and (min-width: 992px) and (max-width: 1185px){
-.search-style-5{
-   position: absolute;
-  display: -moz-flex;
-  display: -ms-flex;
-  display: -o-flex;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  width:20%;
-  margin-left: 10%;
-  margin-right:10%;
-  padding-bottom:30px;
-  
-	}
-	
-	
-	 .container1{
-	 		position:absolute;
-            display: inline-block;
-            left:55%;
-            height: 100%;
-            justify-content: space-between;
-            align-items: center;
-            top:60px;
-        }
-        /* 배너 컨테이너 */
-        .rollingbanner{
-        	position:absolute;
-            width: 240px;
-            height: 32px;;
-            font-size: .875rem;
-            letter-spacing: -1px;
-            padding: 7px 15px;
-            box-sizing: border-box;
-            background-color: #f0f0f0;
-            border-radius: 16px;
-            text-align:center;
-            left:85%;
-        	box-shadow: 0 1px 38px rgba(0, 0, 0, 0.2), 0 5px 12px	rgba(0, 0, 0, 0.35);
-        	margin-right:8%;
-        }
-                /* 타이틀 */
-        .rollingbanner > .title{
-            font-weight: bold;
-            float: left;
-            padding-right: 10px;
-        }
-                /* 롤링 배너 */
-        .rollingbanner > .wrap{
-            position: relative;
-            width: auto;
-            height: 100%;
-            box-sizing: border-box;
-            overflow: hidden;
-        }        
-        .rollingbanner ul{
-            list-style: none;
-        }
-        .rollingbanner li{
-            position: absolute;
-            top: -36px;
-            left: 0;
-        }
-                /* 이전, 현재, 다음 롤링 배너 표시 */
-        .rollingbanner li.prev{
-            top: 36px;
-            transition: top 0.5s ease;
-        }
-        .rollingbanner li.current{
-            top: 0;
-            transition: top 0.5s ease;
-        }
-        .rollingbanner li.next{
-            top: -36px;
-        }
-        .rollingbanner a{
-            display: block;
-            display: -webkit-box;
-            text-decoration: none;
-            -webkit-line-clamp: 1;
-            -webkit-box-orient:vertical;
-            overflow: hidden;
-            color: #000;
-        }
 
-
-
-}
 @media only screen and (min-width: 868px) and (max-width: 991px){
 .search-style-5 {
   position: relative;
@@ -4597,7 +4611,7 @@ p {
 .container1{
 	 		position:absolute;
             display: inline-block;
-            left:17%;
+            left:20%;
             height: 100%;
             justify-content: space-between;
             align-items: center;
