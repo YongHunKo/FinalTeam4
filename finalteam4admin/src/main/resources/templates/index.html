@@ -102,28 +102,15 @@
                 </a>
                 
                 <div class="navbar-nav align-items-center ms-auto">
-						<li th:if="${session.loginadmin == null}"
-							class="nav-item no-arrow"><a class="" th:href="@{/login}"> 
-								<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-								Login&nbsp&nbsp
-						</a></li>
-						<li th:if="${session.loginadmin == null}"
-							class="nav-item no-arrow"><a class="" th:href="@{/signup}"> 
-								<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-								Sign Up
-						</a></li>
-             		    <li th:if="${session.loginadmin != null}"
-							class="nav-item no-arrow"><a class="" th:href="@{/logout}"> 
-								<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-								Logout
-						</a></li>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="img/user-128.svg" alt="" style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex"></span>
-                        </a>
-
-                    </div>
+             		<li	class="nav-item no-arrow"><a class="" th:href="@{/logout}"> 
+						<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+						Logout&nbsp
+					</a></li>       
+					<div>
+						<li	class="nav-item no-arrow">     
+							<p th:text="${session.loginadmin.adminname}+ '님'" style="color:#1396E5; font-weight:600;"></p>
+						</li>  		
+					</div>				
                 </div>
             </nav>
             <!-- Navbar End -->
