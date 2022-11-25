@@ -20,7 +20,7 @@
 	opacity: 0.9;
 	transition: all .5s;
 	display: flex;
-	padding-left: 40px;
+	padding-left: 60px;
 }
 
 /* Main Content */
@@ -32,7 +32,7 @@
 
 #menu-toggle {
 	transition: all .3s;
-	font-size: 2em;
+	font-size: 20px;
 }
 /* Change the width of the sidebar to display it*/
 #wrapper.menuDisplayed #sidebar-wrapper {
@@ -44,12 +44,13 @@
 }
 
 /* Sidebar styling */
-.sidebar-nav {
+.sidebar-nav ul:hover li {
 	padding: 0;
 	list-style: none;
 	transition: all .5s;
 	width: 100%;
 	text-align: center;
+	display: block;
 }
 
 .sidebar-nav li {
@@ -72,17 +73,10 @@
 	color: #303033;
 }
 
-/* .sidebar-nav li {
-	
-} */
-.footer-style-3 {
-	display: none;
-}
-
 .weather-card {
 	margin: 0px auto;
-	height: 200px;
-	width: 1200px;
+	height: 180px;
+	width: 850px;
 	background: #fff;
 	box-shadow: 0 1px 38px rgba(0, 0, 0, 0.15), 0 5px 12px
 		rgba(0, 0, 0, 0.25);
@@ -118,7 +112,7 @@
 }
 
 .weather-card .top .wrapper .mynav {
-	height: 20px;
+	height: 10px;
 }
 
 .weather-card .top .wrapper .mynav .lnr {
@@ -144,7 +138,7 @@
 }
 
 .weather-card .top .wrapper .location {
-	margin-top: 20px;
+	margin-top: 5px;
 	font-size: 20px;
 	color: #fff;
 }
@@ -189,7 +183,7 @@
 }
 
 .weather-card .top .wrapper2 .mynav {
-	height: 20px;
+	height: 30px;
 }
 
 .weather-card .top .wrapper2 .mynav .lnr {
@@ -251,7 +245,7 @@
 .review {
 	margin: 0px auto;
 	height: 220px;
-	width: 1200px;
+	width: 850px;
 	padding-top: 50px;
 }
 
@@ -269,11 +263,11 @@
 }
 
 .row {
-	width: 100%;
-	padding: 20px 10px;
+	width: 850px;
 	display: flex;
 	flex-wrap: wrap;
-	padding-top: 20px;
+	padding-top: 15px;
+	padding-left: 10px
 }
 
 .img-fluid card-img-top {
@@ -298,15 +292,13 @@ $(document).ready(function() {
 		e.preventDefault();
 		$("#wrapper").toggleClass("menuDisplayed");
 		/*클릭시 숨김  */
-		menu.style.display ='none';
-		
-		
+		menu.style.visibility = "hidden";
 	});
 }); 
 </script>
 
 <body>
-	<div id="wrapper">
+	<div id="wrapper" style="background-color: #fff; height: 1500px">
 		<!-- Sidebar -->
 		<div id="sidebar-wrapper">
 			<ul class="sidebar-nav">
@@ -335,9 +327,9 @@ $(document).ready(function() {
 		<!-- Page Content -->
 		<div id="page-content-wrapper" style="background-color:#fff;">
 			<div class="container-fluid">
-				<div class="row">
+				<div class="row2">
 					<div class="col-lg-12">
-						<a href="#" class="btn" id="menu-toggle">메뉴보기</a>
+						<a href="#" class="btn" id="menu-toggle">메뉴 ></a>
 						<div class="weather-card one" th:with="list1 = ${session.list_one}">
 							<div class="top">
 								<div class="wrapper">
@@ -365,9 +357,9 @@ $(document).ready(function() {
 					리 뷰<span>소중한 리뷰 감사합니다.</span>
 				</h3>
 				<div class="row">
-					<div class="col-xl-3 col-lg-4 col-md-6 mb-4" th:each="rv : ${review}" style="width: 400px">
+					<div class="col-xl-3 col-lg-4 col-md-6 mb-4" th:each="rv : ${review}" style="height: 500px; width: 276px">
 						<div class="bg-white rounded shadow-sm">
-							<img th:src="@{/storeimg/} + ${rv.storeimg}" class="img-fluid card-img-top" style="width:400px; height:430px">
+							<img th:src="@{/storeimg/} + ${rv.storeimg}" class="img-fluid card-img-top" style="height:300px; width:250px">
 							<div class="p-4">
 								<h5>
 									<a href="#" class="text-dark" th:text="${rv.storename}"></a>

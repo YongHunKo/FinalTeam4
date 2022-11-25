@@ -33,7 +33,7 @@
 
 #menu-toggle {
 	transition: all .3s;
-	font-size: 2em;
+	font-size: 20px;
 }
 /* Change the width of the sidebar to display it*/
 #wrapper.menuDisplayed #sidebar-wrapper {
@@ -73,17 +73,10 @@
 	color: #303033;
 }
 
-/* .sidebar-nav li {
-	
-} */
-.footer-style-3 {
-	display: none;
-}
-
 .weather-card {
 	margin: 0px auto;
 	height: 180px;
-	width: 1000px;
+	width: 850px;
 	background: #fff;
 	box-shadow: 0 1px 38px rgba(0, 0, 0, 0.15), 0 5px 12px
 		rgba(0, 0, 0, 0.25);
@@ -190,7 +183,7 @@
 }
 
 .weather-card .top .wrapper2 .mynav {
-	height: 20px;
+	height: 30px;
 }
 
 .weather-card .top .wrapper2 .mynav .lnr {
@@ -252,7 +245,7 @@
 .question {
 	margin: 0px auto;
 	height: 220px;
-	width: 1200px;
+	width: 850px;
 	padding-top: 50px;
 }
 
@@ -401,8 +394,7 @@
 		$("#menu-toggle").click(function(e) {
 			e.preventDefault();
 			$("#wrapper").toggleClass("menuDisplayed");
-			/*클릭시 숨김  */
-			menu.style.display = 'none';
+			menu.style.visibility = "hidden";
 		});
 
 		$("#connect").click(function() {
@@ -483,8 +475,7 @@
 			<li><a
 				th:href="@{/mypage/review(id=${session.logincust.custid})}">나의
 					리뷰</a></li>
-			<li><a
-				th:href="@{/mypage/wishlist(id=${session.logincust.custid})}">나의
+			<li><a th:href="@{/wishlist(id=${session.logincust.custid})}">나의
 					위시리스트</a></li>
 			<li><h4 href="#">나의 계정설정</h4></li>
 			<li><a th:href="@{/mypage/edit(id=${session.logincust.custid})}">회원정보수정</a></li>
@@ -533,7 +524,7 @@
 				<div class="row d-flex justify-content-center">
 					<div class="col-md-8 col-lg-6 col-xl-4">
 
-						<div class="card" id="chat1" style="border-radius: 15px;">
+						<div class="card" id="chat1" style="border-radius: 15px">
 							<div
 								class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0"
 								style="border-top-left-radius: 15px; border-top-right-radius: 15px">

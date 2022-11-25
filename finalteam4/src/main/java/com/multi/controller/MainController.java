@@ -90,11 +90,8 @@ public class MainController {
 	@RequestMapping("/wishlist")
 	public String wishlist(String id, Model model) {
 		List<WishlistDTO> list = null;
-		OrderlistDTO list_one = null;
 		try {
 			list = wishservice.viewwish(id);
-			list_one = orderservice.myorder_1(id);
-			model.addAttribute("list_one", list_one);
 			model.addAttribute("viewwish", list);
 		} catch (Exception e) {
 			e.printStackTrace();

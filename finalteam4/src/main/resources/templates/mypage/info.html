@@ -32,7 +32,7 @@
 
 #menu-toggle {
 	transition: all .3s;
-	font-size: 2em;
+	font-size: 20px;
 }
 /* Change the width of the sidebar to display it*/
 #wrapper.menuDisplayed #sidebar-wrapper {
@@ -72,17 +72,10 @@
 	color: #303033;
 }
 
-/* .sidebar-nav li {
-	
-} */
-.footer-style-3 {
-	display: none;
-}
-
 .weather-card {
 	margin: 0px auto;
 	height: 200px;
-	width: 1200px;
+	width: 850px;
 	background: #fff;
 	box-shadow: 0 1px 38px rgba(0, 0, 0, 0.15), 0 5px 12px
 		rgba(0, 0, 0, 0.25);
@@ -118,7 +111,7 @@
 }
 
 .weather-card .top .wrapper .mynav {
-	height: 20px;
+	height: 10px;
 }
 
 .weather-card .top .wrapper .mynav .lnr {
@@ -251,7 +244,7 @@
 .contents {
 	margin: 0px auto;
 	height: 220px;
-	width: 1200px;
+	width: 850px;
 	padding-top: 50px;
 }
 
@@ -288,7 +281,7 @@
 			e.preventDefault();
 			$("#wrapper").toggleClass("menuDisplayed");
 			/*클릭시 숨김  */
-			menu.style.display ='none';
+			menu.style.visibility = "hidden";
 			
 		});
 
@@ -350,7 +343,7 @@
 </script>
 
 <body>
-	<div id="wrapper">
+	<div id="wrapper" style="background-color: #fff; height: 1000px">
 		<!-- Sidebar -->
 		<div id="sidebar-wrapper">
 			<ul class="sidebar-nav">
