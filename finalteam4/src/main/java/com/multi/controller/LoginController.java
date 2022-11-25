@@ -10,9 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.multi.dto.CustDTO;
+import com.multi.dto.OrderlistDTO;
 import com.multi.dto.StoreimgDTO;
 import com.multi.dto.WishlistDTO;
 import com.multi.service.CustService;
+import com.multi.service.OrderlistService;
 import com.multi.service.StoreimgService;
 import com.multi.service.WishlistService;
 
@@ -25,6 +27,8 @@ public class LoginController {
 	WishlistService wishservice;
 	@Autowired
 	StoreimgService imgservice;
+	@Autowired
+	OrderlistService orderservice;
 	
 	/**
 	 * logout
@@ -120,6 +124,25 @@ public class LoginController {
 			}
 		} catch (Exception e) {
 			
+		}
+		OrderlistDTO list9 = null;
+		OrderlistDTO list10 = null;
+		OrderlistDTO list11 = null;
+		OrderlistDTO list12 = null;
+		OrderlistDTO list13 = null;
+		try {
+			list9 = orderservice.ranking();
+			list10 = orderservice.ranking2();
+			list11 = orderservice.ranking3();
+			list12 = orderservice.ranking4();
+			list13 = orderservice.ranking5();
+			model.addAttribute("ranking", list9);
+			model.addAttribute("ranking2", list10);
+			model.addAttribute("ranking3", list11);
+			model.addAttribute("ranking4", list12);
+			model.addAttribute("ranking5", list13);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return "index";
 	}

@@ -2,6 +2,8 @@ package com.multi.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +35,7 @@ public class MainController {
 	 * @return
 	 */
 	@RequestMapping("/")
-	public String main(Model model, String id) {
+	public String main(Model model, String id, HttpSession session) {
 		/* 랜덤이미지,랜덤정보 관련 list */
 		List<StoreimgDTO> list2 = null;
 		List<StoreimgDTO> list3 = null;
@@ -90,6 +92,25 @@ public class MainController {
 	 */
 	@RequestMapping("/login")
 	public String login(Model model) {
+		OrderlistDTO list9 = null;
+		OrderlistDTO list10 = null;
+		OrderlistDTO list11 = null;
+		OrderlistDTO list12 = null;
+		OrderlistDTO list13 = null;
+		try {
+			list9 = orderservice.ranking();
+			list10 = orderservice.ranking2();
+			list11 = orderservice.ranking3();
+			list12 = orderservice.ranking4();
+			list13 = orderservice.ranking5();
+			model.addAttribute("ranking", list9);
+			model.addAttribute("ranking2", list10);
+			model.addAttribute("ranking3", list11);
+			model.addAttribute("ranking4", list12);
+			model.addAttribute("ranking5", list13);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		model.addAttribute("center", "login");
 		return "index";
 	}
