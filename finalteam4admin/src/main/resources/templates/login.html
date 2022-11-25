@@ -154,15 +154,14 @@
 
 	<script>
 	$(document).ready(function(){
-		$('#login_btn').click(function(){
-			$('#signin_form').attr({
-				method:'get',
-				action:'/loginimpl'
-			});
-			$('#login_form').submit();
-			
-		});
+		$('#btn').click(function(){
 		
+			 $('.admin').attr({
+					'method':'post'
+				});
+				$('.admin').submit();
+		});
+		 
 	});
 
 	
@@ -175,7 +174,7 @@
 
     <div class="container" style="margin-top:100px; margin-bottom:100px;">
 
-    <form class="form-signin" id="signin_form">
+    <form class="form-signin" id="signin_form" th:action="@{/loginimpl}">
 
       <div class="bg-signin">
 
@@ -198,7 +197,7 @@
 
 
       </div><br>
-      <button class="btn btn-lg btn-primary btn-block" id="login_btn" type="submit">Login</button>
+      <button class="btn btn-lg btn-primary btn-block" id="btn" type="submit">Login</button>
 
       <br>
 	<center><a th:href="@{/signup}">Sign Up</a></center>

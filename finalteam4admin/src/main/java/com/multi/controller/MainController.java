@@ -49,15 +49,20 @@ public class MainController {
 	CustService custservice;
 	
 	@RequestMapping("/")
-	public String main() {
-		return "index";
+	public String main(HttpSession session) {
+		EatAdmDTO admin = (EatAdmDTO) session.getAttribute("loginadmin");
+		if(admin==null) {
+			return "/login";
+		}else {
+			return "index";
+		}
 	}
 	
 	@RequestMapping("/login")
 	public String login(Model model) {
 		model.addAttribute("center", "login");
 		
-		return "index";
+		return "login";
 	}
 	
 	@RequestMapping("/websocket")
@@ -81,7 +86,7 @@ public class MainController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "index";
+		return "redirect:/";
 	}
 	
 	@RequestMapping("/logout")
@@ -89,7 +94,7 @@ public class MainController {
 		if(session != null) {
 			session.invalidate();
 		}
-		return "index";
+		return "redirect:/";
 	}
 	
 	@RequestMapping("/signup")
