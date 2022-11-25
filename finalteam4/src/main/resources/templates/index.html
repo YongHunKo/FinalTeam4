@@ -131,6 +131,7 @@ $(document).ready(function(){
 //롤링
 document.addEventListener('DOMContentLoaded', ()=>{
     var interval = window.setInterval(rollingCallback, 3000);
+    var interval2 = window.setInterval(rollingCallback2, 3000);
 })
 function rollingCallback(){
     //.prev 클래스 삭제
@@ -155,9 +156,7 @@ function rollingCallback(){
 }
 
 //롤링2
-document.addEventListener('DOMContentLoaded', ()=>{
-    var interval = window.setInterval(rollingCallback, 3000);
-})
+
 function rollingCallback2(){
     //.prev 클래스 삭제
     document.querySelector('.rollingbanner2 .prev2').classList.remove('prev2');
