@@ -59,6 +59,33 @@ function getCustCnt(){
 	});
 };
 
+function getStoreCnt(){
+	$.ajax({
+		url:'[[@{/storecnt}]]',
+		success:function(data){
+			$('#store_cnt').text(data);
+		}
+	});
+};
+
+function getReserveCnt(){
+	$.ajax({
+		url:'[[@{/reservecnt}]]',
+		success:function(data){
+			$('#reserve_cnt').text(data);
+		}
+	});
+};
+
+function getSalesCnt(){
+	$.ajax({
+		url:'[[@{/salescnt}]]',
+		success:function(data){
+			$('#sales_cnt').text(data);
+		}
+	});
+};
+
 function display(data){
 	Highcharts.chart('container', {
 	    chart: {
@@ -110,6 +137,9 @@ function getdata(){
 $(document).ready(function(){
 	getdata();
 	getCustCnt();
+	getStoreCnt();
+	getReserveCnt();
+	getSalesCnt();
 });
 
 </script>
@@ -129,12 +159,14 @@ $(document).ready(function(){
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-xl-3">
+                   <div class="col-sm-6 col-xl-3">
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-bar fa-3x text-primary"></i>
                             <div class="ms-3">
-                                <p class="mb-2">Total Sale</p>
-                                <h6 class="mb-0">$1234</h6>
+                                <p class="mb-2">입점 매장</p>
+                                <div>
+                                	<h6 class="mb-0" id="store_cnt"></h6>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -142,8 +174,10 @@ $(document).ready(function(){
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-area fa-3x text-primary"></i>
                             <div class="ms-3">
-                                <p class="mb-2">Today Revenue</p>
-                                <h6 class="mb-0">$1234</h6>
+                                <p class="mb-2">누적 예약</p>
+                                <div>
+                                	<h6 class="mb-0" id="reserve_cnt"></h6>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -151,8 +185,10 @@ $(document).ready(function(){
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-pie fa-3x text-primary"></i>
                             <div class="ms-3">
-                                <p class="mb-2">Total Revenue</p>
-                                <h6 class="mb-0">$1234</h6>
+                                <p class="mb-2">누적 매출</p>
+                                <div>
+                         	    	<h6 class="mb-0" id="sales_cnt"></h6>
+                                </div>
                             </div>
                         </div>
                     </div>

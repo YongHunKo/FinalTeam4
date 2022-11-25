@@ -27,6 +27,24 @@ public class AController {
 		return cnt+"";
 	}
 	
+	@RequestMapping("/storecnt")
+	public String storecnt() {
+		int cnt = amapper.getStoreCnt();
+		return cnt+"";
+	}
+	
+	@RequestMapping("/reservecnt")
+	public String reservecnt() {
+		int cnt = amapper.getReserveCnt();
+		return cnt+"";
+	}
+	
+	@RequestMapping("/salescnt")
+	public String salescnt() {
+		int cnt = amapper.getSalesCnt();
+		return cnt+"";
+	}
+	
 	@RequestMapping("/checkid")
 	public Object checkid(String cid) {
 		String result = "";

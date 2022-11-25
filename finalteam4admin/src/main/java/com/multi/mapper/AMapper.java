@@ -12,4 +12,7 @@ import com.multi.dto.ChartDTO;
 public interface AMapper {
 	public List<ChartDTO> chart1();
 	public int getCustCnt();
+	public int getStoreCnt();
+	public int getReserveCnt();
+	public int getSalesCnt();
 }

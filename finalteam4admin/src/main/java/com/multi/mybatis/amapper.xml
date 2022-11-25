@@ -10,4 +10,13 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="getCustCnt" resultType="Integer">
 		SELECT count(*) FROM cust
 	</select>
+	<select id="getStoreCnt" resultType="Integer">
+		SELECT count(*) FROM store
+	</select>
+	<select id="getReserveCnt" resultType="Integer">
+		SELECT COUNT(DISTINCT orderlistno) FROM reserve
+	</select>
+	<select id="getSalesCnt" resultType="Integer">
+		SELECT SUM(totalprice) FROM orderlist
+	</select>
 </mapper>
