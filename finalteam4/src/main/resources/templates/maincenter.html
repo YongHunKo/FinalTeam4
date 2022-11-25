@@ -81,7 +81,7 @@ $(document).ready(function(){
 		console.log("scrollY",value);
 		
 		
-		if(value<900){
+		if(value<700){
 			mainText.style.animation='disappear 2s ease-out fowards';
 			}else{
 				
@@ -297,13 +297,13 @@ $(document).ready(function(){
                         <div class="product-image">
                             <div class="product-active">
                                 <div class="product-item">
-                                    <img th:src="@{/storeimg/}+${vw.storeimg}" alt="product">
+                                    <img th:src="@{/storeimg/}+${vw.storeimg}" alt="product" style="width:200px; height:200px; border-radius:50px;">
                                 </div>
                             </div>
                         </div>
                         <div class="product-content" >
-                            <h4 class="title" th:text="${vw.storename}">상호<a th:href="@{/storedetail(storeid=${vw.storeid})}"></a></h4>
-                            <p th:text="${vw.storeintroduce}">소개</p>
+                            <h4 class="title" th:text="${vw.storename}" style="font-weight:bold; font-size:25px;">상호<a th:href="@{/storedetail(storeid=${vw.storeid})}"></a></h4>
+                            <p th:text="${vw.storeintroduce}" style="font-size:19px; font-weight:bold;">소개</p><br>
                             <a th:href="@{/storedetail(storeid=${vw.storeid})}" class="main-btn primary-btn">
                                 <img th:src="@{/assets/images/icon-svg/cart-4.svg}" alt="">
                                 가게 상세 정보
