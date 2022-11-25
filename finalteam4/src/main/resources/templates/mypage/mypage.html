@@ -28,11 +28,11 @@
 #page-content-wrapper {
 	width: 100%;
 	padding: 15px;
-	transition: all .5s;
+	transition: all 1.5s;
 }
 
 #menu-toggle {
-	transition: all .3s;
+	transition: all 1.5s;
 	font-size: 20px;
 }
 /* Change the width of the sidebar to display it*/
@@ -76,7 +76,7 @@
 
 .weather-card {
 	margin: 0px auto;
-	height: 180px;
+	height: 150px;
 	width: 850px;
 	background: #fff;
 	box-shadow: 0 1px 38px rgba(0, 0, 0, 0.15), 0 5px 12px
@@ -113,7 +113,7 @@
 }
 
 .weather-card .top .wrapper .mynav {
-	height: 10px;
+	height: 20px;
 }
 
 .weather-card .top .wrapper .mynav .lnr {
@@ -132,7 +132,6 @@
 }
 
 .weather-card .top .wrapper .heading {
-	margin-top: 10px;
 	font-size: 35px;
 	font-weight: 400;
 	color: #fff;
@@ -145,7 +144,7 @@
 }
 
 .weather-card .top .wrapper .temp {
-	margin-top: 20px;
+	margin-top: 10px;
 }
 
 .weather-card .top .wrapper .temp a {
@@ -159,7 +158,7 @@
 
 .weather-card .top .wrapper .temp .temp-value {
 	display: inline-block;
-	font-size: 50px;
+	font-size: 35px;
 	color: #fff;
 }
 
@@ -184,7 +183,7 @@
 }
 
 .weather-card .top .wrapper2 .mynav {
-	height: 30px;
+	height: 20px;
 }
 
 .weather-card .top .wrapper2 .mynav .lnr {
@@ -249,7 +248,7 @@
 
 .contents {
 	margin: 0px auto;
-	height: 220px;
+	height: 130px;
 	width: 850px;
 	padding-top: 50px;
 }
@@ -284,13 +283,11 @@
 	$(document).ready(function() {
 		const menu = document.querySelector('#menu-toggle')
 
-		$("#menu-toggle").click(function(e) {
-
-			e.preventDefault();
+		/* $("#menu-toggle").click(function(e) {
+			e.preventDefault(); */
 			$("#wrapper").toggleClass("menuDisplayed");
 			menu.style.visibility = "hidden";
 		});
-	});
 </script>
 <div id="wrapper" style="background-color: #fff; height: 1000px">
 	<!-- Sidebar -->
@@ -324,11 +321,12 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-12">
-					<a href="#" class="btn" id="menu-toggle">메뉴 > </a>
+					<a href="#" class="btn" id="menu-toggle"></a>
 
 					<div class="weather-card one" th:if="${session.list_one == null}">
 						<div class="top">
-							<h2 style="color: white; padding-top:50px">최근 예약된 테이블이 없습니다.</h2>
+							<h2 style="color: white; padding-top: 50px">최근 예약된 테이블이
+								없습니다.</h2>
 							<h3>
 								<a th:href="/searchimpl?txt= " style="color: blue">예약하러가기</a>
 							</h3>
@@ -364,9 +362,34 @@
 		<div class="contents">
 			<form id="reconfirm_form">
 				<h3 class="my_tit">
-					구상중<span>회원님의 소중한 정보보호를 위해 비밀번호를 재확인하고 있습니다.</span>
+					마이페이지<span></span>
 				</h3>
 			</form>
+		</div>
+		<div class="container-fluid" style="width: 850px">
+			<div class="level">
+				<div class="col-12 col-md-4 col-sm-12 col-xs-12">
+					<div class="card p-4">
+
+						<div class="d-flex">
+							<h6 class="flex-grow-1">Eat & Out</h6>
+						</div>
+						<div class="d-flex flex-column temp mt-5 mb-3">
+							<h6>내 등급</h6>
+							<h1 th:if="${session.logincust.lv} == 'orange'" class="mb-0 font-weight-bold" id="heading"
+								th:style="${'color: orange'}" th:text="${session.logincust.lv}"></h1>
+							<h1 th:if="${session.logincust.lv} == 'yellow'" class="mb-0 font-weight-bold" id="heading"
+								th:style="${'color: yellow'}" th:text="${session.logincust.lv}"></h1>
+							<h1 th:if="${session.logincust.lv} == 'green'" class="mb-0 font-weight-bold" id="heading"
+								th:style="${'color: green'}" th:text="${session.logincust.lv}"></h1>
+							<span class="small grey">Level</span>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
 		</div>
 	</div>
 </div>

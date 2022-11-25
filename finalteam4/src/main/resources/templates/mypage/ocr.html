@@ -23,11 +23,11 @@
 #page-content-wrapper {
 	width: 100%;
 	padding: 15px;
-	transition: all .5s;
+	transition: all 1.5s;
 }
 
 #menu-toggle {
-	transition: all .3s;
+	transition: all 1.5s;
 	font-size: 20px;
 }
 /* Change the width of the sidebar to display it*/
@@ -325,10 +325,9 @@
 	var order_orderprice = "[[${total}]]";
 
 	$(document).ready(function() {
-		$("#menu-toggle").click(function(e) {
-			e.preventDefault();
-			$("#wrapper").toggleClass("menuDisplayed");
-		});
+		const menu = document.querySelector('#menu-toggle')
+		$("#wrapper").toggleClass("menuDisplayed");
+		menu.style.visibility = "hidden";
 
 		$("#savereview").click(function() {
 			$("#review").attr({
@@ -391,36 +390,16 @@
 				$("#revtext").attr("disabled", false);
 				$("#savereview").attr("disabled", false);
 				return
-
-				
-
-								
-
-				
-
 			} else {
 				$("#result_msg").text("결제하신 내역의 정보와 상이합니다. *주문 음식 불일치");
 				$("#result_msg").css("color", "#ff4800");
 				return
-
-				
-
-								
-
-				
-
 			}
+			
 		} else {
 			$("#result_msg").text("해당 가게의 영수증이 아니거나 결제 날짜가 맞지 않습니다.");
 			$("#result_msg").css("color", "#ff4800");
 			return
-
-			
-
-						
-
-			
-
 		}
 	}
 </script>
@@ -459,7 +438,7 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12">
-						<a href="#" class="btn" id="menu-toggle">메뉴 ></a>
+						<a href="#" class="btn" id="menu-toggle"></a>
 						<div class="weather-card one"
 							th:with="list1 = ${session.list_one}">
 							<div class="top">

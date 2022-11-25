@@ -6,9 +6,9 @@
 	position: relative;
 }
 
- #wrapper ul li a:hover {
+#wrapper ul li a:hover {
 	color: tomato;
-	font-weight:600;
+	font-weight: 600;
 }
 /* Sidebar */
 #sidebar-wrapper {
@@ -27,11 +27,11 @@
 #page-content-wrapper {
 	width: 100%;
 	padding: 15px;
-	transition: all .5s;
+	transition: all 1.5s;
 }
 
 #menu-toggle {
-	transition: all .3s;
+	transition: all 1.5s;
 	font-size: 20px;
 }
 /* Change the width of the sidebar to display it*/
@@ -275,7 +275,7 @@
 	width: 150px;
 }
 
-.small > span {
+.small>span {
 	font-size: 20px;
 	letter-spacing: 5px;
 	color: orange;
@@ -283,18 +283,12 @@
 </style>
 
 <script>
-$(document).ready(function() {
-	const menu=document.querySelector('#menu-toggle')
-	
-	$("#menu-toggle").click(function(e) {
-		
-		
-		e.preventDefault();
+	$(document).ready(function() {
+		const menu = document.querySelector('#menu-toggle')
+
 		$("#wrapper").toggleClass("menuDisplayed");
-		/*클릭시 숨김  */
 		menu.style.visibility = "hidden";
 	});
-}); 
 </script>
 
 <body>
@@ -305,12 +299,13 @@ $(document).ready(function() {
 				<li><a th:text="${session.logincust.custname}"
 					style="padding: 20px 0 10px 0; font-size: 40px; font-weight: 700"></a></li>
 				<li><h4 href="#">나의 EAT & OUT 정보</h4></li>
-				<li><a th:href="@{/mypage/order(id=${session.logincust.custid})}">테이블 조회</a></li>
+				<li><a
+					th:href="@{/mypage/order(id=${session.logincust.custid})}">테이블
+						조회</a></li>
 				<li><a
 					th:href="@{/mypage/review(id=${session.logincust.custid})}">나의
 						리뷰</a></li>
-				<li><a
-					th:href="@{/wishlist(id=${session.logincust.custid})}">나의
+				<li><a th:href="@{/wishlist(id=${session.logincust.custid})}">나의
 						위시리스트</a></li>
 				<li><h4 href="#">나의 계정설정</h4></li>
 				<li><a
@@ -325,21 +320,20 @@ $(document).ready(function() {
 		</div>
 
 		<!-- Page Content -->
-		<div id="page-content-wrapper" style="background-color:#fff;">
+		<div id="page-content-wrapper" style="background-color: #fff;">
 			<div class="container-fluid">
 				<div class="row2">
 					<div class="col-lg-12">
-						<a href="#" class="btn" id="menu-toggle">메뉴 ></a>
-						<div class="weather-card one" th:with="list1 = ${session.list_one}">
+						<a href="#" class="btn" id="menu-toggle"></a>
+						<div class="weather-card one"
+							th:with="list1 = ${session.list_one}">
 							<div class="top">
 								<div class="wrapper">
 									<div class="mynav"></div>
 									<h1 class="heading" th:text="${list1.storename}"></h1>
-									<h3 class="location"
-										th:text="${list1.reservedate}"></h3>
+									<h3 class="location" th:text="${list1.reservedate}"></h3>
 									<p class="temp">
-										<span class="temp-value"
-											th:text="${session.banner_rsvdate}"></span>
+										<span class="temp-value" th:text="${session.banner_rsvdate}"></span>
 									</p>
 								</div>
 								<div class="wrapper2">
@@ -357,9 +351,12 @@ $(document).ready(function() {
 					리 뷰<span>소중한 리뷰 감사합니다.</span>
 				</h3>
 				<div class="row">
-					<div class="col-xl-3 col-lg-4 col-md-6 mb-4" th:each="rv : ${review}" style="height: 500px; width: 276px">
+					<div class="col-xl-3 col-lg-4 col-md-6 mb-4"
+						th:each="rv : ${review}" style="height: 500px; width: 276px">
 						<div class="bg-white rounded shadow-sm">
-							<img th:src="@{/storeimg/} + ${rv.storeimg}" class="img-fluid card-img-top" style="height:300px; width:250px">
+							<img th:src="@{/storeimg/} + ${rv.storeimg}"
+								class="img-fluid card-img-top"
+								style="height: 300px; width: 250px">
 							<div class="p-4">
 								<h5>
 									<a href="#" class="text-dark" th:text="${rv.storename}"></a>
@@ -368,12 +365,12 @@ $(document).ready(function() {
 								<div
 									class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
 									<p class="small">
-										<i class="star" style="padding-right: 45px">S t a r</i>
-										<span th:if="${rv.star == 1}">★ </span>
-										<span th:if="${rv.star == 2}">★ ★</span>
-										<span th:if="${rv.star == 3}">★ ★ ★</span>
-										<span th:if="${rv.star == 4}">★ ★ ★ ★</span>
-										<span th:if="${rv.star == 5}">★ ★ ★ ★ ★</span>
+										<i class="star" style="padding-right: 45px">S t a r</i> <span
+											th:if="${rv.star == 1}">★ </span> <span
+											th:if="${rv.star == 2}">★ ★</span> <span
+											th:if="${rv.star == 3}">★ ★ ★</span> <span
+											th:if="${rv.star == 4}">★ ★ ★ ★</span> <span
+											th:if="${rv.star == 5}">★ ★ ★ ★ ★</span>
 									</p>
 								</div>
 							</div>

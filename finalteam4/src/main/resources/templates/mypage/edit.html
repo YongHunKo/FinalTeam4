@@ -281,16 +281,11 @@
 <script>
 	$(document).ready(function() {
 		const menu=document.querySelector('#menu-toggle')
-		
-		$("#menu-toggle").click(function(e) {
-			
-			
-			e.preventDefault();
+	
 			$("#wrapper").toggleClass("menuDisplayed");
-			/*클릭시 숨김  */
-			menu.style.display ='none';
-			
-		});
+	
+			menu.style.visibility = "hidden";
+
 
 		$('#inputPassword').keyup(function() {
 			var id = $("#staticId").val();
@@ -369,7 +364,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-12">
-					<a href="#" class="btn" id="menu-toggle">메뉴 ></a>
+					<a href="#" class="btn" id="menu-toggle"></a>
 					<div class="weather-card one" th:with="list1 = ${session.list_one}">
 						<div class="top">
 							<div class="wrapper">

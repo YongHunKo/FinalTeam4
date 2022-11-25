@@ -135,7 +135,7 @@ public class MyPageController {
 		}
 		return "index";
 	}
-
+	
 	/**
 	 * ocr 작업중
 	 * 
