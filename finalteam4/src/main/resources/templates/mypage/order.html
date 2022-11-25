@@ -360,8 +360,7 @@ $(document).ready(function() {
 		
 		e.preventDefault();
 		$("#wrapper").toggleClass("menuDisplayed");
-		/*클릭시 숨김  */
-		menu.style.display ='none';
+		menu.style.visibility = "hidden";
 		
 		
 	});
@@ -369,7 +368,7 @@ $(document).ready(function() {
 </script>
 
 <body>
-	<div id="wrapper">
+	<div id="wrapper" style="background-color: #fff; height: 1000px">
 		<!-- Sidebar -->
 		<div id="sidebar-wrapper">
 			<ul class="sidebar-nav">
