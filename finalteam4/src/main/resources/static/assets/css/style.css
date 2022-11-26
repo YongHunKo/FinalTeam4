@@ -26,11 +26,7 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable-dynamic-subset.css");
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css");
 html{
-	 background: linear-gradient(
-        rgba(255, 255, 255, 0.5),
-        rgba(255, 255, 255, 0.5)
-      ),
-  url("https://cdn.pixabay.com/photo/2020/06/22/16/40/leaves-5329790_960_720.jpg");
+	background: #fff; 
   background-repeat:no repeat;
   background-size:fill;
   background-position:bottom center;
@@ -54,6 +50,7 @@ body {
   margin-right:9%;
   box-shadow: 0 1px 38px rgba(0, 0, 0, 0.2), 0 5px 12px	rgba(0, 0, 0, 0.35);
   -ms-overflow-style: none;
+	z-index:5;
 }
 
 ::-webkit-scrollbar {
@@ -4092,7 +4089,7 @@ p {
   width:20%;
   margin-left: 10%;
   margin-right:10%;
-  padding-bottom:30px;
+  padding-bottom:20px;
   
 	}
 	
@@ -4174,7 +4171,7 @@ p {
             height: 100%;
             justify-content: space-between;
             align-items: center;
-            top:60px;
+            top:75px;
         }
         /* 배너 컨테이너 */
         .rollingbanner2{
@@ -5226,10 +5223,10 @@ p {
 
 .navbar-style-7 .navbar-container .navbar-top-wrapper {
     /* 주황 */
-      /* background: linear-gradient(to right, #fdc830, #f37335); */ 
+      background: linear-gradient(to right, #fdc830, #f37335); 
    /* 블랙 */
   /*  background: linear-gradient(to right, #232526, #414345); */
-background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+/* background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
 background-size: 1800% 1800%;
 
 -webkit-animation: rainbow 18s ease infinite;
@@ -5257,9 +5254,9 @@ background-size: 1800% 1800%;
     50%{background-position:100% 19%}
     100%{background-position:0% 82%}
 }
+ */
 
-
-
+}
 
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {

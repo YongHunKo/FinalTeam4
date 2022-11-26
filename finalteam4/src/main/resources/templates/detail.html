@@ -19,7 +19,6 @@
         justify-content:space between;
         display:flex;
         flex-direction: column; /*수직 정렬*/
-        padding-top:20px;
     }
 
 
@@ -397,48 +396,7 @@
 						<!-- storereview -->
 						<div>리뷰</div>
 
-						<!-- map -->
-
-						<!-- refund -->
-						<!-- <div th:if="${session.logincust != null}">
-							<div>
-								<h4>예약 취소시 환급정책</h4>
-								<table>
-									<thead>
-										<tr>
-											<th>취소 시점(예약일시 기준)</th>
-											<th>환급 %</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>2일 이상</td>
-											<td>100 %</td>
-										</tr>
-										<tr>
-											<td>하루 전</td>
-											<td>60 %</td>
-										</tr>
-										<tr>
-											<td>예약 당일</td>
-											<td>30 %</td>
-										</tr>
-										<tr>
-											<td>노쇼</td>
-											<td>환급 불가</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<h6>환급 %는 매장마다 차이가 있으니 이용예정 매장의 환급정책을 확인해야합니다</h6>
-							<h6>환불 불가구간 이후부터는 환급이 불가능합니다</h6>
-							<h6>메뉴 결제 금액 환급 기준의 취소 시점은 이용 예정일시와 취소 발생 일시의 차이로 적용됩니다</h6>
-							<h6>이용예정 매장에서 정한 환불 불가 정책과 전자 상거래 등에서의 '소비자 보호에 관한 법률'등 관련
-								법령에서 정한 청약철회 제출 사요에 해당하는 경우 결제금의 전액 혹은 일부가 환급이 불가합니다</h6>
-							체크박스로 해당 내용을 확인 후 reserve버튼 누르기 가능
-							<input type="checkbox" id="refund" name="refund" value="checked">
-							네, 해당 내용을 확인했습니다
-						</div> -->
+						
 <section class="py-5" th:if="${session.logincust != null}">
     <div class="container">
         <!-- FOR DEMO PURPOSE -->

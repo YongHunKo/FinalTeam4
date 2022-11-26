@@ -78,7 +78,7 @@
 }
 
 
-@-webkit-keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@-webkit-keyframes snowflakes-shake{0%{-webkit-transform:translateX(0px);transform:translateX(0px)}50%{-webkit-transform:translateX(80px);transform:translateX(80px)}100%{-webkit-transform:translateX(0px);transform:translateX(0px)}}@keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@keyframes snowflakes-shake{0%{transform:translateX(0px)}50%{transform:translateX(80px)}100%{transform:translateX(0px)}}.snowflake{position:fixed;top:-10%;z-index:9999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;-webkit-animation-name:snowflakes-fall,snowflakes-shake;-webkit-animation-duration:10s,3s;-webkit-animation-timing-function:linear,ease-in-out;-webkit-animation-iteration-count:infinite,infinite;-webkit-animation-play-state:running,running;animation-name:snowflakes-fall,snowflakes-shake;animation-duration:10s,3s;animation-timing-function:linear,ease-in-out;animation-iteration-count:infinite,infinite;animation-play-state:running,running}.snowflake:nth-of-type(0){left:1%;-webkit-animation-delay:0s,0s;animation-delay:0s,0s}.snowflake:nth-of-type(1){left:10%;-webkit-animation-delay:1s,1s;animation-delay:1s,1s}.snowflake:nth-of-type(2){left:20%;-webkit-animation-delay:6s,.5s;animation-delay:6s,.5s}.snowflake:nth-of-type(3){left:30%;-webkit-animation-delay:4s,2s;animation-delay:4s,2s}.snowflake:nth-of-type(4){left:40%;-webkit-animation-delay:2s,2s;animation-delay:2s,2s}.snowflake:nth-of-type(5){left:50%;-webkit-animation-delay:8s,3s;animation-delay:8s,3s}.snowflake:nth-of-type(6){left:60%;-webkit-animation-delay:6s,2s;animation-delay:6s,2s}.snowflake:nth-of-type(7){left:70%;-webkit-animation-delay:2.5s,1s;animation-delay:2.5s,1s}.snowflake:nth-of-type(8){left:80%;-webkit-animation-delay:1s,0s;animation-delay:1s,0s}.snowflake:nth-of-type(9){left:90%;-webkit-animation-delay:3s,1.5s;animation-delay:3s,1.5s}
+@-webkit-keyframes snowflakes-fall{0%{top:-5%}100%{top:100%}}@-webkit-keyframes snowflakes-shake{0%{-webkit-transform:translateX(0px);transform:translateX(0px)}50%{-webkit-transform:translateX(80px);transform:translateX(80px)}100%{-webkit-transform:translateX(0px);transform:translateX(0px)}}@keyframes snowflakes-fall{0%{top:-5%}100%{top:20%}}@keyframes snowflakes-shake{0%{transform:translateX(0px)}50%{transform:translateX(80px)}100%{transform:translateX(0px)}}.snowflake{position:fixed;top:-5%;z-index:9999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;-webkit-animation-name:snowflakes-fall,snowflakes-shake;-webkit-animation-duration:10s,3s;-webkit-animation-timing-function:linear,ease-in-out;-webkit-animation-iteration-count:infinite,infinite;-webkit-animation-play-state:running,running;animation-name:snowflakes-fall,snowflakes-shake;animation-duration:10s,3s;animation-timing-function:linear,ease-in-out;animation-iteration-count:infinite,infinite;animation-play-state:running,running}.snowflake:nth-of-type(0){left:1%;-webkit-animation-delay:0s,0s;animation-delay:0s,0s}.snowflake:nth-of-type(1){left:10%;-webkit-animation-delay:1s,1s;animation-delay:1s,1s}.snowflake:nth-of-type(2){left:20%;-webkit-animation-delay:6s,.5s;animation-delay:6s,.5s}.snowflake:nth-of-type(3){left:30%;-webkit-animation-delay:4s,2s;animation-delay:4s,2s}.snowflake:nth-of-type(4){left:40%;-webkit-animation-delay:2s,2s;animation-delay:2s,2s}.snowflake:nth-of-type(5){left:50%;-webkit-animation-delay:8s,3s;animation-delay:8s,3s}.snowflake:nth-of-type(6){left:60%;-webkit-animation-delay:6s,2s;animation-delay:6s,2s}.snowflake:nth-of-type(7){left:70%;-webkit-animation-delay:2.5s,1s;animation-delay:2.5s,1s}.snowflake:nth-of-type(8){left:80%;-webkit-animation-delay:1s,0s;animation-delay:1s,0s}.snowflake:nth-of-type(9){left:90%;-webkit-animation-delay:3s,1.5s;animation-delay:3s,1.5s}
        
 </style>
 <script>
@@ -131,7 +131,6 @@ $(document).ready(function(){
 //롤링
 document.addEventListener('DOMContentLoaded', ()=>{
     var interval = window.setInterval(rollingCallback, 3000);
-    var interval2 = window.setInterval(rollingCallback2, 3000);
 })
 function rollingCallback(){
     //.prev 클래스 삭제
@@ -156,8 +155,10 @@ function rollingCallback(){
 }
 
 //롤링2
-
-function rollingCallback2(){
+document.addEventListener('DOMContentLoaded', ()=>{
+    var interval = window.setInterval(rollingCallback, 3000);
+})
+function rollingCallback(){
     //.prev 클래스 삭제
     document.querySelector('.rollingbanner2 .prev2').classList.remove('prev2');
 	
@@ -258,7 +259,7 @@ function rollingCallback2(){
 </div>
 <div class="col-6">
     <!-- desktop logo Start -->
-<div class="mobile-logo text-center" style="width:120px; text-align:center; position:flex; margin:auto; margin-right:auto;">
+<div class="mobile-logo text-center" style="width:145px; text-align:center; position:flex; margin:auto; margin-right:auto;">
     <a th:href="@{/}"><img th:src="@{/assets/images/eLogo.png}" alt="Logo"></a>
 </div>
 <!-- desktop logo Ends -->
@@ -295,11 +296,11 @@ function rollingCallback2(){
             <div class="title">실시간 뜨고있는 메뉴 > </div>
             <div class="wrap">
                 <ul>
-                    <li class="current"><a href="#" th:text="${session.ranking?.storename}+' , '+${session.ranking?.menuname}">storename4, menuname4</a></li>
-                    <li class="next"><a href="#" th:text="${session.ranking2?.storename}+' , '+${session.ranking2?.menuname}">storename4, menuname4</a></li>
-                    <li><a href="#" th:text="${session.ranking3?.storename}+' , '+${session.ranking3?.menuname}">storename4, menuname4</a></li>
-                    <li><a href="#" th:text="${session.ranking4?.storename}+' , '+${session.ranking4?.menuname}">storename4, menuname4</a></li>
-                    <li class="prev"><a href="#" th:text="${session.ranking5?.storename}+' , '+${session.ranking5?.menuname}">storename4, menuname4</a></li>
+                    <li><a href="#">storename1, menuname1</a></li>
+                    <li class="next"><a href="#">storename2, menuname2</a></li>
+                    <li class="current"><a href="#">storename3, menuname3</a></li>
+                    <li><a href="#">storename4, menuname4</a></li>
+                    <li class="prev"><a href="#">storename5, menuname5</a></li>
                 </ul>
             </div>
         </div>
@@ -325,7 +326,6 @@ function rollingCallback2(){
                             <!-- navbar top left Start -->
                             <div class="navbar-top-left d-lg-flex justify-content-left">
                                 <ul class="navbar-top-link" id="about">
-                                    
                                     
                                 </ul>
                             </div>
@@ -360,10 +360,10 @@ function rollingCallback2(){
                         <nav class="main-navbar d-lg-flex  align-items-center" >
                             <!-- desktop logo Start -->
                             <div class="desktop-logo " th:if="${session.logincust != null}" >
-                                <a th:href="@{/(id=${session.logincust.custid})}"><img th:src="@{/assets/images/eLogo.png}" alt="Logo" style=" width:120px; top:20px;"></a>
+                                <a th:href="@{/(id=${session.logincust.custid})}"><img th:src="@{/assets/images/eLogo.png}" alt="Logo" style=" position:relative; width:145px; top:25px;"></a>
                             </div>
                             <div class="desktop-logo" th:if="${session.logincust == null}" >
-                                <a th:href="@{/}"><img th:src="@{/assets/images/eLogo.png}" alt="Logo" style="width:120px; top:20px;" ></a>
+                                <a th:href="@{/}"><img th:src="@{/assets/images/eLogo.png}" alt="Logo" style=" position:relative; width:145px; top:25px;" ></a>
                             </div>
                             
                            
@@ -395,11 +395,11 @@ function rollingCallback2(){
 				            <div class="title2">실시간 뜨고있는 메뉴 > </div>
 				            <div class="wrap2">
 				                <ul>
-				                    <li class="current2"><a href="#" th:text="${session.ranking?.storename}+' , '+${session.ranking?.menuname}">storename4, menuname4</a></li>
-				                    <li class="next2"><a href="#" th:text="${session.ranking2?.storename}+' , '+${session.ranking2?.menuname}">storename4, menuname4</a></li>
-				                    <li><a href="#" th:text="${session.ranking3?.storename}+' , '+${session.ranking3?.menuname}">storename4, menuname4</a></li>
-				                    <li><a href="#" th:text="${session.ranking4?.storename}+' , '+${session.ranking4?.menuname}">storename4, menuname4</a></li>
-				                    <li class="prev2"><a href="#" th:text="${session.ranking5?.storename}+' , '+${session.ranking5?.menuname}">storename4, menuname4</a></li>
+				                    <li><a href="#">storename1, menuname1</a></li>
+				                    <li class="next2"><a href="#">storename2, menuname2</a></li>
+				                    <li class="current2"><a href="#">storename3, menuname3</a></li>
+				                    <li><a href="#">storename4, menuname4</a></li>
+				                    <li class="prev2"><a href="#">storename5, menuname5</a></li>
 				                </ul>
 				            </div>
 				        </div>
