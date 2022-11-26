@@ -41,6 +41,7 @@ public class SignupController {
 	public String signupimpl(Model model, CustDTO cust, HttpSession session) {
 		try {
 			cust_service.register(cust);
+			System.out.println(cust);
 			session.setAttribute("logincust", cust);
 			model.addAttribute("center", "signupok");
 			model.addAttribute("rid", cust);
