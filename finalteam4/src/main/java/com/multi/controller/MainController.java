@@ -73,11 +73,11 @@ public class MainController {
 			list13 = orderservice.ranking5();
 			model.addAttribute("viewwish", list7);
 			model.addAttribute("list_one", list8);
-			model.addAttribute("ranking", list9);
-			model.addAttribute("ranking2", list10);
-			model.addAttribute("ranking3", list11);
-			model.addAttribute("ranking4", list12);
-			model.addAttribute("ranking5", list13);
+			session.setAttribute("ranking", list9);
+			session.setAttribute("ranking2", list10);
+			session.setAttribute("ranking3", list11);
+			session.setAttribute("ranking4", list12);
+			session.setAttribute("ranking5", list13);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -92,25 +92,6 @@ public class MainController {
 	 */
 	@RequestMapping("/login")
 	public String login(Model model) {
-		OrderlistDTO list9 = null;
-		OrderlistDTO list10 = null;
-		OrderlistDTO list11 = null;
-		OrderlistDTO list12 = null;
-		OrderlistDTO list13 = null;
-		try {
-			list9 = orderservice.ranking();
-			list10 = orderservice.ranking2();
-			list11 = orderservice.ranking3();
-			list12 = orderservice.ranking4();
-			list13 = orderservice.ranking5();
-			model.addAttribute("ranking", list9);
-			model.addAttribute("ranking2", list10);
-			model.addAttribute("ranking3", list11);
-			model.addAttribute("ranking4", list12);
-			model.addAttribute("ranking5", list13);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		model.addAttribute("center", "login");
 		return "index";
 	}
