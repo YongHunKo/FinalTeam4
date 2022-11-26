@@ -50,7 +50,7 @@ body {
   margin-right:9%;
   box-shadow: 0 1px 38px rgba(0, 0, 0, 0.2), 0 5px 12px	rgba(0, 0, 0, 0.35);
   -ms-overflow-style: none;
-	z-index:5;
+	z-index:1;
 }
 
 ::-webkit-scrollbar {
@@ -5132,6 +5132,7 @@ p {
   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.08);
   background-color: #fff;
   text-align:center;
+	z-index:60;
 }
 
 .navbar-style-7 .navbar-mobile {
@@ -5160,7 +5161,7 @@ p {
     height: 100%;
     background-color: black;
     padding: 50px 0px 15px;
-    z-index: 999;
+    z-index: 9999;
     overflow-y: auto;
     -webkit-transition: all 0.3s linear;
     transition: all 0.3s linear;
@@ -5289,6 +5290,7 @@ background-size: 1800% 1800%;
 
 .navbar-style-7 .navbar-container .navbar-top .navbar-top-left .navbar-top-link li {
   display: inline-block;
+  
 }
 
 .navbar-style-7 .navbar-container .navbar-top .navbar-top-left .navbar-top-link li a {

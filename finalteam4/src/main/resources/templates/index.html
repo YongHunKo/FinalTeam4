@@ -259,7 +259,7 @@ function rollingCallback(){
 </div>
 <div class="col-6">
     <!-- desktop logo Start -->
-<div class="mobile-logo text-center" style="width:145px; text-align:center; position:flex; margin:auto; margin-right:auto;">
+<div class="mobile-logo text-center" style="width:115px; text-align:center; position:flex; margin:auto; margin-right:auto;">
     <a th:href="@{/}"><img th:src="@{/assets/images/eLogo.png}" alt="Logo"></a>
 </div>
 <!-- desktop logo Ends -->
@@ -334,7 +334,7 @@ function rollingCallback(){
                  <div class="navbar-top-right">
                      <ul class="navbar-top-link">
                          <li th:if="${session.logincust == null}"> <a th:href="@{/signup}" ><i class="mdi mdi-account" ></i>Sign up</a></li>
-                         <li th:if="${session.logincust == null}"> <a th:href="@{/login}" ><i class="mdi mdi-account" ></i>Login</a></li>
+                         <li th:if="${session.logincust == null}"> <a th:href="@{/login}"><i class="mdi mdi-account" ></i>Login</a></li>
                          <li th:if="${session.logincust != null}"> <a th:href="@{/mypage(id=${session.logincust.custid})}"><i class="mdi mdi-account" ></i>My Page</a></li>
                          <li th:if="${session.logincust != null}"> <a th:href="@{/logout}" ><i class="mdi mdi-account" ></i>Logout</a></li>
                           <li th:if="${session.logincust != null}">
@@ -355,15 +355,15 @@ function rollingCallback(){
     
                 <!-- main navbar Start -->
                 
-                <div class="navbar-wrapper" style="height:110px;">
+                <div class="navbar-wrapper" style="height:150px;">
                     <div class="container">
                         <nav class="main-navbar d-lg-flex  align-items-center" >
                             <!-- desktop logo Start -->
                             <div class="desktop-logo " th:if="${session.logincust != null}" >
-                                <a th:href="@{/(id=${session.logincust.custid})}"><img th:src="@{/assets/images/eLogo.png}" alt="Logo" style=" position:relative; width:145px; top:25px;"></a>
+                                <a th:href="@{/(id=${session.logincust.custid})}"><img th:src="@{/assets/images/eLogo.png}" alt="Logo" style=" position:relative; width:150px; top:25px;"></a>
                             </div>
                             <div class="desktop-logo" th:if="${session.logincust == null}" >
-                                <a th:href="@{/}"><img th:src="@{/assets/images/eLogo.png}" alt="Logo" style=" position:relative; width:145px; top:25px;" ></a>
+                                <a th:href="@{/}"><img th:src="@{/assets/images/eLogo.png}" alt="Logo" style=" position:relative; width:150px; top:10px;" ></a>
                             </div>
                             
                            
