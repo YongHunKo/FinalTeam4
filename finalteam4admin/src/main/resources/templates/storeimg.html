@@ -145,7 +145,7 @@ jQuery('.pagination li:first-child').addClass("disabled");
                    		<td th:text="${i.storeimgno}"></td>
                    		<td th:text="${i.storeid}"></td>
                    		<td><img th:src="@{/storeimg/}+${i.storeimg}"></td>
-                   		<td><a th:onclick="del([[${i.storeimgno}]])"><img th:src="@{img/5974771.png}" style="width:30px;"></a></td>
+                   		<td><a th:onclick="del([[${i.storeimgno}]])"><img th:src="@{/img/5974771.png}" style="width:30px;"></a></td>
                    	</tr>      
                 </tbody>
             </table>
