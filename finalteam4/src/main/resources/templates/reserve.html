@@ -423,6 +423,11 @@ table.table th {
 							});
 						}
 					</script>
+					<div>
+						<H1 id="status">Status</H1>
+						<button id="connect">Connect</button>
+						<button id="disconnect">Disconnect</button>
+					</div>
 					<!-- 수량 조정 form -->
 					<form th:action="@{/updatecart}" method="post"
 						class="quantity_update_form">
@@ -446,6 +451,62 @@ table.table th {
 				setTotalInfo();
 
 			});
+			
+			$("#connect").click(function() {
+				connect();
+			});
+			$("#disconnect").click(function() {
+				disconnect();
+			});
+			
+			function setConnected(connected) {
+				if (connected) {
+					$("#status").text("Connected");
+				} else {
+					$("#status").text("Disconnected");
+				}
+				
+			}
+			
+			function disconnect() {
+				if (stompClient !== null) {
+					stompClient.disconnect();
+				}
+				setConnected(false);
+				console.log("Disconnected");
+			}
+			
+			var stompClient = null;
+			var id = '[[${session.logincust.custid}]]';
+			// 서버소켓에 연결
+			function connect() {
+				var socket = new SockJS('http://127.0.0.1/ws');
+				stompClient = Stomp.over(socket);
+			
+				stompClient.connect({}, function(frame) { 
+					setConnected(true);
+					console.log('Connected: ' + frame);
+					stompClient.subscribe('/send', function(msg) { 
+						$("#all").prepend(
+								"<h4>" + JSON.parse(msg.body).sendid +":"+
+								JSON.parse(msg.body).content1
+										+ "</h4>");
+					});
+					stompClient.subscribe('/send/'+id, function(msg) { 
+						$("#me").prepend(
+								"<h4>" + JSON.parse(msg.body).sendid +":"+
+								JSON.parse(msg.body).content1+":"+
+								JSON.parse(msg.body).content2
+										+ "</h4>");
+					});
+					stompClient.subscribe('/send/to/'+id, function(msg) { 
+						$("#to").prepend(
+								"<h4>" + JSON.parse(msg.body).sendid +":"+
+								JSON.parse(msg.body).content1
+										+ "</h4>");
+					});
+				});
+			}
 
 
 			$(".individual_cart_checkbox").on("change", function() {

@@ -131,6 +131,7 @@ $(document).ready(function(){
 //롤링
 document.addEventListener('DOMContentLoaded', ()=>{
     var interval = window.setInterval(rollingCallback, 3000);
+    var interval2 = window.setInterval(rollingCallback2, 3000);
 })
 function rollingCallback(){
     //.prev 클래스 삭제
@@ -155,10 +156,7 @@ function rollingCallback(){
 }
 
 //롤링2
-document.addEventListener('DOMContentLoaded', ()=>{
-    var interval = window.setInterval(rollingCallback, 3000);
-})
-function rollingCallback(){
+function rollingCallback2(){
     //.prev 클래스 삭제
     document.querySelector('.rollingbanner2 .prev2').classList.remove('prev2');
 	
@@ -296,11 +294,11 @@ function rollingCallback(){
             <div class="title">실시간 뜨고있는 메뉴 > </div>
             <div class="wrap">
                 <ul>
-                    <li><a href="#">storename1, menuname1</a></li>
-                    <li class="next"><a href="#">storename2, menuname2</a></li>
-                    <li class="current"><a href="#">storename3, menuname3</a></li>
-                    <li><a href="#">storename4, menuname4</a></li>
-                    <li class="prev"><a href="#">storename5, menuname5</a></li>
+                    <li class="current"><a href="#" th:text="${session.ranking?.storename}+' , '+${session.ranking?.menuname}">storename4, menuname4</a></li>
+                    <li class="next"><a href="#" th:text="${session.ranking2?.storename}+' , '+${session.ranking2?.menuname}">storename4, menuname4</a></li>
+                    <li><a href="#" th:text="${session.ranking3?.storename}+' , '+${session.ranking3?.menuname}">storename4, menuname4</a></li>
+                    <li><a href="#" th:text="${session.ranking4?.storename}+' , '+${session.ranking4?.menuname}">storename4, menuname4</a></li>
+                    <li class="prev"><a href="#" th:text="${session.ranking5?.storename}+' , '+${session.ranking5?.menuname}">storename4, menuname4</a></li>
                 </ul>
             </div>
         </div>
@@ -395,11 +393,11 @@ function rollingCallback(){
 				            <div class="title2">실시간 뜨고있는 메뉴 > </div>
 				            <div class="wrap2">
 				                <ul>
-				                    <li><a href="#">storename1, menuname1</a></li>
-				                    <li class="next2"><a href="#">storename2, menuname2</a></li>
-				                    <li class="current2"><a href="#">storename3, menuname3</a></li>
-				                    <li><a href="#">storename4, menuname4</a></li>
-				                    <li class="prev2"><a href="#">storename5, menuname5</a></li>
+				                    <li class="current2"><a href="#" th:text="${session.ranking?.storename}+' , '+${session.ranking?.menuname}">storename4, menuname4</a></li>
+				                    <li class="next2"><a href="#" th:text="${session.ranking2?.storename}+' , '+${session.ranking2?.menuname}">storename4, menuname4</a></li>
+				                    <li><a href="#" th:text="${session.ranking3?.storename}+' , '+${session.ranking3?.menuname}">storename4, menuname4</a></li>
+				                    <li><a href="#" th:text="${session.ranking4?.storename}+' , '+${session.ranking4?.menuname}">storename4, menuname4</a></li>
+				                    <li class="prev2"><a href="#" th:text="${session.ranking5?.storename}+' , '+${session.ranking5?.menuname}">storename4, menuname4</a></li>
 				                </ul>
 				            </div>
 				        </div>
