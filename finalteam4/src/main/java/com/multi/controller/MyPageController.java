@@ -50,12 +50,15 @@ public class MyPageController {
 	@RequestMapping("")
 	public String mypage(String id, Model model, HttpSession session) {
 		OrderlistDTO list_one = null;
+		OrderlistDTO total_pay = null;
+		
 		
 		Date date = new Date();
 		SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd");
 		String today = formatter2.format(date);
 
 		try {
+			total_pay = order_service.total_pay(id);
 			list_one = order_service.myorder_1(id);
 			Date format1 = formatter2.parse(today);
 			Date format2 = formatter2.parse(list_one.getReservedate());
@@ -63,10 +66,12 @@ public class MyPageController {
 			long diffSec = (format1.getTime() - format2.getTime()) / 1000;
 			long diffDays = diffSec / (24 * 60 * 60);
 			
+			int totalpay = total_pay.getTotalpay() / 100;
 			String reservedate = list_one.getReservetime();
 			String reservedate2 = reservedate.substring(0, 5);
 			System.out.println(diffDays);
 			System.out.println(reservedate2);
+			System.out.println(totalpay);
 			
 			session.setAttribute("banner_rsvdate", reservedate2);
 			session.setAttribute("banner_dday", diffDays);

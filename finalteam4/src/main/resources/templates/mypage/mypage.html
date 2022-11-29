@@ -79,8 +79,6 @@
 	height: 150px;
 	width: 850px;
 	background: #fff;
-	box-shadow: 0 1px 38px rgba(0, 0, 0, 0.15), 0 5px 12px
-		rgba(0, 0, 0, 0.25);
 	overflow: hidden;
 }
 
@@ -285,16 +283,16 @@
 
 		/* $("#menu-toggle").click(function(e) {
 			e.preventDefault(); */
-			$("#wrapper").toggleClass("menuDisplayed");
-			menu.style.visibility = "hidden";
-		});
+		$("#wrapper").toggleClass("menuDisplayed");
+		menu.style.visibility = "hidden";
+	});
 </script>
 <div id="wrapper" style="background-color: #fff; height: 1000px">
 	<!-- Sidebar -->
 	<div id="sidebar-wrapper">
 		<ul class="sidebar-nav">
 			<li><a th:if="${session.logincust.custname!=null}"
-				th:text="${session.logincust.custname}+'님'"
+				th:text="${session.logincust.custname}+' 님'"
 				style="padding: 20px 0 10px 0; font-size: 40px; font-weight: 600"></a></li>
 			<li><h4 href="#">나의 EAT & OUT 정보</h4></li>
 			<li><a
@@ -364,7 +362,7 @@
 			</form>
 		</div>
 		<div class="container-fluid" style="width: 850px">
-			<div class="level">
+			<div class="level" style="display: flex">
 				<div class="col-12 col-md-4 col-sm-12 col-xs-12">
 					<div class="card p-4">
 
@@ -373,20 +371,32 @@
 						</div>
 						<div class="d-flex flex-column temp mt-5 mb-3">
 							<h6>내 등급</h6>
-							<h1 th:if="${session.logincust.lv} == 'orange'" class="mb-0 font-weight-bold" id="heading"
+							<h1 th:if="${session.logincust.lv} == 'orange'"
+								class="mb-0 font-weight-bold" id="heading"
 								th:style="${'color: orange'}" th:text="${session.logincust.lv}"></h1>
-							<h1 th:if="${session.logincust.lv} == 'yellow'" class="mb-0 font-weight-bold" id="heading"
+							<h1 th:if="${session.logincust.lv} == 'yellow'"
+								class="mb-0 font-weight-bold" id="heading"
 								th:style="${'color: yellow'}" th:text="${session.logincust.lv}"></h1>
-							<h1 th:if="${session.logincust.lv} == 'green'" class="mb-0 font-weight-bold" id="heading"
+							<h1 th:if="${session.logincust.lv} == 'green'"
+								class="mb-0 font-weight-bold" id="heading"
 								th:style="${'color: green'}" th:text="${session.logincust.lv}"></h1>
 							<span class="small grey">Level</span>
 						</div>
+					</div>
+				</div>
+				<div class="card mb-4" style="margin-left: 20px; width: 80%; height: 231px">
+					<div class="card-body p-5">
+						<h6>다음 레벨까지</h6>
+						<p class="font-italic text-muted">다음</p>
 
+						<!-- Labeled progress bar-->
+						<div class="progress rounded-pill">
+							<div role="progressbar" aria-valuenow="55" aria-valuemin="0"
+								aria-valuemax="100" style="width: 55%; background-color: #00c2fe;"
+								class="progress-bar rounded-pill">55%</div>
+						</div>
 					</div>
 				</div>
 			</div>
-
-
 		</div>
 	</div>
-</div>

@@ -66,4 +66,8 @@ public class OrderlistService implements MyService<Integer, OrderlistDTO>{
 	public OrderlistDTO ranking5() throws Exception {
 		return mapper.ranking5();
 	}
+	
+	public OrderlistDTO total_pay(String k) throws Exception {
+		return mapper.total_pay(k);
+	}
 }

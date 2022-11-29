@@ -15,7 +15,7 @@ class InsertOrderlist {
 	@Test
 	void contextLoads() {
 		try {
-			service.register(new OrderlistDTO(6,"id01", null, 6, 66666,null,null,null,null,null));
+			service.register(new OrderlistDTO(6,"id01", null, 6, 66666,null,null,null,null,null,null));
 			System.out.println("insert_ok");
 		} catch (Exception e) {
 			e.printStackTrace();

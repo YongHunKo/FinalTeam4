@@ -17,4 +17,5 @@ public interface OrderlistMapper extends MyMapper<Integer, OrderlistDTO>{
 	public OrderlistDTO ranking3() throws Exception;
 	public OrderlistDTO ranking4() throws Exception;
 	public OrderlistDTO ranking5() throws Exception;
+	public OrderlistDTO total_pay(String custid) throws Exception;
 }

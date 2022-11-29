@@ -7,9 +7,16 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="select" parameterType="Integer" resultType="OrderlistDTO">
 		SELECT * FROM orderlist WHERE orderlistno=#{orderlistno}
 	</select>
+	
 	<select id="selectall" resultType="OrderlistDTO">
 		SELECT * FROM orderlist
 	</select>
+	
+	<select id="total_pay" parameterType="String" resultType="OrderlistDTO">
+		SELECT custid, SUM(totalprice) AS totalpay FROM orderlist
+		WHERE custid = #{custid};
+	</select>
+	
 	<select id="ranking" resultType="OrderlistDTO">
 		SELECT m.menuname, s.storename, COUNT(m.menuid) AS ranking FROM orderlist ol
 		INNER JOIN reserve r ON ol.orderlistno = r.orderlistno

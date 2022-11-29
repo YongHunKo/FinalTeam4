@@ -95,7 +95,7 @@ public class ReserveController {
 				totalprice += c.getCnt() * c.getPrice();
 			}
 			OrderlistDTO order = new OrderlistDTO(null, custid, null, cnt, totalprice, reservedate2, reservetime2, null,
-					null,null);
+					null,null,null);
 			orderlistservice.register(order);
 			int r = order.getOrderlistno();
 

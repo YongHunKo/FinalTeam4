@@ -25,4 +25,5 @@ public class OrderlistDTO {
 	private String storename;
 	private String menuname;
 	private Integer menuid;
+	private Integer totalpay;
 }
