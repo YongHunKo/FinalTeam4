@@ -272,13 +272,17 @@
 	height: 50px;
 	margin: 0 auto;
 	background: #000;
+	border-color: #000;
+	font-weight: 700;
+	font-size: 18px;
+	font-weight: 700;
 }
 </style>
 <script>
 	$(document).ready(function() {
 		const menu = document.querySelector('#menu-toggle')
-			$("#wrapper").toggleClass("menuDisplayed");
-			menu.style.visibility = "hidden";
+		$("#wrapper").toggleClass("menuDisplayed");
+		menu.style.visibility = "hidden";
 
 		/* $("#inputPassword").keyup(function() {
 			var pwd = $(this).val();
@@ -335,6 +339,13 @@
 		});
 
 	});
+	function del(id) {
+		var c = confirm("탈퇴하시겠습니까?");
+
+		if (c == true) {
+			location.href = "/mypage/delete?id=" + id;
+		}
+	}
 </script>
 
 <body>
@@ -450,7 +461,8 @@
 					회원탈퇴<span></span>
 				</h3>
 				<div class="btn_next">
-					<button id="next_btn2" class="btn-primary">다 음</button>
+					<button th:onclick="del([[${session.logincust.custid}]]);"
+						id="next_btn2" class="btn-primary">탈퇴하기</button>
 				</div>
 			</div>
 		</div>

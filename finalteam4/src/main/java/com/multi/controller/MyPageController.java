@@ -238,6 +238,18 @@ public class MyPageController {
 		return "redirect:/mypage?id=" + cust.getCustid();
 	}
 	
+	@RequestMapping("/delete")
+	public String delete(String id, HttpSession session) {
+		try {
+			cust_service.remove(id);
+			session.invalidate();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "index";
+	}
+	
 	@RequestMapping("/question")
 	public String question(Model model) {
 		model.addAttribute("center", dir + "question");
