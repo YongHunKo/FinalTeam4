@@ -484,14 +484,16 @@ table.table th {
 				$("#sendto").click(function() {
 					sendTo();
 				});
-			});		
+			});	
+			
+			
 			function sendTo() {
 				var msg = JSON.stringify({
 					'sendid' : id,
 /* 					'receiveid' : $('#target').val(),
 					'content1' : $('#totext').val() */
-					'receiveid' : 'admin01',
-					'content1' : 'test01'
+					'receiveid' : admin01,
+					'content1' : test01
 				});
 				stompClient.send('/receiveto', {}, msg);
 			}
@@ -515,6 +517,9 @@ table.table th {
 			
 			var stompClient = null;
 			var id = '[[${session.logincust.custid}]]';
+			var admin01 = 'admin01';
+			//얘를 이제 storeid에 맞게 보내야함
+			var test01 = '예약이 접수되었습니다'
 			// 서버소켓에 연결
 			function connect() {
 				var socket = new SockJS('http://127.0.0.1:8080/admintest/ws');
@@ -525,14 +530,13 @@ table.table th {
 					console.log('Connected: ' + frame);
 					stompClient.subscribe('/send/to/'+id, function(msg) { 
 						$("#to").prepend(
-								"<h4>" + JSON.parse(msg.body).sendid +":"+
+								"<h4>" + JSON.parse(msg.body).sendid +" 님의 "+
 								JSON.parse(msg.body).content1
 										+ "</h4>");
 					});
 				});
-			}
-
-
+			}			
+			
 			$(".individual_cart_checkbox").on("change", function() {
 				setTotalInfo($(".cart_info_td"));
 			});
@@ -650,6 +654,8 @@ table.table th {
 			$('#reserve_btn2').click(function() {
 				connect();
 				requestPay();
+				alert('admin01');
+				alert('test01')
 
 			});
 			//I'mpot api test
@@ -761,6 +767,7 @@ table.table th {
 			} catch (e) {
 				window.kakaoDemoException && window.kakaoDemoException(e)
 			}
+
 		</script>
 
 	</div>
