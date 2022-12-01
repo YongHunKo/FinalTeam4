@@ -119,13 +119,142 @@ $(document).ready(function(){
 		$('#search_form2').submit();
 	});
 	
+	$("#changeTest").change(function(){
+		var catevalue = $(this).val();
+		if (catevalue == 2){
+			$('.search-btn').click(function() {
+				$('#search_form').attr({
+					'method':'get',
+					'action':'[[@{/searchimpl2}]]',
+				});
+				$('#search_form').submit();
+			});
+			$('.search-btn2').click(function() {
+				$('#search_form2').attr({
+					'method':'get',
+					'action':'[[@{/searchimpl2}]]',
+				});
+				$('#search_form2').submit();
+			});			
+		}else if(catevalue == 3){
+			$('.search-btn').click(function() {
+				$('#search_form').attr({
+					'method':'get',
+					'action':'[[@{/searchimpl3}]]',
+				});
+				$('#search_form').submit();
+			});
+			$('.search-btn2').click(function() {
+				$('#search_form2').attr({
+					'method':'get',
+					'action':'[[@{/searchimpl3}]]',
+				});
+				$('#search_form2').submit();
+			});	
+			
+		}else if(catevalue == 4){
+			$('.search-btn').click(function() {
+				$('#search_form').attr({
+					'method':'get',
+					'action':'[[@{/searchimpl4}]]',
+				});
+				$('#search_form').submit();
+			});
+			$('.search-btn2').click(function() {
+				$('#search_form2').attr({
+					'method':'get',
+					'action':'[[@{/searchimpl4}]]',
+				});
+				$('#search_form2').submit();
+			});	
+			
+		}else if(catevalue == 1){
+			$('.search-btn').click(function() {
+				$('#search_form').attr({
+					'method':'get',
+					'action':'[[@{/searchimpl}]]',
+				});
+				$('#search_form').submit();
+			});
+			$('.search-btn2').click(function() {
+				$('#search_form2').attr({
+					'method':'get',
+					'action':'[[@{/searchimpl}]]',
+				});
+				$('#search_form2').submit();
+			});	
+			
+		}
+	});
 	
-	
-	
+	$("#changeTest2").change(function(){
+		var catevalue = $(this).val();
+		if (catevalue == 2){
+			$('.search-btn').click(function() {
+				$('#search_form').attr({
+					'method':'get',
+					'action':'[[@{/searchimpl2}]]',
+				});
+				$('#search_form').submit();
+			});
+			$('.search-btn2').click(function() {
+				$('#search_form2').attr({
+					'method':'get',
+					'action':'[[@{/searchimpl2}]]',
+				});
+				$('#search_form2').submit();
+			});			
+		}else if(catevalue == 3){
+			$('.search-btn').click(function() {
+				$('#search_form').attr({
+					'method':'get',
+					'action':'[[@{/searchimpl3}]]',
+				});
+				$('#search_form').submit();
+			});
+			$('.search-btn2').click(function() {
+				$('#search_form2').attr({
+					'method':'get',
+					'action':'[[@{/searchimpl3}]]',
+				});
+				$('#search_form2').submit();
+			});	
+			
+		}else if(catevalue == 4){
+			$('.search-btn').click(function() {
+				$('#search_form').attr({
+					'method':'get',
+					'action':'[[@{/searchimpl4}]]',
+				});
+				$('#search_form').submit();
+			});
+			$('.search-btn2').click(function() {
+				$('#search_form2').attr({
+					'method':'get',
+					'action':'[[@{/searchimpl4}]]',
+				});
+				$('#search_form2').submit();
+			});	
+			
+		}else if(catevalue == 1){
+			$('.search-btn').click(function() {
+				$('#search_form').attr({
+					'method':'get',
+					'action':'[[@{/searchimpl}]]',
+				});
+				$('#search_form').submit();
+			});
+			$('.search-btn2').click(function() {
+				$('#search_form2').attr({
+					'method':'get',
+					'action':'[[@{/searchimpl}]]',
+				});
+				$('#search_form2').submit();
+			});	
+			
+		}
+	});
 
-	
-	
-	
 	
 });
 //롤링
@@ -271,11 +400,11 @@ function rollingCallback2(){
                     <!-- navbar search start -->
                     <div class="navbar-search mt-15 search-style-5">
                         <div class="search-select">
-                            <select>
-                                <option value="">All</option>
-                                <option>식당</option>
-                                <option>카페</option>
-                                <option>다이닝</option>
+                            <select id="changeTest" change="selectBoxChang(this.value)">
+                                <option value="1">All</option>
+                                <option value="2">식당</option>
+                                <option value="3">카페</option>
+                                <option value="4">다이닝</option>
                             </select>
                         </div>
                         <div class="search-input">
@@ -370,11 +499,11 @@ function rollingCallback2(){
                               
                                 <div class="navbar-search search-style-5">
                                     <div class="search-select">
-                                        <select>
-                                            <option value="">All</option>
-                                            <option value="1">식당</option>
-                                            <option value="2">카페</option>
-                                            <option value="3">다이닝</option>
+                                        <select id="changeTest2" change="selectBoxChang(this.value)">
+                                            <option value="1">All</option>
+                                            <option value="2">식당</option>
+                                            <option value="3">카페</option>
+                                            <option value="4">다이닝</option>
                                         </select>
                                     </div>
                                     <div class="search-input">

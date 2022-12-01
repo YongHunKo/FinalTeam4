@@ -48,6 +48,18 @@ public class MenuService implements MyService<Integer, MenuDTO> {
 		return mapper.searchmenu(txt);
 	}
 	
+	public List<MenuDTO> searchmenu2(String txt) throws Exception {
+		return mapper.searchmenu2(txt);
+	}
+	
+	public List<MenuDTO> searchmenu3(String txt) throws Exception {
+		return mapper.searchmenu3(txt);
+	}
+	
+	public List<MenuDTO> searchmenu4(String txt) throws Exception {
+		return mapper.searchmenu4(txt);
+	}
+	
 	public List<MenuDTO> searchmenuasc(String txt) throws Exception {
 		return mapper.searchmenuasc(txt);
 	}

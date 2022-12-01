@@ -28,14 +28,48 @@ public class SearchController {
 	 * @return
 	 */
 	@RequestMapping("/searchimpl")
-	public String logout(Model model, String txt) {
+	public String searchimpl(Model model, String txt) {
 		List<MenuDTO> list = null;
-		List<StoreDTO> list2 = null;
 		try {
 			list = menuservice.searchmenu(txt);
-			list2 = storeservice.searchstore(txt);
 			model.addAttribute("menulist", list);
-			model.addAttribute("storelist", list2);
+			model.addAttribute("center", "search");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "index";
+	}
+	
+	@RequestMapping("/searchimpl2")
+	public String searchimpl2(Model model, String txt) {
+		List<MenuDTO> list = null;
+		try {
+			list = menuservice.searchmenu2(txt);
+			model.addAttribute("menulist", list);
+			model.addAttribute("center", "search");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "index";
+	}
+	@RequestMapping("/searchimpl3")
+	public String searchimpl3(Model model, String txt) {
+		List<MenuDTO> list = null;
+		try {
+			list = menuservice.searchmenu3(txt);
+			model.addAttribute("menulist", list);
+			model.addAttribute("center", "search");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "index";
+	}
+	@RequestMapping("/searchimpl4")
+	public String searchimpl4(Model model, String txt) {
+		List<MenuDTO> list = null;
+		try {
+			list = menuservice.searchmenu4(txt);
+			model.addAttribute("menulist", list);
 			model.addAttribute("center", "search");
 		} catch (Exception e) {
 			e.printStackTrace();

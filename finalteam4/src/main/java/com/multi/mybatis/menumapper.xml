@@ -20,6 +20,27 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		INNER JOIN store s ON m.storeid = s.storeid
 		WHERE menuname LIKE CONCAT('%',#{txt},'%')
 	</select>
+	<select id="searchmenu2" parameterType="String" resultType="MenuDTO">
+		SELECT * FROM menu m
+		LEFT OUTER  JOIN menuimgs ms ON m.menuid = ms.menuid
+		INNER JOIN store s ON m.storeid = s.storeid
+		WHERE menucateid IN (10,20,30,40,70,100,110,120,130)
+		AND menuname LIKE CONCAT('%',#{txt},'%')
+	</select>
+	<select id="searchmenu3" parameterType="String" resultType="MenuDTO">
+		SELECT * FROM menu m
+		LEFT OUTER  JOIN menuimgs ms ON m.menuid = ms.menuid
+		INNER JOIN store s ON m.storeid = s.storeid
+		WHERE menucateid IN (50,60)
+		AND menuname LIKE CONCAT('%',#{txt},'%')
+	</select>
+	<select id="searchmenu4" parameterType="String" resultType="MenuDTO">
+		SELECT * FROM menu m
+		LEFT OUTER  JOIN menuimgs ms ON m.menuid = ms.menuid
+		INNER JOIN store s ON m.storeid = s.storeid
+		WHERE menucateid IN (80,90)
+		AND menuname LIKE CONCAT('%',#{txt},'%')
+	</select>
 	<select id="searchmenuasc" parameterType="String" resultType="MenuDTO">
 		SELECT * FROM menu m
 		LEFT OUTER  JOIN menuimgs ms ON m.menuid = ms.menuid
