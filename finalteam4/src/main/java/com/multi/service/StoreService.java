@@ -55,7 +55,9 @@ public class StoreService implements MyService<Integer, StoreDTO>{
 		return mapper.detailimg(cateid);
 	}
 
-	
+	public List<StoreDTO> infoall(Integer storeid) throws Exception{
+		 return mapper.infoall(storeid);
+	}
 	
 	
 }

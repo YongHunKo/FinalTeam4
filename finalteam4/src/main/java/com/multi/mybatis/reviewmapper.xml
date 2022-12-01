@@ -15,6 +15,12 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="selectall" resultType="ReviewDTO">
 		SELECT * FROM review
 	</select>
+	<select id="storereview" parameterType="Integer" resultType="ReviewDTO">
+		SELECT s.storename, r.revtext, r.star, i.storeimg FROM review r
+		INNER join store s on s.storeid = r.storeid
+		INNER join storeimgs i on i.storeid = s.storeid
+		WHERE r.storeid =#{storeid} AND i.storeimg LIKE '%1%'
+	</select>
 	<insert id="insert" parameterType="ReviewDTO">
 		INSERT INTO review VALUES (#{reviewid}, #{custid}, #{storeid}, #{revtext}, #{star})
 	</insert>

@@ -7,9 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.multi.dto.ReviewDTO;
 import com.multi.dto.StoreDTO;
 import com.multi.dto.StoreimgDTO;
 import com.multi.dto.WishlistDTO;
+import com.multi.service.ReviewService;
 import com.multi.service.StoreService;
 import com.multi.service.StoreimgService;
 import com.multi.service.WishlistService;
@@ -22,6 +24,9 @@ public class StoreController {
 	StoreService storeservice;
 	@Autowired
 	WishlistService wishservice;
+	
+	@Autowired
+	ReviewService reviewservice;
 
 	/**
 	 * storedetail 해당 메소드는 detail페이지에 store와 storeimg의 내용을 출력하기 위한 메소드이다.
@@ -34,14 +39,18 @@ public class StoreController {
 	public String storedetail(Model model, Integer storeid) {
 		List<StoreimgDTO> list = null;
 		List<StoreDTO> list2 = null;
+		List<ReviewDTO> list3 =null;
+		List<StoreDTO> list4 = null;
 
 		try {
 			list = storeimgservice.selectstoreid(storeid);
 			list2 = storeservice.detail(storeid);
-
+			list3 = reviewservice.storereview(storeid);
+			list4= storeservice.infoall(storeid);
 			model.addAttribute("storeimglist", list);
 			model.addAttribute("detaillist", list2);
-
+			model.addAttribute("review", list3);
+			model.addAttribute("info", list4);
 			model.addAttribute("center", "/detail");
 		} catch (Exception e) {
 			e.printStackTrace();

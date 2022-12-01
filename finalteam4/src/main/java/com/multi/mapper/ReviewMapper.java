@@ -12,4 +12,5 @@ import com.multi.frame.MyMapper;
 @Mapper
 public interface ReviewMapper extends MyMapper<Integer, ReviewDTO>{
 	public List<ReviewDTO> myreview(String custid) throws Exception;
+	public List<ReviewDTO> storereview(Integer storeid) throws Exception;
 }

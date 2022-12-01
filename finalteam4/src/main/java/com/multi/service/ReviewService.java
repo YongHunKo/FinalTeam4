@@ -43,4 +43,8 @@ public class ReviewService implements MyService<Integer, ReviewDTO> {
 	public List<ReviewDTO> myreview(String k) throws Exception {
 		return mapper.myreview(k);
 	}
+
+	public List<ReviewDTO> storereview(Integer storeid) throws Exception{
+		 return mapper.storereview(storeid);
+	}
 }
