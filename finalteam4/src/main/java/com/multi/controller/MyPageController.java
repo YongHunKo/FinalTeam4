@@ -66,17 +66,18 @@ public class MyPageController {
 			long diffSec = (format1.getTime() - format2.getTime()) / 1000;
 			long diffDays = diffSec / (24 * 60 * 60);
 			
-			double totalpay = total_pay.getTotalpay() / 500000.0 * 100.0;
+			double yellow = total_pay.getTotalpay() / 300000.0 * 100.0;
 			String reservedate = list_one.getReservetime();
 			String reservedate2 = reservedate.substring(0, 5);
 			System.out.println(diffDays);
 			System.out.println(reservedate2);
-			System.out.println(totalpay);
+			System.out.println(yellow);
+			
 			
 			session.setAttribute("banner_rsvdate", reservedate2);
 			session.setAttribute("banner_dday", diffDays);
 			session.setAttribute("list_one", list_one);
-			model.addAttribute("totalpay", totalpay);
+			model.addAttribute("totalpay", total_pay.getTotalpay());
 			model.addAttribute("center", dir + "mypage");
 		} catch (Exception e) {
 			e.printStackTrace();
