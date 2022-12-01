@@ -363,6 +363,11 @@
 			}
 			setTimeout(timeout, 500);
 		});
+		
+		$('#call').click(function() {
+			var storetel = $('#storetel').text();
+			location.href="tel:"+storetel;
+		});
 
 	});
 </script>
@@ -453,6 +458,18 @@
           <div id="collapseThree" aria-labelledby="headingThree" data-parent="#accordionExample" class="collapse">
             <div class="card-body p-5" th:each="i : ${info}">
               <p class="font-weight-light m-0" th:text="${i.storestatus}">예약상황뿌려주기</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div id="headingFour" class="card-header bg-white shadow-sm border-0">
+            <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour" class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2">매장번호</a></h6>
+          </div>
+          <div id="collapseFour" aria-labelledby="headingFour" data-parent="#accordionExample" class="collapse">
+            <div class="card-body p-5" th:each="i : ${info}">
+              <p class="font-weight-light m-0" id="storetel" th:text="${i.storetel}">가게 전화번호</p>
+              <button id="call">전화하기</button>
             </div>
           </div>
         </div>
