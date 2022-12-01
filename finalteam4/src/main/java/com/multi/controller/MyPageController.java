@@ -51,6 +51,7 @@ public class MyPageController {
 	public String mypage(String id, Model model, HttpSession session) {
 		OrderlistDTO list_one = null;
 		OrderlistDTO total_pay = null;
+		CustDTO cust = null;
 		
 		
 		Date date = new Date();
@@ -58,6 +59,7 @@ public class MyPageController {
 		String today = formatter2.format(date);
 
 		try {
+			cust = cust_service.get(id);
 			total_pay = order_service.total_pay(id);
 			list_one = order_service.myorder_1(id);
 			Date format1 = formatter2.parse(today);
@@ -66,17 +68,22 @@ public class MyPageController {
 			long diffSec = (format1.getTime() - format2.getTime()) / 1000;
 			long diffDays = diffSec / (24 * 60 * 60);
 			
-			double yellow = total_pay.getTotalpay() / 300000.0 * 100.0;
 			String reservedate = list_one.getReservetime();
 			String reservedate2 = reservedate.substring(0, 5);
-			System.out.println(diffDays);
-			System.out.println(reservedate2);
-			System.out.println(yellow);
+				
+			if (total_pay.getTotalpay() >= 300000) {
+				cust.setLv("orange");
+				cust_service.modify(cust);
+			} else if (total_pay.getTotalpay() >= 100000) {
+				cust.setLv("yellow");
+				cust_service.modify(cust);
+			}
 			
 			
 			session.setAttribute("banner_rsvdate", reservedate2);
 			session.setAttribute("banner_dday", diffDays);
 			session.setAttribute("list_one", list_one);
+			session.setAttribute("logincust", cust);
 			model.addAttribute("totalpay", total_pay.getTotalpay());
 			model.addAttribute("center", dir + "mypage");
 		} catch (Exception e) {
