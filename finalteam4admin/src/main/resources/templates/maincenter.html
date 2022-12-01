@@ -5,6 +5,10 @@
     height: 400px;
 }
 
+#web {
+	height: 400px;
+}
+
 .highcharts-figure,
 .highcharts-data-table table {
     min-width: 310px;
@@ -48,8 +52,59 @@
     background: #f1f7ff;
 }
 
+#to {
+	width: 420px;
+	height: 400px;
+	overflow: auto;
+	border: 2px solid white;
+}
 </style>
 <script>
+var stompClient = null;
+var id = '[[${session.loginadmin.adminid}]]';
+// 서버소켓에 연결
+function connect() {
+	var socket = new SockJS('http://127.0.0.1:8080/ws');
+	stompClient = Stomp.over(socket);
+
+	stompClient.connect({}, function(frame) { 
+		setConnected(true);
+		console.log('Connected: ' + frame);
+		stompClient.subscribe('/send/to/'+id, function(msg) { 
+			$("#to").prepend(
+					"<h4>" + JSON.parse(msg.body).sendid +":"+
+					JSON.parse(msg.body).content1
+							+ "</h4>");
+		});
+	});
+}
+
+function disconnect() {
+	if (stompClient !== null) {
+		stompClient.disconnect();
+	}
+	setConnected(false);
+	console.log("Disconnected");
+}
+
+function setConnected(connected) {
+	if (connected) {
+		$("#status").text("Connected");
+	} else {
+		$("#status").text("Disconnected");
+	}
+	
+}
+
+function sendTo() {
+	var msg = JSON.stringify({
+		'sendid' : id,
+		'receiveid' : $('#target').val(),
+		'content1' : $('#totext').val()
+	});
+	stompClient.send('/receiveto', {}, msg);
+}
+
 function getCustCnt(){
 	$.ajax({
 		url:'[[@{/custcnt}]]',
@@ -140,6 +195,12 @@ $(document).ready(function(){
 	getStoreCnt();
 	getReserveCnt();
 	getSalesCnt();
+	$("#connect").click(function() {
+		connect();
+	});
+	$("#disconnect").click(function() {
+		disconnect();
+	});
 });
 
 </script>
@@ -211,7 +272,14 @@ $(document).ready(function(){
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-light text-center rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">Salse & Revenue</h6>
+                                <h6 class="mb-0">주문 확인</h6>
+                                <h6 th:text="${session.loginadmin.storeid}">ID</h6>
+                                <H6 id="status">Status</H6>
+                                <button id="connect">Connect</button>
+								<button id="disconnect">Disconnect</button>
+                            </div>
+                            <div class="card-body">
+                            	<div id="web"><div id="to"></div></div>
                             </div>
                         </div>
                     </div>
