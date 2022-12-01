@@ -64,7 +64,7 @@ var stompClient = null;
 var id = '[[${session.loginadmin.adminid}]]';
 // 서버소켓에 연결
 function connect() {
-	var socket = new SockJS('http://127.0.0.1:8080/ws');
+	var socket = new SockJS('http://127.0.0.1:8080/eatadmin/ws');
 	stompClient = Stomp.over(socket);
 
 	stompClient.connect({}, function(frame) { 
