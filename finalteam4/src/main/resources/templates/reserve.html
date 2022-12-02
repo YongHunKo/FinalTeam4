@@ -304,9 +304,9 @@ table.table th {
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <link rel="stylesheet" type="text/css"
-	href="/assets/css/jquery.datetimepicker.css">
-<script src="/assets/js/jquery.js"></script>
-<script src="/assets/js/jquery.datetimepicker.full.min.js"></script>
+	href="@{/assets/css/jquery.datetimepicker.css}">
+<script src="@{/assets/js/jquery.js}"></script>
+<script src="@{/assets/js/jquery.datetimepicker.full.min.js}"></script>
 
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
@@ -324,13 +324,6 @@ table.table th {
 				</div>
 				<div class="content_middle_section"></div>
 				<div class="content_totalCount_section">
-
-					<!-- 체크박스 전체 여부 -->
-<!-- 					<div class="all_check_input_div">
-						<input type="checkbox" class="all_check_input input_size_20"
-							checked="checked"><span class="all_chcek_span">전체선택</span>
-					</div> -->
-
 					<table class="table table-hover">
 						<tbody>
 							<tr>
@@ -344,17 +337,18 @@ table.table th {
 						</thead>
 						<tbody>
 							<tr th:each="c : ${menulist}">
-								<td class="td_width_1 cart_info_td">
-								<input type="checkbox" class="individual_cart_checkbox input_size_20"
-									checked="checked" style="display:none">
-								<div>
-									<input type="hidden" class="individual_Price_input" th:value="${c.price}"> 
-								</div>
-								<input type="hidden" class="individual_Cnt_input" th:value="${c.cnt}">
-								<input type="hidden" class="individual_totalPrice_input" th:value="${c.price*c.cnt}"> 
-								<input type="hidden" class="individual_itemId_input" th:value="${c.menuid}">
-								<input type="hidden" id="adminid" th:value="${c.adminid}">
-								</td>
+								<td class="td_width_1 cart_info_td"><input type="checkbox"
+									class="individual_cart_checkbox input_size_20"
+									checked="checked" style="display: none">
+									<div>
+										<input type="hidden" class="individual_Price_input"
+											th:value="${c.price}">
+									</div> <input type="hidden" class="individual_Cnt_input"
+									th:value="${c.cnt}"> <input type="hidden"
+									class="individual_totalPrice_input" th:value="${c.price*c.cnt}">
+									<input type="hidden" class="individual_itemId_input"
+									th:value="${c.menuid}"> <input type="hidden"
+									id="adminid" th:value="${c.adminid}"></td>
 								<td class="td_width_2"><img
 									th:src="@{/menuimg/}+${c.menuimg}"
 									style="width: 200px; height: 200px; border-radius: 60px;">
@@ -373,8 +367,7 @@ table.table th {
 										th:data-cartid="${c.cartid}" th:data-custid="${c.custid}"
 										th:data-menuid="${c.menuid}" th:data-menuname="${c.menuname}"
 										th:data-price="${c.price}" th:data-menuimg="${c.menuimg}"
-										th:data-adminid="${c.adminid}">수정
-									</button>
+										th:data-adminid="${c.adminid}">수정</button>
 								</td>
 								<td>
 									<div>
@@ -386,20 +379,9 @@ table.table th {
 							</tr>
 						</tbody>
 					</table>
-				<!-- 	<div th:each="a : ${adminstoreid}">
-						<h4 id="adminid" th:val="${a.adminid}" th:data-adminid="${a.adminid}" style="display: none"></h4>
-					</div> -->
-					<!-- <div>
-						<h4 id="adminid" th:text="${session.adminstoreid.adminid}" style="display: none"></h4>
-					</div> -->
-					<!-- <div>
-						<h4 th:if="${session.adminstoreid.adminid != null}" id="adminid" th:value="${session.adminstoreid.adminid}" style="display: none"></h4>
-					</div>
-					<div>
-						<h4 th:if="${session.adminstoreid.storeid != null}" id="storeid" th:value="${session.adminstoreid.storeid}" style="display: none"></h4>
-					</div> -->
 					<div class="picker-wrapper">
-						<input type="text" class="datepicker" id="datetimepicker" name="datetimepicker">
+						<input type="text" class="datepicker" id="datetimepicker"
+							name="datetimepicker">
 					</div>
 					<!-- 가격 종합 -->
 					<div class="content_total_section">
@@ -458,33 +440,32 @@ table.table th {
 							});
 						}
 					</script>
-					<div style="display:none">
+					<div style="display: none">
 						<H1 id="status">Status</H1>
 						<button id="connect">Connect</button>
 						<button id="disconnect">Disconnect</button>
-					<h3>To</h3>
-					<input type="text" id="target">
-					<input type="text" id="totext">
-					<button id="sendto">Send</button>
+						<h3>To</h3>
+						<input type="text" id="target"> <input type="text"
+							id="totext">
+						<button id="sendto">Send</button>
 					</div>
-					<div id="to" style="display:none"></div>
+					<div id="to" style="display: none"></div>
 					<!-- 수량 조정 form -->
 					<form th:action="@{/updatecart}" method="post"
 						class="quantity_update_form">
 						<input type="hidden" name="cartid" class="update_cartid">
-						<input type="hidden" name="cnt" class="update_cnt"> 
-						<input type="hidden" name="menuid" class="update_menuid"> 
-						<input type="hidden" name="menuname" class="update_menuname"> 
-						<input type="hidden" name="price" class="update_price"> 
-						<input type="hidden" name="menuimg" class="update_menuimg"> 
-						<input type="hidden" name="custid" th:value="${custid}"	class="update_custid">
-						<input type="hidden" name="adminid" th:value="${adminid}"class="update_adminid">
+						<input type="hidden" name="cnt" class="update_cnt"> <input
+							type="hidden" name="menuid" class="update_menuid"> <input
+							type="hidden" name="menuname" class="update_menuname"> <input
+							type="hidden" name="price" class="update_price"> <input
+							type="hidden" name="menuimg" class="update_menuimg"> <input
+							type="hidden" name="custid" th:value="${custid}"
+							class="update_custid"> <input type="hidden"
+							name="adminid" th:value="${adminid}" class="update_adminid">
 					</form>
 				</div>
 			</div>
-			<!-- class="wrap" -->
 		</div>
-		<!-- class="wrapper" -->
 
 		<script>
 			$(document).ready(function() {
@@ -501,18 +482,16 @@ table.table th {
 				});
 			});	
 			
-			
+			//sendTo admin
 			function sendTo() {
 				var msg = JSON.stringify({
 					'sendid' : id,
-/* 					'receiveid' : $('#target').val(),
-					'content1' : $('#totext').val() */
 					'receiveid' : admin01,
 					'content1' : test01
 				});
-				stompClient.send('/receiveto', {}, msg);
+				stompClient.send('@{/receiveto}', {}, msg);
 			}
-			
+			//connect websocket
 			function setConnected(connected) {
 				if (connected) {
 					$("#status").text("Connected");
@@ -521,7 +500,7 @@ table.table th {
 				}
 				
 			}
-			
+			//disconnect websocket
 			function disconnect() {
 				if (stompClient !== null) {
 					stompClient.disconnect();
@@ -530,22 +509,21 @@ table.table th {
 				console.log("Disconnected");
 			}
 			
+			//websocket
 			var stompClient = null;
 			var id = '[[${session.logincust.custid}]]';
-			//var admin01 = 'admin01'// 페이지를 이동해도 얘를 고정시킬방법이 없을까
-			var admin01 = $('#adminid').val(); 	//안들어간다 어디서 따와야할까 너 왜 안들어가냐			
-			//var admin01 = $('#adminid').text();
-			//얘를 이제 storeid에 맞게 보내야함, storeid를 따와야한다
+			var admin01 = $('#adminid').val();		
 			var test01 = '예약이 접수되었습니다'
 			// 서버소켓에 연결
 			function connect() {
 				var socket = new SockJS('http://127.0.0.1:8080/eatadmin/ws');
+				//공인ip로 바꿔야할 부분!
 				stompClient = Stomp.over(socket);
 			
 				stompClient.connect({}, function(frame) { 
 					setConnected(true);
 					console.log('Connected: ' + frame);
-					stompClient.subscribe('/send/to/'+id, function(msg) { 
+					stompClient.subscribe('@{/send/to/}'+id, function(msg) { 
 						$("#to").prepend(
 								"<h4>" + JSON.parse(msg.body).sendid +" 님의 "+
 								JSON.parse(msg.body).content1
@@ -553,7 +531,8 @@ table.table th {
 					});
 				});
 			}			
-
+			
+			//checkbox
 			$(".individual_cart_checkbox").on("change", function() {
 				setTotalInfo($(".cart_info_td"));
 			});
@@ -569,6 +548,7 @@ table.table th {
 
 			});			
 			
+			//totalprice
 			function setTotalInfo() {
 
 				let totalPrice = 0; // 총 가격
@@ -596,6 +576,7 @@ table.table th {
 				$(".finalTotalPrice_span").text(totalPrice.toLocaleString());
 			}
 
+			//quantity control
 			$(".plus_btn").on("click", function() {
 
 				let quantity = $(this).parent("div").find("input").val();
@@ -609,7 +590,6 @@ table.table th {
 				}
 			});
 
-			/* 수량 수정 버튼 */
 			$(".quantity_modify_btn").on("click", function() {
 				let cartid = $(this).data("cartid");
 				let custid = $(this).data("custid");
@@ -634,6 +614,7 @@ table.table th {
 
 			});
 
+			//datetimepicker
 			$.datetimepicker.setLocale('ko');
 			$.datetimepicker.setDateFormatter({
 			    parseDate: function (date, format) {
@@ -645,7 +626,6 @@ table.table th {
 			        return moment(date).format(format);
 			    },
 
-			    //Optional if using mask input
 			    formatMask: function(format){
 			        return format
 			            .replace(/Y{4}/g, '9999')
@@ -670,18 +650,16 @@ table.table th {
 						  '22:00', '22:30', '23:00', '23:30',
 						 ]
 				});
-
+			
+			//reserve_btn
 			$('#reserve_btn2').click(function() {
 				connect();
 				requestPay();
-				alert(admin01);
-				alert(test01)
-
 			});
-			//I'mpot api test
+			
+			//I'mpot api
 			var IMP = window.IMP; // 생략 가능
 			IMP.init("imp34244488");
-
 			var custid = '[[${session.logincust.custid}]]';//requestPay내부에서 사용할 변수들은 여기서 다 정의해 준다
 			var today = new Date();
 			var hours = today.getHours(); // 시
@@ -745,7 +723,8 @@ table.table th {
 									}
 								});
 			}
-			//pay api end
+			
+			//kakao link api
 			try {
 				function sendLinkDefault() {
 					Kakao.init('5391a7213215108e6b8dc6ea778851ac')
