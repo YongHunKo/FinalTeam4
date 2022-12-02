@@ -94,12 +94,16 @@
                 </a>
                 
                 <div class="navbar-nav align-items-center ms-auto">
-             		<li	class="nav-item no-arrow"><a class="" th:href="@{/logout}"> 
+            	    <li	class="nav-item no-arrow" th:if="${session.loginadmin == null}"><a class="" th:href="@{/login}"> 
+						<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+						Login&nbsp
+					</a></li>
+             		<li	class="nav-item no-arrow" th:if="${session.loginadmin != null}"><a class="" th:href="@{/logout}"> 
 						<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 						Logout&nbsp
 					</a></li>       
 					<div>
-						<li	class="nav-item no-arrow">     
+						<li	class="nav-item no-arrow" th:if="${session.loginadmin != null}">       
 							<p th:text="${session.loginadmin.adminname}+ '님'" style="color:#1396E5; font-weight:600;"></p>
 						</li>  		
 					</div>				

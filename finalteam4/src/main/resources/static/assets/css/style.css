@@ -33,7 +33,6 @@ html{
    font-family: "Pretendard";  
 	
 	
-	
 }
 
 
@@ -46,8 +45,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   vertical-align:baseline;
-  margin-left:9%;
-  margin-right:9%;
+  margin-left:4%;
+  margin-right:4%;
   box-shadow: 0 1px 38px rgba(0, 0, 0, 0.2), 0 5px 12px	rgba(0, 0, 0, 0.35);
   -ms-overflow-style: none;
 	z-index:1;
@@ -97,7 +96,6 @@ img {
   max-width: 100%;
   
 }
-
 
 
 
@@ -4232,7 +4230,7 @@ p {
             color: #000;
         }
 
-@media  all and (min-width:991px) and (max-width:1180px){
+@media  all and (min-width:992px) and (max-width:1380px){
 	.search-style-5 {
   position: relative;
   display: -moz-flex;
@@ -4242,19 +4240,19 @@ p {
   display: -ms-flexbox;
   display: flex;
   width:85%;
-  margin-left:15%;
-  margin-right:15%;
-  margin-top:20%;
+  margin-left:25%;
+  margin-top:25%;
+  z-index:2;
   
 	}
 	.container2{
 	 		position:absolute;
             display: inline-block;
-            left:28%;
+            left:35%;
             width:300px;
             justify-content: space-between;
             align-items: center;
-            top:60px;
+            top:57%;
         }
         /* 배너 컨테이너 */
         .rollingbanner2{
@@ -4320,93 +4318,7 @@ p {
 	
 }	
 	
-@media  all and (min-width:1181px) and (max-width:1390px){
-	.search-style-5 {
-  position: relative;
-  display: -moz-flex;
-  display: -ms-flex;
-  display: -o-flex;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width:85%;
-  margin-left:15%;
-  margin-right:15%;
-  margin-top:20%;
-  
-	}
-	.container2{
-	 		position:absolute;
-            display: inline-block;
-            left:20%;
-            width:350px;
-            justify-content: space-between;
-            align-items: center;
-            top:60px;
-        }
-        /* 배너 컨테이너 */
-        .rollingbanner2{
-        	position:absolute;
-            width: 350px;
-            height: 32px;
-            font-size: .875rem;
-            letter-spacing: -1px;
-            padding: 7px 15px;
-            box-sizing: border-box;
-            background-color: #f0f0f0;
-            border-radius: 16px;
-            text-align:center;
-            left:80%;
-        	box-shadow: 0 1px 38px rgba(0, 0, 0, 0.2), 0 5px 12px	rgba(0, 0, 0, 0.35);
-        }
-                /* 타이틀 */
-        .rollingbanner2 > .title2{
-            font-weight: bold;
-            float: left;
-            padding-right: 10px;
-        }
-                /* 롤링 배너 */
-        .rollingbanner2 > .wrap2{
-            position: relative;
-            width: auto;
-            height: 100%;
-            box-sizing: border-box;
-            overflow: hidden;
-        }        
-        .rollingbanner2 ul{
-            list-style: none;
-        }
-        .rollingbanner2 li{
-            position: absolute;
-            top: -36px;
-            left: 0;
-        }
-                /* 이전, 현재, 다음 롤링 배너 표시 */
-        .rollingbanner2 li.prev2{
-            top: 36px;
-            transition: top 0.5s ease;
-        }
-        .rollingbanner2 li.current2{
-            top: 0;
-            transition: top 0.5s ease;
-        }
-        .rollingbanner2 li.next2{
-            top: -36px;
-        }
-        .rollingbanner2 a{
-            display: block;
-            display: -webkit-box;
-            text-decoration: none;
-            -webkit-line-clamp: 1;
-            -webkit-box-orient:vertical;
-            overflow: hidden;
-            color: #000;
-        }
-	
-	
-	
-	
-}		
+
 @media all and (min-width: 768px) and (max-width: 868px){
 .search-style-5 {
   position: relative;
@@ -4496,7 +4408,7 @@ p {
 
 }	
 	
-@media  all and (min-width: 380px) and (max-width: 765px){
+@media  all and (min-width: 330px) and (max-width: 765px){
 .search-style-5 {
   position: relative;
   display: -moz-flex;
@@ -4508,6 +4420,7 @@ p {
   width:75%;
   margin-left:15%;
   margin-right:15%;
+  align-items:center;
   
 	}
 
@@ -4515,12 +4428,10 @@ p {
 .container1{
 	 		position:absolute;
             display: inline-block;
-            left:-8%;
-            height: 100%;
-            justify-content: space-between;
+            left:5%;
             align-items: center;
             top:84%;
-            width:85%;
+            width:65%;
         }
         /* 배너 컨테이너 */
         .rollingbanner{
@@ -4557,7 +4468,7 @@ p {
         .rollingbanner li{
             position: absolute;
             top: -36px;
-            left: -14px;
+            left:2px;
         }
      
                 /* 이전, 현재, 다음 롤링 배너 표시 */
@@ -4591,7 +4502,7 @@ p {
 
 }
 
-@media only screen and (min-width: 868px) and (max-width: 991px){
+@media all and (min-width: 869px) and (max-width: 992px){
 .search-style-5 {
   position: relative;
   display: -moz-flex;
@@ -4610,15 +4521,13 @@ p {
 .container1{
 	 		position:absolute;
             display: inline-block;
-            left:20%;
+            left:-13%;
             height: 100%;
-            justify-content: space-between;
-            align-items: center;
             top:84%;
             width:55%;
         }
         /* 배너 컨테이너 */
-        .rollingbanner{
+        .rollingbanner1{
         	position:absolute;
             width: 330px;
             height: 32px;;
@@ -4675,14 +4584,6 @@ p {
             overflow: hidden;
             color: #000;
         }
-
-
-
-
-
-
-
-
 }
 
 
@@ -4764,6 +4665,7 @@ p {
   border: 0;
   border-radius: 4px;
   margin-left: -2px;
+  z-index:2;
 }
 
 .search-style-5.search-dark .nice-select {
@@ -4858,6 +4760,7 @@ p {
 	
 	
 	
+
 
 /*==================================================================
 /*==================================================================
@@ -8144,6 +8047,10 @@ background-size: 1800% 1800%;
 /*===== All Footer Style 3 =====*/
 .footer-style-3 {
   background-color: #FAFAFA;
+  position:relative;
+	display:flex;
+	margin-left:auto;
+	margin-right:auto;
 }
 
 .footer-style-3 .footer-top .footer-widget-subscribe {

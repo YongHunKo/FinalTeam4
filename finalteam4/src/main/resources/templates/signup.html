@@ -10,130 +10,111 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+	 <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/style.css">
  
 
     <!-- Custom styles for this template -->
 	<style>
-	
-.logo{
-
-	margin:0 auto;
-	padding:0 auto;
-	width:150px;
-
-
+	body{
+    background-color: #dee9ff;
 }
 
-.bg-signup {
+.registration-form{
+	padding: 50px 0;
+}
 
+.registration-form form{
+    background-color: #fff;
+    max-width: 600px;
     margin: auto;
-
-    padding: 35px;
-
-    border-radius: 5px;
-
-    background: linear-gradient(15deg,#dadada,#fff);
-
-    -webkit-box-shadow: 0px 0px 90px -26px rgba(0,0,0,0.75);
-
-    -moz-box-shadow: 0px 0px 90px -26px rgba(0,0,0,0.75);
-
-    box-shadow: 0px 0px 90px -26px rgba(0,0,0,0.75);
-
+    padding: 50px 70px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
 }
 
-.icon {
-
-  width: 90px;
-
-  margin: auto;
-
-  border:3px solid #e0e0e0;
-
-  border-radius: 50%;
-
+.registration-form .form-icon{
+	text-align: center;
+    background-color: #5891ff;
+    border-radius: 50%;
+    font-size: 40px;
+    color: white;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    margin-bottom: 50px;
+    line-height: 100px;
 }
 
-.fa-user-alt-slash{
-
-  font-size: 35px;
-
-  padding: 23px 0px;
-
-  width: 80px;
-
-  border-radius: 50%;
-
-  margin: auto;
-
-  display: block;
-
-  color: #bdbdbd;
-
-  background-color: #e0e0e0;
-
+.registration-form .item{
+	border-radius: 20px;
+    margin-bottom: 25px;
+    padding: 10px 20px;
 }
 
-.form-signup {
-
-  width: 100%;
-
-  max-width: 390px;
-
-  padding: 15px;
-
-  margin: 0 auto;
-
+.registration-form .create-account{
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #5791ff;
+    border: none;
+    color: white;
+    margin-top: 20px;
 }
 
-
-.form-signup .form-control {
-
-  position: relative;
-
-  box-sizing: border-box;
-
-  height: auto;
-
-  padding: 10px 20px;
-
-  font-size: 15px;
-
+.registration-form .social-media{
+    max-width: 600px;
+    background-color: #fff;
+    margin: auto;
+    padding: 35px 0;
+    text-align: center;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    color: #9fadca;
+    border-top: 1px solid #dee9ff;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
 }
 
-.form-signup .form-control:focus {
-
-  z-index: 2;
-
+.registration-form .social-icons{
+    margin-top: 30px;
+    margin-bottom: 16px;
 }
 
-.form-signup input[type="text"] {
-
-  margin-bottom: 10px;
-
-  border-bottom-right-radius: 0;
-
-  border-bottom-left-radius: 0;
-
-  color: #868e96;
-
-  background: linear-gradient(15deg,#f7f5f5,#fff);
-
+.registration-form .social-icons a{
+    font-size: 23px;
+    margin: 0 3px;
+    color: #5691ff;
+    border: 1px solid;
+    border-radius: 50%;
+    width: 45px;
+    display: inline-block;
+    height: 45px;
+    text-align: center;
+    background-color: #fff;
+    line-height: 45px;
 }
 
-.form-signup input[type="password"] {
+.registration-form .social-icons a:hover{
+    text-decoration: none;
+    opacity: 0.6;
+}
 
-  margin-bottom: -1px;
+@media (max-width: 576px) {
+    .registration-form form{
+        padding: 50px 20px;
+    }
 
-  border-top-left-radius: 0;
+    .registration-form .form-icon{
+        width: 70px;
+        height: 70px;
+        font-size: 30px;
+        line-height: 70px;
+    }
+}
 
-  border-top-right-radius: 0;
-
-  color: #868e96;
-
-  background: linear-gradient(15deg,#f7f5f5,#fff);
-
-}	
 	</style>
 
 
@@ -151,7 +132,7 @@
 		
 		
 		$('#check').click(function(){
-			var custid = $(this).val();
+			var custid = $('#id').val();
 			$.ajax({
 				url:'[[@{/checkid}]]',
 				data:{'cid':custid},
@@ -159,7 +140,7 @@
 					if(result == 't'){
 						$('#Modal').modal();
 					}else{
-						$('#Modal1').modal();
+						$('#Modal2').modal();
 					}
 				}
 			});
@@ -179,21 +160,7 @@
 			}
 		});
 		
-		/* $('#id').keyup(function(){
-			var custid = $(this).val();
-			$.ajax({
-				url:'[[@{/checkid}]]',
-				data:{'cid':custid},
-				success:function(result){
-					if(result == 't'){
-						$('#ispan').text('사용 가능한 ID입니다');
-					}else{
-						$('#ispan').text('사용 불가능한 ID입니다');
-					}
-				}
-			});
-			
-		}); */
+		
 	}); 
 	</script>
 
@@ -201,64 +168,57 @@
   </head>
 
   <body class="text-center">
-
-    <div class="container" style="margin-top:100px; margin-bottom:100px;">
-
-    <form class="form-signup" id="signup_form">
-
-      <div class="bg-signup">
-
-      <p class="logo" style="padding-bottom:20px;">
-
-        <img th:src="@{assets/images/Logo8.svg}">
-
-      </p>
-
-      <label for="id" class="sr-only">ID를 입력해주세요</label>
-      <input type="text" id="id" name="custid" class="form-control" placeholder="ID" required autofocus>
-      <button class="btn btn-primary" id="check" style="margin-top:10px; margin-bottom:10px;">중복확인</button>
-      <span id="ispan"></span>
-      
-      <label for="inputPassword" class="sr-only">비밀번호</label>
-      <input type="password" id="pwd" name="custpwd" class="form-control" placeholder="비밀번호" required>
-	  
-	  <label for="inputPassword2" class="sr-only">비밀번호 확인</label>
-      <input type="password" id="pwd2" class="form-control" placeholder="비밀번호 확인" required>
-	  <span id="pspan"></span>
-	  
-	  <label for="name" class="sr-only">이름</label>
-      <input type="text" id="name" name="custname" class="form-control" placeholder="이름" required>
-	  
-	  <label for="birth" class="sr-only">생일</label>
-      <input type="text" id="birth" name="birth" class="form-control" placeholder="생일 (예: 1995-11-12)" required>
-
-	  <label for="tel" class="sr-only">전화번호</label>
-      <input type="text" id="tel" name="tel" class="form-control" placeholder="전화번호 (예: 01012345678)" required>
-      
-      <input type="text" id="lv" name="lv" class="form-control" value="green" style="display:none">
+	<div class="registration-form">
+        <form id="signup_form">
+            <div class="form-icon">
+                <span><i class="icon icon-user"></i></span>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item" id="id" name="custid" placeholder="ID를입력해주세요">
+                <button class="btn btn-primary" id="check" style="margin-bottom:20px;">ID 중복확인</button>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control item" id="pwd" name="custpwd" placeholder="Password를입력해주세요">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control item" id="pwd2"  placeholder="비밀번호확인">
+                <span id="pspan" style="color:red; font-weight:700;"></span>
+            </div>
+            <div class="form-group">
+               <input type="text" id="name" name="custname" class="form-control item" placeholder="이름" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item" id="phone-number" placeholder="Phone Number (예: 01012345678)">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item" id="birth-date" placeholder="Birth Date (예: 1995-11-12)">
+            </div>
+            <input type="text" id="lv" name="lv" class="form-control" value="green" style="display:none">
       <input type="text" id="profileimg" name="profileimg" class="form-control" value="https://i.esdrop.com/d/f/ObpKQupplD/R1FJqXpjyD.jpg" style="display:none">
-	  <br>
-
-      <button class="btn btn-lg btn-primary btn-block" id="signup_btn" type="submit">SIGN UP</button>
-
-      <br>
-
-
+            <div class="form-group">
+                <button  class="btn btn-block create-account" id="signup_btn" type="submit">Create Account</button>
+            </div>
+        </form>
+        <div class="social-media">
+            <h5>Sign up with social media</h5>
+            <div class="social-icons">
+                <a href="#"><i class="icon-social-facebook" title="Facebook"></i></a>
+                <a href="#"><i class="icon-social-google" title="Google"></i></a>
+                <a href="#"><i class="icon-social-twitter" title="Twitter"></i></a>
+            </div>
+        </div>
     </div>
-
-    </form>
-
-      
-
-    </div>
-
-    <!-- Optional JavaScript -->
-
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
+  
+ 
+<!-- 모달 -->
      <div class="modal fade" id="Modal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
+		aria-labelledby="exampleModalLabel" aria-hidden="true" >
+		<div class="modal-dialog" role="document" style="
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel">중복확인</h5>
@@ -271,16 +231,20 @@
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">취소</button>
-					<a class="btn btn-primary" th:if="${session.logincust != null}"
-						th:href="@{/wishlist(id=${session.logincust.custid})}">확인</a>
+				
 				</div>
 			</div>
 		</div>
 	</div>
 
-	 <div class="modal fade" id="Modal1" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
+	 <div class="modal fade" id="Modal2" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true" style="position:absolute;">
+		<div class="modal-dialog" role="document" style="
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel">중복확인</h5>
@@ -299,7 +263,10 @@
 			</div>
 		</div>
 	</div>
-
+ <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="assets/js/script.js"></script>
+ <script th:src="@{/assets/js/jquery.nice-select.min.js}"></script>
   </body>
 
 </html>
