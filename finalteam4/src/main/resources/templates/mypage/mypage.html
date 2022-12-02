@@ -1,32 +1,22 @@
 <meta charset="utf-8">
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
-<head>
-<link rel="stylesheet" th:href="@{/assets/css/style.css}">
-<script th:src="@{/assets/js/bootstrap.min.js}"></script>
 
-<script type=text/css src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"></script>
 <style>
 .navigation {
 	position: relative;
 }
 
-body{
-
-	height:1000%;
-}
-
 /* Sidebar */
 #sidebar-wrapper {
+	z-index: 1;
 	position: absolute;
-	width:100%;
-	height:100%;
+	width: 0;
+	height: 150%;
 	overflow-y: hidden;
+	opacity: 0.9;
 	transition: all .5s;
-	display: inline-block;
+	display: flex;
 	padding-left: 60px;
-	background-color:#fff;
 }
 
 #wrapper ul li a:hover {
@@ -36,7 +26,8 @@ body{
 
 /* Main Content */
 #page-content-wrapper {
-	background-color:#fff;
+	width: 100%;
+	padding: 15px;
 	transition: all 1.5s;
 }
 
@@ -84,9 +75,9 @@ body{
 }
 
 .weather-card {
-	margin: 0 auto;
+	margin: 0px auto;
 	height: 150px;
-	width: 100%;
+	width: 850px;
 	background: #fff;
 	overflow: hidden;
 }
@@ -129,12 +120,13 @@ body{
 }
 
 .weather-card .top .wrapper .mynav .lnr-chevron-left {
-	display: flex;
-	
+	display: inline-block;
+	float: left;
 }
 
 .weather-card .top .wrapper .mynav .lnr-cog {
-	display: flex;
+	display: inline-block;
+	float: right;
 }
 
 .weather-card .top .wrapper .heading {
@@ -163,13 +155,13 @@ body{
 }
 
 .weather-card .top .wrapper .temp .temp-value {
-	display: flex;
+	display: inline-block;
 	font-size: 35px;
 	color: #fff;
 }
 
 .weather-card .top .wrapper .temp .deg {
-	display: flex;
+	display: inline-block;
 	font-size: 35px;
 	font-weight: 600;
 	color: #fff;
@@ -198,13 +190,13 @@ body{
 }
 
 .weather-card .top .wrapper2 .mynav .lnr-chevron-left {
-	display: flex;
-	
+	display: inline-block;
+	float: left;
 }
 
 .weather-card .top .wrapper2 .mynav .lnr-cog {
-	display: flex;
-	
+	display: inline-block;
+	float: right;
 }
 
 .weather-card .top .wrapper2 .heading {
@@ -240,7 +232,7 @@ body{
 }
 
 .weather-card .top .wrapper2 .temp .deg {
-	display: flex;
+	display: inline-block;
 	font-size: 35px;
 	font-weight: 600;
 	color: #fff;
@@ -254,8 +246,8 @@ body{
 
 .contents {
 	margin: 0px auto;
-	height: 100%;
-	width: 100%;
+	height: 130px;
+	width: 850px;
 	padding-top: 50px;
 }
 
@@ -290,11 +282,15 @@ body {
 }
 
 .card2 {
-	width: 100%;
+	width: 170px;
+	padding: 5px;
 	border-radius: 20px;
+	border: none;
 	color: #fff;
+	height: 170px;
 	position: relative;
 	align-items: center;
+	justify-content: center;
 	flex-direction: column;
 }
 
@@ -303,8 +299,10 @@ body {
 	margin-bottom: 0px;
 }
 
+.mt-4 {
+	margin-top: 10px;
+}
 </style>
-
 <script>
 	$(document).ready(function() {
 		const menu = document.querySelector('#menu-toggle')
@@ -315,13 +313,15 @@ body {
 		menu.style.visibility = "hidden";
 
 	});
+
+	function addcoupon(id) {
+		var custid = id;
+		location.href = "/mypage/addcoupon?custid=" + custid;
+	}
 </script>
-</head>
-<body>
-<div id="wrapper" style="height:1000px;">
-	
+<div id="wrapper" style="background-color: #fff; height: 1000px">
 	<!-- Sidebar -->
-	 <div id="sidebar-wrapper">
+	<div id="sidebar-wrapper">
 		<ul class="sidebar-nav">
 			<li><a th:if="${session.logincust.custname!=null}"
 				th:text="${session.logincust.custname}+' 님'"
@@ -344,12 +344,12 @@ body {
 			<li><a href="#">공지사항</a></li>
 			<li><a href="#">FAQ</a></li>
 		</ul>
-	</div> 
+	</div>
 
 	<!-- Page Content -->
-	<div id="page-content-wrapper">
-		<div class="container">
-			
+	<div id="page-content-wrapper" style="background-color: #fff;">
+		<div class="container-fluid">
+			<div class="row">
 				<div class="col-lg-12">
 					<a href="#" class="btn" id="menu-toggle"></a>
 
@@ -383,9 +383,9 @@ body {
 						</div>
 					</div>
 
-				
+				</div>
 			</div>
-		
+		</div>
 		<div class="contents">
 			<form id="reconfirm_form">
 				<h3 class="my_tit">
@@ -393,9 +393,9 @@ body {
 				</h3>
 			</form>
 		</div>
-		<div style="width: 100%">
+		<div class="container-fluid" style="width: 850px">
 			<div class="level" style="display: flex">
-				<div class="col-3 col-md-3 col-sm-4 col-xs-4">
+				<div class="col-12 col-md-4 col-sm-12 col-xs-12">
 					<div class="card p-4">
 
 						<div class="d-flex">
@@ -417,7 +417,7 @@ body {
 					</div>
 				</div>
 				<div class="card mb-4"
-					style="margin-left: 20px; width: 80%;">
+					style="margin-left: 20px; width: 80%; height: 231px">
 					<div class="card-body p-5">
 						<h6 style="margin-bottom: 20px">다음 레벨까지</h6>
 						<h6></h6>
@@ -461,52 +461,60 @@ body {
 					</div>
 				</div>
 			</div>
-			</div>
-			<div class="container" style="display:flex; align-items:center;">
-				<div class="d-flex container">
+
+			<div style="display: flex; width: 100%;">
+				<div class="d-flex align-items-center container">
 					<div class="d-flex card2 text-center"
 						style="background: url('/img/white_noun.jpg');">
-						<h3 style="color: black">coming soon</h3>
+						<h1 style="color: black">coming</h1>
+						<h4 style="color: black">soon</h4>
 					</div>
 				</div>
-				<div class="d-flex container">
-					<div class="d-flex card2 text-center"
-						style="background: url('/img/aewol.jpeg');">
-						<h1 style="color: gray">Level Up</h1>
-						<h4 style="color: gray">Coupon</h4>
-						<span class="d-block">1만원 할인</span><span class="d-block">-10000</span>
-						<div class="mt">
-							<small>With Code : eatnout10000</small>
+				<div class="d-flex align-items-center container">
+					<form>
+						<div id="levelup"
+							th:onclick="addcoupon([[${session.logincust.custid}]])"
+							class="d-flex card2 text-center"
+							style="background: url('/img/aewol.jpeg');">
+							<h1 style="color: gray">Level Up</h1>
+							<h4 style="color: gray">Coupon</h4>
+							<span class="d-block">1만원 할인</span><span class="d-block">-10000</span>
+							<div class="mt">
+							<input type="hidden" name="couponname" value="level up"> 
+							<input type="hidden" name="discount" value="10000">
+								<small>With Code : eatnout127</small>
+							</div>
 						</div>
-					</div>
+					</form>
 				</div>
-				<div class="d-flex  container">
-					<div class="d-flex card2 text-center"
-						style="background: url('/img/coupon.jpg');">
-						<h1 style="color: #D5D5D5">Holiday</h1>
-						<h4 style="color: #D5D5D5">Coupon</h4>
-						<span class="d-block">5천원 할인</span><span class="d-block">-5000</span>
-						<div class="mt">
-							<small>With Code : holiday5000</small>
+				<div class="d-flex align-items-center container">
+					<form>
+						<div id="holiday" th:onclick="addcoupon()"
+							class="d-flex card2 text-center"
+							style="background: url('/img/coupon.jpg');">
+							<h1 style="color: #D5D5D5">Holiday</h1>
+							<h4 style="color: #D5D5D5">Coupon</h4>
+							<span class="d-block">5천원 할인</span><span class="d-block">-5000</span>
+							<div class="mt">
+								<small>With Code : holiday5000</small>
+							</div>
 						</div>
-					</div>
+					</form>
 				</div>
-				<div class="d-flex container">
-					<div class="d-flex card2 text-center"
-						style="background: url('/img/022.jpg');">
-						<h1 style="color: white">Orange</h1>
-						<h4 style="color: white">Coupon</h4>
-						<span class="d-block">2만원 할인</span><span class="d-block">-20000</span>
-						<div class="mt">
-							<small>With Code : orangeLV</small>
+				<div class="d-flex align-items-center container">
+					<form>
+						<div id="orange" th:onclick="addcoupon()"
+							class="d-flex card2 text-center"
+							style="background: url('/img/022.jpg');">
+							<h1 style="color: white">Orange</h1>
+							<h4 style="color: white">Coupon</h4>
+							<span class="d-block">2만원 할인</span><span class="d-block">-20000</span>
+							<div class="mt">
+								<small>With Code : orangeLV</small>
+							</div>
 						</div>
-					</div>
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-
-</div>
-
-	</body>
-	</html>
