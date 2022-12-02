@@ -10,22 +10,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-   
-
-
-    <link th:href="@{/img/favicon.png}" rel="shortcut icon" />
-
-    <!-- Bootstrap CSS -->
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-    <!-- Google fonts - Poppins -->
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
-
-    <!-- Icon Awesome -->
-
-    <script src="https://kit.fontawesome.com/cbb70aea52.js" crossorigin="anonymous"></script>
+ 
 
     <!-- Custom styles for this template -->
 	<style>
@@ -163,6 +148,27 @@
 			$('#signup_form').submit();
 		});
 		
+		
+		
+		$('#check').click(function(){
+			var custid = $(this).val();
+			$.ajax({
+				url:'[[@{/checkid}]]',
+				data:{'cid':custid},
+				success:function(result){
+					if(result == 't'){
+						$('#Modal').modal();
+					}else{
+						$('#Modal1').modal();
+					}
+				}
+			});
+			
+		
+		});
+			
+		
+		
 		$('#pwd2').keyup(function(){
 			var pwd = $('#pwd').val();
 			var pwd2 = $('#pwd2').val();
@@ -173,7 +179,7 @@
 			}
 		});
 		
-		$('#id').keyup(function(){
+		/* $('#id').keyup(function(){
 			var custid = $(this).val();
 			$.ajax({
 				url:'[[@{/checkid}]]',
@@ -187,8 +193,8 @@
 				}
 			});
 			
-		});
-	});
+		}); */
+	}); 
 	</script>
 
 
@@ -206,10 +212,11 @@
 
         <img th:src="@{assets/images/Logo8.svg}">
 
-      </p><br>
+      </p>
 
       <label for="id" class="sr-only">ID를 입력해주세요</label>
       <input type="text" id="id" name="custid" class="form-control" placeholder="ID" required autofocus>
+      <button class="btn btn-primary" id="check" style="margin-top:10px; margin-bottom:10px;">중복확인</button>
       <span id="ispan"></span>
       
       <label for="inputPassword" class="sr-only">비밀번호</label>
@@ -249,7 +256,49 @@
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
-    
+     <div class="modal fade" id="Modal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">중복확인</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">사용가능한 ID입니다</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+						data-dismiss="modal">취소</button>
+					<a class="btn btn-primary" th:if="${session.logincust != null}"
+						th:href="@{/wishlist(id=${session.logincust.custid})}">확인</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	 <div class="modal fade" id="Modal1" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">중복확인</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">중복된 ID입니다. 다른아이디를 입력해주세요</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+						data-dismiss="modal">취소</button>
+					<a class="btn btn-primary" th:if="${session.logincust != null}"
+						th:href="@{/wishlist(id=${session.logincust.custid})}">확인</a>
+				</div>
+			</div>
+		</div>
+	</div>
 
   </body>
 
