@@ -125,10 +125,3 @@ public class KaKaoController {
 		 return "index";
 		 }
 }
-
-    
-    
-    
-	
- 
-

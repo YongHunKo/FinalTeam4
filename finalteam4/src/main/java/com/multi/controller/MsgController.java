@@ -20,6 +20,13 @@ public class MsgController {
 	@Autowired
 	ChatbotService service;
 
+	/**
+	 * receiveme 해당 메소드는 챗봇과 연결을 하기 위한 메소드로
+	 * 자기 자신에게 메시지를 보내는 메소드와 
+	 * 특정 메시지에 반응하는 챗봇 메소드를 합쳤다.
+	 * @param msg
+	 * @param headerAccessor
+	 */
 	@MessageMapping("/receiveme")
 	public void receiveme(Msg msg, SimpMessageHeaderAccessor headerAccessor) {
 		String id = msg.getSendid();
@@ -34,31 +41,12 @@ public class MsgController {
 		template.convertAndSend("/send/" + id, msg);
 	}
 
-//	@MessageMapping("/receiveto") // 특정 Id에게 전송
-//	public void receiveto(Msg msg, SimpMessageHeaderAccessor headerAccessor) {
-//		String id = msg.getSendid();
-//		String answer = "";
-//		String target = msg.getReceiveid();
-//		try {
-//			answer = service.sendMessage(msg.getContent1());
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		msg.setContent2(answer);
-//		template.convertAndSend("/send/to/" + target, msg);
-//	}
-
-	@MessageMapping("/receiveall") // 모두에게 전송
-	public void receiveall2(Msg msg, SimpMessageHeaderAccessor headerAccessor) {
-		System.out.println(msg);
-		template.convertAndSend("/send",msg);
-	}
-	@MessageMapping("/receiveme2") // 나에게만 전송 ex)Chatbot
-	public void receiveme2(Msg msg, SimpMessageHeaderAccessor headerAccessor) {
-		String id = msg.getSendid();
-		msg.setContent2("TR Message");
-		template.convertAndSend("/send/"+id,msg);
-	}
+	/**
+	 * receiveto2 해당 메소드는 특정 id에게 메시지를 전송하는 메소드이다.
+	 * 특정id(adminid)를 입력시 연결된 웹소켓으로 정해진 메시지를 보내는 메소드이다.
+	 * @param msg
+	 * @param headerAccessor
+	 */
 	@MessageMapping("/receiveto") // 특정 Id에게 전송
 	public void receiveto2(Msg msg, SimpMessageHeaderAccessor headerAccessor) {
 		String id = msg.getSendid();

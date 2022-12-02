@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -130,7 +129,12 @@ public class AController {
 		}
 		return result;
 	}
-
+	
+	/**
+	 * ocrresult 해당 메소드는 모르겠다.
+	 * @param filelist
+	 * @return
+	 */
 	@RequestMapping("/ocr/ocrresult")
 	public Object ocrresult(MultipartHttpServletRequest filelist) {
 		Object obj = null;

@@ -136,6 +136,11 @@ public class MainController {
 		return "redirect:/wishlist?id=" + id;
 	}
 	
+	/**
+	 * websocket 해당 메소드는 websocket.html로 이동하는 메소드이다.
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/websocket")
 	public String websocket(Model model) {
 		model.addAttribute("center", "websocket");
