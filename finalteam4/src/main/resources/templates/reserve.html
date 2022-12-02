@@ -326,10 +326,10 @@ table.table th {
 				<div class="content_totalCount_section">
 
 					<!-- 체크박스 전체 여부 -->
-					<div class="all_check_input_div">
+<!-- 					<div class="all_check_input_div">
 						<input type="checkbox" class="all_check_input input_size_20"
 							checked="checked"><span class="all_chcek_span">전체선택</span>
-					</div>
+					</div> -->
 
 					<table class="table table-hover">
 						<tbody>
@@ -344,14 +344,16 @@ table.table th {
 						</thead>
 						<tbody>
 							<tr th:each="c : ${menulist}">
-								<td class="td_width_1 cart_info_td"><input type="checkbox"
-									class="individual_cart_checkbox input_size_20"
-									checked="checked"> <input type="hidden"
-									class="individual_Price_input" th:value="${c.price}"> <input
-									type="hidden" class="individual_Cnt_input" th:value="${c.cnt}">
-									<input type="hidden" class="individual_totalPrice_input"
-									th:value="${c.price*c.cnt}"> <input type="hidden"
-									class="individual_itemId_input" th:value="${c.menuid}">
+								<td class="td_width_1 cart_info_td">
+								<input type="checkbox" class="individual_cart_checkbox input_size_20"
+									checked="checked" style="display:none">
+								<div>
+									<input type="hidden" class="individual_Price_input" th:value="${c.price}"> 
+								</div>
+								<input type="hidden" class="individual_Cnt_input" th:value="${c.cnt}">
+								<input type="hidden" class="individual_totalPrice_input" th:value="${c.price*c.cnt}"> 
+								<input type="hidden" class="individual_itemId_input" th:value="${c.menuid}">
+								<input type="hidden" id="adminid" th:value="${c.adminid}">
 								</td>
 								<td class="td_width_2"><img
 									th:src="@{/menuimg/}+${c.menuimg}"
@@ -370,7 +372,8 @@ table.table th {
 									<button type="button" class="quantity_modify_btn"
 										th:data-cartid="${c.cartid}" th:data-custid="${c.custid}"
 										th:data-menuid="${c.menuid}" th:data-menuname="${c.menuname}"
-										th:data-price="${c.price}" th:data-menuimg="${c.menuimg}">수정
+										th:data-price="${c.price}" th:data-menuimg="${c.menuimg}"
+										th:data-adminid="${c.adminid}">수정
 									</button>
 								</td>
 								<td>
@@ -383,6 +386,18 @@ table.table th {
 							</tr>
 						</tbody>
 					</table>
+				<!-- 	<div th:each="a : ${adminstoreid}">
+						<h4 id="adminid" th:val="${a.adminid}" th:data-adminid="${a.adminid}" style="display: none"></h4>
+					</div> -->
+					<!-- <div>
+						<h4 id="adminid" th:text="${session.adminstoreid.adminid}" style="display: none"></h4>
+					</div> -->
+					<!-- <div>
+						<h4 th:if="${session.adminstoreid.adminid != null}" id="adminid" th:value="${session.adminstoreid.adminid}" style="display: none"></h4>
+					</div>
+					<div>
+						<h4 th:if="${session.adminstoreid.storeid != null}" id="storeid" th:value="${session.adminstoreid.storeid}" style="display: none"></h4>
+					</div> -->
 					<div class="picker-wrapper">
 						<input type="text" class="datepicker" id="datetimepicker" name="datetimepicker">
 					</div>
@@ -399,8 +414,7 @@ table.table th {
 											</tr>
 											<tr>
 												<td>총 주문 상품수</td>
-												<td><span class="totalKind_span"></span>종&nbsp&nbsp<span
-													class="totalCount_span"></span>개</td>
+												<td><span class="totalCount_span"></span>개</td>
 											</tr>
 										</table>
 									</td>
@@ -458,13 +472,13 @@ table.table th {
 					<form th:action="@{/updatecart}" method="post"
 						class="quantity_update_form">
 						<input type="hidden" name="cartid" class="update_cartid">
-						<input type="hidden" name="cnt" class="update_cnt"> <input
-							type="hidden" name="menuid" class="update_menuid"> <input
-							type="hidden" name="menuname" class="update_menuname"> <input
-							type="hidden" name="price" class="update_price"> <input
-							type="hidden" name="menuimg" class="update_menuimg"> <input
-							type="hidden" name="custid" th:value="${custid}"
-							class="update_custid">
+						<input type="hidden" name="cnt" class="update_cnt"> 
+						<input type="hidden" name="menuid" class="update_menuid"> 
+						<input type="hidden" name="menuname" class="update_menuname"> 
+						<input type="hidden" name="price" class="update_price"> 
+						<input type="hidden" name="menuimg" class="update_menuimg"> 
+						<input type="hidden" name="custid" th:value="${custid}"	class="update_custid">
+						<input type="hidden" name="adminid" th:value="${adminid}"class="update_adminid">
 					</form>
 				</div>
 			</div>
@@ -518,8 +532,10 @@ table.table th {
 			
 			var stompClient = null;
 			var id = '[[${session.logincust.custid}]]';
-			var admin01 = 'admin01';
-			//얘를 이제 storeid에 맞게 보내야함
+			//var admin01 = 'admin01'// 페이지를 이동해도 얘를 고정시킬방법이 없을까
+			var admin01 = $('#adminid').val(); 	//안들어간다 어디서 따와야할까 너 왜 안들어가냐			
+			//var admin01 = $('#adminid').text();
+			//얘를 이제 storeid에 맞게 보내야함, storeid를 따와야한다
 			var test01 = '예약이 접수되었습니다'
 			// 서버소켓에 연결
 			function connect() {
@@ -537,7 +553,7 @@ table.table th {
 					});
 				});
 			}			
-			
+
 			$(".individual_cart_checkbox").on("change", function() {
 				setTotalInfo($(".cart_info_td"));
 			});
@@ -551,8 +567,8 @@ table.table th {
 				return
 				setTotalInfo($(".cart_info_td"));
 
-			});
-
+			});			
+			
 			function setTotalInfo() {
 
 				let totalPrice = 0; // 총 가격
@@ -581,12 +597,14 @@ table.table th {
 			}
 
 			$(".plus_btn").on("click", function() {
+
 				let quantity = $(this).parent("div").find("input").val();
 				$(this).parent("div").find("input").val(++quantity);
+
 			});
 			$(".minus_btn").on("click", function() {
 				let quantity = $(this).parent("div").find("input").val();
-				if (quantity > 1) {
+				if (quantity > 0) {
 					$(this).parent("div").find("input").val(--quantity);
 				}
 			});
@@ -600,7 +618,7 @@ table.table th {
 				let price = $(this).data("price");
 				let menuimg = $(this).data("menuimg");
 				let totalprice = $(this).data("totalprice");
-
+				let adminid = $(this).data("adminid");
 				let cnt = $(this).parent("td").find("input").val();
 				// 위에서 설정한 변수들을 업데이트 시킴
 				$(".update_cartid").val(cartid);
@@ -610,6 +628,7 @@ table.table th {
 				$(".update_menuname").val(menuname);
 				$(".update_price").val(price);
 				$(".update_menuimg").val(menuimg);
+				$(".update_adminid").val(adminid);
 				$(".update_totalprice").val(totalprice);
 				$(".quantity_update_form").submit();
 
@@ -655,8 +674,8 @@ table.table th {
 			$('#reserve_btn2').click(function() {
 				connect();
 				requestPay();
-				alert('admin01');
-				alert('test01')
+				alert(admin01);
+				alert(test01)
 
 			});
 			//I'mpot api test

@@ -59,5 +59,9 @@ public class StoreService implements MyService<Integer, StoreDTO>{
 		 return mapper.infoall(storeid);
 	}
 	
+	public StoreDTO adminstoreid(Integer storeid) throws Exception{
+		return mapper.adminstoreid(storeid);
+	}
+	
 	
 }

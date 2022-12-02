@@ -15,5 +15,5 @@ public interface StoreMapper extends MyMapper<Integer, StoreDTO>{
 	public List<StoreDTO> catedetail(Integer cateid);
 	public List<StoreDTO> detailimg(Integer cateid);
 	public List<StoreDTO> infoall(Integer storeid);
-
+	public StoreDTO adminstoreid(Integer storeid);
 }

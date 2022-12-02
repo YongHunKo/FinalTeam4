@@ -362,7 +362,7 @@
 				}
 			})
 			var timeout = function() {
-				location.href = "[[@{/reserveimpl?custid=}]]" + custid;
+				location.href = "[[@{/reserveimpl?custid=}]]" + custid+"&storeid="+storeid;
 			}
 			setTimeout(timeout, 500);
 		});

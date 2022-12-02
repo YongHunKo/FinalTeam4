@@ -32,5 +32,7 @@ public class StoreDTO {
 	
 	private Float storelat;
 	private Float storelong;
+	
+	private String adminid;
 
 }

@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.multi.dto.CartDTO;
 import com.multi.dto.OrderlistDTO;
 import com.multi.dto.ReserveDTO;
+import com.multi.dto.StoreDTO;
+import com.multi.dto.StoreimgDTO;
 import com.multi.service.CartService;
 import com.multi.service.OrderlistService;
 import com.multi.service.ReserveService;
@@ -47,10 +51,10 @@ public class ReserveController {
 	 * @return
 	 */
 	@RequestMapping("/reserveimpl")
-	public String reserveimpl(Model model, String custid) {
+	public String reserveimpl(Model model, String custid, Integer storeid, HttpSession session) {
 		List<CartDTO> list = null;
 		try {
-			list = cartservice.selectcart(custid);
+			list = cartservice.selectcart(custid);		
 			model.addAttribute("menulist", list);
 			model.addAttribute("center", "/reserve");
 			for (CartDTO c : list) {
@@ -135,12 +139,23 @@ public class ReserveController {
 	 * @return
 	 */
 	@PostMapping("/updatecart")
-	public String updateCart(CartDTO cart, String custid) {
+	public String updateCart(CartDTO cart, String custid, String adminid, HttpSession session, Model model) {
+		System.out.println(adminid);
+		List<CartDTO> list = null;
+		Integer storeid = null;
+		//얘를 어찌보낼까 
 		try {
 			cartservice.updatecart(cart);
+			list = cartservice.selectcart(custid);
+			model.addAttribute("menulist", list);
+			//storeid를 뽑아내려면 어떤걸 써야하나
+			//get으로 가져온다?
+			for(CartDTO c:list) {
+				storeid = c.getStoreid();	
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:reserveimpl?custid=" + cart.getCustid();
+		return "redirect:reserveimpl?custid=" + cart.getCustid()+"&storeid="+storeid;
 	}
 }

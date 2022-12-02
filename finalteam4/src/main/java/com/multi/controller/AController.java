@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -93,7 +94,7 @@ public class AController {
 			list = storeservice.detail(storeid);
 			for (StoreDTO s : list) {
 				cartservice.register(new CartDTO(null, custid, s.getMenuid(), cnt, s.getMenuname(), s.getMenuprice(),
-						s.getMenuimg(), (cnt * s.getMenuprice())));
+						s.getMenuimg(), (cnt * s.getMenuprice()),null,null));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

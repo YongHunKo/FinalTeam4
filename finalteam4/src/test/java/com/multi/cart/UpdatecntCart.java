@@ -15,7 +15,7 @@ class UpdatecntCart {
 	@Test
 	void contextLoads() {
 		try {
-			service.updatecart(new CartDTO(1, "id01", null, 3, null, null, null, null));
+			service.updatecart(new CartDTO(1, "id01", null, 3, null, null, null, null,null,null));
 			System.out.println("cnt_update");
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -22,6 +22,8 @@ public class CartDTO {
 	private Integer price;
 	private String menuimg;
 	private Integer totalprice;
+	private String adminid;
+	private Integer storeid;
 	
 	
 

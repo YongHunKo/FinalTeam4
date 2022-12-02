@@ -26,6 +26,11 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM store
 		WHERE storeid=#{storeid}
 	</select>
+	<select id="adminstoreid" parameterType="Integer" resultType="StoreDTO">
+		SELECT * FROM store s
+		INNER JOIN eatadmin e ON e.storeid = s.storeid
+		WHERE s.storeid = #{storeid}
+	</select>
 	<select id="searchstore" resultType="StoreDTO">
 		SELECT * FROM store s
 		INNER JOIN storeimgs ss ON s.storeid = ss.storeid
