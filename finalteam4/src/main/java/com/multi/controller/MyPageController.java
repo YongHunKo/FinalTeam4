@@ -93,11 +93,6 @@ public class MyPageController {
 		return "index";
 	}
 
-//	@RequestMapping("/addcoupon")
-//	public String addcoupon(String custid, Model model, HttpSession session) {
-//		
-//	}
-	
 	/**
 	 * order 해당 메소드는 중복같은데
 	 * 

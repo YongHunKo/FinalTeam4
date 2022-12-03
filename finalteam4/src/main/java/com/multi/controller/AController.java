@@ -12,10 +12,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.multi.dto.CartDTO;
+import com.multi.dto.CouponDTO;
 import com.multi.dto.CustDTO;
 import com.multi.dto.StoreDTO;
 import com.multi.frame.Util;
 import com.multi.service.CartService;
+import com.multi.service.CouponService;
 import com.multi.service.CustService;
 import com.multi.service.MenuService;
 import com.multi.service.OcrService;
@@ -38,6 +40,8 @@ public class AController {
 	OrderlistService orderlistservice;
 	@Autowired
 	ReserveService reserveservice;
+	@Autowired
+	CouponService couponservice;
 	@Autowired
 	OcrService ocr;
 
@@ -149,5 +153,18 @@ public class AController {
 		}
 		obj = ocr.ocrresult(mfile.getOriginalFilename());
 		return obj;
+	}
+	
+	@RequestMapping("/mypage/addcoupon")
+	public Object addcoupon(CouponDTO coupon, Model model) {
+		String result = "";
+		coupon.setCouponid(null);
+		try {
+			couponservice.register(coupon);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
 	}
 }

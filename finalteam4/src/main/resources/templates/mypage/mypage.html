@@ -292,6 +292,7 @@ body {
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
+	cursor : pointer;
 }
 
 .card2 h1 {
@@ -314,9 +315,18 @@ body {
 
 	});
 
-	function addcoupon(id) {
-		var custid = id;
-		location.href = "/mypage/addcoupon?custid=" + custid;
+	function addcoupon(input) {
+		var form = $(input).serialize();
+		console.log(form);
+
+		$.ajax({
+			url : "/mypage/addcoupon",
+			type : "GET",
+			data : form,
+			success : function(date) {
+				alert("쿠폰발급이 완료되었습니다.");
+			}
+		});
 	}
 </script>
 <div id="wrapper" style="background-color: #fff; height: 1000px">
@@ -471,50 +481,98 @@ body {
 					</div>
 				</div>
 				<div class="d-flex align-items-center container">
-					<form>
-						<div id="levelup"
-							th:onclick="addcoupon([[${session.logincust.custid}]])"
-							class="d-flex card2 text-center"
-							style="background: url('/img/aewol.jpeg');">
+					<div onclick="addcoupon(this)" class="d-flex card2 text-center"
+						style="background: url('/img/aewol.jpeg');">
+						<form id="levelup">
 							<h1 style="color: gray">Level Up</h1>
 							<h4 style="color: gray">Coupon</h4>
 							<span class="d-block">1만원 할인</span><span class="d-block">-10000</span>
 							<div class="mt">
-							<input type="hidden" name="couponname" value="level up"> 
-							<input type="hidden" name="discount" value="10000">
-								<small>With Code : eatnout127</small>
+								<input type="hidden" name="custid"
+									th:value="${session.logincust.custid}"> <input
+									type="hidden" name="couponname" value="level up"> <input
+									type="hidden" name="discount" value="10000"> <input
+									type="hidden" name="used" value="false"> <small>With
+									Code : eatnout127</small>
 							</div>
-						</div>
-					</form>
+						</form>
+					</div>
 				</div>
 				<div class="d-flex align-items-center container">
-					<form>
-						<div id="holiday" th:onclick="addcoupon()"
-							class="d-flex card2 text-center"
-							style="background: url('/img/coupon.jpg');">
+					<div onclick="addcoupon(this)" class="d-flex card2 text-center"
+						style="background: url('/img/coupon.jpg');">
+						<form id="holiday">
 							<h1 style="color: #D5D5D5">Holiday</h1>
 							<h4 style="color: #D5D5D5">Coupon</h4>
 							<span class="d-block">5천원 할인</span><span class="d-block">-5000</span>
 							<div class="mt">
-								<small>With Code : holiday5000</small>
-							</div>
+								<input type="hidden" name="custid"
+									th:value="${session.logincust.custid}"> <input
+									type="hidden" name="couponname" value="Holiday"> <input
+									type="hidden" name="discount" value="5000"> <input
+									type="hidden" name="used" value="false"> <small>With
+									Code : holiday5000</small>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="d-flex align-items-center container"
+				th:if="${session.logincust.lv == 'orange'}">
+				<div onclick="addcoupon(this)" class="d-flex card2 text-center"
+					style="background: url('/img/orange.jpg');">
+					<form id="orange">
+						<h1 style="color: white">Orange</h1>
+						<h4 style="color: white">Coupon</h4>
+						<span class="d-block">2만원 할인</span><span class="d-block">-20000</span>
+						<div class="mt">
+							<input type="hidden" name="custid"
+								th:value="${session.logincust.custid}"> <input
+								type="hidden" name="couponname" value="Orange"> <input
+								type="hidden" name="discount" value="20000"> <input
+								type="hidden" name="used" value="false"> <small>With
+								Code : orangeLV</small>
 						</div>
 					</form>
 				</div>
-				<div class="d-flex align-items-center container">
-					<form>
-						<div id="orange" th:onclick="addcoupon()"
-							class="d-flex card2 text-center"
-							style="background: url('/img/022.jpg');">
-							<h1 style="color: white">Orange</h1>
-							<h4 style="color: white">Coupon</h4>
-							<span class="d-block">2만원 할인</span><span class="d-block">-20000</span>
-							<div class="mt">
-								<small>With Code : orangeLV</small>
-							</div>
+			</div>
+			<div class="d-flex align-items-center container"
+				th:if="${session.logincust.lv == 'yellow'}">
+				<div onclick="addcoupon(this)" class="d-flex card2 text-center"
+					style="background: url('/img/yellow.jpg');">
+					<form id="yellow">
+						<h1 style="color: white">Yellow</h1>
+						<h4 style="color: white">Coupon</h4>
+						<span class="d-block">1.5만원 할인</span><span class="d-block">-15000</span>
+						<div class="mt">
+							<input type="hidden" name="custid"
+								th:value="${session.logincust.custid}"> <input
+								type="hidden" name="couponname" value="Yellow"> <input
+								type="hidden" name="discount" value="15000"> <input
+								type="hidden" name="used" value="false"> <small>With
+								Code : yellowLV</small>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="d-flex align-items-center container"
+				th:if="${session.logincust.lv == 'green'}">
+				<div onclick="addcoupon(this)" class="d-flex card2 text-center"
+					style="background: url('/img/green.png');">
+					<form id="green">
+						<h1 style="color: white">Green</h1>
+						<h4 style="color: white">Coupon</h4>
+						<span class="d-block">1만원 할인</span><span class="d-block">-10000</span>
+						<div class="mt">
+							<input type="hidden" name="custid"
+								th:value="${session.logincust.custid}"> <input
+								type="hidden" name="couponname" value="Green"> <input
+								type="hidden" name="discount" value="10000"> <input
+								type="hidden" name="used" value="false"> <small>With
+								Code : greenLV</small>
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
