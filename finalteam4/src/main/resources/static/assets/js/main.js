@@ -669,7 +669,7 @@ $(function() {
        }
        else{
            // YOUR CODE...
-           $('.main-navbar').addClass('mobile-menu');
+           $('.main-navbar').hide();
            $('.mega-dropdown-menu').addClass('mobile-menu-dropdown');
 
            /*-------- Mobile Menu javascript Function --------*/
