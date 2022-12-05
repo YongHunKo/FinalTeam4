@@ -317,6 +317,7 @@ body {
 
 	function addcoupon(input) {
 		var form = $(input).serialize();
+		console.log(input);
 		console.log(form);
 
 		$.ajax({
@@ -481,9 +482,9 @@ body {
 					</div>
 				</div>
 				<div class="d-flex align-items-center container">
-					<div onclick="addcoupon(this)" class="d-flex card2 text-center"
+					<div class="d-flex card2 text-center"
 						style="background: url('/img/aewol.jpeg');">
-						<form id="levelup">
+						<form id="levelup" onclick="addcoupon(this)">
 							<h1 style="color: gray">Level Up</h1>
 							<h4 style="color: gray">Coupon</h4>
 							<span class="d-block">1만원 할인</span><span class="d-block">-10000</span>
@@ -499,9 +500,9 @@ body {
 					</div>
 				</div>
 				<div class="d-flex align-items-center container">
-					<div onclick="addcoupon(this)" class="d-flex card2 text-center"
+					<div class="d-flex card2 text-center"
 						style="background: url('/img/coupon.jpg');">
-						<form id="holiday">
+						<form id="holiday" onclick="addcoupon(this)">
 							<h1 style="color: #D5D5D5">Holiday</h1>
 							<h4 style="color: #D5D5D5">Coupon</h4>
 							<span class="d-block">5천원 할인</span><span class="d-block">-5000</span>
@@ -518,9 +519,9 @@ body {
 			</div>
 			<div class="d-flex align-items-center container"
 				th:if="${session.logincust.lv == 'orange'}">
-				<div onclick="addcoupon(this)" class="d-flex card2 text-center"
+				<div class="d-flex card2 text-center"
 					style="background: url('/img/orange.jpg');">
-					<form id="orange">
+					<form id="orange" onclick="addcoupon(this)">
 						<h1 style="color: white">Orange</h1>
 						<h4 style="color: white">Coupon</h4>
 						<span class="d-block">2만원 할인</span><span class="d-block">-20000</span>
@@ -537,9 +538,9 @@ body {
 			</div>
 			<div class="d-flex align-items-center container"
 				th:if="${session.logincust.lv == 'yellow'}">
-				<div onclick="addcoupon(this)" class="d-flex card2 text-center"
-					style="background: url('/img/yellow.jpg');">
-					<form id="yellow">
+				<div class="d-flex card2 text-center"
+					style="background: url('/img/yellow.jpeg');">
+					<form id="yellow" onclick="addcoupon(this)">
 						<h1 style="color: white">Yellow</h1>
 						<h4 style="color: white">Coupon</h4>
 						<span class="d-block">1.5만원 할인</span><span class="d-block">-15000</span>
@@ -556,9 +557,9 @@ body {
 			</div>
 			<div class="d-flex align-items-center container"
 				th:if="${session.logincust.lv == 'green'}">
-				<div onclick="addcoupon(this)" class="d-flex card2 text-center"
+				<div class="d-flex card2 text-center"
 					style="background: url('/img/green.png');">
-					<form id="green">
+					<form id="green" onclick="addcoupon(this)">
 						<h1 style="color: white">Green</h1>
 						<h4 style="color: white">Coupon</h4>
 						<span class="d-block">1만원 할인</span><span class="d-block">-10000</span>
