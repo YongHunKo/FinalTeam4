@@ -42,5 +42,9 @@ public class CouponService implements MyService<Integer, CouponDTO>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public List<CouponDTO> couponlist(String k) throws Exception {
+		return mapper.couponlist(k);
+	}
 
 }
