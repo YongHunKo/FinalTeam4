@@ -2,6 +2,8 @@ package com.multi.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,21 +38,24 @@ public class StoreController {
 	 * @return
 	 */
 	@RequestMapping("/storedetail")
-	public String storedetail(Model model, Integer storeid) {
+	public String storedetail(Model model, Integer storeid, HttpSession session) {
 		List<StoreimgDTO> list = null;
 		List<StoreDTO> list2 = null;
 		List<ReviewDTO> list3 =null;
 		List<StoreDTO> list4 = null;
+		StoreDTO store = null;
 
 		try {
 			list = storeimgservice.selectstoreid(storeid);
 			list2 = storeservice.detail(storeid);
 			list3 = reviewservice.storereview(storeid);
 			list4= storeservice.infoall(storeid);
+			store = storeservice.get(storeid);
 			model.addAttribute("storeimglist", list);
 			model.addAttribute("detaillist", list2);
 			model.addAttribute("review", list3);
 			model.addAttribute("info", list4);
+			model.addAttribute("shareinfo", store);
 			model.addAttribute("center", "/detail");
 		} catch (Exception e) {
 			e.printStackTrace();

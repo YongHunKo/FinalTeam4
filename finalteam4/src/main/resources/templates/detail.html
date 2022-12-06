@@ -264,6 +264,7 @@
 		var storelong = $('#storelong').text();
 		var storename = $('#storename').text();
 		var storeaddr = $('#storeaddr').text();
+		var storeintro = $('#storeintro').text();
 		var map;
 		var mapContainer = document.querySelector('#map')
 		var mapOption = {
@@ -298,6 +299,7 @@
 	}
 
 	$(document).ready(function() {
+
 		display(storelat, storelong);
 		  // The slider being synced must be initialized first
 		  $('#carousel').flexslider({
@@ -522,6 +524,8 @@
 										style="display: none"></td>
 									<td id="storeaddr" th:text="${d.storeaddr}"
 										style="display: none"></td>
+									<td id="storeintro" th:text="${d.storeintroduce}"
+										style="display: none"></td>
 								</tr>
 							</tbody>
 						</table>
@@ -536,6 +540,8 @@
 						</div>
 						
 						<!-- storereview -->
+						<h4 id="storename2" th:text="${shareinfo.storename}" style="display: none"></h4>
+						<h4 id="storeintro" th:text="${shareinfo.storeintroduce}" style="display: none"></h4>
 			
 			
 			<!-- 매장리뷰 -->		
@@ -661,12 +667,15 @@
 	<script th:src="@{/assets/js/bootstrap.min.js}"></script>
 	<script th:src="@{/assets/js/jquery.flexslider.js}"></script>
 	<script>
+	var storename3 = $('#storename2').text();
+	var storeinfo = $('#storeintro').text();
+
   Kakao.Share.createDefaultButton({
     container: '#kakaotalk-sharing-btn',
     objectType: 'feed',
     content: {
-      title: '숙성도', // s.storename 
-      description: '#720흑돼지 #근본 #제주도 #흑돼지맛집 #정용진회장 #920뼈등심', //storeinfo
+      title: storename3.toString(), // s.storename 여러개의 값이 들어가니 하나의 값만 들어가게끔
+      description: storeinfo.toString(),//'#720흑돼지 #근본 #제주도 #흑돼지맛집 #정용진회장 #920뼈등심', //storeinfo
       imageUrl:
         'http://118.67.131.90/menuimg/ssdD.jpg',
       link: {
