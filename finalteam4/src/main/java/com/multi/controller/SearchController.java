@@ -76,4 +76,30 @@ public class SearchController {
 		}
 		return "index";
 	}
+	
+	@RequestMapping("/desc")
+	public String desc(Model model, String txt) {
+		List<MenuDTO> list = null;
+		try {
+			list = menuservice.searchmenudesc(txt);
+			model.addAttribute("menulist", list);
+			model.addAttribute("center", "search");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "index";
+	}
+	
+	@RequestMapping("/asc")
+	public String asc(Model model, String txt) {
+		List<MenuDTO> list = null;
+		try {
+			list = menuservice.searchmenuasc(txt);
+			model.addAttribute("menulist", list);
+			model.addAttribute("center", "search");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "index";
+	}
 }

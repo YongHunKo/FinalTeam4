@@ -45,14 +45,12 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM menu m
 		LEFT OUTER  JOIN menuimgs ms ON m.menuid = ms.menuid
 		INNER JOIN store s ON m.storeid = s.storeid
-		WHERE menuname LIKE CONCAT('%',#{txt},'%')
 		ORDER BY menuprice ASC
 	</select>
 	<select id="searchmenudesc" parameterType="String" resultType="MenuDTO">
 		SELECT * FROM menu m
 		LEFT OUTER  JOIN menuimgs ms ON m.menuid = ms.menuid
 		INNER JOIN store s ON m.storeid = s.storeid
-		WHERE menuname LIKE CONCAT('%',#{txt},'%')
 		ORDER BY menuprice desc
 	</select>
 	
