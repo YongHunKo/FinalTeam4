@@ -383,6 +383,25 @@ table.table th {
 						<input type="text" class="datepicker" id="datetimepicker"
 							name="datetimepicker">
 					</div>
+					<div
+						class="container d-flex justify-content-center align-items-center">
+
+						<div class="dropdown">
+							<button class="btn btn-outline-danger dropdown-toggle"
+								type="button" id="dropdownMenuButton" data-toggle="dropdown"
+								aria-expanded="false">
+								<span>Coupon</span> <i class="fa fa-caret-down"></i>
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+								<li id="cplist" th:each="list : ${cp}"><span
+									th:value="${list.discount}"
+									th:text="${list.couponname} + ' Coupon'"></span></li>
+							</ul>
+						</div>
+
+
+					</div>
+
 					<!-- 가격 종합 -->
 					<div class="content_total_section">
 						<div class="total_wrap">
@@ -397,6 +416,10 @@ table.table th {
 											<tr>
 												<td>총 주문 상품수</td>
 												<td><span class="totalCount_span"></span>개</td>
+											</tr>
+											<tr>
+												<td>쿠폰 사용</td>
+												<td><span class="Discount_span"></span>P</td>
 											</tr>
 										</table>
 									</td>
@@ -480,8 +503,8 @@ table.table th {
 				$("#sendto").click(function() {
 					sendTo();
 				});
-			});	
-			
+			});
+
 			//sendTo admin
 			function sendTo() {
 				var msg = JSON.stringify({
@@ -498,7 +521,7 @@ table.table th {
 				} else {
 					$("#status").text("Disconnected");
 				}
-				
+
 			}
 			//disconnect websocket
 			function disconnect() {
@@ -508,30 +531,30 @@ table.table th {
 				setConnected(false);
 				console.log("Disconnected");
 			}
-			
+
 			//websocket
 			var stompClient = null;
 			var id = '[[${session.logincust.custid}]]';
-			var admin01 = $('#adminid').val();		
+			var admin01 = $('#adminid').val();
 			var test01 = '예약이 접수되었습니다'
 			// 서버소켓에 연결
 			function connect() {
 				var socket = new SockJS('http://127.0.0.1:8080/eatadmin/ws');
 				//공인ip로 바꿔야할 부분!
 				stompClient = Stomp.over(socket);
-			
-				stompClient.connect({}, function(frame) { 
+
+				stompClient.connect({}, function(frame) {
 					setConnected(true);
 					console.log('Connected: ' + frame);
-					stompClient.subscribe('/send/to/'+id, function(msg) { 
+					stompClient.subscribe('/send/to/' + id, function(msg) {
 						$("#to").prepend(
-								"<h4>" + JSON.parse(msg.body).sendid +" 님의 "+
-								JSON.parse(msg.body).content1
+								"<h4>" + JSON.parse(msg.body).sendid + " 님의 "
+										+ JSON.parse(msg.body).content1
 										+ "</h4>");
 					});
 				});
-			}			
-			
+			}
+
 			//checkbox
 			$(".individual_cart_checkbox").on("change", function() {
 				setTotalInfo($(".cart_info_td"));
@@ -544,10 +567,13 @@ table.table th {
 					$(".individual_cart_checkbox").attr("checked", false);
 				}
 				return
+
+				
+
 				setTotalInfo($(".cart_info_td"));
 
-			});			
-			
+			});
+
 			//totalprice
 			function setTotalInfo() {
 
@@ -555,6 +581,7 @@ table.table th {
 				let totalCount = 0; // 총 갯수
 				let totalKind = 0; // 총 종류
 				let totalPoint = 0; // 총 마일리지
+				let discount = 0; // 쿠폰 할인
 
 				$(".cart_info_td").each(
 						function(index, element) {
@@ -617,46 +644,44 @@ table.table th {
 			//datetimepicker
 			$.datetimepicker.setLocale('ko');
 			$.datetimepicker.setDateFormatter({
-			    parseDate: function (date, format) {
-			        var d = moment(date, format);
-			        return d.isValid() ? d.toDate() : false;
-			    },
+				parseDate : function(date, format) {
+					var d = moment(date, format);
+					return d.isValid() ? d.toDate() : false;
+				},
 
-			    formatDate: function (date, format) {
-			        return moment(date).format(format);
-			    },
+				formatDate : function(date, format) {
+					return moment(date).format(format);
+				},
 
-			    formatMask: function(format){
-			        return format
-			            .replace(/Y{4}/g, '9999')
-			            .replace(/Y{2}/g, '99')
-			            .replace(/M{2}/g, '19')
-			            .replace(/D{2}/g, '39')
-			            .replace(/H{2}/g, '29')
-			            .replace(/m{2}/g, '59')
-			            .replace(/s{2}/g, '59');
-			    }
+				formatMask : function(format) {
+					return format.replace(/Y{4}/g, '9999').replace(/Y{2}/g,
+							'99').replace(/M{2}/g, '19').replace(/D{2}/g, '39')
+							.replace(/H{2}/g, '29').replace(/m{2}/g, '59')
+							.replace(/s{2}/g, '59');
+				}
 			});
-			$('#datetimepicker').datetimepicker({
-				  format:'YYYY.M.D H:mm',
-				  formatTime:'H:mm',
-				  formatDate:'YYYY.M.D',
-				  minDate:0,
-					inline:true,
-					allowTimes:[
-						  '09:00', '09:30', '10:00','10:30','11:00', '11:30',
-						  '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30',
-						  '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30',
-						  '22:00', '22:30', '23:00', '23:30',
-						 ]
-				});
-			
+			$('#datetimepicker').datetimepicker(
+					{
+						format : 'YYYY.M.D H:mm',
+						formatTime : 'H:mm',
+						formatDate : 'YYYY.M.D',
+						minDate : 0,
+						inline : true,
+						allowTimes : [ '09:00', '09:30', '10:00', '10:30',
+								'11:00', '11:30', '12:00', '12:30', '13:00',
+								'13:30', '14:00', '14:30', '15:00', '15:30',
+								'16:00', '16:30', '17:00', '17:30', '18:00',
+								'18:30', '19:00', '19:30', '20:00', '20:30',
+								'21:00', '21:30', '22:00', '22:30', '23:00',
+								'23:30', ]
+					});
+
 			//reserve_btn
 			$('#reserve_btn2').click(function() {
 				connect();
 				requestPay();
 			});
-			
+
 			//I'mpot api
 			var IMP = window.IMP; // 생략 가능
 			IMP.init("imp34244488");
@@ -723,43 +748,40 @@ table.table th {
 									}
 								});
 			}
-			
+
 			//kakao link api
 			try {
 				function sendLinkDefault() {
 					Kakao.init('5391a7213215108e6b8dc6ea778851ac')
-					Kakao.Link
-							.sendDefault({
-								objectType : 'feed',
-								content : {
-									title : 'Eat & Out 예약내역 안내',
-									imageUrl : '@{/assets/images/eLogo.png}',
-									link : {
-										mobileWebUrl : 'http://118.67.131.90/login',
-										webUrl : 'http://118.67.131.90/login',
-									},
-								},
-								social : {
-									likeCount : 286,
-									commentCount : 45,
-									sharedCount : 845,
-								},
-								buttons : [
-										{
-											title : '웹으로 보기',
-											link : {
-												mobileWebUrl : 'http://118.67.131.90/login',
-												webUrl : 'http://118.67.131.90/login',
-											},
-										},
-										{
-											title : '앱으로 보기',
-											link : {
-												mobileWebUrl : 'http://118.67.131.90/login',
-												webUrl : 'http://118.67.131.90/login',
-											},
-										}, ],
-							})
+					Kakao.Link.sendDefault({
+						objectType : 'feed',
+						content : {
+							title : 'Eat & Out 예약내역 안내',
+							imageUrl : '@{/assets/images/eLogo.png}',
+							link : {
+								mobileWebUrl : 'http://118.67.131.90/login',
+								webUrl : 'http://118.67.131.90/login',
+							},
+						},
+						social : {
+							likeCount : 286,
+							commentCount : 45,
+							sharedCount : 845,
+						},
+						buttons : [ {
+							title : '웹으로 보기',
+							link : {
+								mobileWebUrl : 'http://118.67.131.90/login',
+								webUrl : 'http://118.67.131.90/login',
+							},
+						}, {
+							title : '앱으로 보기',
+							link : {
+								mobileWebUrl : 'http://118.67.131.90/login',
+								webUrl : 'http://118.67.131.90/login',
+							},
+						}, ],
+					})
 				}
 				;
 				window.kakaoDemoCallback && window.kakaoDemoCallback()
@@ -767,6 +789,16 @@ table.table th {
 				window.kakaoDemoException && window.kakaoDemoException(e)
 			}
 
+			// coupon_click
+			$("#cplist span").click(
+					function() {
+						var discount = parseInt($(this).attr("value"));
+						var totalprice = $(".finalTotalPrice_span").text().replace(/\D/g,'');
+						
+						$(".Discount_span").text(discount.toLocaleString());
+						$(".finalTotalPrice_span").text(
+								(totalprice - discount).toLocaleString());
+					});
 		</script>
 
 	</div>
