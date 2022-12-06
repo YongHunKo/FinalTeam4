@@ -20,10 +20,25 @@
       - 식당 예약을 하는데 불편함을 개선하고 신뢰성있는 리뷰서비스 제공
 3. 프로젝트 기능 구현
    1. 로그인/로그아웃/회원가입
+      1. 일반로그인
+      2. 카카오로그인
+      3. 네이버로그인
+      4. 구글로그인
+      5. 회원가입
    2. 지도api를 이용한 식당위치 서비스
+      1. 카카오 맵 api
    3. 검색기능
+      1. 카테고리별 검색
+      2. 가격 높은/낮은 순서 정렬
+      3. 키워드 검색
    4. 주문 빈도에 따른 맛집랭킹 서비스
+      1. Orderlist누적 DB를 이용한 실시간랭킹 서비스
+      2. Review누적 DB를 이용한 오늘의 추천맛집 서비스
    5. NCP를 이용한 웹 어플리케이션 환경 구축
+      1. NCP서버
+      2. 챗봇을 이용한 1대1문의
+      3. 웹소켓을 이용한 예약-결제 시 고객/매장 알림 서비스
+      4. OCR을 이용한 영수증 리뷰
    6. 관리자 페이지 구현
 4. 역할 분담(아주 상세하게)
    - 고용훈
@@ -36,6 +51,7 @@
      - 관리자, 위시리스트, DB관리
 5. 개발환경 및 수행 도구(표로 만들어볼까)
 6. DB 설계(ERD와 sql을 첨부)
+   ![](./finalteam4/src/main/resources/static/img/ERD.png)
 7. UI 설계(Figma사용)
 
 ## 프로젝트 결과(스샷 및 동영상 넣기)
@@ -52,7 +68,7 @@
   - `reserve.html`에서 데이터가 `일부` 출력되지 않는 현상이 발생함.  `sql`엔 온전히 데이터가 다 들어가있음. 새로고침을 하면 원하는 데이터가 다 출력됨 → `ajax`와 `locationhref`를 동시에 사용하여 발생한 문제 → `ajax`가 `regist`하는 중간에 페이지 이동이 되버리면서 이동 전까지 `regist`한 것만 페이지에 출력됐고 새로고침을 하면 정상적으로 다 출력 → `setTimeout`을 `0.5초`를 주어 임시로 둘이 동시에 작업되지 않도록 하였다
   - `input`으로 `date와 time`을 주어 `날짜와 시간` 을 선택하여 해당 데이터를 `orderlist`에 넣으려 하는데 데이터를 읽지 못함 → `datepicker` 값을 두개를 주어서 `SimpleDateFormat`을 이용하여 하나는 날짜, 하나는 시간 값으로 받게끔 만들어서 각각을 `orderlist`에 `insert`. 아래 사진처럼 잘 들어와있다
       
-      ![](2022-12-06-10-26-09.png)
+      ![](./finalteam4/src/main/resources/static/img/2022-12-06-10-26-09.png)
       
   - `결제API`를 진행하는 도중 `NullPointerException` 이 떴는데 `String.length()` 의 `text`가 `null`이라고 뜨면서 진행이 안돼는 상황 → `ajax의 url`이 잘못된 것
   - `select list is not in group by clause and contains nonaggregated column 'eatnout.s.storeid' which is not functionally dependent on columns in group by clause; this is incompatible with sql_mode=only_full_group_by` 
