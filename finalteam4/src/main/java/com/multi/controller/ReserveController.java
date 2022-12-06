@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.multi.dto.CartDTO;
+import com.multi.dto.CouponDTO;
 import com.multi.dto.OrderlistDTO;
 import com.multi.dto.ReserveDTO;
-import com.multi.dto.StoreDTO;
-import com.multi.dto.StoreimgDTO;
 import com.multi.service.CartService;
+import com.multi.service.CouponService;
 import com.multi.service.OrderlistService;
 import com.multi.service.ReserveService;
 import com.multi.service.StoreService;
@@ -41,6 +41,8 @@ public class ReserveController {
 	WishlistService wishservice;
 	@Autowired
 	OrderlistService orderservice;
+	@Autowired
+	CouponService couponservice;
 
 	/**
 	 * reserveimpl 해당 메소드는 cart에 저장되어 있는 DB를 파라메터 custid 값을 통해 selectcart를 사용하여 찾아서,
@@ -53,8 +55,11 @@ public class ReserveController {
 	@RequestMapping("/reserveimpl")
 	public String reserveimpl(Model model, String custid, Integer storeid, HttpSession session) {
 		List<CartDTO> list = null;
+		List<CouponDTO> cp = null;
 		try {
-			list = cartservice.selectcart(custid);		
+			cp = couponservice.couponlist(custid);
+			list = cartservice.selectcart(custid);
+			model.addAttribute("cp", cp);
 			model.addAttribute("menulist", list);
 			model.addAttribute("center", "/reserve");
 			for (CartDTO c : list) {
@@ -62,6 +67,7 @@ public class ReserveController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println("cp : " + cp);
 		return "index";
 	}
 

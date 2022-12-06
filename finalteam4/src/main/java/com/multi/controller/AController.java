@@ -160,7 +160,6 @@ public class AController {
 		String result = "";
 		coupon.setCouponid(null);
 		try {
-			System.out.println(coupon);
 			couponservice.register(coupon);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
