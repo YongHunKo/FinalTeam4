@@ -542,6 +542,7 @@
 						<!-- storereview -->
 						<h4 id="storename2" th:text="${shareinfo.storename}" style="display: none"></h4>
 						<h4 id="storeintro" th:text="${shareinfo.storeintroduce}" style="display: none"></h4>
+						<h4 id="storeimg" th:text="${shareimg.storeimg}" style="display: none"></h4>
 			
 			
 			<!-- 매장리뷰 -->		
@@ -669,6 +670,7 @@
 	<script>
 	var storename3 = $('#storename2').text();
 	var storeinfo = $('#storeintro').text();
+	var storeimg = $('#storeimg').text();
 
   Kakao.Share.createDefaultButton({
     container: '#kakaotalk-sharing-btn',
@@ -677,7 +679,7 @@
       title: storename3.toString(), // s.storename 여러개의 값이 들어가니 하나의 값만 들어가게끔
       description: storeinfo.toString(),//'#720흑돼지 #근본 #제주도 #흑돼지맛집 #정용진회장 #920뼈등심', //storeinfo
       imageUrl:
-        'http://118.67.131.90/menuimg/ssdD.jpg',
+        'http://118.67.131.90/storeimg/'+storeimg,
       link: {
         // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
         mobileWebUrl: window.location.href,

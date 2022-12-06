@@ -16,5 +16,6 @@ public interface StoreimgMapper extends MyMapper<Integer, StoreimgDTO>{
 	public List<StoreimgDTO> today();
 	public List<StoreimgDTO> today2();
 	public List<StoreimgDTO> today3();
+	public StoreimgDTO shareimg(Integer storeid);
 
 }

@@ -44,6 +44,7 @@ public class StoreController {
 		List<ReviewDTO> list3 =null;
 		List<StoreDTO> list4 = null;
 		StoreDTO store = null;
+		StoreimgDTO storeimg = null;
 
 		try {
 			list = storeimgservice.selectstoreid(storeid);
@@ -51,11 +52,13 @@ public class StoreController {
 			list3 = reviewservice.storereview(storeid);
 			list4= storeservice.infoall(storeid);
 			store = storeservice.get(storeid);
+			storeimg = storeimgservice.shareimg(storeid);
 			model.addAttribute("storeimglist", list);
 			model.addAttribute("detaillist", list2);
 			model.addAttribute("review", list3);
 			model.addAttribute("info", list4);
 			model.addAttribute("shareinfo", store);
+			model.addAttribute("shareimg", storeimg);
 			model.addAttribute("center", "/detail");
 		} catch (Exception e) {
 			e.printStackTrace();

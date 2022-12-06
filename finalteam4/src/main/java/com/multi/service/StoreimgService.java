@@ -64,7 +64,10 @@ public class StoreimgService implements MyService<Integer, StoreimgDTO>{
 		return mapper.today3();
 	}
 	
-	
+	public StoreimgDTO shareimg(Integer storeid) throws Exception {
+		return mapper.shareimg(storeid);
 	}
+	
+}
 
 

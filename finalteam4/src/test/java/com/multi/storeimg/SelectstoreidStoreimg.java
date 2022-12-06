@@ -10,7 +10,7 @@ import com.multi.dto.StoreimgDTO;
 import com.multi.service.StoreimgService;
 
 @SpringBootTest
-class Finalteam4ApplicationTests {
+class SelectstoreidStoreimg {
 	@Autowired
 	StoreimgService service;
 
