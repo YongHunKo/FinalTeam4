@@ -8,10 +8,11 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM storeimgs WHERE storeimgno=#{storeimgno}
 	</select>
 	<select id="shareimg" parameterType="Integer" resultType="StoreimgDTO">
-		SELECT storeid,storeimgno, storeimg  FROM storeimgs
-		GROUP BY storeid,storeimgno
-		HAVING storeid=#{storeid}
-		ORDER BY storeimg DESC LIMIT 0, 1
+			SELECT * FROM menu m
+			LEFT OUTER JOIN menuimgs ms ON m.menuid = ms.menuid
+			INNER JOIN store s ON m.storeid = s.storeid
+			WHERE s.storeid=#{storeid}
+			ORDER BY RAND() LIMIT 1
 	</select>
 	<select id="selectall" resultType="StoreimgDTO">
 		SELECT * FROM storeimgs
