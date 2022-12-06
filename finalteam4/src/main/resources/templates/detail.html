@@ -59,6 +59,14 @@
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
+
+
+	#shareimg{
+	
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	
+	}
+
     .card-image img {
         height: 250px;
         width: 520px;
@@ -484,7 +492,7 @@
             <div class="card-body p-5">
         		<a id="kakaotalk-sharing-btn" href="javascript:;">
   		<img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"
-   				style="border-radius:70px;" alt="카카오톡 공유 보내기 버튼" />
+   				style="border-radius:70px;" alt="카카오톡 공유 보내기 버튼" id="shareimg" />
 			</a>
             </div>
           </div>
@@ -657,14 +665,14 @@
     container: '#kakaotalk-sharing-btn',
     objectType: 'feed',
     content: {
-      title: '딸기 치즈 케익',
-      description: '#케익 #딸기 #삼평동 #카페 #분위기 #소개팅',
+      title: '숙성도', // s.storename 
+      description: '#720흑돼지 #근본 #제주도 #흑돼지맛집 #정용진회장 #920뼈등심', //storeinfo
       imageUrl:
-        'http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+        'http://118.67.131.90/menuimg/ssdD.jpg',
       link: {
         // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
-        mobileWebUrl: 'http://118.67.131.90',
-        webUrl: 'http://118.67.131.90',
+        mobileWebUrl: window.location.href,
+        webUrl:window.location.href,
       },
     },
     social: {
@@ -676,15 +684,15 @@
       {
         title: '웹으로 보기',
         link: {
-          mobileWebUrl: 'http://118.67.131.90',
-          webUrl: 'http://118.67.131.90',
+          mobileWebUrl: window.location.href,
+          webUrl: window.location.href,
         },
       },
       {
         title: '앱으로 보기',
         link: {
-          mobileWebUrl: 'http://118.67.131.90',
-          webUrl: 'http://118.67.131.90',
+          mobileWebUrl: window.location.href,
+          webUrl: window.location.href,
         },
       },
     ],
