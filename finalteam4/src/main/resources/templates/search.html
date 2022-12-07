@@ -141,11 +141,11 @@
 var para = '[[${page}]]';
 function desc(){
 var keyword = '[[${keyword}]]';
-	alert(keyword);
 	location.href = para+'/desc?txt='+keyword;
 }
 function asc(){
-	location.href = para+'/asc';
+	var keyword = '[[${keyword}]]';
+	location.href = para+'/asc?txt='+keyword;
 }
 $(document).ready(function(){
 	$("#desc").click(function() {

@@ -58,6 +58,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		LEFT OUTER  JOIN menuimgs ms ON m.menuid = ms.menuid
 		INNER JOIN store s ON m.storeid = s.storeid
 		WHERE menucateid IN (10,20,30,40,70,100,110,120,130)
+		AND menuname LIKE CONCAT('%',#{txt},'%')
 		ORDER BY menuprice ASC
 	</select>
 	<select id="searchmenu2desc" parameterType="String" resultType="MenuDTO">
@@ -65,6 +66,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		LEFT OUTER  JOIN menuimgs ms ON m.menuid = ms.menuid
 		INNER JOIN store s ON m.storeid = s.storeid
 		WHERE menucateid IN (10,20,30,40,70,100,110,120,130)
+		AND menuname LIKE CONCAT('%',#{txt},'%')
 		ORDER BY menuprice DESC
 	</select>
 	<select id="searchmenu3asc" parameterType="String" resultType="MenuDTO">
@@ -72,6 +74,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		LEFT OUTER  JOIN menuimgs ms ON m.menuid = ms.menuid
 		INNER JOIN store s ON m.storeid = s.storeid
 		WHERE menucateid IN (50,60)
+		AND menuname LIKE CONCAT('%',#{txt},'%')
 		ORDER BY menuprice ASC
 	</select>
 	<select id="searchmenu3desc" parameterType="String" resultType="MenuDTO">
@@ -79,6 +82,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		LEFT OUTER  JOIN menuimgs ms ON m.menuid = ms.menuid
 		INNER JOIN store s ON m.storeid = s.storeid
 		WHERE menucateid IN (50,60)
+		AND menuname LIKE CONCAT('%',#{txt},'%')
 		ORDER BY menuprice DESC
 	</select>
 	<select id="searchmenu4asc" parameterType="String" resultType="MenuDTO">
@@ -86,6 +90,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		LEFT OUTER  JOIN menuimgs ms ON m.menuid = ms.menuid
 		INNER JOIN store s ON m.storeid = s.storeid
 		WHERE menucateid IN (80,90)
+		AND menuname LIKE CONCAT('%',#{txt},'%')
 		ORDER BY menuprice ASC
 	</select>
 	<select id="searchmenu4desc" parameterType="String" resultType="MenuDTO">
@@ -93,6 +98,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		LEFT OUTER  JOIN menuimgs ms ON m.menuid = ms.menuid
 		INNER JOIN store s ON m.storeid = s.storeid
 		WHERE menucateid IN (80,90)
+		AND menuname LIKE CONCAT('%',#{txt},'%')
 		ORDER BY menuprice DESC
 	</select>
 	<insert id="insert" parameterType="MenuDTO">

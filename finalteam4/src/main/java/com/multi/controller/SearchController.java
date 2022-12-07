@@ -50,6 +50,7 @@ public class SearchController {
 			model.addAttribute("menulist", list);
 			model.addAttribute("page", "/searchimpl2");
 			model.addAttribute("center", "search");
+			model.addAttribute("keyword",txt);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -63,6 +64,7 @@ public class SearchController {
 			model.addAttribute("menulist", list);
 			model.addAttribute("page", "/searchimpl3");
 			model.addAttribute("center", "search");
+			model.addAttribute("keyword",txt);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -76,6 +78,7 @@ public class SearchController {
 			model.addAttribute("menulist", list);
 			model.addAttribute("page", "/searchimpl4");
 			model.addAttribute("center", "search");
+			model.addAttribute("keyword",txt);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -105,6 +108,7 @@ public class SearchController {
 			model.addAttribute("menulist", list);
 			model.addAttribute("page", "/searchimpl");
 			model.addAttribute("center", "search");
+			model.addAttribute("keyword",txt);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -119,6 +123,7 @@ public class SearchController {
 			model.addAttribute("menulist", list);
 			model.addAttribute("page", "/searchimpl2");
 			model.addAttribute("center", "search");
+			model.addAttribute("keyword",txt);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -133,6 +138,7 @@ public class SearchController {
 			model.addAttribute("menulist", list);
 			model.addAttribute("page", "/searchimpl2");
 			model.addAttribute("center", "search");
+			model.addAttribute("keyword",txt);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -147,6 +153,7 @@ public class SearchController {
 			model.addAttribute("menulist", list);
 			model.addAttribute("page", "/searchimpl3");
 			model.addAttribute("center", "search");
+			model.addAttribute("keyword",txt);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -161,6 +168,7 @@ public class SearchController {
 			model.addAttribute("menulist", list);
 			model.addAttribute("page", "/searchimpl3");
 			model.addAttribute("center", "search");
+			model.addAttribute("keyword",txt);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -175,6 +183,7 @@ public class SearchController {
 			model.addAttribute("menulist", list);
 			model.addAttribute("page", "/searchimpl4");
 			model.addAttribute("center", "search");
+			model.addAttribute("keyword",txt);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -189,6 +198,7 @@ public class SearchController {
 			model.addAttribute("menulist", list);
 			model.addAttribute("page", "/searchimpl4");
 			model.addAttribute("center", "search");
+			model.addAttribute("keyword",txt);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
