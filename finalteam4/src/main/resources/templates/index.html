@@ -84,21 +84,63 @@
 <script>
 function enterkey2(){
 	if(window.event.keyCode == 13){
-		$('#search_form2').attr({
-			'method':'get',
-			'action':'[[@{/searchimpl}]]'
-		});
-		$('#search_form2').submit();
+		var catevalue2 = $("#changeTest2").val();
+		if(catevalue2 == 1){
+			$('#search_form2').attr({
+				'method':'get',
+				'action':'[[@{/searchimpl}]]'
+			});
+			$('#search_form2').submit();		
+		}else if(catevalue2 == 2){
+			$('#search_form2').attr({
+				'method':'get',
+				'action':'[[@{/searchimpl2}]]'
+			});
+			$('#search_form2').submit();			
+		}else if(catevalue2 == 3){
+			$('#search_form2').attr({
+				'method':'get',
+				'action':'[[@{/searchimpl3}]]'
+			});
+			$('#search_form2').submit();			
+		}else if(catevalue2 == 4){
+			$('#search_form2').attr({
+				'method':'get',
+				'action':'[[@{/searchimpl4}]]'
+			});
+			$('#search_form2').submit();			
+		}
 	};
 	
 };
 function enterkey(){
 	if(window.event.keyCode == 13){
-		$('#search_form').attr({
-			'method':'get',
-			'action':'[[@{/searchimpl}]]'
-		});
-		$('#search_form').submit();
+		var catevalue = $("#changeTest").val();
+		if(catevalue == 1){
+			$('#search_form').attr({
+				'method':'get',
+				'action':'[[@{/searchimpl}]]'
+			});
+			$('#search_form').submit();
+		}else if(catevalue == 2){
+			$('#search_form').attr({
+				'method':'get',
+				'action':'[[@{/searchimpl2}]]'
+			});
+			$('#search_form').submit();	
+		}else if(catevalue == 3){
+			$('#search_form').attr({
+				'method':'get',
+				'action':'[[@{/searchimpl3}]]'
+			});
+			$('#search_form').submit();				
+		}else if(catevalue == 4){
+			$('#search_form').attr({
+				'method':'get',
+				'action':'[[@{/searchimpl4}]]'
+			});
+			$('#search_form').submit();				
+		}
 	};
 	
 };
