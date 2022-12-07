@@ -60,6 +60,30 @@ public class MenuService implements MyService<Integer, MenuDTO> {
 		return mapper.searchmenu4(txt);
 	}
 	
+	public List<MenuDTO> searchmenu2asc(String txt) throws Exception {
+		return mapper.searchmenu2asc(txt);
+	}
+	
+	public List<MenuDTO> searchmenu2desc(String txt) throws Exception {
+		return mapper.searchmenu2desc(txt);
+	}
+	
+	public List<MenuDTO> searchmenu3asc(String txt) throws Exception {
+		return mapper.searchmenu3asc(txt);
+	}
+	
+	public List<MenuDTO> searchmenu3desc(String txt) throws Exception {
+		return mapper.searchmenu3desc(txt);
+	}
+	
+	public List<MenuDTO> searchmenu4asc(String txt) throws Exception {
+		return mapper.searchmenu4asc(txt);
+	}
+	
+	public List<MenuDTO> searchmenu4desc(String txt) throws Exception {
+		return mapper.searchmenu4desc(txt);
+	}
+	
 	public List<MenuDTO> searchmenuasc(String txt) throws Exception {
 		return mapper.searchmenuasc(txt);
 	}
@@ -67,5 +91,4 @@ public class MenuService implements MyService<Integer, MenuDTO> {
 	public List<MenuDTO> searchmenudesc(String txt) throws Exception {
 		return mapper.searchmenudesc(txt);
 	}
-
 }

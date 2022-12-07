@@ -18,4 +18,10 @@ public interface MenuMapper extends MyMapper<Integer, MenuDTO>{
 	public List<MenuDTO> searchmenu2(String txt);
 	public List<MenuDTO> searchmenu3(String txt);
 	public List<MenuDTO> searchmenu4(String txt);
+	public List<MenuDTO> searchmenu2asc(String txt);
+	public List<MenuDTO> searchmenu2desc(String txt);
+	public List<MenuDTO> searchmenu3asc(String txt);
+	public List<MenuDTO> searchmenu3desc(String txt);
+	public List<MenuDTO> searchmenu4asc(String txt);
+	public List<MenuDTO> searchmenu4desc(String txt);
 }

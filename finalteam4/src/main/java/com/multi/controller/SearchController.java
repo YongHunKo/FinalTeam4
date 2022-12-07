@@ -33,6 +33,7 @@ public class SearchController {
 		try {
 			list = menuservice.searchmenu(txt);
 			model.addAttribute("menulist", list);
+			model.addAttribute("page", "/searchimpl");
 			model.addAttribute("center", "search");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -46,6 +47,7 @@ public class SearchController {
 		try {
 			list = menuservice.searchmenu2(txt);
 			model.addAttribute("menulist", list);
+			model.addAttribute("page", "/searchimpl2");
 			model.addAttribute("center", "search");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -58,6 +60,7 @@ public class SearchController {
 		try {
 			list = menuservice.searchmenu3(txt);
 			model.addAttribute("menulist", list);
+			model.addAttribute("page", "/searchimpl3");
 			model.addAttribute("center", "search");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -70,6 +73,7 @@ public class SearchController {
 		try {
 			list = menuservice.searchmenu4(txt);
 			model.addAttribute("menulist", list);
+			model.addAttribute("page", "/searchimpl4");
 			model.addAttribute("center", "search");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -77,12 +81,13 @@ public class SearchController {
 		return "index";
 	}
 	
-	@RequestMapping("/desc")
+	@RequestMapping("/searchimpl/desc")
 	public String desc(Model model, String txt) {
 		List<MenuDTO> list = null;
 		try {
 			list = menuservice.searchmenudesc(txt);
 			model.addAttribute("menulist", list);
+			model.addAttribute("page", "/searchimpl");
 			model.addAttribute("center", "search");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -90,12 +95,97 @@ public class SearchController {
 		return "index";
 	}
 	
-	@RequestMapping("/asc")
+	@RequestMapping("/searchimpl/asc")
 	public String asc(Model model, String txt) {
 		List<MenuDTO> list = null;
 		try {
 			list = menuservice.searchmenuasc(txt);
 			model.addAttribute("menulist", list);
+			model.addAttribute("page", "/searchimpl");
+			model.addAttribute("center", "search");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "index";
+	}
+	
+	@RequestMapping("/searchimpl2/desc")
+	public String desc2(Model model, String txt) {
+		List<MenuDTO> list = null;
+		try {
+			list = menuservice.searchmenu2desc(txt);
+			model.addAttribute("menulist", list);
+			model.addAttribute("page", "/searchimpl2");
+			model.addAttribute("center", "search");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "index";
+	}
+	
+	@RequestMapping("/searchimpl2/asc")
+	public String asc2(Model model, String txt) {
+		List<MenuDTO> list = null;
+		try {
+			list = menuservice.searchmenu2asc(txt);
+			model.addAttribute("menulist", list);
+			model.addAttribute("page", "/searchimpl2");
+			model.addAttribute("center", "search");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "index";
+	}
+	
+	@RequestMapping("/searchimpl3/desc")
+	public String desc3(Model model, String txt) {
+		List<MenuDTO> list = null;
+		try {
+			list = menuservice.searchmenu3desc(txt);
+			model.addAttribute("menulist", list);
+			model.addAttribute("page", "/searchimpl3");
+			model.addAttribute("center", "search");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "index";
+	}
+	
+	@RequestMapping("/searchimpl3/asc")
+	public String asc3(Model model, String txt) {
+		List<MenuDTO> list = null;
+		try {
+			list = menuservice.searchmenu3asc(txt);
+			model.addAttribute("menulist", list);
+			model.addAttribute("page", "/searchimpl3");
+			model.addAttribute("center", "search");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "index";
+	}
+	
+	@RequestMapping("/searchimpl4/desc")
+	public String desc4(Model model, String txt) {
+		List<MenuDTO> list = null;
+		try {
+			list = menuservice.searchmenu4desc(txt);
+			model.addAttribute("menulist", list);
+			model.addAttribute("page", "/searchimpl4");
+			model.addAttribute("center", "search");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "index";
+	}
+	
+	@RequestMapping("/searchimpl4/asc")
+	public String asc4(Model model, String txt) {
+		List<MenuDTO> list = null;
+		try {
+			list = menuservice.searchmenu4asc(txt);
+			model.addAttribute("menulist", list);
+			model.addAttribute("page", "/searchimpl4");
 			model.addAttribute("center", "search");
 		} catch (Exception e) {
 			e.printStackTrace();

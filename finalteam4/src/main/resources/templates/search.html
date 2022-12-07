@@ -133,21 +133,39 @@
 		position:relative;
 		top:1px;
 	}
-	
 
 
 
 </style>
-
+<script>
+var para = '[[${page}]]';
+function desc(){
+	location.href = para+'/desc';
+}
+function asc(){
+	location.href = para+'/asc';
+}
+$(document).ready(function(){
+	$("#desc").click(function() {
+		desc();
+	});
+	$("#asc").click(function() {
+		asc();
+	});
+});
+</script>
 
 
 
 </head>
 
 <body>
-  <a class="myButton" id="desc" th:href="@{/desc}">높은가격순</a>
-  <a class="myButton" id="asc" th:href="@{/asc}">낮은가격순</a>
-  <div class="container" style="background:#fff;" >
+
+  <div class="container" style="background:#fff;">
+  	<div class= "button">
+ 		<a class="myButton" id="desc">높은가격순</a>
+  		<a class="myButton" id="asc">낮은가격순</a>
+  	</div>
         <div class="row" >
             <div class="col-md-4 sm-4" th:each="m : ${menulist}" style="padding-top:20px;">
                 <div class="card-sl">
