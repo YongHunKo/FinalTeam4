@@ -140,7 +140,9 @@
 <script>
 var para = '[[${page}]]';
 function desc(){
-	location.href = para+'/desc';
+var keyword = '[[${keyword}]]';
+	alert(keyword);
+	location.href = para+'/desc?txt='+keyword;
 }
 function asc(){
 	location.href = para+'/asc';
@@ -165,6 +167,7 @@ $(document).ready(function(){
   	<div class= "button">
  		<a class="myButton" id="desc">높은가격순</a>
   		<a class="myButton" id="asc">낮은가격순</a>
+  		<h4 id="keyword" th:text="${keyword}" style="display:none"></h4>
   	</div>
         <div class="row" >
             <div class="col-md-4 sm-4" th:each="m : ${menulist}" style="padding-top:20px;">

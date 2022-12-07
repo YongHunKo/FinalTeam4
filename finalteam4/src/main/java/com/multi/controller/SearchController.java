@@ -35,6 +35,7 @@ public class SearchController {
 			model.addAttribute("menulist", list);
 			model.addAttribute("page", "/searchimpl");
 			model.addAttribute("center", "search");
+			model.addAttribute("keyword",txt);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -83,6 +84,7 @@ public class SearchController {
 	
 	@RequestMapping("/searchimpl/desc")
 	public String desc(Model model, String txt) {
+		System.out.println(txt);//넘어오는거까지 확인함
 		List<MenuDTO> list = null;
 		try {
 			list = menuservice.searchmenudesc(txt);
