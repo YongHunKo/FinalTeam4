@@ -4,9 +4,13 @@
 - 팀명 : *Eat & Out*
   - 팀장 : 고용훈
   - 팀원 : 김준기, 조여송, 박시연
+- 프로젝트 진행 : 2022.10.24 ~ 2022.12.16
+- 기대효과
+  - 일부 식당에만 서비스되는 기존 테이블링 앱과 달리 공공데이터를 이용하여 더 대중적인 원격 줄서기 서비스를 제공
+  - 웹 어플리케이션 서비스에 미숙하신 분들도 쉽게 이용할 수 있는 서비스를 제공
+  - 영수증 인증 리뷰를 통한 신뢰도있는 리뷰서비스 제공
 
 ## 프로젝트 정보
-(기획서 참고하자)
 1. 프로젝트 주제
     - AI 플랫폼을 활용한 예약주문 서비스 웹 어플리케이션 개발
 2. 프로젝트 목적(얘는 수정이 살짝 필요함)
@@ -46,13 +50,22 @@
    - 김준기
      - 로그인/소셜로그인, 메인페이지, 전체적인 CSS
    - 조여송
-     - 마이페이지, 쿠폰
+     - 마이페이지, 쿠폰, OCR
    - 박시연
      - 관리자, 위시리스트, DB관리
-5. 개발환경 및 수행 도구(표로 만들어볼까)
-6. DB 설계(ERD와 sql을 첨부)
-   ![](./finalteam4/src/main/resources/static/img/ERD.png)
-7. UI 설계(Figma사용)
+5. 개발환경 및 수행 도구
+
+|언어|웹|개발도구|데이터베이스|협업도구|프레임워크|API|
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|Java|JavaScript|Eclipse|MySQL|GitHub|SpringBoot||
+||HTML5|||Notion|MyBatis||
+||CSS6|||GatherTown|||
+||JQuery||||||
+||AJAX||||||
+
+1. DB 설계(ERD와 sql을 첨부)
+   ![](./finalteam4/src/main/resources/static/img/READMEimg/ERD.png)
+2. UI 설계(Figma사용)
 
 ## 프로젝트 결과(스샷 및 동영상 넣기)
 1. index
@@ -81,7 +94,7 @@
   - `reserve.html`에서 데이터가 `일부` 출력되지 않는 현상이 발생함.  `sql`엔 온전히 데이터가 다 들어가있음. 새로고침을 하면 원하는 데이터가 다 출력됨 → `ajax`와 `locationhref`를 동시에 사용하여 발생한 문제 → `ajax`가 `regist`하는 중간에 페이지 이동이 되버리면서 이동 전까지 `regist`한 것만 페이지에 출력됐고 새로고침을 하면 정상적으로 다 출력 → `setTimeout`을 `0.5초`를 주어 임시로 둘이 동시에 작업되지 않도록 하였다
   - `input`으로 `date와 time`을 주어 `날짜와 시간` 을 선택하여 해당 데이터를 `orderlist`에 넣으려 하는데 데이터를 읽지 못함 → `datepicker` 값을 두개를 주어서 `SimpleDateFormat`을 이용하여 하나는 날짜, 하나는 시간 값으로 받게끔 만들어서 각각을 `orderlist`에 `insert`. 아래 사진처럼 잘 들어와있다
       
-      ![](./finalteam4/src/main/resources/static/img/2022-12-06-10-26-09.png)
+      ![](./finalteam4/src/main/resources/static/img/READMEimg/2022-12-06-10-26-09.png)
       
   - `결제API`를 진행하는 도중 `NullPointerException` 이 떴는데 `String.length()` 의 `text`가 `null`이라고 뜨면서 진행이 안돼는 상황 → `ajax의 url`이 잘못된 것
   - `select list is not in group by clause and contains nonaggregated column 'eatnout.s.storeid' which is not functionally dependent on columns in group by clause; this is incompatible with sql_mode=only_full_group_by` 
@@ -125,3 +138,6 @@
   - maincenter html에 wishlist를 뿌리는 작업 중 `session`에서 id를 읽어오지 못하는 문제 발생 →
   - 위시리스트 삭제 과정에서 링크에 mypage가 중복되던 문제 → 매핑 문제. controller와 html 수정으로 해결
   - admin 메인 페이지에 chart 뿌리는 과정 중 $ajax가 정의되지 않는 문제 발생 →
+
+## 고찰
+- 
