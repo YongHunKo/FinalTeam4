@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.CouponMapper">
+	
+	<select id="insert" parameterType="CouponDTO">
+		INSERT INTO coupon VALUES (#{couponid},#{custid},#{couponname},#{discount},#{used})
+	</select>
+	
+	<select id="couponlist" parameterType="String" resultType="CouponDTO">
+		select cp.custid, cp.couponname, cp.discount, cp.used from coupon cp
+		inner join cust c on c.custid = cp.custid
+		where c.custid = #{custid};
+	</select>
+	
+	
+</mapper>
