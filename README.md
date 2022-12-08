@@ -57,7 +57,7 @@
 
 |언어|웹|개발도구|데이터베이스|협업도구|프레임워크|API|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-|Java|JavaScript|Eclipse|MySQL|GitHub|SpringBoot||
+|Java|JavaScript|Eclipse|MySQL|GitHub|SpringBoot|kakaologin|
 ||HTML5|||Notion|MyBatis||
 ||CSS6|||GatherTown|||
 ||JQuery||||||
@@ -67,12 +67,36 @@
    ![](./finalteam4/src/main/resources/static/img/READMEimg/ERD.png)
 2. UI 설계(Figma사용)
 
-## 프로젝트 결과(스샷 및 동영상 넣기)
-1. index
+## 프로젝트 결과(스샷 및 gif 넣기)
+1. index   
+   - (index_fullpage.png삽입)
+   - index.html
+   - MainController.java
+   - 랜덤으로 뿌려지는 맛집, 카테고리별 맛집, 오늘의 추천 맛집 순서로 화면에 출력되며
+   - 로그인을 하면 해당 계정이 위시리스트에 등록한 위시리스트 목록까지 나옵니다.
+   - 컨트롤러의 대부분도 페이지 이동에 관련된 기능뿐입니다.
 2. 회원가입
+   - (signup.png 삽입)
+   - signup.html , signupok.html , signupfail.html
+   - SignupController.java , AController.java
+   - 쉽게 회원가입을 위해 id, password, name, Phone Number, Birth의 정보만 입력
+   - ajax를 이용하여 /checkid를 발동하여 비동기적으로 id중복확인
 3. 로그인
    1. 일반로그인
+      - (login.png 삽입)
+      - login.html , loginfail.html
+      - LoginController.java
+      - 입력받은 custid값을 DB에서 조회하고, 입력받은 pwd와 DB에서 조회한 custid의 pwd가 일치하는지 equals()로 비교하여 일치하면 session에 저장하여 로그인을 지속시키고, 일치하지않으면 loginfail.html로 보내버립니다.
    2. 카카오로그인
+      - (kakaologin.png 삽입)
+      - KakaoController.java
+      - 참고자료 https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api
+      - kakaologinAPI의 REST API방식을 적용하였습니다. 카카오로그인 버튼을 누르면 GET/oauth/authorize를 통해 카카오계정 로그인 요청을 하고, 카카오 계정 로그인을하면 Redirect URL로 인가코드가 전달이 됩니다.
+      - 인가코드를 받으면 kakao Auth서버로 인가코드가 전달이 되어 토큰을 받게 됩니다.
+      - 해당 토큰을 발급받고 사용자 정보가 Object형식으로 내려오게 되고 필요한 데이터를 뽑아서 사용하면 됩니다.
+      - 주의할 점은 Redirect주소를 로그인하려는 IP를 사용해야 정상적인 작동이 됩니다.
+      - 또한 Object형식으로 내려오므로 사용자 정보를 제대로 사용하기 위해서는 형변환을 해주어야 올바르게 사용이 가능합니다.
+      - 저희조는 사용자 정보를 register하는 과정에서 사용자id값 뒤에 1을 붙여서 다른 소셜로그인과 겹치지않도록 구분을 해놓았습니다.(카카오계정id와 네이버계정id가 일치하는 경우가 있기때문)
    3. 네이버로그인
    4. 구글로그인
 4. 검색
@@ -140,4 +164,7 @@
   - admin 메인 페이지에 chart 뿌리는 과정 중 $ajax가 정의되지 않는 문제 발생 →
 
 ## 고찰
-- 
+- (작성예정)
+
+## 후기
+- (작성예정)
