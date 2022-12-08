@@ -59,13 +59,13 @@
       |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
       |Java|JavaScript|Eclipse|MySQL|GitHub|SpringBoot|kakaologin|
       ||HTML5|||Notion|MyBatis|Naverlogin|
-      ||CSS6|||GatherTown|||
-      ||JQuery||||||
-      ||AJAX||||||
+      ||CSS6|||GatherTown||NaverOCR|
+      ||JQuery|||||NaverChatbot|
+      ||AJAX|||||import|
 
-1. DB 설계(ERD와 sql을 첨부)
+6. DB 설계(ERD와 sql을 첨부)
    ![](./finalteam4/src/main/resources/static/img/READMEimg/ERD.png)
-2. UI 설계(Figma사용)
+7. UI 설계(Figma사용)
 
 ## 프로젝트 결과(스샷 및 gif 넣기)
 1. index   
@@ -126,6 +126,10 @@
 6. 예약
    - (reserve.png , reservesuccess.png 삽입)
 7. 마이페이지
+   - (mypage.png , mypage_orderlist.png , mypage_orderdetail.png 등등 삽입)
+8. 주문 빈도에 따른 맛집랭킹 서비스
+   - (rollingtext.gif)
+9.  관리자 페이지
 
 ## 트러블슈팅(마지막날까지 추가하기)
 - 고용훈
