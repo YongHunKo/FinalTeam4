@@ -55,13 +55,13 @@
      - 관리자, 위시리스트, DB관리
 5. 개발환경 및 수행 도구
 
-|언어|웹|개발도구|데이터베이스|협업도구|프레임워크|API|
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-|Java|JavaScript|Eclipse|MySQL|GitHub|SpringBoot|kakaologin|
-||HTML5|||Notion|MyBatis||
-||CSS6|||GatherTown|||
-||JQuery||||||
-||AJAX||||||
+   - |언어|웹|개발도구|데이터베이스|협업도구|프레임워크|API|
+      |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+      |Java|JavaScript|Eclipse|MySQL|GitHub|SpringBoot|kakaologin|
+      ||HTML5|||Notion|MyBatis||
+      ||CSS6|||GatherTown|||
+      ||JQuery||||||
+      ||AJAX||||||
 
 1. DB 설계(ERD와 sql을 첨부)
    ![](./finalteam4/src/main/resources/static/img/READMEimg/ERD.png)
@@ -98,10 +98,28 @@
       - 또한 Object형식으로 내려오므로 사용자 정보를 제대로 사용하기 위해서는 형변환을 해주어야 올바르게 사용이 가능합니다.
       - 저희조는 사용자 정보를 register하는 과정에서 사용자id값 뒤에 1을 붙여서 다른 소셜로그인과 겹치지않도록 구분을 해놓았습니다.(카카오계정id와 네이버계정id가 일치하는 경우가 있기때문)
    3. 네이버로그인
+      - (Naverlogin.png 삽입) 
+      - NaverController.java
+      - 참고자료 https://developers.naver.com/docs/common/openapiguide/apilist.md
+      - 네이버의 로그인 방식 오픈API방식을 적용하였습니다. 네이버로그인 버튼을 누르면 GET/POST로 oauth2.0을 통해 인증을 요청하고, 접근토큰을 발급이 되어 JSON형식으로 데이터가 내려오게 되고 
+      - 마찬가지로 Redirect 주소를 로그인하려는 IP를 사용해야 정상적인 작동이 됩니다.
+      - 저희조는 사용자 정보를 register하는 과정에서 사용자id값 뒤에 2을 붙여서 다른 소셜로그인과 겹치지않도록 구분을 해놓았습니다.(카카오계정id와 네이버계정id가 일치하는 경우가 있기때문)
    4. 구글로그인
+      - (Googlelogin.png 삽입) 
+      - OauthController.java
 4. 검색
-   1. 카테고리 검색
-   2. 키워드 검색
+   - (catesearch.png, search.png 삽입)
+   - index.html , SearchController.java
+   - 기본적으로 input text로 /searchimpl로 넘어가는 방식입니다.
+   - select을 이용하여 카테고리별로 검색이 가능하도록 구현했습니다. 디폴트는 전체 검색입니다.
+   - 편하게 검색을 하기위해 onkeyup="enterkey" function을 주어서 엔터로 input text가 넘어가도록 했다.
+   - 검색을 하면 search.html로 넘어가고 입력한 text에 맞게 DB를 조회하여 출력해 준다
+   - 주의할 점은 템플릿에 따라 더미 값을 주어야 엔터가 발동한다. 아래는 주의할 점에 대한 예시입니다
+```html
+<input id="search_input" name="txt" type="text" placeholder="맛집검색하러가기" onkeyup="enterkey()"> //실제 input
+   
+<input type="text" style="display:none" onkeyup="enterkey()"> // 더미값
+``` 
 5. 디테일
    1. 
 
