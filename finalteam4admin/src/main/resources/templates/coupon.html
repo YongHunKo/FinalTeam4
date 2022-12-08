@@ -1,0 +1,169 @@
+<meta charset="utf-8">
+<style>
+	tbody > tr > td > img{
+		width:50px; 
+	}
+.right-box {
+  float: right;
+}
+#pagination a {
+display:inline-block;
+margin-right:5px;
+cursor:pointer;
+}
+ul {
+	list-style:none;
+	float:left;
+	display:inline;
+}
+ul li {
+	float:left;
+}
+ul li a {
+	float:left;
+	padding:4px;
+	margin-right:3px;
+	width:15px;
+	color:#000;
+	font:bold 12px tahoma;
+	border:1px solid #eee;
+	text-align:center;
+	text-decoration:none;
+}
+ul li a:hover, ul li a:focus {
+	color:#fff;
+	border:1px solid #47B5FF;
+	background-color:#47B5FF;
+}
+</style>
+<script>
+function del(couponid){
+	var c = confirm('삭제하시겠습니까?');
+	if(c == true){
+		location.href='[[@{/deletecoupon?couponid=}]]'+couponid;
+	}
+}
+function pagination(){
+    var req_num_row=10;
+    var $tr=jQuery('tbody tr');
+    var total_num_row=$tr.length;
+    var num_pages=0;
+    if(total_num_row % req_num_row ==0){
+        num_pages=total_num_row / req_num_row;
+    }
+    if(total_num_row % req_num_row >=1){
+        num_pages=total_num_row / req_num_row;
+        num_pages++;
+        num_pages=Math.floor(num_pages++);
+    }
+
+jQuery('.pagination').append("<li><a class=\"prev\"><</a></li>");
+
+    for(var i=1; i<=num_pages; i++){
+        jQuery('.pagination').append("<li><a>"+i+"</a></li>");
+  jQuery('.pagination li:nth-child(2)').addClass("active");
+  jQuery('.pagination a').addClass("pagination-link");
+    }
+
+jQuery('.pagination').append("<li><a class=\"next\">></a></li>");
+
+    $tr.each(function(i){
+  jQuery(this).hide();
+  if(i+1 <= req_num_row){
+            $tr.eq(i).show();
+        }
+    });
+
+    jQuery('.pagination a').click('.pagination-link', function(e){
+        e.preventDefault();
+        $tr.hide();
+        var page=jQuery(this).text();
+        var temp=page-1;
+        var start=temp*req_num_row;
+  var current_link = temp;
+  
+  jQuery('.pagination li').removeClass("active");
+        jQuery(this).parent().addClass("active");
+
+        for(var i=0; i< req_num_row; i++){
+            $tr.eq(start+i).show();
+        }
+  
+  if(temp >= 1){
+    jQuery('.pagination li:first-child').removeClass("disabled");
+  }
+  else {
+    jQuery('.pagination li:first-child').addClass("disabled");
+  }
+        
+    });
+
+jQuery('.prev').click(function(e){
+    e.preventDefault();
+    jQuery('.pagination li:first-child').removeClass("active");
+});
+
+jQuery('.next').click(function(e){
+    e.preventDefault();
+    jQuery('.pagination li:last-child').removeClass("active");
+});
+
+}
+
+jQuery('document').ready(function(){
+pagination();
+
+jQuery('.pagination li:first-child').addClass("disabled");
+
+});
+</script>
+<!-- Page Heading -->
+
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">쿠폰 목록</h6>
+        <div class="right-box">
+        	<a th:href="@{/regcoupon}">쿠폰추가&nbsp</a>
+        	<a th:href="@{/updatecoupon}">쿠폰수정</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>쿠폰id</th>
+                        <th>회원id</th>
+                        <th>쿠폰명</th>
+                        <th>할인금액</th>
+                        <th>사용여부</th>
+                        <th>삭제</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                   	<tr th:each="c:${list}">
+                   		<td th:text="${c.couponid}"></td>
+                   		<td th:text="${c.custid}"></td>
+                   		<td th:text="${c.couponname}"></td>
+                   		<td th:text="${c.discount}"></td>
+                   		<td th:text="${c.used}"></td>
+                   		<td><a th:onclick="del([[${c.couponid}]])"><img th:src="@{/img/5974771.png}" style="width:30px;"></a></td>
+                   	</tr>      
+                </tbody>
+            </table>
+            <ul class="pagination">
+    		</ul>
+        </div>
+    </div>
+</div>
+
+
+<!-- Page level plugins -->
+<script th:src="@{/vendor/datatables/jquery.dataTables.min.js}"></script>
+<script th:src="@{/vendor/datatables/dataTables.bootstrap4.min.js}"></script>
+
+<!-- Page level custom scripts -->
+<script th:src="@{/js/demo/datatables-demo.js}"></script>

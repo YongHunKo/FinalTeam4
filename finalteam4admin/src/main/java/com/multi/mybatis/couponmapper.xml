@@ -14,6 +14,14 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		inner join cust c on c.custid = cp.custid
 		where c.custid = #{custid};
 	</select>
-	
+	<select id="selectall" resultType="CouponDTO">
+		SELECT * FROM coupon ORDER BY custid
+	</select>
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM coupon where couponid=#{couponid}
+	</delete>
+	<update id="update" parameterType="CouponDTO">
+		UPDATE coupon SET custid=#{custid}, couponname=#{couponname},discount=#{discount} WHERE couponid=#{couponid}
+	</update>
 	
 </mapper>

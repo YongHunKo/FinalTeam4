@@ -21,13 +21,13 @@ public class CouponService implements MyService<Integer, CouponDTO>{
 
 	@Override
 	public void remove(Integer k) throws Exception {
-		// TODO Auto-generated method stub
+		mapper.delete(k);
 		
 	}
 
 	@Override
 	public void modify(CouponDTO v) throws Exception {
-		// TODO Auto-generated method stub
+		mapper.update(v);
 		
 	}
 
@@ -39,8 +39,7 @@ public class CouponService implements MyService<Integer, CouponDTO>{
 
 	@Override
 	public List<CouponDTO> getall() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.selectall();
 	}
 	
 	public List<CouponDTO> couponlist(String k) throws Exception {

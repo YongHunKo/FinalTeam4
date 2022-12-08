@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.multi.dto.CouponDTO;
 import com.multi.dto.CustDTO;
 import com.multi.dto.EatAdmDTO;
 import com.multi.dto.MenuDTO;
@@ -17,6 +18,7 @@ import com.multi.dto.MenuimgDTO;
 import com.multi.dto.StoreDTO;
 import com.multi.dto.StoreimgDTO;
 import com.multi.frame.Util;
+import com.multi.service.CouponService;
 import com.multi.service.CustService;
 import com.multi.service.EatAdmService;
 import com.multi.service.MenuService;
@@ -47,6 +49,8 @@ public class MainController {
 	MenuimgService menuimgservice;
 	@Autowired
 	CustService custservice;
+	@Autowired
+	CouponService couponservice;
 	
 	@RequestMapping("/")
 	public String main(HttpSession session) {
@@ -332,5 +336,60 @@ public class MainController {
 		}
 		model.addAttribute("center", "storesales");
 		return "index";
+	}
+	
+	@RequestMapping("/coupon")
+	public String coupon(Model model) {
+		List<CouponDTO> list = null;
+		try {
+			list = couponservice.getall();
+			model.addAttribute("list", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("center", "coupon");
+		return "index";
+	}
+	
+	@RequestMapping("/deletecoupon")
+	public String deletecoupon(Model model, int couponid) {
+		try {
+			couponservice.remove(couponid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/coupon";
+	}	
+	
+	@RequestMapping("/regcoupon")
+	public String regcoupon(Model model) {
+		model.addAttribute("center", "regcoupon");
+		return "index";
+	}
+	
+	@RequestMapping("/regcouponimpl")
+	public String regcouponimpl(Model model, CouponDTO coupon) {
+		try {
+			couponservice.register(coupon);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/coupon";
+	}
+	
+	@RequestMapping("/updatecoupon")
+	public String updatecoupon(Model model) {
+		model.addAttribute("center", "updatecoupon");
+		return "index";
+	}
+	
+	@RequestMapping("/updatecouponimpl")
+	public String updatecouponimpl(Model model, CouponDTO coupon) {
+		try {
+			couponservice.modify(coupon);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/coupon";
 	}
 }

@@ -1,0 +1,59 @@
+<meta charset="utf-8">
+<style>
+.right-box {
+  float: right;
+}
+</style>
+<script>
+$(document).ready(function(){
+	$('#update_btn').click(function(){
+		$('#update_form').attr({
+			'enctype':'multipart/form-data',
+			'method':'post',
+			'action':'[[@{/updatecouponimpl}]]'
+		});
+		$('#update_form').submit();
+	});
+});
+
+</script>
+
+
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+</div>
+
+<!-- Detail Area -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">쿠폰 수정</h6>
+    </div>
+    <div class="card-body">
+       <form id="update_form">
+    	    <div class="form-group">
+		      <label for="couponid">쿠폰id:</label>
+		      <input type="number" class="form-control" id="couponid" name="couponid">
+		      <span id="ispan"></span>
+		    </div>
+   		    <div class="form-group">
+		      <label for="custid">고객id:</label>
+		      <input type="text" class="form-control" id="custid"  name="custid">
+		      <span id="ispan"></span>
+		    </div>
+		    <div class="form-group">
+		      <label for="couponname">쿠폰명:</label>
+		      <input type="text" class="form-control" id="couponname" name="couponname">
+		      <span id="ispan"></span>
+		    </div>
+		    <div class="form-group">
+		      <label for="discount">할인금액:</label>
+		      <input type="number" class="form-control" id="discount" name="discount">
+		    </div>
+		    <div class="right-box">
+		    <a id="update_btn" class="btn btn-default"><img th:src="@{/img/31287.png}" style="width:60px;"></a>
+		    </div>
+  		</form>
+    </div>
+</div>
