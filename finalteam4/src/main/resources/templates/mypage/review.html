@@ -1,267 +1,12 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <meta charset="utf-8">
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<link rel="stylesheet" th:href="@{/assets/css/common/styles.css}">
 
 <style>
-.navigation {
-	position: relative;
-}
-
-#wrapper ul li a:hover {
-	color: tomato;
-	font-weight: 600;
-}
-/* Sidebar */
-#sidebar-wrapper {
-	z-index: 1;
-	position: absolute;
-	width: 0;
-	height: 150%;
-	overflow-y: hidden;
-	opacity: 0.9;
-	transition: all .5s;
-	display: flex;
-	padding-left: 60px;
-}
-
-/* Main Content */
-#page-content-wrapper {
-	width: 100%;
-	padding: 15px;
-	transition: all 1.5s;
-}
-
-#menu-toggle {
-	transition: all 1.5s;
-	font-size: 20px;
-}
-/* Change the width of the sidebar to display it*/
-#wrapper.menuDisplayed #sidebar-wrapper {
-	width: 250px;
-}
-
-#wrapper.menuDisplayed #page-content-wrapper {
-	padding-left: 250px;
-}
-
-/* Sidebar styling */
-.sidebar-nav ul:hover li {
-	padding: 0;
-	list-style: none;
-	transition: all .5s;
-	width: 100%;
-	text-align: center;
-	display: block;
-}
-
-.sidebar-nav li {
-	line-height: 40px;
-	width: 100%;
-	transition: all .3s;
-	padding: 10px 0;
-}
-
-.sidebar-nav li a {
-	font-size: 15px;
-	color: #5d5d5d;
-	font-weight: 200;
-}
-
-.sidebar-nav li h4 {
-	font-size: 17px;
-	line-height: 26px;
-	font-weight: 800;
-	color: #303033;
-}
-
-.weather-card {
-	margin: 0px auto;
-	height: 180px;
-	width: 850px;
-	background: #fff;
-	box-shadow: 0 1px 38px rgba(0, 0, 0, 0.15), 0 5px 12px
-		rgba(0, 0, 0, 0.25);
-	overflow: hidden;
-}
-
-.weather-card .top {
-	position: relative;
-	height: 220px;
-	width: 100%;
-	overflow: hidden;
-	background: url("/img/mypage_recent.jpg") no-repeat;
-	background-size: cover;
-	background-position: center center;
-	text-align: center;
-	background-size: cover;
-}
-
-.weather-card .top .wrapper {
-	padding: 0px;
-	position: relative;
-	z-index: 1;
-	width: 50%;
-	float: right;
-}
-
-.weather-card .top .wrapper2 {
-	padding: 0px;
-	position: relative;
-	z-index: 1;
-	width: 50%;
-	float: left;
-}
-
-.weather-card .top .wrapper .mynav {
-	height: 10px;
-}
-
-.weather-card .top .wrapper .mynav .lnr {
-	color: #fff;
-	font-size: 20px;
-}
-
-.weather-card .top .wrapper .mynav .lnr-chevron-left {
-	display: inline-block;
-	float: left;
-}
-
-.weather-card .top .wrapper .mynav .lnr-cog {
-	display: inline-block;
-	float: right;
-}
-
-.weather-card .top .wrapper .heading {
-	margin-top: 10px;
-	font-size: 35px;
-	font-weight: 400;
-	color: #fff;
-}
-
-.weather-card .top .wrapper .location {
-	margin-top: 5px;
-	font-size: 20px;
-	color: #fff;
-}
-
-.weather-card .top .wrapper .temp {
-	margin-top: 20px;
-}
-
-.weather-card .top .wrapper .temp a {
-	text-decoration: none;
-	color: #fff;
-}
-
-.weather-card .top .wrapper .temp a .temp-type {
-	font-size: 85px;
-}
-
-.weather-card .top .wrapper .temp .temp-value {
-	display: inline-block;
-	font-size: 50px;
-	color: #fff;
-}
-
-.weather-card .top .wrapper .temp .deg {
-	display: inline-block;
-	font-size: 35px;
-	font-weight: 600;
-	color: #fff;
-	vertical-align: top;
-	margin-top: 10px;
-}
-
-.weather-card .top:after {
-	content: "";
-	height: 100%;
-	width: 100%;
-	display: block;
-	position: absolute;
-	top: 0;
-	left: 0;
-	background: rgba(0, 0, 0, 0.5);
-}
-
-.weather-card .top .wrapper2 .mynav {
-	height: 30px;
-}
-
-.weather-card .top .wrapper2 .mynav .lnr {
-	color: #fff;
-	font-size: 20px;
-}
-
-.weather-card .top .wrapper2 .mynav .lnr-chevron-left {
-	display: inline-block;
-	float: left;
-}
-
-.weather-card .top .wrapper2 .mynav .lnr-cog {
-	display: inline-block;
-	float: right;
-}
-
-.weather-card .top .wrapper2 .heading {
-	margin-top: 10px;
-	font-size: 35px;
-	font-weight: 400;
-	color: #fff;
-}
-
-.weather-card .top .wrapper2 .location {
-	margin-top: 20px;
-	font-size: 20px;
-	color: #fff;
-}
-
-.weather-card .top .wrapper2 .temp {
-	margin-top: 20px;
-}
-
-.weather-card .top .wrapper2 .temp a {
-	text-decoration: none;
-	color: #fff;
-}
-
-.weather-card .top .wrapper2 .temp a .temp-type {
-	font-size: 85px;
-}
-
-.weather-card .top .wrapper2 .temp .temp-value {
-	display: inline-block;
-	font-size: 50px;
-	color: #fff;
-}
-
-.weather-card .top .wrapper2 .temp .deg {
-	display: inline-block;
-	font-size: 35px;
-	font-weight: 600;
-	color: #fff;
-	vertical-align: top;
-	margin-top: 10px;
-}
-
-.review {
-	margin: 0px auto;
-	height: 220px;
-	width: 850px;
-	padding-top: 50px;
-}
-
-.my_tit {
-	position: relative;
-	padding-bottom: 10px;
-	border-bottom: 4px solid #000;
-}
-
-.my_tit span {
-	display: inline-block;
-	margin-left: 10px;
-	font-size: 18px;
-	font-weight: 400;
-}
-
 .row {
 	width: 850px;
 	display: flex;
@@ -282,96 +27,54 @@
 }
 </style>
 
+
+
 <script>
 	$(document).ready(function() {
-		const menu = document.querySelector('#menu-toggle')
-
-		$("#wrapper").toggleClass("menuDisplayed");
-		menu.style.visibility = "hidden";
+		/* const menu = document.querySelector('#menu-toggle') */
+		$("#menu-toggle").click(function(e) {
+			e.preventDefault();
+			$("#wrapper").toggleClass("menuDisplayed");
+			/* menu.style.visibility = "hidden"; */
+		});
 	});
 </script>
 
-<body>
-	<div id="wrapper" style="background-color: #fff; height: 1500px">
-		<!-- Sidebar -->
-		<div id="sidebar-wrapper">
-			<ul class="sidebar-nav">
-				<li><a th:text="${session.logincust.custname}"
-					style="padding: 20px 0 10px 0; font-size: 40px; font-weight: 700"></a></li>
-				<li><h4 href="#">나의 EAT & OUT 정보</h4></li>
-				<li><a
-					th:href="@{/mypage/order(id=${session.logincust.custid})}">테이블
-						조회</a></li>
-				<li><a
-					th:href="@{/mypage/review(id=${session.logincust.custid})}">나의
-						리뷰</a></li>
-				<li><a th:href="@{/wishlist(id=${session.logincust.custid})}">나의
-						위시리스트</a></li>
-				<li><h4 href="#">나의 계정설정</h4></li>
-				<li><a
-					th:href="@{/mypage/edit(id=${session.logincust.custid})}">회원정보수정</a></li>
-				<li><a href="#">회원등급</a></li>
-				<li><a href="#">쿠폰</a></li>
-				<li><h4 href="#">고객센터</h4></li>
-				<li><a href="#">1:1 문의내역</a></li>
-				<li><a href="#">공지사항</a></li>
-				<li><a href="#">FAQ</a></li>
-			</ul>
-		</div>
+</head>
 
-		<!-- Page Content -->
-		<div id="page-content-wrapper" style="background-color: #fff;">
-			<div class="container-fluid">
-				<div class="row2">
-					<div class="col-lg-12">
-						<a href="#" class="btn" id="menu-toggle"></a>
-						<div class="weather-card one"
-							th:with="list1 = ${session.list_one}">
-							<div class="top">
-								<div class="wrapper">
-									<div class="mynav"></div>
-									<h1 class="heading" th:text="${list1.storename}"></h1>
-									<h3 class="location" th:text="${list1.reservedate}"></h3>
-									<p class="temp">
-										<span class="temp-value" th:text="${session.banner_rsvdate}"></span>
-									</p>
-								</div>
-								<div class="wrapper2">
-									<div class="mynav"></div>
-									<h2 class="heading">가까운 예약</h2>
-									<h2 class="heading" th:text="'D' + ${session.banner_dday}"></h2>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="review">
-				<h3 class="my_tit">
-					리 뷰<span>소중한 리뷰 감사합니다.</span>
-				</h3>
-				<div class="row">
-					<div class="col-xl-3 col-lg-4 col-md-6 mb-4"
-						th:each="rv : ${review}" style="height: 500px; width: 276px">
-						<div class="bg-white rounded shadow-sm">
-							<img th:src="@{/storeimg/} + ${rv.storeimg}"
-								class="img-fluid card-img-top"
-								style="height: 300px; width: 250px">
-							<div class="p-4">
-								<h5>
-									<a href="#" class="text-dark" th:text="${rv.storename}"></a>
-								</h5>
-								<p class="small text-muted mb-0" th:text="${rv.revtext}"></p>
-								<div
-									class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
-									<p class="small">
-										<i class="star" style="padding-right: 45px">S t a r</i> <span
-											th:if="${rv.star == 1}">★ </span> <span
-											th:if="${rv.star == 2}">★ ★</span> <span
-											th:if="${rv.star == 3}">★ ★ ★</span> <span
-											th:if="${rv.star == 4}">★ ★ ★ ★</span> <span
-											th:if="${rv.star == 5}">★ ★ ★ ★ ★</span>
-									</p>
+<body>
+	<div id="wrapper" style="height: 1000px">
+		<th:block th:replace="mypage/fragment/sidebar :: sidebarFragment"></th:block>
+		<th:block th:replace="mypage/fragment/banner :: bannerFragment"></th:block>
+		<div id="page-content-wrapper">
+			<div class="container-fluid px-1 px-md-4 py-2 mx-auto">
+				<div class="row d-flex justify-content-center px-3">
+					<h3 class="my_tit">
+						리 뷰<span>소중한 리뷰 감사합니다.</span>
+					</h3>
+					<div class="row">
+						<div class="col-xl-3 col-lg-4 col-md-6 mb-4"
+							th:each="rv : ${review}" style="height: 500px; width: 276px">
+							<div class="bg-white rounded shadow-sm">
+								<img th:src="@{/storeimg/} + ${rv.storeimg}"
+									class="img-fluid card-img-top"
+									style="height: 300px; width: 250px">
+								<div class="p-4">
+									<h5>
+										<a href="#" class="text-dark" th:text="${rv.storename}"></a>
+									</h5>
+									<p class="small text-muted mb-0" th:text="${rv.revtext}"></p>
+									<div
+										class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+										<p class="small">
+											<i class="star" style="padding-right: 45px">S t a r</i> <span
+												th:if="${rv.star == 1}">★ </span> <span
+												th:if="${rv.star == 2}">★ ★</span> <span
+												th:if="${rv.star == 3}">★ ★ ★</span> <span
+												th:if="${rv.star == 4}">★ ★ ★ ★</span> <span
+												th:if="${rv.star == 5}">★ ★ ★ ★ ★</span>
+										</p>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -379,4 +82,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 </body>
+
+</html>

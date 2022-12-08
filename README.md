@@ -1,7 +1,7 @@
 # Eat & Out
-<img src="./finalteam4/src/main/resources/static/assets/images/eLogo.png" width="400" height="">
+<p align="center"><img src="./finalteam4/src/main/resources/static/assets/images/eLogo.png" width="400" height=""></p>
 
-- 팀명 : *Eat & Out*
+- 팀명 : `Eat & Out`
   - 팀장 : 고용훈
   - 팀원 : 김준기, 조여송, 박시연
 - 프로젝트 진행 : 2022.10.24 ~ 2022.12.16
@@ -12,16 +12,16 @@
 
 ## 프로젝트 정보
 1. 프로젝트 주제
-    - AI 플랫폼을 활용한 예약주문 서비스 웹 어플리케이션 개발
+    - `AI 플랫폼`을 활용한 예약주문 서비스 웹 어플리케이션 개발
 2. 프로젝트 목적(얘는 수정이 살짝 필요함)
-    - 제주도 모범음식점현황 데이터를 이용한 제주도내 식당/다이닝/카페의 메뉴들을 예약주문할 수 있는 웹 어플리케이션 구현
-      - 협업을 통해 반응형 웹사이트를 구현
-      - 맛집예약 웹사이트에 맞는 화면 디자인 및 DB설계
-      - 프레임워크를 이용한 동적인 화면 구현
-      - DBMS를 이용하여 DB를 구축하고 Spring Container와 연결
+    - `제주도 모범음식점현황 데이터`를 이용한 제주도내 `식당/다이닝/카페`의 메뉴들을 예약주문할 수 있는 웹 어플리케이션 구현
+      - `협업`을 통해 반응형 웹사이트를 구현
+      - 맛집예약 웹사이트에 맞는 `화면 디자인 및 DB설계`
+      - `프레임워크`를 이용한 동적인 화면 구현
+      - `DBMS`를 이용하여 DB를 구축하고 Spring Container와 연결
       - Java 개발도구와 IDE 사용
       - ERD Cloud와 Notion, Github을 사용한 협업 경험
-      - 식당 예약을 하는데 불편함을 개선하고 신뢰성있는 리뷰서비스 제공
+      - 식당 예약을 하는데 불편함을 개선하고 `신뢰성`있는 리뷰서비스 제공
 3. 프로젝트 기능 구현
    1. 로그인/로그아웃/회원가입
       1. 일반로그인
@@ -55,31 +55,77 @@
      - 관리자, 위시리스트, DB관리
 5. 개발환경 및 수행 도구
 
-|언어|웹|개발도구|데이터베이스|협업도구|프레임워크|API|
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-|Java|JavaScript|Eclipse|MySQL|GitHub|SpringBoot||
-||HTML5|||Notion|MyBatis||
-||CSS6|||GatherTown|||
-||JQuery||||||
-||AJAX||||||
+   - |언어|웹|개발도구|데이터베이스|협업도구|프레임워크|API|
+      |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+      |Java|JavaScript|Eclipse|MySQL|GitHub|SpringBoot|kakaologin|
+      ||HTML5|||Notion|MyBatis|Naverlogin|
+      ||CSS6|||GatherTown|||
+      ||JQuery||||||
+      ||AJAX||||||
 
 1. DB 설계(ERD와 sql을 첨부)
    ![](./finalteam4/src/main/resources/static/img/READMEimg/ERD.png)
 2. UI 설계(Figma사용)
 
-## 프로젝트 결과(스샷 및 동영상 넣기)
-1. index
+## 프로젝트 결과(스샷 및 gif 넣기)
+1. index   
+   - (index_fullpage.png삽입)
+   - index.html
+   - MainController.java
+   - `랜덤`으로 뿌려지는 맛집, `카테고리`별 맛집, `오늘의 추천` 맛집 순서로 화면에 출력되며
+   - 로그인을 하면 해당 계정이 위시리스트에 등록한 위시리스트 목록까지 나옵니다.
+   - 컨트롤러의 대부분도 페이지 이동에 관련된 기능뿐입니다.
 2. 회원가입
+   - (signup.png 삽입)
+   - signup.html , signupok.html , signupfail.html
+   - SignupController.java , AController.java
+   - 쉽게 회원가입을 위해 id, password, name, Phone Number, Birth의 정보만 입력
+   - ajax를 이용하여 `/checkid`를 발동하여 비동기적으로 id중복확인
 3. 로그인
    1. 일반로그인
+      - (login.png 삽입)
+      - login.html , loginfail.html
+      - LoginController.java
+      - `입력받은 custid`값을 DB에서 조회하고, `입력받은 pwd`와 `DB에서 조회한 custid의 pwd`가 일치하는지 `equals()`로 비교하여 일치하면 session에 저장하여 로그인을 지속시키고, 일치하지않으면 loginfail.html로 보내버립니다.
    2. 카카오로그인
+      - (kakaologin.png 삽입)
+      - KakaoController.java
+      - 참고자료 https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api
+      - kakaologinAPI의 `REST API방식`을 적용하였습니다. 카카오로그인 버튼을 누르면 GET/oauth/authorize를 통해 카카오계정 로그인 요청을 하고, 카카오 계정 로그인을하면 Redirect URL로 인가코드가 전달이 됩니다.
+      - 인가코드를 받으면 `kakao Auth서버`로 인가코드가 전달이 되어 토큰을 받게 됩니다.
+      - 해당 토큰을 발급받고 사용자 정보가 `Object형식`으로 내려오게 되고 필요한 데이터를 뽑아서 사용하면 됩니다.
+      - `주의할 점`은 Redirect주소를 로그인하려는 IP를 사용해야 정상적인 작동이 됩니다.
+      - 또한 Object형식으로 내려오므로 사용자 정보를 제대로 사용하기 위해서는 `형변환`을 해주어야 올바르게 사용이 가능합니다.
+      - 저희조는 사용자 정보를 register하는 과정에서 `사용자id값 뒤에 1`을 붙여서 다른 소셜로그인과 겹치지않도록 구분을 해놓았습니다.(카카오계정id와 네이버계정id가 일치하는 경우가 있기때문)
    3. 네이버로그인
+      - (Naverlogin.png 삽입) 
+      - NaverController.java
+      - 참고자료 https://developers.naver.com/docs/common/openapiguide/apilist.md
+      - 네이버의 로그인 방식 `오픈API방식`을 적용하였습니다. 네이버로그인 버튼을 누르면 `GET/POST로 oauth2.0`을 통해 인증을 요청하고, 접근토큰을 발급이 되어 `JSON형식`으로 데이터가 내려오게 되고 
+      - 마찬가지로 Redirect 주소를 로그인하려는 IP를 사용해야 정상적인 작동이 됩니다.
+      - 저희조는 사용자 정보를 register하는 과정에서 `사용자id값 뒤에 2`을 붙여서 다른 소셜로그인과 겹치지않도록 구분을 해놓았습니다.(카카오계정id와 네이버계정id가 일치하는 경우가 있기때문)
    4. 구글로그인
+      - (Googlelogin.png 삽입) 
+      - OauthController.java
 4. 검색
-   1. 카테고리 검색
-   2. 키워드 검색
-5. 디테일
-   1. 
+   - (catesearch.png, search.png 삽입)
+   - index.html , SearchController.java
+   - 기본적으로 input text로 `/searchimpl`로 넘어가는 방식입니다.
+   - `select`을 이용하여 카테고리별로 검색이 가능하도록 구현했습니다. 디폴트는 전체 검색입니다.
+   - 편하게 검색을 하기위해 `onkeyup="enterkey"` function을 주어서 엔터로 `input text`가 넘어가도록 했다.
+   - 검색을 하면 `search.html`로 넘어가고 입력한 text에 맞게 DB를 조회하여 출력해 준다
+   - 주의할 점은 템플릿에 따라 `더미 값`을 주어야 엔터가 발동한다. 아래는 주의할 점에 대한 예시입니다
+```html
+<input id="search_input" name="txt" type="text" placeholder="맛집검색하러가기" onkeyup="enterkey()"> //실제 input
+   
+<input type="text" style="display:none" onkeyup="enterkey()"> // 더미값
+``` 
+5. 스토어디테일
+   - (detail.png 삽입)
+   - storedetail
+6. 예약
+   - (reserve.png , reservesuccess.png 삽입)
+7. 마이페이지
 
 ## 트러블슈팅(마지막날까지 추가하기)
 - 고용훈
@@ -140,4 +186,7 @@
   - admin 메인 페이지에 chart 뿌리는 과정 중 $ajax가 정의되지 않는 문제 발생 →
 
 ## 고찰
-- 
+- (작성예정)
+
+## 후기
+- (작성예정)

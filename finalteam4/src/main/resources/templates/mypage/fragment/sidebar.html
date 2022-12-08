@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+</head>
+
+<body>
+	<!-- Sidebar -->
+	<div th:fragment="sidebarFragment" id="sidebar-wrapper">
+		<ul class="sidebar-nav">
+			<h2 style="margin: 30px 0 20px"
+					th:text="${session.logincust.custname}+' 님'"></h2>
+			<h4 href="#">나의 EAT & OUT 정보</h4>
+			<li><a
+				th:href="@{/mypage/order(id=${session.logincust.custid})}">테이블
+					조회</a></li>
+			<li><a
+				th:href="@{/mypage/review(id=${session.logincust.custid})}">나의
+					리뷰</a></li>
+			<li><a th:href="@{/wishlist(id=${session.logincust.custid})}">나의
+					위시리스트</a></li>
+			<h4>나의 계정설정</h4>
+			<li><a th:href="@{/mypage/edit(id=${session.logincust.custid})}">회원정보수정</a></li>
+			<li><a href="#">회원등급</a></li>
+			<li><a href="#">쿠폰</a></li>
+			<h4>고객센터</h4>
+			<li><a th:href="@{/mypage/question}">1:1 문의내역</a></li>
+			<li><a href="#">공지사항</a></li>
+			<li><a href="#">FAQ</a></li>
+		</ul>
+	</div>
+</body>

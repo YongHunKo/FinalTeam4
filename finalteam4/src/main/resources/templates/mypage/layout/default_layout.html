@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta charset="UTF-8" />
+
+<!-- config fragment 사용 -->
+<th:block th:replace="mypage/fragment/config :: configFragment"></th:block>
+
+</head>
+
+<body>
+	<div id="wrapper" style="height: 1000px">
+		<!-- Sidebar -->
+		<div th:replace="mypage/fragments/sidebar :: sidebarFragment"></div>
+	</div>
+</body>
