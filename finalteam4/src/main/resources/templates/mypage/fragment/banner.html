@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+</head>
+
+<body>
+	<div th:fragment="bannerFragment" id="page-content-wrapper">
+		<a href="#" class="btn" id="menu-toggle"><span
+			class="glyphicon glyphicon-menu-hamburger">></span></a>
+		<div class="container-fluid px-1 px-md-4 py-2 mx-auto">
+			<div class="row d-flex justify-content-center px-3">
+				<div class="card" th:with="list1 = ${session.list_one}">
+					<h2 class="ml-auto mr-4 mt-2 mb-0" style="color: #fff">가까운 예약</h2>
+					<p class="ml-auto mr-4 mb-0 med-font" th:text="${list1.storename}">Snow</p>
+					<h1 class="ml-auto mr-4 large-font" th:text="'D' + ${session.banner_dday}">-20&#176;</h1>
+					<p class="time-font mb-0 ml-4 mt-auto" th:text="${session.banner_rsvdate}"></p>
+					<p class="ml-4 mb-4 mt-1" th:text="${list1.reservedate}" style="color: #fff"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>

@@ -1,0 +1,578 @@
+<meta charset="utf-8">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<style>
+.navigation {
+	position: relative;
+}
+
+/* Sidebar */
+#sidebar-wrapper {
+	z-index: 1;
+	position: absolute;
+	width: 0;
+	height: 150%;
+	overflow-y: hidden;
+	opacity: 0.9;
+	transition: all .5s;
+	display: flex;
+	padding-left: 60px;
+}
+
+#wrapper ul li a:hover {
+	color: tomato;
+	font-weight: 600;
+}
+
+/* Main Content */
+#page-content-wrapper {
+	width: 100%;
+	padding: 15px;
+	transition: all 1.5s;
+}
+
+#menu-toggle {
+	transition: all 1.5s;
+	font-size: 20px;
+}
+/* Change the width of the sidebar to display it*/
+#wrapper.menuDisplayed #sidebar-wrapper {
+	width: 250px;
+}
+
+#wrapper.menuDisplayed #page-content-wrapper {
+	padding-left: 250px;
+}
+
+/* Sidebar styling */
+.sidebar-nav ul:hover li {
+	padding: 0;
+	list-style: none;
+	transition: all .5s;
+	width: 100%;
+	text-align: center;
+	display: block;
+}
+
+.sidebar-nav li {
+	line-height: 40px;
+	width: 100%;
+	transition: all .3s;
+	padding: 10px 0;
+}
+
+.sidebar-nav li a {
+	font-size: 15px;
+	color: #5d5d5d;
+	font-weight: 200;
+}
+
+.sidebar-nav li h4 {
+	font-size: 17px;
+	line-height: 26px;
+	font-weight: 800;
+	color: #303033;
+}
+
+.weather-card {
+	margin: 0px auto;
+	height: 150px;
+	width: 850px;
+	background: #fff;
+	overflow: hidden;
+}
+
+.weather-card .top {
+	position: relative;
+	height: 220px;
+	width: 100%;
+	overflow: hidden;
+	background: url("/img/mypage_recent.jpg") no-repeat;
+	background-size: cover;
+	background-position: center center;
+	text-align: center;
+	background-size: cover;
+}
+
+.weather-card .top .wrapper {
+	padding: 0px;
+	position: relative;
+	z-index: 1;
+	width: 50%;
+	float: right;
+}
+
+.weather-card .top .wrapper2 {
+	padding: 0px;
+	position: relative;
+	z-index: 1;
+	width: 50%;
+	float: left;
+}
+
+.weather-card .top .wrapper .mynav {
+	height: 20px;
+}
+
+.weather-card .top .wrapper .mynav .lnr {
+	color: #fff;
+	font-size: 20px;
+}
+
+.weather-card .top .wrapper .mynav .lnr-chevron-left {
+	display: inline-block;
+	float: left;
+}
+
+.weather-card .top .wrapper .mynav .lnr-cog {
+	display: inline-block;
+	float: right;
+}
+
+.weather-card .top .wrapper .heading {
+	font-size: 35px;
+	font-weight: 400;
+	color: #fff;
+}
+
+.weather-card .top .wrapper .location {
+	margin-top: 5px;
+	font-size: 20px;
+	color: #fff;
+}
+
+.weather-card .top .wrapper .temp {
+	margin-top: 10px;
+}
+
+.weather-card .top .wrapper .temp a {
+	text-decoration: none;
+	color: #fff;
+}
+
+.weather-card .top .wrapper .temp a .temp-type {
+	font-size: 85px;
+}
+
+.weather-card .top .wrapper .temp .temp-value {
+	display: inline-block;
+	font-size: 35px;
+	color: #fff;
+}
+
+.weather-card .top .wrapper .temp .deg {
+	display: inline-block;
+	font-size: 35px;
+	font-weight: 600;
+	color: #fff;
+	vertical-align: top;
+	margin-top: 10px;
+}
+
+.weather-card .top:after {
+	content: "";
+	height: 100%;
+	width: 100%;
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.weather-card .top .wrapper2 .mynav {
+	height: 20px;
+}
+
+.weather-card .top .wrapper2 .mynav .lnr {
+	color: #fff;
+	font-size: 20px;
+}
+
+.weather-card .top .wrapper2 .mynav .lnr-chevron-left {
+	display: inline-block;
+	float: left;
+}
+
+.weather-card .top .wrapper2 .mynav .lnr-cog {
+	display: inline-block;
+	float: right;
+}
+
+.weather-card .top .wrapper2 .heading {
+	margin-top: 10px;
+	font-size: 35px;
+	font-weight: 400;
+	color: #fff;
+}
+
+.weather-card .top .wrapper2 .location {
+	margin-top: 20px;
+	font-size: 20px;
+	color: #fff;
+}
+
+.weather-card .top .wrapper2 .temp {
+	margin-top: 20px;
+}
+
+.weather-card .top .wrapper2 .temp a {
+	text-decoration: none;
+	color: #fff;
+}
+
+.weather-card .top .wrapper2 .temp a .temp-type {
+	font-size: 85px;
+}
+
+.weather-card .top .wrapper2 .temp .temp-value {
+	display: inline-block;
+	font-size: 50px;
+	color: #fff;
+}
+
+.weather-card .top .wrapper2 .temp .deg {
+	display: inline-block;
+	font-size: 35px;
+	font-weight: 600;
+	color: #fff;
+	vertical-align: top;
+	margin-top: 10px;
+}
+
+.card_border {
+	border-right: solid white;
+}
+
+.contents {
+	margin: 0px auto;
+	height: 130px;
+	width: 850px;
+	padding-top: 50px;
+}
+
+.my_tit {
+	position: relative;
+	padding-bottom: 10px;
+	border-bottom: 4px solid #000;
+}
+
+.my_tit span {
+	display: inline-block;
+	margin-left: 10px;
+	font-size: 18px;
+	font-weight: 400;
+}
+
+.btn_next {
+	padding-top: 30px;
+	border-top: 1px solid #d4d4d4;
+	text-align: center;
+}
+
+.btn_next button {
+	width: 300px;
+	height: 50px;
+	margin: 0 auto;
+	background: #000;
+}
+
+body {
+	background: #eee;
+}
+
+.card2 {
+	width: 170px;
+	padding: 5px;
+	border-radius: 20px;
+	border: none;
+	color: #fff;
+	height: 170px;
+	position: relative;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	cursor : pointer;
+}
+
+.card2 h1 {
+	font-size: 25px;
+	margin-bottom: 0px;
+}
+
+.mt-4 {
+	margin-top: 10px;
+}
+</style>
+<script>
+	$(document).ready(function() {
+		const menu = document.querySelector('#menu-toggle')
+
+		/* $("#menu-toggle").click(function(e) {
+			e.preventDefault(); */
+		$("#wrapper").toggleClass("menuDisplayed");
+		menu.style.visibility = "hidden";
+
+	});
+
+	function addcoupon(input) {
+		var form = $(input).serialize();
+		console.log(input);
+		console.log(form);
+
+		$.ajax({
+			url : "/mypage/addcoupon",
+			type : "GET",
+			data : form,
+			success : function(date) {
+				alert("쿠폰발급이 완료되었습니다.");
+			}
+		});
+	}
+</script>
+<div id="wrapper" style="background-color: #fff; height: 200%">
+	<!-- Sidebar -->
+	<div id="sidebar-wrapper">
+		<ul class="sidebar-nav">
+			<li><a th:if="${session.logincust.custname!=null}"
+				th:text="${session.logincust.custname}+' 님'"
+				style="padding: 20px 0 10px 0; font-size: 40px; font-weight: 600"></a></li>
+			<li><h4 href="#">나의 EAT & OUT 정보</h4></li>
+			<li><a
+				th:href="@{/mypage/order(id=${session.logincust.custid})}">테이블
+					조회</a></li>
+			<li><a
+				th:href="@{/mypage/review(id=${session.logincust.custid})}">나의
+					리뷰</a></li>
+			<li><a th:href="@{/wishlist(id=${session.logincust.custid})}">나의
+					위시리스트</a></li>
+			<li><h4 href="#">나의 계정설정</h4></li>
+			<li><a th:href="@{/mypage/edit(id=${session.logincust.custid})}">회원정보수정</a></li>
+			<li><a href="#">회원등급</a></li>
+			<li><a href="#">쿠폰</a></li>
+			<li><h4 href="#">고객센터</h4></li>
+			<li><a th:href="@{/mypage/question}">1:1 문의내역</a></li>
+			<li><a href="#">공지사항</a></li>
+			<li><a href="#">FAQ</a></li>
+		</ul>
+	</div>
+
+	<!-- Page Content -->
+	<div id="page-content-wrapper" style="background-color: #fff;">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<a href="#" class="btn" id="menu-toggle"></a>
+
+					<div class="weather-card one" th:if="${session.list_one == null}">
+						<div class="top">
+							<h2 style="color: white; padding-top: 50px">최근 예약된 테이블이
+								없습니다.</h2>
+						</div>
+					</div>
+
+					<div class="weather-card one" th:if="${session.list_one != null}"
+						th:with="list1 = ${session.list_one}">
+						<div class="top">
+							<div class="wrapper">
+								<div class="mynav"></div>
+
+								<h1 class="heading" th:text="${list1.storename}"></h1>
+								<h3 class="location" th:text="${list1.reservedate}"></h3>
+
+								<p class="temp">
+									<span class="temp-value" th:text="${session.banner_rsvdate}"></span>
+								</p>
+							</div>
+							<div class="wrapper2">
+								<div class="mynav"></div>
+								<div class="card_border">
+									<h2 class="heading">가까운 예약</h2>
+									<h2 class="heading" th:text="'D' + ${session.banner_dday}"></h2>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div class="contents">
+			<form id="reconfirm_form">
+				<h3 class="my_tit">
+					마이페이지<span></span>
+				</h3>
+			</form>
+		</div>
+		<div class="container-fluid" style="width: 850px">
+			<div class="level" style="display: flex">
+				<div class="col-12 col-md-4 col-sm-12 col-xs-12">
+					<div class="card p-4">
+
+						<div class="d-flex">
+							<h6 class="flex-grow-1">Eat & Out</h6>
+						</div>
+						<div class="d-flex flex-column temp mt-5 mb-3">
+							<h6>내 등급</h6>
+							<h1 th:if="${session.logincust.lv} == 'orange'"
+								class="mb-0 font-weight-bold" id="heading"
+								th:style="${'color: orange'}" th:text="${session.logincust.lv}"></h1>
+							<h1 th:if="${session.logincust.lv} == 'yellow'"
+								class="mb-0 font-weight-bold" id="heading"
+								th:style="${'color: yellow'}" th:text="${session.logincust.lv}"></h1>
+							<h1 th:if="${session.logincust.lv} == 'green'"
+								class="mb-0 font-weight-bold" id="heading"
+								th:style="${'color: green'}" th:text="${session.logincust.lv}"></h1>
+							<span class="small grey">Level</span>
+						</div>
+					</div>
+				</div>
+				<div class="card mb-4"
+					style="margin-left: 20px; width: 80%; height: 231px">
+					<div class="card-body p-5">
+						<h6 style="margin-bottom: 20px">다음 레벨까지</h6>
+						<h6></h6>
+						<p th:if="${session.logincust.lv} == 'green'"
+							class="font-italic text-muted"
+							style="padding: 5px; margin-left: 85%">10만원</p>
+						<p th:if="${session.logincust.lv} == 'yellow'"
+							class="font-italic text-muted"
+							style="padding: 5px; margin-left: 85%">30만원</p>
+						<p th:if="${session.logincust.lv} == 'orange'"
+							class="font-italic text-muted"
+							style="padding: 5px; margin-left: 85%">50만원</p>
+
+						<!-- Labeled progress bar-->
+						<div th:if="${session.logincust.lv} == 'green'"
+							class="progress rounded-pill">
+							<div id="progressbar" role="progressbar" aria-valuenow="55"
+								aria-valuemin="0" aria-valuemax="100"
+								class="progress-bar rounded-pill"
+								th:style="|width: ${#numbers.formatDecimal(totalpay / 100000.0 * 100.0, 2, 1)}%; background-color: #00c2fe;|"
+								th:text="${#numbers.formatDecimal(totalpay / 100000.0 * 100.0, 2, 1)} + '%'"></div>
+						</div>
+						<div th:if="${session.logincust.lv} == 'yellow'"
+							class="progress rounded-pill">
+							<div id="progressbar" role="progressbar" aria-valuenow="55"
+								aria-valuemin="0" aria-valuemax="100"
+								class="progress-bar rounded-pill"
+								th:style="|width: ${#numbers.formatDecimal(totalpay / 300000.0 * 100.0, 2, 1)}%; background-color: #00c2fe;|"
+								th:text="${#numbers.formatDecimal(totalpay / 300000.0 * 100.0, 2, 1)} + '%'"></div>
+						</div>
+						<div th:if="${session.logincust.lv} == 'orange'"
+							class="progress rounded-pill">
+							<div id="progressbar" role="progressbar" aria-valuenow="55"
+								aria-valuemin="0" aria-valuemax="100"
+								class="progress-bar rounded-pill"
+								th:style="|width: ${#numbers.formatDecimal(totalpay / 500000.0 * 100.0, 2, 1)}%; background-color: #00c2fe;|"
+								th:text="${#numbers.formatDecimal(totalpay / 500000.0 * 100.0, 2, 1)} + '%'"></div>
+						</div>
+						<span style="padding: 10px" class="small grey">최근 6개월간의
+							이용내역</span>
+					</div>
+				</div>
+			</div>
+
+			<div style="display: flex; width: 100%;">
+				<div class="d-flex align-items-center container">
+					<div class="d-flex card2 text-center"
+						style="background: url('/img/white_noun.jpg');">
+						<h1 style="color: black">coming</h1>
+						<h4 style="color: black">soon</h4>
+					</div>
+				</div>
+				<div class="d-flex align-items-center container">
+					<div class="d-flex card2 text-center"
+						style="background: url('/img/aewol.jpeg');">
+						<form id="levelup" onclick="addcoupon(this)">
+							<h1 style="color: gray">Level Up</h1>
+							<h4 style="color: gray">Coupon</h4>
+							<span class="d-block">1만원 할인</span><span class="d-block">-10000</span>
+							<div class="mt">
+								<input type="hidden" name="custid"
+									th:value="${session.logincust.custid}"> <input
+									type="hidden" name="couponname" value="level up"> <input
+									type="hidden" name="discount" value="10000"> <input
+									type="hidden" name="used" value="false"> <small>With
+									Code : eatnout127</small>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="d-flex align-items-center container">
+					<div class="d-flex card2 text-center"
+						style="background: url('/img/coupon.jpg');">
+						<form id="holiday" onclick="addcoupon(this)">
+							<h1 style="color: #D5D5D5">Holiday</h1>
+							<h4 style="color: #D5D5D5">Coupon</h4>
+							<span class="d-block">5천원 할인</span><span class="d-block">-5000</span>
+							<div class="mt">
+								<input type="hidden" name="custid"
+									th:value="${session.logincust.custid}"> <input
+									type="hidden" name="couponname" value="Holiday"> <input
+									type="hidden" name="discount" value="5000"> <input
+									type="hidden" name="used" value="false"> <small>With
+									Code : holiday5000</small>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="d-flex align-items-center container"
+				th:if="${session.logincust.lv == 'orange'}">
+				<div class="d-flex card2 text-center" th:if="${session.logincust.lv == 'orange'}" style="background: url('/img/orange.jpg');">
+					<form id="orange" onclick="addcoupon(this)">
+						<h1 style="color: white">Orange</h1>
+						<h4 style="color: white">Coupon</h4>
+						<span class="d-block">2만원 할인</span><span class="d-block">-20000</span>
+						<div class="mt">
+							<input type="hidden" name="custid"
+								th:value="${session.logincust.custid}"> <input
+								type="hidden" name="couponname" value="Orange"> <input
+								type="hidden" name="discount" value="20000"> <input
+								type="hidden" name="used" value="false"> <small>With
+								Code : orangeLV</small>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="d-flex align-items-center container"
+				th:if="${session.logincust.lv == 'yellow'}">
+				<div class="d-flex card2 text-center"
+					style="background: url('/img/yellow.jpeg');">
+					<form id="yellow" onclick="addcoupon(this)">
+						<h1 style="color: white">Yellow</h1>
+						<h4 style="color: white">Coupon</h4>
+						<span class="d-block">1.5만원 할인</span><span class="d-block">-15000</span>
+						<div class="mt">
+							<input type="hidden" name="custid"
+								th:value="${session.logincust.custid}"> <input
+								type="hidden" name="couponname" value="Yellow"> <input
+								type="hidden" name="discount" value="15000"> <input
+								type="hidden" name="used" value="false"> <small>With
+								Code : yellowLV</small>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="d-flex align-items-center container"
+				th:if="${session.logincust.lv == 'green'}">
+				<div class="d-flex card2 text-center"
+					style="background: url('/img/green.png');">
+					<form id="green" onclick="addcoupon(this)">
+						<h1 style="color: white">Green</h1>
+						<h4 style="color: white">Coupon</h4>
+						<span class="d-block">1만원 할인</span><span class="d-block">-10000</span>
+						<div class="mt">
+							<input type="hidden" name="custid"
+								th:value="${session.logincust.custid}"> <input
+								type="hidden" name="couponname" value="Green"> <input
+								type="hidden" name="discount" value="10000"> <input
+								type="hidden" name="used" value="false"> <small>With
+								Code : greenLV</small>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
