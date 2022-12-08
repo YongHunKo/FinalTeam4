@@ -4432,6 +4432,7 @@ p {
             align-items: center;
             top:84%;
             width:65%;
+            height : 26px;
         }
         /* 배너 컨테이너 */
         .rollingbanner{

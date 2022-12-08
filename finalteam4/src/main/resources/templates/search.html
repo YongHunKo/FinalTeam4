@@ -124,6 +124,7 @@
 		padding:6px 24px;
 		text-decoration:none;
 		text-shadow:0px 1px 0px #ffffff;
+		position:relative;
 	}
 	.myButton:hover {
 		background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
@@ -132,6 +133,10 @@
 	.myButton:active {
 		position:relative;
 		top:1px;
+	}
+	.pricebutton {
+		position:relative;
+		z-index:4;
 	}
 
 
@@ -164,7 +169,7 @@ $(document).ready(function(){
 <body>
 
   <div class="container" style="background:#fff;">
-  	<div class= "button">
+  	<div class= "pricebutton">
  		<a class="myButton" id="desc">높은가격순</a>
   		<a class="myButton" id="asc">낮은가격순</a>
   		<h4 id="keyword" th:text="${keyword}" style="display:none"></h4>
