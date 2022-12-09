@@ -57,11 +57,13 @@
 
    - |언어|웹|개발도구|데이터베이스|협업도구|프레임워크|API|
       |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-      |Java|JavaScript|Eclipse|MySQL|GitHub|SpringBoot|kakaologin|
+      |Java|JavaScript|Eclipse|MySQL|GitHub|SpringBoot|Kakaologin|
       ||HTML5|||Notion|MyBatis|Naverlogin|
       ||CSS6|||GatherTown||NaverOCR|
       ||JQuery|||||NaverChatbot|
-      ||AJAX|||||import|
+      ||AJAX|||||Import|
+      |||||||Kakao link|
+      |||||||Kakao Map|
 
 6. DB 설계(ERD와 sql을 첨부)
    ![](./finalteam4/src/main/resources/static/img/READMEimg/ERD.png)
@@ -122,7 +124,34 @@
 ``` 
 5. 스토어디테일
    - (detail.png 삽입)
-   - storedetail
+   - storedetail , StoreController.java , AController.java
+   - search에서 검색된 메뉴를 누르면 `storedetail.html`로 이동하게됩니다.
+   - `해당 메뉴의 storeid`를 통해 `/storedetail`로 넘어가고 컨트롤러에서 설정한 모델에서 원하는 데이터를 출력해줍니다.
+   - 컨트롤러에서 넘겨준 데이터를 토대로 `Kakao map`을 사용하여 가게의 위치, 상호명, 주소를 지도에 띄워줍니다. 
+   - `collapse`를 사용하여 가게의 세부 데이터들을 출력하여 `매장소개, 영업시간, 예약상황, 매장번호, 공유하기`등을 이용할 수 있습니다.
+   - `전화버튼`을 누르면 실제로 전화를 할 수 있도록 구현했습니다.
+   - 환급정책 문구에 `체크박스`를 넣어서 체크를 해야만 `예약버튼이 활성화` 되도록하였습니다.
+   - 위시리스트 버튼을 누르면 `/insertwishlist`로 넘어가서 위시리스트에 추가됩니다.
+   - 예약 버튼을 누르면 `/addcart`로 넘어가서 `selectcart`에 `custid`를 조회하여 해당 값이 존재하면 `delectcart`를 하여 `해당custid의 cart`를 초기화 해줍니다. 
+   - `해당 값이 존재하지않으면` detail의 데이터들이 cart에 `regist`합니다.
+   - `/addcart`가 실행된 후 `0.5초` 뒤 `/reserveimpl`로 넘어가게 됩니다. 0.5초의 timeout을 준 이유는 `ajax`와 `location`이 동시에 실행되면 `일부의 데이터`만 넘어가기 때문입니다.
+   - ```html	$('#reserve_btn').click(function() {
+			var storeid = $('#storeid').text();
+			var custid = $('#custid').text();
+			$.ajax({
+				url : '[[@{/addcart}]]',
+				data : {
+					'custid' : custid,
+					'storeid' : storeid,
+					'cnt' : 0
+				}
+			})
+			var timeout = function() {
+				location.href = "[[@{/reserveimpl?custid=}]]" + custid+"&storeid="+storeid;
+			}
+			setTimeout(timeout, 500);
+		});
+      ```
 6. 예약
    - (reserve.png , reservesuccess.png 삽입)
 7. 마이페이지
