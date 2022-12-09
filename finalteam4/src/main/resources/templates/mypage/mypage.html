@@ -294,6 +294,12 @@
 							<h1 th:if="${session.logincust.lv} == 'orange'"
 								class="mb-0 font-weight-bold" id="heading"
 								th:style="${'color: orange'}" th:text="${session.logincust.lv}"></h1>
+								<h1 th:if="${session.logincust.lv} == 'green'"
+								class="mb-0 font-weight-bold" id="heading"
+								th:style="${'color: green'}" th:text="${session.logincust.lv}"></h1>
+								<h1 th:if="${session.logincust.lv} == 'yellow'"
+								class="mb-0 font-weight-bold" id="heading"
+								th:style="${'color: yellow'}" th:text="${session.logincust.lv}"></h1>
 							<span class="small grey">구매금액</span> <span class="small grey"
 								th:text="${totalpay} + '원'"></span>
 						</div>

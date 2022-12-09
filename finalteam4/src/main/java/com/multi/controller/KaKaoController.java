@@ -84,7 +84,7 @@ public class KaKaoController {
 	    	}
 	    }else {
 	    	try {
-	    		custservice.register(new CustDTO(email+"1", "1", nickname, null, null, null, null,profile));
+	    		custservice.register(new CustDTO(email+"1", "1", nickname, null, null, null, "orange",profile));
 	    		session.setAttribute("logincust", custservice.get(email+"1"));
 	    	} catch (Exception e) {
 	    		e.printStackTrace();
