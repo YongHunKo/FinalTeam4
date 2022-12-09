@@ -73,15 +73,14 @@
 
 ## 프로젝트 결과(스샷 및 gif 넣기)
 ### index   
-   - (index_fullpage.png삽입)
+   - ![](./finalteam4/src/main/resources/static/img/READMEimg/index_fullpage2.png)
    - index.html
    - MainController.java
    - `랜덤`으로 뿌려지는 맛집, `카테고리`별 맛집, `오늘의 추천` 맛집 순서로 화면에 출력되며
    - 로그인을 하면 해당 계정이 위시리스트에 등록한 위시리스트 목록까지 나옵니다.
    - 컨트롤러의 대부분도 페이지 이동에 관련된 기능뿐입니다.
 ### 회원가입
-   - (signup.png 삽입)
-   - signup.html , signupok.html , signupfail.html
+   - ![](./finalteam4/src/main/resources/static/img/READMEimg/signup.JPG)
    - SignupController.java , AController.java
    - 쉽게 회원가입을 위해 id, password, name, Phone Number, Birth의 정보만 입력
    - ajax를 이용하여 `/checkid`를 발동하여 비동기적으로 id중복확인
@@ -130,6 +129,7 @@
       
 ### 검색
    - ![](./finalteam4/src/main/resources/static/img/READMEimg/search.JPG)
+   - ![](./finalteam4/src/main/resources/static/img/READMEimg/search_keyword.png)
    - index.html , SearchController.java
    - 기본적으로 input text로 `/searchimpl`로 넘어가는 방식입니다.
    - `select`을 이용하여 카테고리별로 검색이 가능하도록 구현했습니다. 디폴트는 전체 검색입니다.
@@ -177,14 +177,14 @@ $('#reserve_btn').click(function() {
    - ![](./finalteam4/src/main/resources/static/img/READMEimg/reserve_coupon.png)
    - ![](./finalteam4/src/main/resources/static/img/READMEimg/reservesuccess.png)
    - reserve.html , ReserveController
-   - /addcart된 데이터가 reserveimpl을 통해 모델에 저장되어 reserve.html에 뿌려집니다.
-   - 메뉴의 수량 변경은 동기적으로 수정버튼을 통해 /update로 넘어가 수량이 변경되고, 변경 후에 totalprice가 바뀝니다.
-   - datetimepicker를 사용하여 날짜와 시간대를 선택하게 하였습니다.
-   - 쿠폰을 적용시켜 결제 금액을 할인받을 수 있습니다.
-   - 예약하기 버튼을 누르면 첫번째 admin의 웹소켓과 연결이 됩니다. 두번째 import의 결제API가 실행되어 결제가 진행이 됩니다.
-   - 결제가 성공적으로 진행되면 /reserveimpl2로 데이터가 넘어가고 cart데이터를 토대로 orderlist와 reserve에 regist 후 해당 cart데이터를 delete시킵니다. regist 시킨 데이터는 reservesuccess로 넘깁니다.
-   - 결제가 끝나고 reservesuccess.html로 넘어가면 웹소켓으로 연결된 admin계정에 예약알림 메시지가 넘어가고 고객에게는 카카오링크api가 작동하여 카카오톡으로 메시지를 보냅니다.
-   - 주의사항 저희 조에서 사용한 datetimepicker는 php기반으로 dateformat이 다릅니다. 따라서 java기반의 dateformat으로 바꿔 사용해야 합니다.
+   - `/addcart`된 데이터가 `/reserveimpl`을 통해 모델에 저장되어 `reserve.html`에 뿌려집니다.
+   - 메뉴의 수량 변경은 동기적으로 `수정버튼`을 통해 `/update`로 넘어가 수량이 변경되고, 변경 후에 `totalprice`가 바뀝니다.
+   - `datetimepicker`를 사용하여 `날짜와 시간대`를 선택하게 하였습니다.
+   - `쿠폰`을 적용시켜 결제 금액을 할인받을 수 있습니다.
+   - `예약하기 버튼`을 누르면 admin의 `웹소켓`과 연결이 되면서 두번째 import의 `결제API`가 실행되어 결제가 진행이 됩니다.
+   - 결제가 성공적으로 진행되면 `/reserveimpl2`로 데이터가 넘어가고 `cart데이터`를 토대로 `orderlist`와 `reserve`에 `regist` 후 해당 `cart데이터`를 `delete`시킵니다. `regist` 시킨 데이터는 `/reservesuccess`로 넘깁니다.
+   - 결제가 끝나고 `reservesuccess.html`로 넘어가면 `웹소켓`으로 연결된 `admin계정`에 `예약알림 메시지`가 넘어가고 `고객`에게는 `카카오링크api`가 작동하여 카카오톡으로 `링크`를 보냅니다.
+   - 주의사항 저희 조에서 사용한 `datetimepicker`는 `php`기반으로 `dateformat`이 다릅니다. 따라서 `java`기반의 `dateformat`으로 바꿔 사용해야 합니다.
 ```javascript
 $.datetimepicker.setLocale('ko');
 			$.datetimepicker.setDateFormatter({
@@ -219,8 +219,8 @@ $.datetimepicker.setLocale('ko');
 function connect() {
 				var socket = new SockJS('주체가 되는 ip/ws');
 ```
-   - 이 부분의 주체가 되는 ip는 소통의 기준이 되는 ip주소를 넣으면 된다. 만약 127.0.0.1:8080이 주체이고 내가 사용하는 곳이 127.0.0.1이면 해당 자리에 127.0.0.1:8080을 넣고 연결을 하면 주체가 되는 ip와 웹소켓으로 연결이 된다.
-   - 결제 api에서는 변수들을 직접 넣기 위해서는 함수 내부에서 변수를 설정해 주어서 넣는게 가능하다
+   - 이 부분의 `주체가 되는 ip`는 `소통의 기준이 되는 ip주소`를 넣으면 된다. 만약 `127.0.0.1:8080`이 `주체`이고 내가 사용하는 곳이 `127.0.0.1`이면 해당 자리에 `127.0.0.1:8080`을 넣고 연결을 하면 주체가 되는 ip와 `웹소켓`으로 연결이 된다.
+   - `결제 api`에서는 변수들을 직접 넣기 위해서는 `함수 내부`에서 변수를 설정해 주어서 넣는게 가능하다
 ```javascript
 var IMP = window.IMP; // 생략 가능
 IMP.init("import키값");
@@ -277,7 +277,8 @@ function requestPay() {
 ### 주문 빈도에 따른 맛집랭킹 서비스
    - (rollingtext.gif)
    - index.html , MainController.java
-   - Orderlist의 누적된 DB를 종합하여 상위 5개 메뉴에 대해 과거 네이버 실시간검색과 비슷한 느낌으로 출력합니다.
+   - `Orderlist`의 누적된 DB를 종합하여 예약이 많은 가게에 베네핏을 주기 위해  `상위 5개` 메뉴에 대해 과거 네이버 실시간검색과 비슷한 느낌으로 출력합니다.
+   - `review`가 많은 가게는 오늘의 추천 맛집으로 출력합니다
 ```javascript
 <div class="container1">
    <div class="rollingbanner">
@@ -294,10 +295,10 @@ function requestPay() {
 </div>
 ```
    - `<div>`에 `class="container"`를 붙여주고 내부 `<div>`에 rollingbanner, title, wrap을 붙여줍니다.
-   - 각 `<li>태그`에 class를 주고 current, next, prev를 1개씩 들어가게 줍니다.
-   - 스크립트 부분에서 rollingCallback을 3초마다 작동시켜주면
-   - 먼저 prev클래스에서 prev가 삭제되고 current를 조회하여 current를 삭제하고 prev를 추가합니다
-   - next클래스를 조회하고 next를 삭제하고 current를 추가하며 그 다음 `<li>태그`에 next를 추가해 주며 `<li>태그`가 돌아가도록 합니다.
+   - 각 `<li>태그`에 `class`를 주고 `current`, `next`, `prev`를 1개씩 들어가게 줍니다.
+   - 스크립트 부분에서 `rollingCallback`을 `3초`마다 작동시켜주면
+   - 먼저 `prev클래스`에서 `prev`가 삭제되고 `current`를 조회하여 `current`를 삭제하고 `prev`를 추가합니다
+   - `next클래스`를 조회하고 `next`를 삭제하고 `current`를 추가하며 그 다음 `<li>태그`에 `next`를 추가해 주며 `<li>태그`가 돌아가도록 합니다.
 ```html
 <script>
 document.addEventListener('DOMContentLoaded', ()=>{
@@ -383,8 +384,9 @@ function rollingCallback(){
 
 ## 고찰
 - (작성 중)
-- NCP 서브계정의 한계로 Naver api를 마음껏 사용하지 못했습니다.
-- 카카오 비즈니스 채널 개설이 불가능하여 카카오 메시지 api 대신 최대한 비슷하게 카카오 link api를 이용하였습니다.
+- NCP 서브계정의 한계로 Naver api를 마음껏 사용하지 못함.
+- 카카오 비즈니스 채널 개설이 불가능하여 카카오 메시지 api 대신 최대한 비슷하게 카카오 link api를 이용함.
+- 템플릿의 문제로 반복적인 명령어 사용 ex)rollingtext, search 등등
 - 
 
 ## 후기
