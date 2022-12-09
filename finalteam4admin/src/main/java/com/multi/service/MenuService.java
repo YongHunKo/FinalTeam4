@@ -38,5 +38,8 @@ public class MenuService implements MyService<Integer, MenuDTO>{
 	public List<MenuDTO> getall() throws Exception {
 		return mapper.selectall();
 	}
-
+	
+	public List<MenuDTO> selectstore(Integer storeid) throws Exception{
+		return mapper.selectstore(storeid);
+	}
 }

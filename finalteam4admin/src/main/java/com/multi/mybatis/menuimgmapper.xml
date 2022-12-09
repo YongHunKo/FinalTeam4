@@ -22,5 +22,9 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<delete id="delete" parameterType="Integer">
 		DELETE FROM menuimgs WHERE menuimgno=#{menuimgno}
 	</delete>
-	
+	<select id="selectstore" resultType="MenuimgDTO">
+		SELECT m.menuimgno, m.menuid, m.menuimg, me.storeid, me.menuname FROM menuimgs m
+		INNER JOIN menu me on m.menuid  = me.menuid
+		WHERE me.storeid = #{storeid};
+	</select>
 </mapper>

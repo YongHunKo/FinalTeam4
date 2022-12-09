@@ -269,6 +269,7 @@ public class MainController {
 		Object obj = session.getAttribute("loginadmin");
 		EatAdmDTO adm = (EatAdmDTO) obj;
 		String admid = adm.getAdminid();
+		int storeid = adm.getStoreid();
 		try {
 			ado = admservice.get(admid);
 		} catch (Exception e1) {
@@ -276,7 +277,7 @@ public class MainController {
 		}
 		model.addAttribute("ado",ado);
 		try {
-			list = menuservice.getall();
+			list = menuservice.selectstore(storeid);
 			model.addAttribute("list", list);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -354,6 +355,7 @@ public class MainController {
 		Object obj = session.getAttribute("loginadmin");
 		EatAdmDTO adm = (EatAdmDTO) obj;
 		String admid = adm.getAdminid();
+		int storeid = adm.getStoreid();
 		try {
 			ado = admservice.get(admid);
 		} catch (Exception e1) {
@@ -361,7 +363,7 @@ public class MainController {
 		}
 		model.addAttribute("ado",ado);
 		try {
-			list = menuimgservice.getall();
+			list = menuimgservice.selectstore(storeid);
 			model.addAttribute("list", list);
 		} catch (Exception e) {
 			e.printStackTrace();

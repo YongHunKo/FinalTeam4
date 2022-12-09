@@ -39,4 +39,8 @@ public class MenuimgService implements MyService<Integer, MenuimgDTO> {
 	public List<MenuimgDTO> getall() throws Exception {
 		return mapper.selectall();
 	}
+	
+	public List<MenuimgDTO> selectstore(Integer storeid) throws Exception{
+		return mapper.selectstore(storeid);
+	}
 }

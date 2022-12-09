@@ -33,5 +33,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<delete id="delete" parameterType="Integer">
 		DELETE FROM menu WHERE menuid = #{menuid}
 	</delete>
-
+	<select id="selectstore" parameterType="Integer" resultType="MenuDTO">
+		SELECT * FROM menu WHERE storeid = #{storeid}
+	</select>
 </mapper>
