@@ -85,12 +85,12 @@
    - ajax를 이용하여 `/checkid`를 발동하여 비동기적으로 id중복확인
 3. 로그인
    1. 일반로그인
-      - (login.png 삽입)
+      - ![](./finalteam4/src/main/resources/static/img/READMEimg/login.JPG)
       - login.html , loginfail.html
       - LoginController.java
       - `입력받은 custid`값을 DB에서 조회하고, `입력받은 pwd`와 `DB에서 조회한 custid의 pwd`가 일치하는지 `equals()`로 비교하여 일치하면 session에 저장하여 로그인을 지속시키고, 일치하지않으면 loginfail.html로 보내버립니다.
    2. 카카오로그인
-      - (kakaologin.png 삽입)
+      - ![](./finalteam4/src/main/resources/static/img/READMEimg/kakaologin.JPG)
       - KakaoController.java
       - 참고자료 https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api
       - kakaologinAPI의 `REST API방식`을 적용하였습니다. 카카오로그인 버튼을 누르면 GET/oauth/authorize를 통해 카카오계정 로그인 요청을 하고, 카카오 계정 로그인을하면 Redirect URL로 인가코드가 전달이 됩니다.
@@ -99,15 +99,15 @@
       - `주의할 점`은 Redirect주소를 로그인하려는 IP를 사용해야 정상적인 작동이 됩니다.
       - 또한 Object형식으로 내려오므로 사용자 정보를 제대로 사용하기 위해서는 `형변환`을 해주어야 올바르게 사용이 가능합니다.
       - 저희조는 사용자 정보를 register하는 과정에서 `사용자id값 뒤에 1`을 붙여서 다른 소셜로그인과 겹치지않도록 구분을 해놓았습니다.(카카오계정id와 네이버계정id가 일치하는 경우가 있기때문)
-   3. 네이버로그인
-      - (Naverlogin.png 삽입) 
+   3. 네이버로그인 
+      - ![](./finalteam4/src/main/resources/static/img/READMEimg/naverlogin.JPG)
       - NaverController.java
       - 참고자료 https://developers.naver.com/docs/common/openapiguide/apilist.md
       - 네이버의 로그인 방식 `오픈API방식`을 적용하였습니다. 네이버로그인 버튼을 누르면 `GET/POST로 oauth2.0`을 통해 인증을 요청하고, 접근토큰이 발급되어 `JSON형식`으로 데이터가 내려오게 되고 
       - 마찬가지로 Redirect 주소를 로그인하려는 IP를 사용해야 정상적인 작동이 됩니다.
       - 저희조는 사용자 정보를 register하는 과정에서 `사용자id값 뒤에 2`을 붙여서 다른 소셜로그인과 겹치지않도록 구분을 해놓았습니다.(카카오계정id와 네이버계정id가 일치하는 경우가 있기때문)
    4. 구글로그인
-      - (Googlelogin.png 삽입) 
+      - ![](./finalteam4/src/main/resources/static/img/READMEimg/googlelogin.JPG)
       - OauthController.java
       - 구글로그인 버튼을 누르면 `oauth2`를 통해 인증을 요청하고, 접근토큰이 발급되어 `gson형식`으로 데이터가 내려온다.
       - `gson`을 이용한 로그인 방식으로 `maven`으로 꼭 `xml`을 업데이트 시켜서 `dependency`가 적용이 되야합니다.
@@ -127,7 +127,8 @@
 		</dependency>
       
 4. 검색
-   - (catesearch.png, search.png 삽입)
+   - ![](./finalteam4/src/main/resources/static/img/READMEimg/search.JPG)
+   - ![](./finalteam4/src/main/resources/static/img/READMEimg/search_allmenu.png)
    - index.html , SearchController.java
    - 기본적으로 input text로 `/searchimpl`로 넘어가는 방식입니다.
    - `select`을 이용하여 카테고리별로 검색이 가능하도록 구현했습니다. 디폴트는 전체 검색입니다.
@@ -139,8 +140,8 @@
    
 <input type="text" style="display:none" onkeyup="enterkey()"> // 더미값
 ``` 
-5. 스토어디테일
-   - (detail.png 삽입)
+1. 스토어디테일
+   - ![](./finalteam4/src/main/resources/static/img/READMEimg/storedetail.png)
    - storedetail , StoreController.java , AController.java
    - search에서 검색된 메뉴를 누르면 `storedetail.html`로 이동하게됩니다.
    - `해당 메뉴의 storeid`를 통해 `/storedetail`로 넘어가고 컨트롤러에서 설정한 모델에서 원하는 데이터를 출력해줍니다.
@@ -169,8 +170,10 @@
 			setTimeout(timeout, 500);
 		});
       ```
-6. 예약
-   - (reserve.png , reservesuccess.png 삽입)
+2. 예약
+   - ![](./finalteam4/src/main/resources/static/img/READMEimg/reserve.png)
+   - ![](./finalteam4/src/main/resources/static/img/READMEimg/reserve_coupon.png)
+   - ![](./finalteam4/src/main/resources/static/img/READMEimg/reservesuccess.png)
    - reserve.html , ReserveController
    - /addcart된 데이터가 reserveimpl을 통해 모델에 저장되어 reserve.html에 뿌려집니다.
    - 메뉴의 수량 변경은 동기적으로 수정버튼을 통해 /update로 넘어가 수량이 변경되고, 변경 후에 totalprice가 바뀝니다.
@@ -244,17 +247,15 @@
 								},
 								function(rsp) { // callback
 									if (rsp.success) {
-										jQuery
-												.ajax(
-														{
-															url : "", //결제 완료 후 컨트롤러를 건드리고 싶으면 이부분을 건드리는 것이 아니다
-															method : "POST",
-															headers : {
-																"Content-Type" : "application/json"
+										jQuery.ajax({
+											url : "", //결제 완료 후 컨트롤러를 건드리고 싶으면 이부분을 건드리는 것이 아니다
+											method : "POST",
+											headers : {
+												"Content-Type" : "application/json"
 															},
-															data : {
-																imp_uid : rsp.imp_uid, //결제 고유번호     
-																merchant_uid : rsp.merchant_uid
+											data : {
+												imp_uid : rsp.imp_uid, //결제 고유번호     
+												merchant_uid : rsp.merchant_uid
 															}
 														})
 												.done(
@@ -273,11 +274,11 @@
 								});
 			}
    
-7. 마이페이지
+3. 마이페이지
    - (mypage.png , mypage_orderlist.png , mypage_orderdetail.png 등등 삽입)
-8. 주문 빈도에 따른 맛집랭킹 서비스
+4. 주문 빈도에 따른 맛집랭킹 서비스
    - (rollingtext.gif)
-9.  관리자 페이지
+5.  관리자 페이지
 
 ## 트러블슈팅(마지막날까지 추가하기)
 - 고용훈
