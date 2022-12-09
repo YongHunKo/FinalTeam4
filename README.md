@@ -44,7 +44,9 @@
       3. 웹소켓을 이용한 예약-결제 시 고객/매장 알림 서비스
       4. OCR을 이용한 영수증 리뷰
    6. 관리자 페이지 구현
-4. 역할 분담(아주 상세하게)
+4. 프로젝트 세부일정
+   - (세부일정 사진)
+5. 역할 분담(아주 상세하게)
    - 고용훈
      - 검색, 식당, 예약-주문, QA테스트, 서버관리
    - 김준기
@@ -53,7 +55,7 @@
      - 마이페이지, 쿠폰, OCR
    - 박시연
      - 관리자, 위시리스트, DB관리
-5. 개발환경 및 수행 도구
+6. 개발환경 및 수행 도구
 
    - |언어|웹|개발도구|데이터베이스|협업도구|프레임워크|API|
       |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -65,25 +67,25 @@
       |||||||Kakao link|
       |||||||Kakao Map|
 
-6. DB 설계(ERD와 sql을 첨부)
+7. DB 설계(ERD와 sql을 첨부)
    ![](./finalteam4/src/main/resources/static/img/READMEimg/ERD.png)
-7. UI 설계(Figma사용)
+8. UI 설계(Figma사용)
 
 ## 프로젝트 결과(스샷 및 gif 넣기)
-1. index   
+### index   
    - (index_fullpage.png삽입)
    - index.html
    - MainController.java
    - `랜덤`으로 뿌려지는 맛집, `카테고리`별 맛집, `오늘의 추천` 맛집 순서로 화면에 출력되며
    - 로그인을 하면 해당 계정이 위시리스트에 등록한 위시리스트 목록까지 나옵니다.
    - 컨트롤러의 대부분도 페이지 이동에 관련된 기능뿐입니다.
-2. 회원가입
+### 회원가입
    - (signup.png 삽입)
    - signup.html , signupok.html , signupfail.html
    - SignupController.java , AController.java
    - 쉽게 회원가입을 위해 id, password, name, Phone Number, Birth의 정보만 입력
    - ajax를 이용하여 `/checkid`를 발동하여 비동기적으로 id중복확인
-3. 로그인
+### 로그인
    1. 일반로그인
       - ![](./finalteam4/src/main/resources/static/img/READMEimg/login.JPG)
       - login.html , loginfail.html
@@ -111,7 +113,7 @@
       - OauthController.java
       - 구글로그인 버튼을 누르면 `oauth2`를 통해 인증을 요청하고, 접근토큰이 발급되어 `gson형식`으로 데이터가 내려온다.
       - `gson`을 이용한 로그인 방식으로 `maven`으로 꼭 `xml`을 업데이트 시켜서 `dependency`가 적용이 되야합니다.
-      - 주의할 점은 카카오, 네이버와 달리 구글은 `ip주소`가 아닌 `localhost`를 `Redirect주소`로 한다.
+      - 주의할 점은 카카오, 네이버와 달리 구글은 `ip주소`가 아닌 `localhost`를 `Redirect주소`로 합니다.
       - `사용자id값 뒤에 3`을 붙여서 다른 소셜로그인과 겹치지않도록 구분을 해놓았습니다
       - ```xml 
 		<dependency>
@@ -126,23 +128,22 @@
 			<version>1.32.1</version>
 		</dependency>
       
-4. 검색
+### 검색
    - ![](./finalteam4/src/main/resources/static/img/READMEimg/search.JPG)
-   - ![](./finalteam4/src/main/resources/static/img/READMEimg/search_allmenu.png)
    - index.html , SearchController.java
    - 기본적으로 input text로 `/searchimpl`로 넘어가는 방식입니다.
    - `select`을 이용하여 카테고리별로 검색이 가능하도록 구현했습니다. 디폴트는 전체 검색입니다.
    - 편하게 검색을 하기위해 `onkeyup="enterkey"` function을 주어서 엔터로 `input text`가 넘어가도록 했다.
-   - 검색을 하면 `search.html`로 넘어가고 입력한 text에 맞게 DB를 조회하여 출력해 준다
-   - 주의할 점은 템플릿에 따라 `더미 값`을 주어야 엔터가 발동한다. 아래는 주의할 점에 대한 예시입니다
+   - 검색을 하면 `search.html`로 넘어가고 입력한 text에 맞게 DB를 조회하여 출력해 줍니다
+   - 주의할 점은 템플릿에 따라 `더미 값`을 주어야 엔터가 발동합니다. 아래는 주의할 점에 대한 예시입니다
 ```html
 <input id="search_input" name="txt" type="text" placeholder="맛집검색하러가기" onkeyup="enterkey()"> //실제 input
    
 <input type="text" style="display:none" onkeyup="enterkey()"> // 더미값
 ``` 
-1. 스토어디테일
+## 스토어디테일
    - ![](./finalteam4/src/main/resources/static/img/READMEimg/storedetail.png)
-   - storedetail , StoreController.java , AController.java
+   - storedetail.html , StoreController.java , AController.java
    - search에서 검색된 메뉴를 누르면 `storedetail.html`로 이동하게됩니다.
    - `해당 메뉴의 storeid`를 통해 `/storedetail`로 넘어가고 컨트롤러에서 설정한 모델에서 원하는 데이터를 출력해줍니다.
    - 컨트롤러에서 넘겨준 데이터를 토대로 `Kakao map`을 사용하여 가게의 위치, 상호명, 주소를 지도에 띄워줍니다. 
@@ -153,7 +154,8 @@
    - 예약 버튼을 누르면 `/addcart`로 넘어가서 `selectcart`에 `custid`를 조회하여 해당 값이 존재하면 `delectcart`를 하여 `해당custid의 cart`를 초기화 해줍니다. 
    - `해당 값이 존재하지않으면` detail의 데이터들이 cart에 `regist`합니다.
    - `/addcart`가 실행된 후 `0.5초` 뒤 `/reserveimpl`로 넘어가게 됩니다. 0.5초의 timeout을 준 이유는 `ajax`와 `location`이 동시에 실행되면 `일부의 데이터`만 넘어가기 때문입니다.
-   - ```html	$('#reserve_btn').click(function() {
+```javascript	
+$('#reserve_btn').click(function() {
 			var storeid = $('#storeid').text();
 			var custid = $('#custid').text();
 			$.ajax({
@@ -169,8 +171,8 @@
 			}
 			setTimeout(timeout, 500);
 		});
-      ```
-2. 예약
+```
+### 예약
    - ![](./finalteam4/src/main/resources/static/img/READMEimg/reserve.png)
    - ![](./finalteam4/src/main/resources/static/img/READMEimg/reserve_coupon.png)
    - ![](./finalteam4/src/main/resources/static/img/READMEimg/reservesuccess.png)
@@ -183,8 +185,8 @@
    - 결제가 성공적으로 진행되면 /reserveimpl2로 데이터가 넘어가고 cart데이터를 토대로 orderlist와 reserve에 regist 후 해당 cart데이터를 delete시킵니다. regist 시킨 데이터는 reservesuccess로 넘깁니다.
    - 결제가 끝나고 reservesuccess.html로 넘어가면 웹소켓으로 연결된 admin계정에 예약알림 메시지가 넘어가고 고객에게는 카카오링크api가 작동하여 카카오톡으로 메시지를 보냅니다.
    - 주의사항 저희 조에서 사용한 datetimepicker는 php기반으로 dateformat이 다릅니다. 따라서 java기반의 dateformat으로 바꿔 사용해야 합니다.
-   - ``` 			//datetimepicker
-			$.datetimepicker.setLocale('ko');
+```javascript
+$.datetimepicker.setLocale('ko');
 			$.datetimepicker.setDateFormatter({
 				parseDate : function(date, format) {
 					var d = moment(date, format);
@@ -211,74 +213,115 @@
 						inline : true,
 						allowTimes : ...
 					});
+```
    - 웹소켓을 사용할 때 제일 중요한 부분은 connect()
-   - ``` 			// 서버소켓에 연결
-			function connect() {
+```javascript
+function connect() {
 				var socket = new SockJS('주체가 되는 ip/ws');
+```
    - 이 부분의 주체가 되는 ip는 소통의 기준이 되는 ip주소를 넣으면 된다. 만약 127.0.0.1:8080이 주체이고 내가 사용하는 곳이 127.0.0.1이면 해당 자리에 127.0.0.1:8080을 넣고 연결을 하면 주체가 되는 ip와 웹소켓으로 연결이 된다.
    - 결제 api에서는 변수들을 직접 넣기 위해서는 함수 내부에서 변수를 설정해 주어서 넣는게 가능하다
-   - ``` 			//I'mpot api
-			var IMP = window.IMP; // 생략 가능
-			IMP.init("import키값");
-			var custid = '[[${session.logincust.custid}]]';
+```javascript
+var IMP = window.IMP; // 생략 가능
+IMP.init("import키값");
+var custid = '[[${session.logincust.custid}]]';
 
-			기타등등 ...(생략)
+기타등등 ...(생략)
 
-			function requestPay() {
-				var reservedate = $('#datetimepicker').val();
-				var totalPrice = $('#totalpricespan span').text();
-				var totalPrice2 = parseInt(totalPrice);
-				// IMP.request_pay(param, callback) 결제창 호출
-				IMP
-						.request_pay(
-								{ // param
-									pg : "html5_inicis",
-									pay_method : "card",
-									merchant_uid : 'merchant_'
-											+ new Date().getTime(),
-									name : "Eat&Out",
-									amount : totalPrice2, 
-									buyer_email : "",
-									buyer_name : custid,
-									buyer_tel : "010-4242-4242",
-									buyer_addr : "서울특별시 강남구 신사동",
-									buyer_postcode : "01181",
-									m_redirect_url : 
-								},
-								function(rsp) { // callback
-									if (rsp.success) {
-										jQuery.ajax({
-											url : "", //결제 완료 후 컨트롤러를 건드리고 싶으면 이부분을 건드리는 것이 아니다
-											method : "POST",
-											headers : {
+function requestPay() {
+	var reservedate = $('#datetimepicker').val();
+	var totalPrice = $('#totalpricespan span').text();
+	var totalPrice2 = parseInt(totalPrice);
+	// IMP.request_pay(param, callback) 결제창 호출
+	IMP.request_pay(
+		{ // param
+		pg : "html5_inicis",
+		pay_method : "card",
+		merchant_uid : 'merchant_' + new Date().getTime(),
+		name : "Eat&Out",
+		amount : totalPrice2, 
+		buyer_email : "",
+		buyer_name : custid,
+		buyer_tel : "010-4242-4242",
+		buyer_addr : "서울특별시 강남구 신사동",
+		buyer_postcode : "01181",
+		m_redirect_url : 
+		},
+			function(rsp) { // callback
+				if (rsp.success) {
+					jQuery.ajax({
+							      url : "", //결제 완료 후 컨트롤러를 건드리고 싶으면 이부분을 건드리는 것이 아니다
+									method : "POST",
+									headers : {
 												"Content-Type" : "application/json"
-															},
-											data : {
-												imp_uid : rsp.imp_uid, //결제 고유번호     
-												merchant_uid : rsp.merchant_uid
-															}
-														})
-												.done(
-														function(data) { // 결제 완료 후 컨트롤러를 건드리는 부분
-															sendLinkDefault();
-															sendTo();
-															location.href = "[[@{/reserveimpl2?custid=}]]"
-																	+ custid
-																	+ '&reservedate='
-																	+ reservedate
-														})
-									} else {
-										alert("결제에 실패하였습니다. 에러 내용: "
-												+ rsp.error_msg);
-									}
-								});
+													},
+									data : {
+											imp_uid : rsp.imp_uid, //결제 고유번호     
+											merchant_uid : rsp.merchant_uid
+												}
+									})
+							.done(
+								function(data) { // 결제 완료 후 컨트롤러를 건드리는 부분
+									sendLinkDefault();
+									sendTo();
+									location.href = "[[@{/reserveimpl2?custid=}]]"+ custid + '&reservedate=' + reservedate
+									})
+				   } else {
+						alert("결제에 실패하였습니다. 에러 내용: "+ rsp.error_msg);
+					   }
+				});
 			}
-   
-3. 마이페이지
+```
+### 마이페이지
    - (mypage.png , mypage_orderlist.png , mypage_orderdetail.png 등등 삽입)
-4. 주문 빈도에 따른 맛집랭킹 서비스
+### 주문 빈도에 따른 맛집랭킹 서비스
    - (rollingtext.gif)
-5.  관리자 페이지
+   - index.html , MainController.java
+   - Orderlist의 누적된 DB를 종합하여 상위 5개 메뉴에 대해 과거 네이버 실시간검색과 비슷한 느낌으로 출력합니다.
+```javascript
+<div class="container1">
+   <div class="rollingbanner">
+      <div class="title">실시간 뜨고있는 메뉴 > </div>
+      <div class="wrap">
+            <ul>
+               <li class="current"><a href="#" th:text="${session.ranking?.storename}+' , '+${session.ranking?.menuname}">storename4, menuname4</a></li>
+               <li class="next"><a href="#" th:text="${session.ranking2?.storename}+' , '+${session.ranking2?.menuname}">storename4, menuname4</a></li>
+               <li><a href="#" th:text="${session.ranking3?.storename}+' , '+${session.ranking3?.menuname}">storename4, menuname4</a></li>
+               <li><a href="#" th:text="${session.ranking4?.storename}+' , '+${session.ranking4?.menuname}">storename4, menuname4</a></li>
+               <li class="prev"><a href="#" th:text="${session.ranking5?.storename}+' , '+${session.ranking5?.menuname}">storename4, menuname4</a></li>
+            </ul>
+      </div>
+</div>
+```
+   - `<div>`에 `class="container"`를 붙여주고 내부 `<div>`에 rollingbanner, title, wrap을 붙여줍니다.
+   - 각 `<li>태그`에 class를 주고 current, next, prev를 1개씩 들어가게 줍니다.
+   - 스크립트 부분에서 rollingCallback을 3초마다 작동시켜주면
+   - 먼저 prev클래스에서 prev가 삭제되고 current를 조회하여 current를 삭제하고 prev를 추가합니다
+   - next클래스를 조회하고 next를 삭제하고 current를 추가하며 그 다음 `<li>태그`에 next를 추가해 주며 `<li>태그`가 돌아가도록 합니다.
+```html
+<script>
+document.addEventListener('DOMContentLoaded', ()=>{
+    var interval = window.setInterval(rollingCallback, 3000);
+})
+function rollingCallback(){
+    document.querySelector('.rollingbanner .prev').classList.remove('prev');
+
+    let current = document.querySelector('.rollingbanner .current');
+    current.classList.remove('current');
+    current.classList.add('prev');
+
+    let next = document.querySelector('.rollingbanner .next');
+    if(next.nextElementSibling == null){
+        document.querySelector('.rollingbanner ul li:first-child').classList.add('next');
+    }else{
+        next.nextElementSibling.classList.add('next');
+    }
+    next.classList.remove('next');
+    next.classList.add('current');
+}
+</script>
+```
+### 관리자 페이지
 
 ## 트러블슈팅(마지막날까지 추가하기)
 - 고용훈
@@ -345,4 +388,12 @@
 - 
 
 ## 후기
-- (작성예정)
+- (작성 중)
+- 고용훈
+  - ㅁ
+- 김준기
+  - ㅁ
+- 조여송
+  - ㅁ
+- 박시연
+  - ㅁ
