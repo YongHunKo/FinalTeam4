@@ -3,53 +3,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/assets/css/style.css">
-<script
+<script type="text/css"
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></script>
 <style>
 * {
 	font-family: Pretendard;
 }
-/*사이드바  */
-/* Sidebar styling */
-.sidebar-nav {
-	padding: 0;
-	list-style: none;
-	transition: all .5s;
-	width: 100%;
-	text-align: center;
-}
 
-.sidebar-nav li {
-	line-height: 40px;
-	width: 100%;
-	transition: all .3s;
-	padding: 10px;
-}
-
-.sidebar-nav li a {
-	display: block;
-	text-decoration: none;
-	color: #5d5d5d;
-}
-
-.sidebar-nav li a:hover {
-	color: #000;
-}
-
-#menu-toggle {
-	transition: all .3s;
-	font-size: 20px;
-}
-/* Change the width of the sidebar to display it*/
-#wrapper.menuDisplayed #sidebar-wrapper {
-	width: 250px;
-}
 /* 컨텐츠   */
-#page-content-wrapper {
-	width: 100%;
-	padding: 15px;
-	transition: all 1.5s;
-}
+
 /* 배너 */
 .card2 {
 	background-color: #ffffff;
@@ -165,11 +127,11 @@ align-items:baseline;
 </style>
 <script>
 $(document).ready(function() {
-	/* const menu = document.querySelector('#menu-toggle') */
+	 const menu = document.querySelector('#menu-toggle') 
 	$("#menu-toggle").click(function(e) {
 		e.preventDefault();
 		$("#wrapper").toggleClass("menuDisplayed");
-		/* menu.style.visibility = "hidden"; */
+		 menu.style.visibility = "hidden"; 
 	});
 });
 	function addcoupon(input) {
@@ -195,44 +157,14 @@ $(document).ready(function() {
 
 
 <body>
-	<!-- Sidebar -->
-	<div id="wrpper">
-	<div id="sidebar-wrapper">
-	<a href="#" class="btn" id="menu-toggle"></a>
-		<ul class="sidebar-nav">
-			<h2 style="margin: 30px 0 20px"
-					th:text="${session.logincust.custname}+' 님'"></h2>
-			<h4 href="#">나의 EAT & OUT 정보</h4>
-			<li><a
-				th:href="@{/mypage/order(id=${session.logincust.custid})}">테이블
-					조회</a></li>
-			<li><a
-				th:href="@{/mypage/review(id=${session.logincust.custid})}">나의
-					리뷰</a></li>
-			<li><a th:href="@{/wishlist(id=${session.logincust.custid})}">나의
-					위시리스트</a></li>
-			<h4>나의 계정설정</h4>
-			<li><a th:href="@{/mypage/edit(id=${session.logincust.custid})}">회원정보수정</a></li>
-			<li><a href="#">회원등급</a></li>
-			<li><a href="#">쿠폰</a></li>
-			<h4>고객센터</h4>
-			<li><a th:href="@{/mypage/question}">1:1 문의내역</a></li>
-			<li><a href="#">공지사항</a></li>
-			<li><a href="#">FAQ</a></li>
-		</ul>
-	</div>
-	<div id="page-content-wrapper">
-	<a href="#" class="btn" id="menu-toggle"><span
-			class="glyphicon glyphicon-menu-hamburger">></span></a>
 	<!-- 배너 -->
 	<div class="container-fluid">
-	
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-4 col-sm-12 col-xs-12">
 				<div class="card2 p-4">
 					<div class="d-flex">
 						<h6 class="flex-grow-1" style="color: #fff;"
-							th:text="'😀'+${session.logincust.custname}+'님의가까운예약'"></h6>
+							th:text="'😀'+${session.logincust.custname}+'님의 가까운예약'"></h6>
 						<h6></h6>
 					</div>
 					<div class="d-flex flex-column temp mt-5 mb-3"
@@ -409,7 +341,7 @@ $(document).ready(function() {
 	</div>
 	</div>
 	</div>
-	</div>
-	</div>
+
+	
 </body>
 </html>
