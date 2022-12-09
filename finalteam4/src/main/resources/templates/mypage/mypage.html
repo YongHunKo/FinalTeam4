@@ -3,16 +3,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/assets/css/style.css">
-<link
-	href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
-	rel="stylesheet">
-<link
-	href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900'
-	rel='stylesheet' type='text/css'>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 <script type="text/css"
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></script>
+	
 <style>
 * {
 	font-family: Pretendard;
@@ -177,11 +170,11 @@
 <script>
 	$(document).ready(function() {
 		$('#navbarDropdown').click(function() {
-			$('.dropdown-menu').slideToggle(300, "linear");
+			$('.dropdown-menu').slideToggle(600,'swing');
 		});
 
 		$('.dropdown-menu').click(function() {
-			$(this).slideToggle(300, "linear");
+			$(this).slideToggle(600,'swing');
 		});
 	});
 	function addcoupon(input) {
@@ -204,8 +197,8 @@
 
 <body>
 	<!-- 메뉴바 -->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light"
-		style="justify-content: center;">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -284,7 +277,7 @@
 				</div>
 			</div>
 		</div>
-
+	</div>
 
 		<!-- 배너 끝 -->
 
@@ -437,5 +430,6 @@
 				</div>
 			</div>
 		</div>
+		
 </body>
 </html>
