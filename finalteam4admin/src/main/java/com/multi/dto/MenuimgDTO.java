@@ -23,4 +23,5 @@ public class MenuimgDTO {
 	//조인
 		private String storename;
 		private String menuname;
+		private int alevel;
 }

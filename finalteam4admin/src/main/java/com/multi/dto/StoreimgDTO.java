@@ -19,4 +19,5 @@ public class StoreimgDTO {
 	private String storeimg;
 	
 	private MultipartFile simg;
+	private int alevel;
 }

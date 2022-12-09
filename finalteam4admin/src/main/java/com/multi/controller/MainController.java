@@ -53,11 +53,21 @@ public class MainController {
 	CouponService couponservice;
 	
 	@RequestMapping("/")
-	public String main(HttpSession session) {
+	public String main(HttpSession session, Model model) {
 		EatAdmDTO admin = (EatAdmDTO) session.getAttribute("loginadmin");
 		if(admin==null) {
 			return "/login";
 		}else {
+			try {
+				EatAdmDTO ado = null;
+				Object obj = session.getAttribute("loginadmin");
+				EatAdmDTO adm = (EatAdmDTO) obj;
+				String admid = adm.getAdminid();
+				ado = admservice.get(admid);
+				model.addAttribute("ado",ado);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			return "index";
 		}
 	}
@@ -116,8 +126,18 @@ public class MainController {
 	}
 	
 	@RequestMapping("/store")
-	public String store(Model model) {
+	public String store(Model model, HttpSession session) {
 		List<StoreDTO> list = null;
+		EatAdmDTO ado = null;
+		Object obj = session.getAttribute("loginadmin");
+		EatAdmDTO adm = (EatAdmDTO) obj;
+		String admid = adm.getAdminid();
+		try {
+			ado = admservice.get(admid);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		model.addAttribute("ado",ado);
 		try {
 			list = storeservice.getall();
 			model.addAttribute("list", list);
@@ -139,8 +159,18 @@ public class MainController {
 	}	
 	
 	@RequestMapping("/registerstore")
-	public String registerstore(Model model) {
+	public String registerstore(Model model, HttpSession session) {
 		model.addAttribute("center", "registerstore");
+		EatAdmDTO ado = null;
+		Object obj = session.getAttribute("loginadmin");
+		EatAdmDTO adm = (EatAdmDTO) obj;
+		String admid = adm.getAdminid();
+		try {
+			ado = admservice.get(admid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("ado",ado);
 		return "index";
 	}
 	
@@ -158,8 +188,18 @@ public class MainController {
 	}
 	
 	@RequestMapping("/updatestore")
-	public String updatestore(Model model) {
+	public String updatestore(Model model, HttpSession session) {
 		model.addAttribute("center", "updatestore");
+		EatAdmDTO ado = null;
+		Object obj = session.getAttribute("loginadmin");
+		EatAdmDTO adm = (EatAdmDTO) obj;
+		String admid = adm.getAdminid();
+		try {
+			ado = admservice.get(admid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("ado",ado);
 		return "index";
 	}
 	
@@ -174,8 +214,18 @@ public class MainController {
 	}
 	
 	@RequestMapping("/storeimg")
-	public String storeimg(Model model) {
+	public String storeimg(Model model, HttpSession session) {
 		List<StoreimgDTO> list = null;
+		EatAdmDTO ado = null;
+		Object obj = session.getAttribute("loginadmin");
+		EatAdmDTO adm = (EatAdmDTO) obj;
+		String admid = adm.getAdminid();
+		try {
+			ado = admservice.get(admid);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		model.addAttribute("ado",ado);
 		try {
 			list = storeimgservice.getall();
 			model.addAttribute("list", list);
@@ -197,14 +247,34 @@ public class MainController {
 	}
 	
 	@RequestMapping("/registerstoreimg")
-	public String registerimg(Model model) {
+	public String registerimg(Model model, HttpSession session) {
 		model.addAttribute("center", "registerstoreimg");
+		EatAdmDTO ado = null;
+		Object obj = session.getAttribute("loginadmin");
+		EatAdmDTO adm = (EatAdmDTO) obj;
+		String admid = adm.getAdminid();
+		try {
+			ado = admservice.get(admid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("ado",ado);
 		return "index";
 	}
 	
 	@RequestMapping("/menu")
-	public String menu(Model model) {
+	public String menu(Model model, HttpSession session) {
 		List<MenuDTO> list = null;
+		EatAdmDTO ado = null;
+		Object obj = session.getAttribute("loginadmin");
+		EatAdmDTO adm = (EatAdmDTO) obj;
+		String admid = adm.getAdminid();
+		try {
+			ado = admservice.get(admid);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		model.addAttribute("ado",ado);
 		try {
 			list = menuservice.getall();
 			model.addAttribute("list", list);
@@ -226,8 +296,18 @@ public class MainController {
 	}	
 	
 	@RequestMapping("/regmenu")
-	public String regmenu(Model model) {
+	public String regmenu(Model model, HttpSession session) {
 		model.addAttribute("center", "regmenu");
+		EatAdmDTO ado = null;
+		Object obj = session.getAttribute("loginadmin");
+		EatAdmDTO adm = (EatAdmDTO) obj;
+		String admid = adm.getAdminid();
+		try {
+			ado = admservice.get(admid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("ado",ado);
 		return "index";
 	}
 	
@@ -242,8 +322,18 @@ public class MainController {
 	}
 	
 	@RequestMapping("/updatemenu")
-	public String updatemenu(Model model) {
+	public String updatemenu(Model model, HttpSession session) {
 		model.addAttribute("center", "updatemenu");
+		EatAdmDTO ado = null;
+		Object obj = session.getAttribute("loginadmin");
+		EatAdmDTO adm = (EatAdmDTO) obj;
+		String admid = adm.getAdminid();
+		try {
+			ado = admservice.get(admid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("ado",ado);
 		return "index";
 	}
 	
@@ -258,8 +348,18 @@ public class MainController {
 	}
 	
 	@RequestMapping("/menuimg")
-	public String menuimg(Model model) {
+	public String menuimg(Model model, HttpSession session) {
 		List<MenuimgDTO> list = null;
+		EatAdmDTO ado = null;
+		Object obj = session.getAttribute("loginadmin");
+		EatAdmDTO adm = (EatAdmDTO) obj;
+		String admid = adm.getAdminid();
+		try {
+			ado = admservice.get(admid);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		model.addAttribute("ado",ado);
 		try {
 			list = menuimgservice.getall();
 			model.addAttribute("list", list);
@@ -281,8 +381,18 @@ public class MainController {
 	}	
 	
 	@RequestMapping("/regmenuimg")
-	public String regmenuimg(Model model) {
+	public String regmenuimg(Model model, HttpSession session) {
 		model.addAttribute("center", "regmenuimg");
+		EatAdmDTO ado = null;
+		Object obj = session.getAttribute("loginadmin");
+		EatAdmDTO adm = (EatAdmDTO) obj;
+		String admid = adm.getAdminid();
+		try {
+			ado = admservice.get(admid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("ado",ado);
 		return "index";
 	}
 	
@@ -300,8 +410,18 @@ public class MainController {
 	}
 	
 	@RequestMapping("/user")
-	public String user(Model model) {
+	public String user(Model model, HttpSession session) {
 		List<CustDTO> list = null;
+		EatAdmDTO ado = null;
+		Object obj = session.getAttribute("loginadmin");
+		EatAdmDTO adm = (EatAdmDTO) obj;
+		String admid = adm.getAdminid();
+		try {
+			ado = admservice.get(admid);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		model.addAttribute("ado",ado);
 		try {
 			list = custservice.getall();
 			model.addAttribute("list", list);
@@ -328,6 +448,14 @@ public class MainController {
 		Object obj = session.getAttribute("loginadmin");
 		EatAdmDTO adm = (EatAdmDTO) obj;
 		int storeid = adm.getStoreid();
+		EatAdmDTO ado = null;
+		String admid = adm.getAdminid();
+		try {
+			ado = admservice.get(admid);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		model.addAttribute("ado",ado);
 		try {
 			list = admservice.adminselect(storeid);
 			model.addAttribute("list", list);
@@ -339,8 +467,18 @@ public class MainController {
 	}
 	
 	@RequestMapping("/coupon")
-	public String coupon(Model model) {
+	public String coupon(Model model, HttpSession session) {
 		List<CouponDTO> list = null;
+		EatAdmDTO ado = null;
+		Object obj = session.getAttribute("loginadmin");
+		EatAdmDTO adm = (EatAdmDTO) obj;
+		String admid = adm.getAdminid();
+		try {
+			ado = admservice.get(admid);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		model.addAttribute("ado",ado);
 		try {
 			list = couponservice.getall();
 			model.addAttribute("list", list);
@@ -362,8 +500,18 @@ public class MainController {
 	}	
 	
 	@RequestMapping("/regcoupon")
-	public String regcoupon(Model model) {
+	public String regcoupon(Model model, HttpSession session) {
 		model.addAttribute("center", "regcoupon");
+		EatAdmDTO ado = null;
+		Object obj = session.getAttribute("loginadmin");
+		EatAdmDTO adm = (EatAdmDTO) obj;
+		String admid = adm.getAdminid();
+		try {
+			ado = admservice.get(admid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("ado",ado);
 		return "index";
 	}
 	
@@ -378,8 +526,18 @@ public class MainController {
 	}
 	
 	@RequestMapping("/updatecoupon")
-	public String updatecoupon(Model model) {
+	public String updatecoupon(Model model, HttpSession session) {
 		model.addAttribute("center", "updatecoupon");
+		EatAdmDTO ado = null;
+		Object obj = session.getAttribute("loginadmin");
+		EatAdmDTO adm = (EatAdmDTO) obj;
+		String admid = adm.getAdminid();
+		try {
+			ado = admservice.get(admid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("ado",ado);
 		return "index";
 	}
 	

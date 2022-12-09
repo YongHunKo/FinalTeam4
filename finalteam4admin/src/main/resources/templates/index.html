@@ -74,12 +74,12 @@
                 </a>
                 
 
-                <div class="navbar-nav w-100">
+                <div class="navbar-nav w-100" th:each="a:${ado}">
                     <a th:href="@{/store}" class="nav-item nav-link"><i class="fa fa-laptop me-2"></i>매장 관리</a>
-                    <a th:href="@{/menu}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>메뉴 관리</a>
                     <a th:href="@{/user}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>회원 관리</a>
+                    <a th:href="@{/coupon}" class="nav-item nav-link" th:if="${a.alevel != 1}"><i class="far fa-file-alt me-2"></i>쿠폰 관리</a>
+                    <a th:href="@{/menu}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>메뉴 관리</a>
                     <a th:href="@{/storesales}" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>예약 내역</a>
-                    <a th:href="@{/coupon}" class="nav-item nav-link"><i class="far fa-file-alt me-2"></i>쿠폰 관리</a>
                 </div>
             </nav>
         </div>

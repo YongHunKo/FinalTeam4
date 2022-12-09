@@ -24,5 +24,6 @@ public class CustDTO {
 	
 	// 프로필이미지 테스트
 	private String profileimg;
+	private int alevel;
 
 }

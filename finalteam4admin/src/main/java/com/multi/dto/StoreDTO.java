@@ -23,4 +23,5 @@ public class StoreDTO {
 	
 	//조인
 	private String storeimg;
+	private int alevel;
 }
