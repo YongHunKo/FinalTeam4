@@ -103,12 +103,29 @@
       - (Naverlogin.png 삽입) 
       - NaverController.java
       - 참고자료 https://developers.naver.com/docs/common/openapiguide/apilist.md
-      - 네이버의 로그인 방식 `오픈API방식`을 적용하였습니다. 네이버로그인 버튼을 누르면 `GET/POST로 oauth2.0`을 통해 인증을 요청하고, 접근토큰을 발급이 되어 `JSON형식`으로 데이터가 내려오게 되고 
+      - 네이버의 로그인 방식 `오픈API방식`을 적용하였습니다. 네이버로그인 버튼을 누르면 `GET/POST로 oauth2.0`을 통해 인증을 요청하고, 접근토큰이 발급되어 `JSON형식`으로 데이터가 내려오게 되고 
       - 마찬가지로 Redirect 주소를 로그인하려는 IP를 사용해야 정상적인 작동이 됩니다.
       - 저희조는 사용자 정보를 register하는 과정에서 `사용자id값 뒤에 2`을 붙여서 다른 소셜로그인과 겹치지않도록 구분을 해놓았습니다.(카카오계정id와 네이버계정id가 일치하는 경우가 있기때문)
    4. 구글로그인
       - (Googlelogin.png 삽입) 
       - OauthController.java
+      - 구글로그인 버튼을 누르면 `oauth2`를 통해 인증을 요청하고, 접근토큰이 발급되어 `gson형식`으로 데이터가 내려온다.
+      - `gson`을 이용한 로그인 방식으로 `maven`으로 꼭 `xml`을 업데이트 시켜서 `dependency`가 적용이 되야합니다.
+      - 주의할 점은 카카오, 네이버와 달리 구글은 `ip주소`가 아닌 `localhost`를 `Redirect주소`로 한다.
+      - `사용자id값 뒤에 3`을 붙여서 다른 소셜로그인과 겹치지않도록 구분을 해놓았습니다
+      - ```xml 
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.5</version>
+		</dependency>
+		<!--구글 api -->
+		<dependency>
+			<groupId>com.google.api-client</groupId>
+			<artifactId>google-api-client</artifactId>
+			<version>1.32.1</version>
+		</dependency>
+      
 4. 검색
    - (catesearch.png, search.png 삽입)
    - index.html , SearchController.java
@@ -154,6 +171,108 @@
       ```
 6. 예약
    - (reserve.png , reservesuccess.png 삽입)
+   - reserve.html , ReserveController
+   - /addcart된 데이터가 reserveimpl을 통해 모델에 저장되어 reserve.html에 뿌려집니다.
+   - 메뉴의 수량 변경은 동기적으로 수정버튼을 통해 /update로 넘어가 수량이 변경되고, 변경 후에 totalprice가 바뀝니다.
+   - datetimepicker를 사용하여 날짜와 시간대를 선택하게 하였습니다.
+   - 쿠폰을 적용시켜 결제 금액을 할인받을 수 있습니다.
+   - 예약하기 버튼을 누르면 첫번째 admin의 웹소켓과 연결이 됩니다. 두번째 import의 결제API가 실행되어 결제가 진행이 됩니다.
+   - 결제가 성공적으로 진행되면 /reserveimpl2로 데이터가 넘어가고 cart데이터를 토대로 orderlist와 reserve에 regist 후 해당 cart데이터를 delete시킵니다. regist 시킨 데이터는 reservesuccess로 넘깁니다.
+   - 결제가 끝나고 reservesuccess.html로 넘어가면 웹소켓으로 연결된 admin계정에 예약알림 메시지가 넘어가고 고객에게는 카카오링크api가 작동하여 카카오톡으로 메시지를 보냅니다.
+   - 주의사항 저희 조에서 사용한 datetimepicker는 php기반으로 dateformat이 다릅니다. 따라서 java기반의 dateformat으로 바꿔 사용해야 합니다.
+   - ``` 			//datetimepicker
+			$.datetimepicker.setLocale('ko');
+			$.datetimepicker.setDateFormatter({
+				parseDate : function(date, format) {
+					var d = moment(date, format);
+					return d.isValid() ? d.toDate() : false;
+				},
+
+				formatDate : function(date, format) {
+					return moment(date).format(format);
+				},
+
+				formatMask : function(format) {
+					return format.replace(/Y{4}/g, '9999').replace(/Y{2}/g,
+							'99').replace(/M{2}/g, '19').replace(/D{2}/g, '39')
+							.replace(/H{2}/g, '29').replace(/m{2}/g, '59')
+							.replace(/s{2}/g, '59');
+				}
+			});
+			$('#datetimepicker').datetimepicker(
+					{
+						format : 'YYYY.M.D H:mm',
+						formatTime : 'H:mm',
+						formatDate : 'YYYY.M.D',
+						minDate : 0,
+						inline : true,
+						allowTimes : ...
+					});
+   - 웹소켓을 사용할 때 제일 중요한 부분은 connect()
+   - ``` 			// 서버소켓에 연결
+			function connect() {
+				var socket = new SockJS('주체가 되는 ip/ws');
+   - 이 부분의 주체가 되는 ip는 소통의 기준이 되는 ip주소를 넣으면 된다. 만약 127.0.0.1:8080이 주체이고 내가 사용하는 곳이 127.0.0.1이면 해당 자리에 127.0.0.1:8080을 넣고 연결을 하면 주체가 되는 ip와 웹소켓으로 연결이 된다.
+   - 결제 api에서는 변수들을 직접 넣기 위해서는 함수 내부에서 변수를 설정해 주어서 넣는게 가능하다
+   - ``` 			//I'mpot api
+			var IMP = window.IMP; // 생략 가능
+			IMP.init("import키값");
+			var custid = '[[${session.logincust.custid}]]';
+
+			기타등등 ...(생략)
+
+			function requestPay() {
+				var reservedate = $('#datetimepicker').val();
+				var totalPrice = $('#totalpricespan span').text();
+				var totalPrice2 = parseInt(totalPrice);
+				// IMP.request_pay(param, callback) 결제창 호출
+				IMP
+						.request_pay(
+								{ // param
+									pg : "html5_inicis",
+									pay_method : "card",
+									merchant_uid : 'merchant_'
+											+ new Date().getTime(),
+									name : "Eat&Out",
+									amount : totalPrice2, 
+									buyer_email : "",
+									buyer_name : custid,
+									buyer_tel : "010-4242-4242",
+									buyer_addr : "서울특별시 강남구 신사동",
+									buyer_postcode : "01181",
+									m_redirect_url : 
+								},
+								function(rsp) { // callback
+									if (rsp.success) {
+										jQuery
+												.ajax(
+														{
+															url : "", //결제 완료 후 컨트롤러를 건드리고 싶으면 이부분을 건드리는 것이 아니다
+															method : "POST",
+															headers : {
+																"Content-Type" : "application/json"
+															},
+															data : {
+																imp_uid : rsp.imp_uid, //결제 고유번호     
+																merchant_uid : rsp.merchant_uid
+															}
+														})
+												.done(
+														function(data) { // 결제 완료 후 컨트롤러를 건드리는 부분
+															sendLinkDefault();
+															sendTo();
+															location.href = "[[@{/reserveimpl2?custid=}]]"
+																	+ custid
+																	+ '&reservedate='
+																	+ reservedate
+														})
+									} else {
+										alert("결제에 실패하였습니다. 에러 내용: "
+												+ rsp.error_msg);
+									}
+								});
+			}
+   
 7. 마이페이지
    - (mypage.png , mypage_orderlist.png , mypage_orderdetail.png 등등 삽입)
 8. 주문 빈도에 따른 맛집랭킹 서비스
@@ -219,7 +338,10 @@
   - admin 메인 페이지에 chart 뿌리는 과정 중 $ajax가 정의되지 않는 문제 발생 →
 
 ## 고찰
-- (작성예정)
+- (작성 중)
+- NCP 서브계정의 한계로 Naver api를 마음껏 사용하지 못했습니다.
+- 카카오 비즈니스 채널 개설이 불가능하여 카카오 메시지 api 대신 최대한 비슷하게 카카오 link api를 이용하였습니다.
+- 
 
 ## 후기
 - (작성예정)
