@@ -620,7 +620,7 @@
 			<button id="reserve_btn" th:if="${session.logincust != null}"
 				class="btn btn-primary" disabled="disabled">예약하러가기</button>
 			<button th:if="${session.logincust == null}"
-				onclick="location.href='/login'" class="btn btn-primary">로그인하러가기</button>
+				th:onclick="|location.href='@{/login}'|" class="btn btn-primary">로그인하러가기</button>
 			<button id="wishlist_btn" th:if="${session.logincust != null}"
 				class="btn btn-primary" href="#" data-toggle="modal"
 				data-target="#Modal">위시리스트 넣기</button>
