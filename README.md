@@ -67,9 +67,35 @@
       |||||||Kakao link|
       |||||||Kakao Map|
 
-7. DB 설계(ERD와 sql을 첨부)
+7. DB 설계
    ![](./finalteam4/src/main/resources/static/img/READMEimg/ERD.png)
-8. UI 설계(Figma사용)
+8. UI 설계
+   ![](./finalteam4/src/main/resources/static/img/READMEimg/total_userflow.png)
+
+<details>
+<summary>메인 flow</summary>
+<div markdown="1">
+
+![](./finalteam4/src/main/resources/static/img/READMEimg/main_userflow.png)
+</div>
+</details>
+
+<details>
+<summary>로그인 flow</summary>
+<div markdown="1">
+
+![](./finalteam4/src/main/resources/static/img/READMEimg/login_userflow.png)
+</div>
+</details>
+   
+<details>
+<summary>마이페이지 flow</summary>
+<div markdown="1">
+
+![](./finalteam4/src/main/resources/static/img/READMEimg/mypage_userflow.png)
+</div>
+</details>
+   
 
 ## 프로젝트 결과(스샷 및 gif 넣기)
 ### index   
