@@ -7,8 +7,27 @@
 <link rel="stylesheet" th:href="@{/assets/css/common/styles.css}">
 
 <style>
-.row {
+.review {
+	margin: 0px auto;
+	height: 220px;
 	width: 850px;
+	padding-top: 50px;
+}
+
+.my_tit {
+	position: relative;
+	padding-bottom: 10px;
+	border-bottom: 4px solid #000;
+}
+
+.my_tit span {
+	display: inline-block;
+	margin-left: 10px;
+	font-size: 18px;
+	font-weight: 400;
+}
+
+.row {
 	display: flex;
 	flex-wrap: wrap;
 	padding-top: 15px;
@@ -21,30 +40,108 @@
 }
 
 .small>span {
-	font-size: 20px;
+	font-size: 15px;
 	letter-spacing: 5px;
 	color: orange;
 }
+
+/* 메뉴바 */
+.nav-item {
+	position: relative;
+	padding-right: 50px;
+}
+
+.navbar-collapse ul li a.nav-link:before {
+	position: absolute;
+	bottom: -5px;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background: transparent;
+	content: '';
+	opacity: 0;
+	-ms-transition: opacity 0.3s, -webkit-transform 0.3s;
+	-webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+	transition: opacity 0.3s, transform 0.3s;
+	-ms-transform: translateY(10px);
+	-webkit-transform: translateY(10px);
+	transform: translateY(10px);
+}
+
+.navbar-collapse ul li:hover a.nav-link:before {
+	opacity: 1;
+	-ms-transform: translateY(0px);
+	-webkit-transform: translateY(0px);
+	transform: translateY(0px);
+	bottom: 0px;
+	background: skyblue;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+	color: #ffffff;
+	text-decoration: none;
+	background-color: skyblue;
+}
+
+.dropdown-menu {
+	border: 0px;
+}
 </style>
-
-
 
 <script>
 	$(document).ready(function() {
-		/* const menu = document.querySelector('#menu-toggle') */
-		$("#menu-toggle").click(function(e) {
-			e.preventDefault();
-			$("#wrapper").toggleClass("menuDisplayed");
-			/* menu.style.visibility = "hidden"; */
-		});
 	});
 </script>
 
-</head>
-
 <body>
-	<div id="wrapper" style="height: 1000px">
-		<th:block th:replace="mypage/fragment/sidebar :: sidebarFragment"></th:block>
+	<div id="wrapper" style="height: auto">
+		<!-- 메뉴바 -->
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false">나의 EAT & OUT</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item"
+								th:href="@{/mypage/order(id=${session.logincust.custid})}">테이블
+								조회</a> <a class="dropdown-item"
+								th:href="@{/mypage/review(id=${session.logincust.custid})}">나의
+								리뷰</a> <a class="dropdown-item"
+								th:href="@{/wishlist(id=${session.logincust.custid})}">나의
+								위시리스트</a>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> 계정설정 </a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item"
+								th:href="@{/mypage/edit(id=${session.logincust.custid})}">회원정보수정</a>
+							<a class="dropdown-item" href="#">쿠폰</a>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false">고객센터</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" th:href="@{/mypage/question}">1:1
+								문의내역</a> <a class="dropdown-item" href="#">공지사항</a> <a
+								class="dropdown-item" href="#">FAQ</a>
+						</div></li>
+				</ul>
+			</div>
+		</nav>
+		<!-- 메뉴바 끝 -->
 		<th:block th:replace="mypage/fragment/banner :: bannerFragment"></th:block>
 		<div id="page-content-wrapper">
 			<div class="container-fluid px-1 px-md-4 py-2 mx-auto">
@@ -52,29 +149,29 @@
 					<h3 class="my_tit">
 						리 뷰<span>소중한 리뷰 감사합니다.</span>
 					</h3>
-					<div class="row">
-						<div class="col-xl-3 col-lg-4 col-md-6 mb-4"
-							th:each="rv : ${review}" style="height: 500px; width: 276px">
-							<div class="bg-white rounded shadow-sm">
-								<img th:src="@{/storeimg/} + ${rv.storeimg}"
-									class="img-fluid card-img-top"
-									style="height: 300px; width: 250px">
-								<div class="p-4">
-									<h5>
-										<a href="#" class="text-dark" th:text="${rv.storename}"></a>
-									</h5>
-									<p class="small text-muted mb-0" th:text="${rv.revtext}"></p>
-									<div
-										class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
-										<p class="small">
-											<i class="star" style="padding-right: 45px">S t a r</i> <span
-												th:if="${rv.star == 1}">★ </span> <span
-												th:if="${rv.star == 2}">★ ★</span> <span
-												th:if="${rv.star == 3}">★ ★ ★</span> <span
-												th:if="${rv.star == 4}">★ ★ ★ ★</span> <span
-												th:if="${rv.star == 5}">★ ★ ★ ★ ★</span>
-										</p>
-									</div>
+				</div>
+				<div class="row">
+					<div class="col-xl-3 col-lg-4 col-md-6 mb-4"
+						th:each="rv : ${review}" style="height: 500px; width: 330px">
+						<div class="bg-white rounded shadow-sm">
+							<img th:src="@{/storeimg/} + ${rv.storeimg}"
+								class="img-fluid card-img-top"
+								style="height: 300px; width: 320px">
+							<div class="p-4">
+								<h5>
+									<a href="#" class="text-dark" th:text="${rv.storename}"></a>
+								</h5>
+								<p class="small text-muted mb-0" th:text="${rv.revtext}"></p>
+								<div
+									class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+									<p class="small">
+										<i class="star" style="padding-right: 45px">S t a r</i> <span
+											th:if="${rv.star == 1}">★ </span> <span
+											th:if="${rv.star == 2}">★ ★</span> <span
+											th:if="${rv.star == 3}">★ ★ ★</span> <span
+											th:if="${rv.star == 4}">★ ★ ★ ★</span> <span
+											th:if="${rv.star == 5}">★ ★ ★ ★ ★</span>
+									</p>
 								</div>
 							</div>
 						</div>

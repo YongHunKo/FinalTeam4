@@ -74,17 +74,60 @@
 	bottom: 0;
 	left: 80px;
 }
+
+/* 메뉴바 */
+.nav-item {
+	position: relative;
+	padding-right: 50px;
+}
+
+.navbar-collapse ul li a.nav-link:before {
+	position: absolute;
+	bottom: -5px;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background: transparent;
+	content: '';
+	opacity: 0;
+	-ms-transition: opacity 0.3s, -webkit-transform 0.3s;
+	-webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+	transition: opacity 0.3s, transform 0.3s;
+	-ms-transform: translateY(10px);
+	-webkit-transform: translateY(10px);
+	transform: translateY(10px);
+}
+
+.navbar-collapse ul li:hover a.nav-link:before {
+	opacity: 1;
+	-ms-transform: translateY(0px);
+	-webkit-transform: translateY(0px);
+	transform: translateY(0px);
+	bottom: 0px;
+	background: skyblue;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+	color: #ffffff;
+	text-decoration: none;
+	background-color: skyblue;
+}
+
+.dropdown-menu {
+	border: 0px;
+}
 </style>
 
 
 
 <script>
 	$(document).ready(function() {
-		/* const menu = document.querySelector('#menu-toggle') */
-		$("#menu-toggle").click(function(e) {
-			e.preventDefault();
-			$("#wrapper").toggleClass("menuDisplayed");
-			/* menu.style.visibility = "hidden"; */
+		$('#navbarDropdown').click(function() {
+			$('.dropdown-menu').slideToggle(300, "linear");
+		});
+
+		$('.dropdown-menu').click(function() {
+			$(this).slideToggle(300, "linear");
 		});
 	});
 
@@ -107,8 +150,54 @@
 </head>
 
 <body>
+	<!-- 메뉴바 -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light"
+		style="justify-content: center;">
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false">나의 EAT & OUT</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item"
+							th:href="@{/mypage/order(id=${session.logincust.custid})}">테이블
+							조회</a> <a class="dropdown-item"
+							th:href="@{/mypage/review(id=${session.logincust.custid})}">나의
+							리뷰</a> <a class="dropdown-item"
+							th:href="@{/wishlist(id=${session.logincust.custid})}">나의
+							위시리스트</a>
+					</div></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> 계정설정 </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item"
+							th:href="@{/mypage/edit(id=${session.logincust.custid})}">회원정보수정</a>
+						<a class="dropdown-item" href="#">쿠폰</a>
+					</div></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false">고객센터</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" th:href="@{/mypage/question}">1:1
+							문의내역</a> <a class="dropdown-item" href="#">공지사항</a> <a
+							class="dropdown-item" href="#">FAQ</a>
+					</div></li>
+			</ul>
+		</div>
+	</nav>
+	<!-- 메뉴바 끝 -->
 	<div id="wrapper" style="height: 1000px">
-		<th:block th:replace="mypage/fragment/sidebar :: sidebarFragment"></th:block>
 		<th:block th:replace="mypage/fragment/banner :: bannerFragment"></th:block>
 		<div id="page-content-wrapper">
 			<div class="container-fluid px-1 px-md-4 py-2 mx-auto">

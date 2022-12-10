@@ -14,7 +14,6 @@
 /* Main Content */
 #wrapper {
 	width: 100%;
-	height: 1200px;
 }
 
 #page-content-wrapper {
@@ -27,14 +26,6 @@
 #menu-toggle {
 	transition: all .3s;
 	font-size: 20px;
-}
-/* Change the width of the sidebar to display it*/
-#wrapper.menuDisplayed #sidebar-wrapper {
-	width: 250px;
-}
-
-#wrapper.menuDisplayed #page-content-wrapper {
-	padding-left: 100px;
 }
 
 /* Sidebar styling */

@@ -110,7 +110,6 @@ function upload() {
 		contentType : false,
 		type : "POST",
 		success : function(data) {
-			alert(data);
 			check(data);
 		}
 	});
@@ -149,7 +148,53 @@ function check(data) {
 
 <body>
 	<div id="wrapper" style="height: 1000px">
-		<th:block th:replace="mypage/fragment/sidebar :: sidebarFragment"></th:block>
+			<!-- 메뉴바 -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false">나의 EAT & OUT</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item"
+							th:href="@{/mypage/order(id=${session.logincust.custid})}">테이블
+							조회</a> <a class="dropdown-item"
+							th:href="@{/mypage/review(id=${session.logincust.custid})}">나의
+							리뷰</a> <a class="dropdown-item"
+							th:href="@{/wishlist(id=${session.logincust.custid})}">나의
+							위시리스트</a>
+					</div></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> 계정설정 </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item"
+							th:href="@{/mypage/edit(id=${session.logincust.custid})}">회원정보수정</a>
+						<a class="dropdown-item" href="#">쿠폰</a>
+					</div></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false">고객센터</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" th:href="@{/mypage/question}">1:1
+							문의내역</a> <a class="dropdown-item" href="#">공지사항</a> <a
+							class="dropdown-item" href="#">FAQ</a>
+					</div></li>
+			</ul>
+		</div>
+	</nav>
+	<!-- 메뉴바 끝 -->
 		<th:block th:replace="mypage/fragment/banner :: bannerFragment"></th:block>
 		<div id="page-content-wrapper">
 			<div class="container-fluid px-1 px-md-4 py-2 mx-auto">
