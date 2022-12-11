@@ -174,6 +174,16 @@ public class MainController {
 		return "index";
 	}
 	
+	@RequestMapping("/registerstoreimpl")
+	public String registerstoreimpl(Model model, StoreDTO sto) {
+		try {
+			storeservice.register(sto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/store";
+	}
+	
 	@RequestMapping("/registerstoreimgimpl")
 	public String registerstoreimgimpl(Model model, StoreimgDTO sto) {
 		String storeimg = sto.getSimg().getOriginalFilename();
