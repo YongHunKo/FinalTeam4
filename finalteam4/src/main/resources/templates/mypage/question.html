@@ -4,14 +4,101 @@
 <meta charset="utf-8">
 
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" th:href="@{/assets/css/common/styles.css}">
 
 <style>
+/*  배너 */
+.card2 {
+	background-color: #ffffff;
+	border-radius: 30px;
+	background: url("/img/caption.jpg") no-repeat;
+	background-size: cover;
+	background-position: center;
+	margin-top: 30px;
+}
+
+#heading {
+	font-size: 55px;
+	color: #fff;
+}
+
+.temp {
+	place-items: center;
+}
+
+.temp-details>p>span, .grey {
+	color: #fff;
+	font-size: 18px;
+}
+
+.fa {
+	color: #fff
+}
+
+*:focus {
+	outline: none;
+}
+/*채팅  */
+.card4 {
+	width: 900px;
+	border: none;
+	border-radius: 15px;
+	margin-bottom: 40px;
+}
+
+.adiv {
+	background: #04CB28;
+	border-radius: 15px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+	font-size: 20px;
+	height: 46px;
+}
+
+.chat {
+	border: none;
+	background: #E2FFE8;
+	font-size: 18px;
+	border-radius: 20px;
+}
+
+.bg-white {
+	border: 1px solid #E7E7E9;
+	font-size: 10px;
+	border-radius: 20px;
+}
+
+.myvideo img {
+	border-radius: 20px
+}
+
+.dot {
+	font-weight: bold;
+	font-size: 25px;
+}
+
+.form-control {
+	border-radius: 12px;
+	border: 1px solid #F0F0F0;
+	font-size: 25px;
+}
+
+.form-control:focus {
+	box-shadow: none;
+}
+
+.form-control::placeholder {
+	font-size: 8px;
+	color: #C4C4C4;
+}
+
 .question {
 	margin: 0px auto;
 	height: 220px;
 	width: 850px;
 	padding-top: 50px;
+	font-size: 25px;
 }
 
 .my_tit {
@@ -44,87 +131,6 @@
 	font-weight: 700;
 }
 
-#chat1 .form-outline .form-control ~.form-notch div {
-	pointer-events: none;
-	border: 1px solid;
-	border-color: #eee;
-	box-sizing: border-box;
-	background: transparent;
-}
-
-#chat1 .form-outline .form-control ~.form-notch .form-notch-leading {
-	left: 0;
-	top: 0;
-	height: 100%;
-	border-right: none;
-	border-radius: .65rem 0 0 .65rem;
-}
-
-#chat1 .form-outline .form-control ~.form-notch .form-notch-middle {
-	flex: 0 0 auto;
-	max-width: calc(100% - 1rem);
-	height: 100%;
-	border-right: none;
-	border-left: none;
-}
-
-#chat1 .form-outline .form-control ~.form-notch .form-notch-trailing {
-	flex-grow: 1;
-	height: 100%;
-	border-left: none;
-	border-radius: 0 .65rem .65rem 0;
-}
-
-#chat1 .form-outline .form-control:focus ~.form-notch .form-notch-leading
-	{
-	border-top: 0.125rem solid #39c0ed;
-	border-bottom: 0.125rem solid #39c0ed;
-	border-left: 0.125rem solid #39c0ed;
-}
-
-#chat1 .form-outline .form-control:focus ~.form-notch .form-notch-leading,
-	#chat1 .form-outline .form-control.active ~.form-notch .form-notch-leading
-	{
-	border-right: none;
-	transition: all 0.2s linear;
-}
-
-#chat1 .form-outline .form-control:focus ~.form-notch .form-notch-middle
-	{
-	border-bottom: 0.125rem solid;
-	border-color: #39c0ed;
-}
-
-#chat1 .form-outline .form-control:focus ~.form-notch .form-notch-middle,
-	#chat1 .form-outline .form-control.active ~.form-notch .form-notch-middle
-	{
-	border-top: none;
-	border-right: none;
-	border-left: none;
-	transition: all 0.2s linear;
-}
-
-#chat1 .form-outline .form-control:focus ~.form-notch .form-notch-trailing
-	{
-	border-top: 0.125rem solid #39c0ed;
-	border-bottom: 0.125rem solid #39c0ed;
-	border-right: 0.125rem solid #39c0ed;
-}
-
-#chat1 .form-outline .form-control:focus ~.form-notch .form-notch-trailing,
-	#chat1 .form-outline .form-control.active ~.form-notch .form-notch-trailing
-	{
-	border-left: none;
-	transition: all 0.2s linear;
-}
-
-#chat1 .form-outline .form-control:focus ~.form-label {
-	color: #39c0ed;
-}
-
-#chat1 .form-outline .form-control ~.form-label {
-	color: #bfbfbf;
-}
 
 #connect {
 	width: 96px;
@@ -142,40 +148,9 @@
 	border: none;
 }
 
-.card2 {
-	height: 600px;
-	width: 400px;
-}
-
-.card-body {
-	height: 420px;
-}
-
-#card-body>p {
-	padding: 10px 20px;
-}
 </style>
 
 <script>
-	$(document).ready(function() {
-		const menu = document.querySelector('#menu-toggle')
-
-			$("#wrapper").toggleClass("menuDisplayed");
-			menu.style.visibility = "hidden";
-
-		$("#connect").click(function() {
-			connect();
-		});
-
-		$("#sendme").click(function() {
-			sendMe();
-		});
-
-		$("#sendto").click(function() {
-			sendTo();
-		});
-	});
-
 	var stompClient = null;
 	var id = "[[${session.logincust.custid}]]";
 	// 서버소켓에 연결
@@ -188,9 +163,9 @@
 			console.log('Connected: ' + frame);
 			stompClient.subscribe('/send/' + id, function(msg) {
 				$("#card-body").append(
-						"<div class='d-flex flex-row justify-content-end mb-4'><div class='p-3 me-3 border' style='border-radius: 15px; background-color: #fbfbfb'><p>" + JSON.parse(msg.body).content1 + "</p></div><img src='/assets/images/thumbnail.png' style='width: 45px; height: 100%'></div>");
+						"<div class='d-flex flex-row justify-content-end mb-4'><div class='p-3 me-3 border' style='border-radius: 15px; background-color: #fbfbfb'><p>" + JSON.parse(msg.body).content1 + "</p></div><img src='https://img.icons8.com/color/48/000000/circled-user-male-skin-type-7.png'  width='70' height='70'></div>");
 				$("#card-body").append(
-						"<div class='d-flex flex-row justify-content-start mb-4'><img src='/assets/images/eLogo.png' style='width: 45px; height: 100%''><div class='p-3 ms-3' style='border-radius: 15px; background-color: rgba(57, 192, 237, .2)'><p>" + JSON.parse(msg.body).content2 + "</p></div></div>");
+						"<div class='d-flex flex-row justify-content-start mb-4'><img src='/assets/images/eLogo.png' width='70' height='70'><div class='p-3 ms-3' style='border-radius: 15px; background-color: rgba(57, 192, 237, .2)'><p>" + JSON.parse(msg.body).content2 + "</p></div></div>");
 			});
 		});
 	}
@@ -226,93 +201,135 @@
 		stompClient.send("/receiveme", {}, msg);
 	}
 	
+	$(document).ready(function() {
+		$("#connect").click(function() {
+			connect();
+		});
+
+		$("#sendme").click(function() {
+			sendMe();
+		});
+
+		$("#sendto").click(function() {
+			sendTo();
+		});
+	});
+
 </script>
-<div id="wrapper" style="height: auto">
-			<!-- 메뉴바 -->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false"
-			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
+<body>
+	<div id="wrapper" style="height: auto">
+		<!-- 메뉴바 -->
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
 
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false">나의 EAT & OUT</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item"
-							th:href="@{/mypage/order(id=${session.logincust.custid})}">테이블
-							조회</a> <a class="dropdown-item"
-							th:href="@{/mypage/review(id=${session.logincust.custid})}">나의
-							리뷰</a> <a class="dropdown-item"
-							th:href="@{/wishlist(id=${session.logincust.custid})}">나의
-							위시리스트</a>
-					</div></li>
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> 계정설정 </a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item"
-							th:href="@{/mypage/edit(id=${session.logincust.custid})}">회원정보수정</a>
-						<a class="dropdown-item" href="#">쿠폰</a>
-					</div></li>
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false">고객센터</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" th:href="@{/mypage/question}">1:1
-							문의내역</a> <a class="dropdown-item" href="#">공지사항</a> <a
-							class="dropdown-item" href="#">FAQ</a>
-					</div></li>
-			</ul>
-		</div>
-	</nav>
-	<!-- 메뉴바 끝 -->
-		<th:block th:replace="mypage/fragment/banner :: bannerFragment"></th:block>
-		<div id="page-content-wrapper">
-			<div class="container-fluid px-1 px-md-4 py-2 mx-auto">
-				<div class="row d-flex justify-content-center px-3">
-					<h3 class="my_tit">
-						1 : 1 문의<span>채팅을 통해 문의를 남겨주세요.</span>
-				<button id="connect" class="btn btn-default">대화시작</button>
-					</h3>
-			<div class="container py-5">
-				<div class="row d-flex" style="justify-content: center;">
-					<div class="col-md-8 col-lg-6 col-xl-4">
+			<div class="collapse navbar-collapse" id="navbarSupportedContent" style="justify-content:center;">
+				<ul class="navbar-nav">
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false">나의 EAT & OUT</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item"
+								th:href="@{/mypage/order(id=${session.logincust.custid})}">테이블
+								조회</a> <a class="dropdown-item"
+								th:href="@{/mypage/review(id=${session.logincust.custid})}">나의
+								리뷰</a> <a class="dropdown-item"
+								th:href="@{/wishlist(id=${session.logincust.custid})}">나의
+								위시리스트</a>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> 계정설정 </a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item"
+								th:href="@{/mypage/edit(id=${session.logincust.custid})}">회원정보수정</a>
+							<a class="dropdown-item" href="#">쿠폰</a>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false">고객센터</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" th:href="@{/mypage/question}">1:1
+								문의내역</a> <a class="dropdown-item" href="#">공지사항</a> <a
+								class="dropdown-item" href="#">FAQ</a>
+						</div></li>
+				</ul>
+			</div>
+		</nav>
+		<!-- 메뉴바 끝 -->
+<!-- 배너 -->
+	<div class="container-fluid">
 
-						<div class="card2" id="chat1" style="border-radius: 15px">
-							<div
-								class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0"
-								style="border-top-left-radius: 15px; border-top-right-radius: 15px">
-								<i class="fas fa-angle-left"></i>
-								<p class="mb-0 fw-bold">Eat & Out</p>
-								<i class="fas fa-times"></i>
-							</div>
-							<div id="card-body" class="card-body">
-								<div class="d-flex flex-row justify-content-start mb-4">
-									<img src="/assets/images/eLogo.png"
-										style="width: 45px; height: 100%">
-									<div class="p-3 ms-3"
-										style="border-radius: 15px; background-color: rgba(57, 192, 237, .2)">
-										<p>궁금하신 점 있으신가요?</p>
-										<p>저에게 물어봐주세요!</p>
-									</div>
-								</div>
-							</div>
-							<div class="form-outline">
-								<textarea class="form-control" id="metext" rows="3" disabled></textarea>
-								<button id="sendme">></button>
-							</div>
+		<div class="row justify-content-center">
+			<div class="col-12 col-md-4 col-sm-12 col-xs-12">
+				<div class="card2 p-4">
+					<div class="d-flex">
+						<h6 class="flex-grow-1" style="color: #fff;"
+							th:text="'😀'+${session.logincust.custname}+'님의 가까운 예약'"></h6>
+						<h6></h6>
+					</div>
+					<div class="d-flex flex-column temp mt-5 mb-3"
+						th:with="list1 = ${session.list_one}">
+						<h3 class="mb-0 font-weight-bold" id="heading"
+							th:text="${list1.storename}"></h3>
+					</div>
+					<div class="d-flex" th:with="list1 = ${session.list_one}">
+						<div class="temp-details flex-grow-1">
+							<p class="my-1" th:text="'D' + ${session.banner_dday}"
+								style="color: #fff; font-size: 15px;">
+								<span th:text="${session.banner_rsvdate}"
+									style="color: #fff; font-size: 45px;"></span>
+							</p>
+							<p class="my-1">
+								<span th:text="'예약날짜 : '+${list1.reservedate}"
+									style="color: #fff;"> </span>
+							</p>
 						</div>
+						<div></div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<!--배너 끝  -->
+				<h3 class="my_tit">
+					1 : 1 문의<span>채팅을 통해 문의를 남겨주세요.</span>
+					<button id="connect" class="btn btn-default">대화시작</button>
+				</h3>
+		 <div class="container-fluid px-1 px-md-4 py-2 mx-auto">
+			<div class="row d-flex justify-content-center px-3">
+				<div class="container d-flex justify-content-center">
+
+					<div class="card4 mt-5" >
+						<div
+							class="d-flex flex-row justify-content-between p-3 adiv text-white">
+							<i class="fas fa-chevron-left"></i> <span class="pb-3">실시간
+								채팅문의</span> <i class="fas fa-times"></i>
+						</div>
+						<div id="card-body">
+						<div class="d-flex flex-row p-3">
+							<img src="/assets/images/eLogo.png" width="70" height="70" >
+							<div class="chat ml-2 p-3">궁금하신 점 있으신가요? 저에게 물어봐주세요!</div>
+						</div>
+						</div>
+						<div class="form-group px-3">
+							<textarea class="form-control" rows="5" placeholder="메세지를 작성해주세요" id="metext" disabled> </textarea>
+						<button id="sendme">보내기</button>
+						</div>
+					</div>
+				</div>
+				</div>
+				</div>
+				</div>
+				
+				
+</body>
+</html>
