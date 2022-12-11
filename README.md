@@ -57,19 +57,19 @@
      - 관리자, 위시리스트, DB관리
 6. 개발환경 및 수행 도구
 
-   - |언어|웹|개발도구|데이터베이스|협업도구|프레임워크|API|
-      |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-      |Java|JavaScript|Eclipse|MySQL|GitHub|SpringBoot|Kakaologin|
-      ||HTML5|||Notion|MyBatis|Naverlogin|
-      ||CSS6|||GatherTown||NaverOCR|
-      ||JQuery|||||NaverChatbot|
-      ||AJAX|||||Import|
-      |||||||Kakao link|
-      |||||||Kakao Map|
+|언어|웹|개발도구|데이터베이스|협업도구|프레임워크|API|
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|Java|JavaScript|Eclipse|MySQL|GitHub|SpringBoot|Kakaologin|
+||HTML5|||Notion|MyBatis|Naverlogin|
+||CSS6|||GatherTown||NaverOCR|
+||JQuery|||||NaverChatbot|
+||AJAX|||||Import|
+|||||||Kakao link|
+|||||||Kakao Map|
 
-7. DB 설계
+1. DB 설계
    ![](./finalteam4/src/main/resources/static/img/READMEimg/ERD.png)
-8. UI 설계
+2. UI 설계
    ![](./finalteam4/src/main/resources/static/img/READMEimg/total_userflow.png)
 
 <details>
@@ -99,25 +99,25 @@
 
 ## 프로젝트 결과(스샷 및 gif 넣기)
 ### index   
-   - ![](./finalteam4/src/main/resources/static/img/READMEimg/index_fullpage2.png)
+![](./finalteam4/src/main/resources/static/img/READMEimg/index_fullpage2.png)
    - index.html
    - MainController.java
    - `랜덤`으로 뿌려지는 맛집, `카테고리`별 맛집, `오늘의 추천` 맛집 순서로 화면에 출력되며
    - 로그인을 하면 해당 계정이 위시리스트에 등록한 위시리스트 목록까지 나옵니다.
    - 컨트롤러의 대부분도 페이지 이동에 관련된 기능뿐입니다.
 ### 회원가입
-   - ![](./finalteam4/src/main/resources/static/img/READMEimg/signup.JPG)
+![](./finalteam4/src/main/resources/static/img/READMEimg/signup.JPG)
    - SignupController.java , AController.java
    - 쉽게 회원가입을 위해 id, password, name, Phone Number, Birth의 정보만 입력
    - ajax를 이용하여 `/checkid`를 발동하여 비동기적으로 id중복확인
 ### 로그인
    1. 일반로그인
-      - ![](./finalteam4/src/main/resources/static/img/READMEimg/login.JPG)
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/login.JPG)
       - login.html , loginfail.html
       - LoginController.java
       - `입력받은 custid`값을 DB에서 조회하고, `입력받은 pwd`와 `DB에서 조회한 custid의 pwd`가 일치하는지 `equals()`로 비교하여 일치하면 session에 저장하여 로그인을 지속시키고, 일치하지않으면 loginfail.html로 보내버립니다.
-   2. 카카오로그인
-      - ![](./finalteam4/src/main/resources/static/img/READMEimg/kakaologin.JPG)
+   1. 카카오로그인
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/kakaologin.JPG)
       - KakaoController.java
       - 참고자료 https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api
       - kakaologinAPI의 `REST API방식`을 적용하였습니다. 카카오로그인 버튼을 누르면 GET/oauth/authorize를 통해 카카오계정 로그인 요청을 하고, 카카오 계정 로그인을하면 Redirect URL로 인가코드가 전달이 됩니다.
@@ -126,15 +126,15 @@
       - `주의할 점`은 Redirect주소를 로그인하려는 IP를 사용해야 정상적인 작동이 됩니다.
       - 또한 Object형식으로 내려오므로 사용자 정보를 제대로 사용하기 위해서는 `형변환`을 해주어야 올바르게 사용이 가능합니다.
       - 저희조는 사용자 정보를 register하는 과정에서 `사용자id값 뒤에 1`을 붙여서 다른 소셜로그인과 겹치지않도록 구분을 해놓았습니다.(카카오계정id와 네이버계정id가 일치하는 경우가 있기때문)
-   3. 네이버로그인 
-      - ![](./finalteam4/src/main/resources/static/img/READMEimg/naverlogin.JPG)
+   1. 네이버로그인 
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/naverlogin.JPG)
       - NaverController.java
       - 참고자료 https://developers.naver.com/docs/common/openapiguide/apilist.md
       - 네이버의 로그인 방식 `오픈API방식`을 적용하였습니다. 네이버로그인 버튼을 누르면 `GET/POST로 oauth2.0`을 통해 인증을 요청하고, 접근토큰이 발급되어 `JSON형식`으로 데이터가 내려오게 되고 
       - 마찬가지로 Redirect 주소를 로그인하려는 IP를 사용해야 정상적인 작동이 됩니다.
       - 저희조는 사용자 정보를 register하는 과정에서 `사용자id값 뒤에 2`을 붙여서 다른 소셜로그인과 겹치지않도록 구분을 해놓았습니다.(카카오계정id와 네이버계정id가 일치하는 경우가 있기때문)
-   4. 구글로그인
-      - ![](./finalteam4/src/main/resources/static/img/READMEimg/googlelogin.JPG)
+   1. 구글로그인
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/googlelogin.JPG)
       - OauthController.java
       - 구글로그인 버튼을 누르면 `oauth2`를 통해 인증을 요청하고, 접근토큰이 발급되어 `gson형식`으로 데이터가 내려온다.
       - `gson`을 이용한 로그인 방식으로 `maven`으로 꼭 `xml`을 업데이트 시켜서 `dependency`가 적용이 되야합니다.
@@ -154,8 +154,8 @@
 		</dependency>
       
 ### 검색
-   - ![](./finalteam4/src/main/resources/static/img/READMEimg/search.JPG)
-   - ![](./finalteam4/src/main/resources/static/img/READMEimg/search_keyword.png)
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/search.JPG)
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/search_keyword.png)
    - index.html , SearchController.java
    - 기본적으로 input text로 `/searchimpl`로 넘어가는 방식입니다.
    - `select`을 이용하여 카테고리별로 검색이 가능하도록 구현했습니다. 디폴트는 전체 검색입니다.
@@ -168,7 +168,7 @@
 <input type="text" style="display:none" onkeyup="enterkey()"> // 더미값
 ``` 
 ## 스토어디테일
-   - ![](./finalteam4/src/main/resources/static/img/READMEimg/storedetail.png)
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/storedetail.png)
    - storedetail.html , StoreController.java , AController.java
    - search에서 검색된 메뉴를 누르면 `storedetail.html`로 이동하게됩니다.
    - `해당 메뉴의 storeid`를 통해 `/storedetail`로 넘어가고 컨트롤러에서 설정한 모델에서 원하는 데이터를 출력해줍니다.
@@ -199,9 +199,9 @@ $('#reserve_btn').click(function() {
 		});
 ```
 ### 예약
-   - ![](./finalteam4/src/main/resources/static/img/READMEimg/reserve.png)
-   - ![](./finalteam4/src/main/resources/static/img/READMEimg/reserve_coupon.png)
-   - ![](./finalteam4/src/main/resources/static/img/READMEimg/reservesuccess.png)
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/reserve.png)
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/reserve_coupon.png)
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/reservesuccess.png)
    - reserve.html , ReserveController
    - `/addcart`된 데이터가 `/reserveimpl`을 통해 모델에 저장되어 `reserve.html`에 뿌려집니다.
    - 메뉴의 수량 변경은 동기적으로 `수정버튼`을 통해 `/update`로 넘어가 수량이 변경되고, 변경 후에 `totalprice`가 바뀝니다.
