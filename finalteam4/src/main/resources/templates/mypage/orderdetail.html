@@ -36,14 +36,12 @@
 	color: #fff
 }
 
-
-
 /* Card Styles */
 .card-sl {
 	border-radius: 8px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
 		rgba(0, 0, 0, 0.19);
-		width:300px;
+	width: 300px;
 }
 
 #shareimg {
@@ -76,12 +74,6 @@
 	display: flex;
 }
 
-.card-action:hover {
-	color: #fff;
-	background: #E26D5C;
-	-webkit-animation: pulse 1.5s infinite;
-}
-
 .card-heading {
 	font-size: 18px;
 	font-weight: bold;
@@ -105,6 +97,7 @@
 	color: #fff;
 	border-radius: 0 0 8px 8px;
 }
+
 .card-button:hover {
 	text-decoration: none;
 	background-color: #1D3461;
@@ -137,7 +130,7 @@
 	font-size: 18px;
 	background: #FFBB45;
 	border: none;
-	font-family:Pretendard;
+	font-family: Pretendard;
 }
 </style>
 
@@ -258,14 +251,14 @@
 	<!--배너 끝  -->
 
 	<div class="container" style="margin-top: 50px; margin-bottom: 50px;">
-		<h4 style="text-align:center; font-family:Pretendard;">
+		<h4 style="text-align: center; font-family: Pretendard;">
 			테이블 상세 내역
 			<button class="review_btn"
 				th:onclick="|location.href='@{ocr(id=${rvdto.orderlistno})}'|">리뷰쓰기</button>
 		</h4>
 		<div class="row">
 			<div class="col-md-4 sm-4" th:each="li : ${list}"
-				style="padding-top: 20px; text-align:center;" >
+				style="padding-top: 20px; text-align: center;">
 				<div class="card-sl">
 					<div class="card-image">
 
@@ -275,80 +268,24 @@
 					</div>
 					<div class="card-heading" th:text="${li.menuname}"></div>
 					<div class="card-text" th:text="${li.storename}"></div>
-					<div class="card-text" th:text="${li.cnt}+'개'"></div>
-					<div class="card-text" th:text="${li.orderprice}+'원'"></div>
+					<div class="card-text" th:text="'주문개수:'+${li.cnt}+'개'"></div>
+					<div class="card-text" th:text="'결제가격:'+${li.orderprice}+'원'"></div>
 					<a href="#" class="card-button"></a>
 				</div>
 
 			</div>
 			<div class="summary">
-						<h3 class="my_tit">Detail</h3>
-						<ul class="detail">
-							<li>방문 날짜 : <span th:text="${rvdate}"></span></li>
-							<li>총 수량 : <span th:text="${cnt}"></span></li>
-							<li>결제금액 : <span th:text="${total}"></span></li>
-						</ul>
-					</div>
-		</div>
-		
-	</div>
-	<!-- <th:block th:replace="mypage/fragment/banner :: bannerFragment"></th:block>
-		<div id="page-content-wrapper">
-			<div class="container-fluid px-1 px-md-4 py-2 mx-auto">
-				<div class="row d-flex justify-content-center px-3">
-					<h3 class="my_tit">
-						테이블 상세 내역
-						<button class="review_btn"
-							th:onclick="|location.href='@{ocr(id=${rvdto.orderlistno})}'|">리뷰쓰기</button>
-					</h3>
-				</div>
-				<div class="form-group">
-					<ul class="my_order_tbl">
-						<li class="my_order_tit">
-							<div class="my_tbl">
-								<div class="date">테이블</div>
-								<div class="history">메뉴정보</div>
-								<div class="num">수량</div>
-								<div class="amount">가격</div>
-							</div>
-						</li>
-						<ul class="my_order_tbl2" th:each="li : ${list}">
-							<li class="ng-star-inserted"><a
-								class="my_tbl ng-star-inserted"
-								th:href="@{/storedetail(storeid=${li.storeid})}">
-									<div class="date" th:text="${li.storename}"></div>
-									<div class="history">
-										<div class="imgbx">
-											<div class="imgin" style="float: center">
-												<img th:src="@{/menuimg/} + ${li.menuimg}">
-											</div>
-										</div>
-										<div class="prd_order">
-											<div class="prd_order_flex">
-												<div class="prd_order_in">
-													<span style="font-size: 18px; padding-top: 5px"
-														th:text="${li.menuname}"></span>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="num" th:text="${li.cnt}"></div>
-									<div class="amount" th:text="${li.orderprice}"></div>
-							</a></li>
-						</ul>
-					</ul>
-					<div class="summary">
-						<h3 class="my_tit">Detail</h3>
-						<ul class="detail">
-							<li>방문 날짜 : <span th:text="${rvdate}"></span></li>
-							<li>총 수량 : <span th:text="${cnt}"></span></li>
-							<li>결제금액 : <span th:text="${total}"></span></li>
-						</ul>
-					</div>
-				</div>
+				<h3 class="my_tit">Detail</h3>
+				<ul class="detail">
+					<li>방문 날짜 : <span th:text="${rvdate}"></span></li>
+					<li>총 수량 : <span th:text="${cnt}"></span></li>
+					<li>총 결제금액 : <span th:text="${total}"></span></li>
+				</ul>
 			</div>
 		</div>
-	</div> -->
+
+	</div>
+
 </body>
 
 </html>
