@@ -2,7 +2,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" th:href="@{/assets/css/style.css}">
 <script type="text/css"
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></script>
 	
@@ -157,6 +157,7 @@
 	background: skyblue;
 }
 
+
 .dropdown-item:hover, .dropdown-item:focus {
 	color: #ffffff;
 	text-decoration: none;
@@ -197,7 +198,7 @@
 
 <body>
 	<!-- 메뉴바 -->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light" >
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -206,9 +207,9 @@
 		</button>
 
 
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item dropdown"><a
+		<div class="collapse navbar-collapse" id="navbarSupportedContent" style="justify-content:center;">
+			<ul class="navbar-nav" >
+				<li class="nav-item dropdown" ><a
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false">나의 EAT & OUT</a>
