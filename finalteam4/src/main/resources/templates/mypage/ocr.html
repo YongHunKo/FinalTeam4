@@ -11,6 +11,7 @@
 	width: 500px;
 	height: 400px;
 	padding: 20px;
+	margin-bottom: 130px;
 	float: left;
 }
 
@@ -86,7 +87,7 @@
 		// FileReader.onload - load 이벤트의 핸들러, 읽기 동작이 성공적으로 완료 되었을 때마다 발생
 		reader.onload = function(e) {
 			$("#showimg").attr("src", e.target.result);
-			$("#showimg").attr("style", "max-width: 280px;", "width:380px;");
+			$("#showimg").attr("style", "height:430px; width: 360px;");
 		};
 		// 컨텐츠를 File에서 읽어 오는 역할
 		reader.readAsDataURL(input.files[0]);
@@ -167,8 +168,8 @@
 			</button>
 
 
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
+			<div class="collapse navbar-collapse" id="navbarSupportedContent" style="justify-content:center;">
+				<ul class="navbar-nav">
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -218,8 +219,8 @@
 							<label class="label" for="rcpt">+</label> <input type="file"
 								id="rcpt" onchange="readURL(this);" style="display: none">
 						</form>
-						<div style="text-align: center">
-							<img id="showimg">
+						<div style="width: 400px; height: 420px;">
+							<img id="showimg" style="height: 400px">
 						</div>
 						<div class="recipt"
 							style="padding-top: 20px; padding-bottom: 20px">
