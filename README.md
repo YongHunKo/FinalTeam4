@@ -57,19 +57,19 @@
      - 관리자, 위시리스트, DB관리
 6. 개발환경 및 수행 도구
 
-   - |언어|웹|개발도구|데이터베이스|협업도구|프레임워크|API|
-      |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-      |Java|JavaScript|Eclipse|MySQL|GitHub|SpringBoot|Kakaologin|
-      ||HTML5|||Notion|MyBatis|Naverlogin|
-      ||CSS6|||GatherTown||NaverOCR|
-      ||JQuery|||||NaverChatbot|
-      ||AJAX|||||Import|
-      |||||||Kakao link|
-      |||||||Kakao Map|
+|언어|웹|개발도구|데이터베이스|협업도구|프레임워크|API|
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|Java|JavaScript|Eclipse|MySQL|GitHub|SpringBoot|Kakaologin|
+||HTML5|||Notion|MyBatis|Naverlogin|
+||CSS6|||GatherTown||NaverOCR|
+||JQuery|||||NaverChatbot|
+||AJAX|||||Import|
+|||||||Kakao link|
+|||||||Kakao Map|
 
-7. DB 설계
+1. DB 설계
    ![](./finalteam4/src/main/resources/static/img/READMEimg/ERD.png)
-8. UI 설계
+2. UI 설계
    ![](./finalteam4/src/main/resources/static/img/READMEimg/total_userflow.png)
 
 <details>
@@ -99,25 +99,25 @@
 
 ## 프로젝트 결과(스샷 및 gif 넣기)
 ### index   
-   - ![](./finalteam4/src/main/resources/static/img/READMEimg/index_fullpage2.png)
+![](./finalteam4/src/main/resources/static/img/READMEimg/index_fullpage2.png)
    - index.html
    - MainController.java
    - `랜덤`으로 뿌려지는 맛집, `카테고리`별 맛집, `오늘의 추천` 맛집 순서로 화면에 출력되며
    - 로그인을 하면 해당 계정이 위시리스트에 등록한 위시리스트 목록까지 나옵니다.
    - 컨트롤러의 대부분도 페이지 이동에 관련된 기능뿐입니다.
 ### 회원가입
-   - ![](./finalteam4/src/main/resources/static/img/READMEimg/signup.JPG)
+![](./finalteam4/src/main/resources/static/img/READMEimg/signup.JPG)
    - SignupController.java , AController.java
    - 쉽게 회원가입을 위해 id, password, name, Phone Number, Birth의 정보만 입력
    - ajax를 이용하여 `/checkid`를 발동하여 비동기적으로 id중복확인
 ### 로그인
    1. 일반로그인
-      - ![](./finalteam4/src/main/resources/static/img/READMEimg/login.JPG)
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/login.JPG)
       - login.html , loginfail.html
       - LoginController.java
       - `입력받은 custid`값을 DB에서 조회하고, `입력받은 pwd`와 `DB에서 조회한 custid의 pwd`가 일치하는지 `equals()`로 비교하여 일치하면 session에 저장하여 로그인을 지속시키고, 일치하지않으면 loginfail.html로 보내버립니다.
-   2. 카카오로그인
-      - ![](./finalteam4/src/main/resources/static/img/READMEimg/kakaologin.JPG)
+   1. 카카오로그인
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/kakaologin.JPG)
       - KakaoController.java
       - 참고자료 https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api
       - kakaologinAPI의 `REST API방식`을 적용하였습니다. 카카오로그인 버튼을 누르면 GET/oauth/authorize를 통해 카카오계정 로그인 요청을 하고, 카카오 계정 로그인을하면 Redirect URL로 인가코드가 전달이 됩니다.
@@ -126,15 +126,15 @@
       - `주의할 점`은 Redirect주소를 로그인하려는 IP를 사용해야 정상적인 작동이 됩니다.
       - 또한 Object형식으로 내려오므로 사용자 정보를 제대로 사용하기 위해서는 `형변환`을 해주어야 올바르게 사용이 가능합니다.
       - 저희조는 사용자 정보를 register하는 과정에서 `사용자id값 뒤에 1`을 붙여서 다른 소셜로그인과 겹치지않도록 구분을 해놓았습니다.(카카오계정id와 네이버계정id가 일치하는 경우가 있기때문)
-   3. 네이버로그인 
-      - ![](./finalteam4/src/main/resources/static/img/READMEimg/naverlogin.JPG)
+   1. 네이버로그인 
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/naverlogin.JPG)
       - NaverController.java
       - 참고자료 https://developers.naver.com/docs/common/openapiguide/apilist.md
       - 네이버의 로그인 방식 `오픈API방식`을 적용하였습니다. 네이버로그인 버튼을 누르면 `GET/POST로 oauth2.0`을 통해 인증을 요청하고, 접근토큰이 발급되어 `JSON형식`으로 데이터가 내려오게 되고 
       - 마찬가지로 Redirect 주소를 로그인하려는 IP를 사용해야 정상적인 작동이 됩니다.
       - 저희조는 사용자 정보를 register하는 과정에서 `사용자id값 뒤에 2`을 붙여서 다른 소셜로그인과 겹치지않도록 구분을 해놓았습니다.(카카오계정id와 네이버계정id가 일치하는 경우가 있기때문)
-   4. 구글로그인
-      - ![](./finalteam4/src/main/resources/static/img/READMEimg/googlelogin.JPG)
+   1. 구글로그인
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/googlelogin.JPG)
       - OauthController.java
       - 구글로그인 버튼을 누르면 `oauth2`를 통해 인증을 요청하고, 접근토큰이 발급되어 `gson형식`으로 데이터가 내려온다.
       - `gson`을 이용한 로그인 방식으로 `maven`으로 꼭 `xml`을 업데이트 시켜서 `dependency`가 적용이 되야합니다.
@@ -154,8 +154,8 @@
 		</dependency>
       
 ### 검색
-   - ![](./finalteam4/src/main/resources/static/img/READMEimg/search.JPG)
-   - ![](./finalteam4/src/main/resources/static/img/READMEimg/search_keyword.png)
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/search.JPG)
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/search_keyword.png)
    - index.html , SearchController.java
    - 기본적으로 input text로 `/searchimpl`로 넘어가는 방식입니다.
    - `select`을 이용하여 카테고리별로 검색이 가능하도록 구현했습니다. 디폴트는 전체 검색입니다.
@@ -168,7 +168,7 @@
 <input type="text" style="display:none" onkeyup="enterkey()"> // 더미값
 ``` 
 ## 스토어디테일
-   - ![](./finalteam4/src/main/resources/static/img/READMEimg/storedetail.png)
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/storedetail.png)
    - storedetail.html , StoreController.java , AController.java
    - search에서 검색된 메뉴를 누르면 `storedetail.html`로 이동하게됩니다.
    - `해당 메뉴의 storeid`를 통해 `/storedetail`로 넘어가고 컨트롤러에서 설정한 모델에서 원하는 데이터를 출력해줍니다.
@@ -199,9 +199,9 @@ $('#reserve_btn').click(function() {
 		});
 ```
 ### 예약
-   - ![](./finalteam4/src/main/resources/static/img/READMEimg/reserve.png)
-   - ![](./finalteam4/src/main/resources/static/img/READMEimg/reserve_coupon.png)
-   - ![](./finalteam4/src/main/resources/static/img/READMEimg/reservesuccess.png)
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/reserve.png)
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/reserve_coupon.png)
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/reservesuccess.png)
    - reserve.html , ReserveController
    - `/addcart`된 데이터가 `/reserveimpl`을 통해 모델에 저장되어 `reserve.html`에 뿌려집니다.
    - 메뉴의 수량 변경은 동기적으로 `수정버튼`을 통해 `/update`로 넘어가 수량이 변경되고, 변경 후에 `totalprice`가 바뀝니다.
@@ -299,7 +299,18 @@ function requestPay() {
 			}
 ```
 ### 마이페이지
-   - (mypage.png , mypage_orderlist.png , mypage_orderdetail.png 등등 삽입)
+   - (mypage.png , mypage_orderlist.png , mypage_orderdetail.png 등등 삽입, OCR관련 중요 코드도 넣어보자)
+   - mypage.html로 이동하게 되면 가장 가까운 예약과 나의 등급, 보유 쿠폰 등이 보여집니다.
+   - 해당 등급은 일정 금액을 채우면 레벨업 하는 방식이고 등급이 상승하면 발급되는 쿠폰 또한 얻을 수 있습니다.
+   - 테이블 조회에서는 해당id의 지난 orderlist까지 전부 보여줍니다.
+   - 해당 주문을 누르면 상세 주문내역에 들어가고 예약한 메뉴 데이터들을 출력해줍니다.
+   - 또한 이곳에서 리뷰쓰기를 할 수 있습니다.
+   - 리뷰쓰기는 영수증인증을 해야하며, 해당 영수증을 NaverOCR을 통해 JSON형식으로 데이터를 추출하여 해당 영수증의 storename, reservedate, totalprice등을 비교하여 check버튼을 눌러 맞는지 판단합니다. 맞은 경우 review text box가 활성화 되어 리뷰 및 별점을 등록할 수 있습니다.
+   - 자신이 썼던 리뷰는 나의리뷰에서 볼 수 있습니다.
+   - 나의 위시리스트는 예약과정에서 위시리스트 담기버튼을 누르면 이곳에 저장이 되며 index에도 해당 id의 위시리스트가 출력이 됩니다.
+   - 해당 위시리스트를 지우기 위해선 나의 위시리스트로 이동하여 delete 시켜주어야합니다.
+   - 회원정보 수정은 먼저 비밀번호를 한번더 확인하는 작업을 거치고, id를 제외한 나머지 데이터들을 update할 수 있습니다. 회원탈퇴버튼을 누를시 해당id의 고객 데이터만 지워집니다.
+   - 1:1문의에서는 챗봇과 대화를 할 수 있으며, 정해진 명령어에 답변을 합니다.
 ### 주문 빈도에 따른 맛집랭킹 서비스
    - (rollingtext.gif)
    - index.html , MainController.java
@@ -349,6 +360,11 @@ function rollingCallback(){
 </script>
 ```
 ### 관리자 페이지
+   - (admin.png)
+   - 관리자는 총 3가지 레벨로 되어있습니다. 레벨1은 가게주인에 해당이 되고 레벨2는 admin시스템관리자, 레벨3은 총관리자입니다.
+   - 레벨1의 관리자는 각각의 가게이름으로 영업개시를 눌러 웹소켓과 연결하고, 예약주문 알림을 받을 수 있습니다. 또한 전체적인 예약 내역을 확인할 수 있고, 메뉴 관리를 통해 추가/수정/삭제를 할 수 있습니다.
+   - 레벨2의 관리자는 매장관리, 회원관리, 쿠폰관리를 할 수 있습니다. 매장관리에서는 매장에 관하여 추가/수정/삭제를 할 수 있으며, 회원관리에서는 고객데이터를 관리할 수 있습니다. 쿠폰관리에서는 custid순서대로 보유한 쿠폰을 조회할 수 있으며 추가/수정/삭제를 할 수 있습니다.
+   - admin의 index에서는 총 회원수, 입점매장, 누적 reserve, 누적 매출등을 볼 수 있으며, 일별 매출을 차트로 표현하여 쉽게 볼 수 있도록 하였습니다.
 
 ## 트러블슈팅(마지막날까지 추가하기)
 - 고용훈
@@ -410,15 +426,16 @@ function rollingCallback(){
 
 ## 고찰
 - (작성 중)
-- NCP 서브계정의 한계로 Naver api를 마음껏 사용하지 못함.
-- 카카오 비즈니스 채널 개설이 불가능하여 카카오 메시지 api 대신 최대한 비슷하게 카카오 link api를 이용함.
+- NCP 서브계정의 한계로 Naver api를 마음껏 사용하지 못했습니다
+- 카카오 비즈니스 채널 개설이 불가능하여 카카오 메시지 api 대신 최대한 비슷하게 카카오 link api를 이용했습니다.
 - 템플릿의 문제로 반복적인 명령어 사용 ex)rollingtext, search 등등
-- 
+- 조금 더 제주도스러운 UI/UX를 살리지 못했습니다.
+- API끼리의 조합이 너무 단순했습니다.
 
 ## 후기
 - (작성 중)
 - 고용훈
-  - ㅁ
+  - 파이널프로젝트를 진행하며 먼저 끝까지 잘 따라와준 팀원들에게 감사함을 표합니다. 저희팀원끼리 부족한 부분을 서로 채워주며 끝까지 달려왔고, 열심히 해준 팀원덕분에 전체적인 진행은 아주 원활이 진행하여 마무리를 했습니다. 스스로 만족스러운 결과물이 나오진 않았지만, 제대로 각을 잡고 만들어본 첫 프로젝트입니다. 지금의 저로 만족하지 않고 백엔드/프론트엔드 기술을 더 키워 다음엔 더 좋은 프로젝트 결과를 도출하도록 노력하겠습니다.
 - 김준기
   - ㅁ
 - 조여송
