@@ -2,15 +2,15 @@
 <p align="center"><img src="./finalteam4/src/main/resources/static/assets/images/eLogo.png" width="400" height=""></p>
 
 - 팀명 : `Eat & Out`
-  - 팀장 : 고용훈
-  - 팀원 : 김준기, 조여송, 박시연
+  - 팀장 : [고용훈](https://github.com/YongHunKo)
+  - 팀원 : [김준기](https://github.com/Junki-stevekim), [조여송](https://github.com/the-escort), [박시연](https://github.com/syp00)
 - 프로젝트 진행 : 2022.10.24 ~ 2022.12.16
 - 기대효과
   - 일부 식당에만 서비스되는 기존 테이블링 앱과 달리 공공데이터를 이용하여 더 대중적인 원격 줄서기 서비스를 제공
   - 웹 어플리케이션 서비스에 미숙하신 분들도 쉽게 이용할 수 있는 서비스를 제공
   - 영수증 인증 리뷰를 통한 신뢰도있는 리뷰서비스 제공
 
-## 프로젝트 정보
+## 프로젝트 개요
 1. 프로젝트 주제
     - `AI 플랫폼`을 활용한 예약주문 서비스 웹 어플리케이션 개발
 2. 프로젝트 목적(얘는 수정이 살짝 필요함)
@@ -22,28 +22,31 @@
       - Java 개발도구와 IDE 사용
       - ERD Cloud와 Notion, Github을 사용한 협업 경험
       - 식당 예약을 하는데 불편함을 개선하고 `신뢰성`있는 리뷰서비스 제공
-3. 프로젝트 기능 구현
-   1. 로그인/로그아웃/회원가입
-      1. 일반로그인
-      2. 카카오로그인
-      3. 네이버로그인
-      4. 구글로그인
-      5. 회원가입
-   2. 지도api를 이용한 식당위치 서비스
-      1. 카카오 맵 api
-   3. 검색기능
-      1. 카테고리별 검색
-      2. 가격 높은/낮은 순서 정렬
-      3. 키워드 검색
-   4. 주문 빈도에 따른 맛집랭킹 서비스
-      1. Orderlist누적 DB를 이용한 실시간랭킹 서비스
-      2. Review누적 DB를 이용한 오늘의 추천맛집 서비스
-   5. NCP를 이용한 웹 어플리케이션 환경 구축
-      1. NCP서버
-      2. 챗봇을 이용한 1대1문의
-      3. 웹소켓을 이용한 예약-결제 시 고객/매장 알림 서비스
-      4. OCR을 이용한 영수증 리뷰
-   6. 관리자 페이지 구현
+3. 목차
+   1. [index](#index)
+   2. [로그인/로그아웃/회원가입](#회원가입)
+      - 일반로그인
+      - 카카오로그인
+      - 네이버로그인
+      - 구글로그인
+      - 회원가입
+   3. [검색기능](#검색)
+      - 카테고리별 검색
+      - 가격 높은/낮은 순서 정렬
+      - 키워드 검색
+   4. [스토어디테일](#스토어디테일)
+   5. [예약](#예약)
+      - 날짜&시간 선택
+      - 결제
+      - 예약알림(고객&가게주인)
+   6. [마이페이지](#마이페이지)
+      - Naver OCR
+   7. [주문 빈도에 따른 맛집랭킹 서비스](#주문-빈도에-따른-맛집랭킹-서비스)
+      - Orderlist누적 DB를 이용한 실시간랭킹 서비스
+      - Review누적 DB를 이용한 오늘의 추천맛집 서비스
+   8. [관리자 페이지 구현](#관리자-페이지)
+      - 차트
+      - 웹소켓
 4. 프로젝트 세부일정
    - WBS   
    ![](./finalteam4/src/main/resources/static/img/READMEimg/plan2.JPG)
@@ -99,7 +102,7 @@
 </details>
    
 
-## 프로젝트 결과(스샷 및 gif 넣기)
+## 프로젝트 결과
 ### index   
 ![](./finalteam4/src/main/resources/static/img/READMEimg/index_fullpage2.png)
    - index.html
@@ -169,7 +172,7 @@
    
 <input type="text" style="display:none" onkeyup="enterkey()"> // 더미값
 ``` 
-## 스토어디테일
+### 스토어디테일
   ![](./finalteam4/src/main/resources/static/img/READMEimg/storedetail.png)
    - storedetail.html , StoreController.java , AController.java
    - search에서 검색된 메뉴를 누르면 `storedetail.html`로 이동하게됩니다.
@@ -308,6 +311,23 @@ function requestPay() {
    - 해당 주문을 누르면 상세 주문내역에 들어가고 예약한 메뉴 데이터들을 출력해줍니다.
    - 또한 이곳에서 리뷰쓰기를 할 수 있습니다.
    - 리뷰쓰기는 영수증인증을 해야하며, 해당 영수증을 NaverOCR을 통해 JSON형식으로 데이터를 추출하여 해당 영수증의 storename, reservedate, totalprice등을 비교하여 check버튼을 눌러 맞는지 판단합니다. 맞은 경우 review text box가 활성화 되어 리뷰 및 별점을 등록할 수 있습니다.
+  ```javascript
+  	function check(data) {
+		var rcp_storename = data.images[0].fields[0].inferText;
+		var rcp_date = data.images[0].fields[1].inferText;
+		var rcp_reservedate = new Date(rcp_date.substr(0, 4), rcp_date.substr(
+				5, 2), rcp_date.substr(8, 2));
+		var rcp_reserve = rcp_reservedate.toString();
+		var rcp_orderprice = data.images[0].fields[4].inferText;
+
+		if (order_storename == rcp_storename && order_reserve == rcp_reserve) {
+			if (order_orderprice == rcp_orderprice) {
+				$("#result_msg").text("영수증 정보가 일치합니다.");
+				$("#result_msg").css("color", "green");
+                  ...(생략)...
+	}
+  ```
+   - 업로드된 이미지에 OCR을 사용하여 정해진 부분의 데이터를 추출하여 storename, reservedate, orderprice등을 비교하여 일치여부를 판단합니다. 
    - 자신이 썼던 리뷰는 나의리뷰에서 볼 수 있습니다.
    - 나의 위시리스트는 예약과정에서 위시리스트 담기버튼을 누르면 이곳에 저장이 되며 index에도 해당 id의 위시리스트가 출력이 됩니다.
    - 해당 위시리스트를 지우기 위해선 나의 위시리스트로 이동하여 delete 시켜주어야합니다.
@@ -438,11 +458,15 @@ function rollingCallback(){
 - 템플릿의 문제로 반복적인 명령어 사용 ex)rollingtext, search 등등
 - 조금 더 제주도스러운 UI/UX를 살리지 못했습니다.
 - API끼리의 조합이 너무 단순했습니다.
+- OCR을 사용하여 전체적인 데이터를 읽어 원하는 데이터만 추출하도록 개선하겠습니다.
 
 ## 후기
 - (작성 중)
 - 고용훈
-  - 파이널프로젝트를 진행하며 먼저 끝까지 잘 따라와준 팀원들에게 감사함을 표합니다. 저희팀원끼리 부족한 부분을 서로 채워주며 끝까지 달려왔고, 열심히 해준 팀원덕분에 전체적인 진행은 아주 원활이 진행하여 마무리를 했습니다. 스스로 만족스러운 결과물이 나오진 않았지만, 제대로 각을 잡고 만들어본 첫 프로젝트입니다. 지금의 저로 만족하지 않고 백엔드/프론트엔드 기술을 더 키워 다음엔 더 좋은 프로젝트 결과를 도출하도록 노력하겠습니다.
+  - 파이널프로젝트를 진행하며 먼저 끝까지 잘 따라와준 팀원들에게 감사함을 표합니다. 
+  - 저희팀원끼리 부족한 부분을 서로 채워주며 끝까지 달려왔고, 열심히 해준 팀원덕분에 전체적인 진행은 아주 원활이 진행하여 마무리를 했습니다. 
+  - 스스로 만족스러운 결과물이 나오진 않았지만, 제대로 각을 잡고 만들어본 첫 프로젝트입니다. 
+  - 지금의 저로 만족하지 않고 백엔드/프론트엔드 기술을 더 키워 다음엔 더 좋은 프로젝트 결과를 도출하도록 노력하겠습니다.
 - 김준기
   - ㅁ
 - 조여송
