@@ -8,7 +8,7 @@
 
 <style>
 .main_recipt {
-	width: 50%;
+	width: 500px;
 	height: 400px;
 	padding: 20px;
 	float: left;
@@ -21,21 +21,21 @@
 }
 
 .main_review {
-	width: 50%;
-	height: 400px;
+	width: 500px;
+	height: 600px;
 	padding: 20px;
 	float: left;
 }
 
 .textarea {
-	width: 360px;
-	height: 360px;
+	width: 100%;
+	height: 100%;
 	padding-top: 20px;
 }
 
 .textarea_form {
 	width: 100%;
-	height: 100%;
+	height: 400px;
 }
 
 .review_button {
@@ -56,145 +56,154 @@
 
 
 <script>
-var order_storename = "[[${order.storename}]]";
-var date = "[[${order.reservedate}]]";
-var order_reservedate = new Date(date.substr(0, 4), date.substr(5, 2), date
-		.substr(8, 2));
-var order_reserve = order_reservedate.toString();
-var order_orderprice = "[[${total}]]";
+	var order_storename = "[[${order.storename}]]";
+	var date = "[[${order.reservedate}]]";
+	var order_reservedate = new Date(date.substr(0, 4), date.substr(5, 2), date
+			.substr(8, 2));
+	var order_reserve = order_reservedate.toString();
+	var order_orderprice = "[[${total}]]";
 
-$(document).ready(function() {
-	$("#menu-toggle").click(function(e) {
-		e.preventDefault();
-		$("#wrapper").toggleClass("menuDisplayed");
-		/* menu.style.visibility = "hidden"; */
-	});
-
-	$("#savereview").click(function() {
-		$("#review").attr({
-			"action" : "/mypage/reviewregist",
-			"method" : "GET"
+	$(document).ready(function() {
+		$("#menu-toggle").click(function(e) {
+			e.preventDefault();
+			$("#wrapper").toggleClass("menuDisplayed");
+			/* menu.style.visibility = "hidden"; */
 		});
-		$("#review").submit();
+
+		$("#savereview").click(function() {
+			$("#review").attr({
+				"action" : "/mypage/reviewregist",
+				"method" : "GET"
+			});
+			$("#review").submit();
+		});
+
 	});
 
-});
+	function readURL(input) {
+		var reader = new FileReader(); // File 객체를 이용해 파일의 내용을 읽고 사용자의 컴퓨터에 저장하는 것을 가능
 
-function readURL(input) {
-	var reader = new FileReader(); // File 객체를 이용해 파일의 내용을 읽고 사용자의 컴퓨터에 저장하는 것을 가능
-
-	// FileReader.onload - load 이벤트의 핸들러, 읽기 동작이 성공적으로 완료 되었을 때마다 발생
-	reader.onload = function(e) {
-		$("#showimg").attr("src", e.target.result);
-		$("#showimg").attr("style", "max-width: 280px;", "width:380px;");
-	};
-	// 컨텐츠를 File에서 읽어 오는 역할
-	reader.readAsDataURL(input.files[0]);
-}
-
-function upload() {
-	const imageInput = $("#rcpt")[0];
-
-	if (imageInput.files.lenght === 0) {
-		alert("영수증 사진을 첨부해주세요.");
-		return;
+		// FileReader.onload - load 이벤트의 핸들러, 읽기 동작이 성공적으로 완료 되었을 때마다 발생
+		reader.onload = function(e) {
+			$("#showimg").attr("src", e.target.result);
+			$("#showimg").attr("style", "max-width: 280px;", "width:380px;");
+		};
+		// 컨텐츠를 File에서 읽어 오는 역할
+		reader.readAsDataURL(input.files[0]);
 	}
 
-	const formData = new FormData();
-	formData.append("image", imageInput.files[0]);
+	function upload() {
+		const imageInput = $("#rcpt")[0];
 
-	$.ajax({
-		url : "/ocr/ocrresult",
-		data : formData,
-		processData : false,
-		contentType : false,
-		type : "POST",
-		success : function(data) {
-			check(data);
+		if (imageInput.files.lenght === 0) {
+			alert("영수증 사진을 첨부해주세요.");
+			return;
 		}
-	});
-}
 
-function check(data) {
-	var rcp_storename = data.images[0].fields[0].inferText;
-	var rcp_date = data.images[0].fields[1].inferText;
-	var rcp_reservedate = new Date(rcp_date.substr(0, 4), rcp_date.substr(
-			5, 2), rcp_date.substr(8, 2));
-	var rcp_reserve = rcp_reservedate.toString();
-	var rcp_orderprice = data.images[0].fields[4].inferText;
+		const formData = new FormData();
+		formData.append("image", imageInput.files[0]);
 
-	if (order_storename == rcp_storename && order_reserve == rcp_reserve) {
-		if (order_orderprice == rcp_orderprice) {
-			$("#result_msg").text("영수증 정보가 일치합니다.");
-			$("#result_msg").css("color", "green");
-			$("#revtext").attr("disabled", false);
-			$("#savereview").attr("disabled", false);
-			return
+		$.ajax({
+			url : "/ocr/ocrresult",
+			data : formData,
+			processData : false,
+			contentType : false,
+			type : "POST",
+			success : function(data) {
+				check(data);
+			}
+		});
+	}
+
+	function check(data) {
+		var rcp_storename = data.images[0].fields[0].inferText;
+		var rcp_date = data.images[0].fields[1].inferText;
+		var rcp_reservedate = new Date(rcp_date.substr(0, 4), rcp_date.substr(
+				5, 2), rcp_date.substr(8, 2));
+		var rcp_reserve = rcp_reservedate.toString();
+		var rcp_orderprice = data.images[0].fields[4].inferText;
+
+		if (order_storename == rcp_storename && order_reserve == rcp_reserve) {
+			if (order_orderprice == rcp_orderprice) {
+				$("#result_msg").text("영수증 정보가 일치합니다.");
+				$("#result_msg").css("color", "green");
+				$("#revtext").attr("disabled", false);
+				$("#savereview").attr("disabled", false);
+				return
+
+				
+
+			} else {
+				$("#result_msg").text("결제하신 내역의 정보와 상이합니다. *주문 음식 불일치");
+				$("#result_msg").css("color", "#ff4800");
+				return
+
+				
+
+			}
+
 		} else {
-			$("#result_msg").text("결제하신 내역의 정보와 상이합니다. *주문 음식 불일치");
+			$("#result_msg").text("해당 가게의 영수증이 아니거나 결제 날짜가 맞지 않습니다.");
 			$("#result_msg").css("color", "#ff4800");
 			return
+
+			
+
 		}
-		
-	} else {
-		$("#result_msg").text("해당 가게의 영수증이 아니거나 결제 날짜가 맞지 않습니다.");
-		$("#result_msg").css("color", "#ff4800");
-		return
 	}
-}
 </script>
 
 </head>
 
 <body>
-	<div id="wrapper" style="height: 1000px">
-			<!-- 메뉴바 -->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false"
-			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
+	<div id="wrapper" style="height: 100%">
+		<!-- 메뉴바 -->
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
 
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false">나의 EAT & OUT</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item"
-							th:href="@{/mypage/order(id=${session.logincust.custid})}">테이블
-							조회</a> <a class="dropdown-item"
-							th:href="@{/mypage/review(id=${session.logincust.custid})}">나의
-							리뷰</a> <a class="dropdown-item"
-							th:href="@{/wishlist(id=${session.logincust.custid})}">나의
-							위시리스트</a>
-					</div></li>
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> 계정설정 </a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item"
-							th:href="@{/mypage/edit(id=${session.logincust.custid})}">회원정보수정</a>
-						<a class="dropdown-item" href="#">쿠폰</a>
-					</div></li>
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false">고객센터</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" th:href="@{/mypage/question}">1:1
-							문의내역</a> <a class="dropdown-item" href="#">공지사항</a> <a
-							class="dropdown-item" href="#">FAQ</a>
-					</div></li>
-			</ul>
-		</div>
-	</nav>
-	<!-- 메뉴바 끝 -->
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false">나의 EAT & OUT</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item"
+								th:href="@{/mypage/order(id=${session.logincust.custid})}">테이블
+								조회</a> <a class="dropdown-item"
+								th:href="@{/mypage/review(id=${session.logincust.custid})}">나의
+								리뷰</a> <a class="dropdown-item"
+								th:href="@{/wishlist(id=${session.logincust.custid})}">나의
+								위시리스트</a>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> 계정설정 </a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item"
+								th:href="@{/mypage/edit(id=${session.logincust.custid})}">회원정보수정</a>
+							<a class="dropdown-item" href="#">쿠폰</a>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false">고객센터</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" th:href="@{/mypage/question}">1:1
+								문의내역</a> <a class="dropdown-item" href="#">공지사항</a> <a
+								class="dropdown-item" href="#">FAQ</a>
+						</div></li>
+				</ul>
+			</div>
+		</nav>
+		<!-- 메뉴바 끝 -->
 		<th:block th:replace="mypage/fragment/banner :: bannerFragment"></th:block>
 		<div id="page-content-wrapper">
 			<div class="container-fluid px-1 px-md-4 py-2 mx-auto">
@@ -203,49 +212,52 @@ function check(data) {
 						영수증 체크<span>방문하신 영수증을 인증하고 리뷰를 작성해주세요.</span>
 					</h3>
 				</div>
-				<div class="main_recipt">
-					<form id="uploadimg">
-						<label class="label" for="rcpt">+</label> <input type="file"
-							id="rcpt" onchange="readURL(this);" style="display: none">
-					</form>
-					<div style="text-align: center">
-						<img id="showimg">
-					</div>
-					<div class="recipt" style="padding-top: 20px; padding-bottom: 20px">
-						<div style="text-align: center">
-							<span id="result_msg"></span>
-						</div>
-						<div>
-							<button class="btns" onclick="upload()">C h e c k</button>
-						</div>
-					</div>
-				</div>
-				<div class="main_review">
-					<div class="review">
-						<form id="review">
-							<h4 th:text="${order.storename}"
-								style="padding-bottom: 12px; border-bottom: 1px solid #d4d4d4;"></h4>
-							<input th:value="${order.storeid}" name="storeid"
-								style="display: none"></input> <input
-								th:value="${session.logincust.custid}" name="custid"
-								style="display: none"></input>
-							<div class="textarea">
-								<textarea id="revtext" class="textarea_form" name="revtext"
-									disabled></textarea>
-							</div>
-							<div style="margin-top: 20px">
-								<select id="star" name="star">
-									<option value="5">★★★★★</option>
-									<option value="4">★★★★</option>
-									<option value="3">★★★</option>
-									<option value="2">★★</option>
-									<option value="1">★</option>
-								</select>
-							</div>
+				<div class="row">
+					<div class="main_recipt">
+						<form id="uploadimg">
+							<label class="label" for="rcpt">+</label> <input type="file"
+								id="rcpt" onchange="readURL(this);" style="display: none">
 						</form>
+						<div style="text-align: center">
+							<img id="showimg">
+						</div>
+						<div class="recipt"
+							style="padding-top: 20px; padding-bottom: 20px">
+							<div style="text-align: center">
+								<span id="result_msg"></span>
+							</div>
+							<div>
+								<button class="btns" onclick="upload()">C h e c k</button>
+							</div>
+						</div>
 					</div>
-					<div>
-						<button class="btns" type="button" id="savereview" disabled>등록하기</button>
+					<div class="main_review">
+						<div class="review">
+							<form id="review">
+								<h4 th:text="${order.storename}"
+									style="padding-bottom: 12px; border-bottom: 1px solid #d4d4d4;"></h4>
+								<input th:value="${order.storeid}" name="storeid"
+									style="display: none"></input> <input
+									th:value="${session.logincust.custid}" name="custid"
+									style="display: none"></input>
+								<div class="textarea">
+									<textarea id="revtext" class="textarea_form" name="revtext"
+										disabled></textarea>
+								</div>
+								<div style="margin-top: 20px">
+									<select id="star" name="star">
+										<option value="5">★★★★★</option>
+										<option value="4">★★★★</option>
+										<option value="3">★★★</option>
+										<option value="2">★★</option>
+										<option value="1">★</option>
+									</select>
+								</div>
+							</form>
+							<div>
+								<button class="btns" type="button" id="savereview" disabled>등록하기</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
