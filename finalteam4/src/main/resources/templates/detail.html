@@ -4,9 +4,11 @@
 	content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
 <link rel="stylesheet" th:href="@{/assets/css/style.css}">
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5391a7213215108e6b8dc6ea778851ac"></script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5391a7213215108e6b8dc6ea778851ac"></script>
 <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.0.1/kakao.min.js"
-  integrity="sha384-eKjgHJ9+vwU/FCSUG3nV1RKFolUXLsc6nLQ2R1tD0t4YFPCvRmkcF8saIfOZNWf/" crossorigin="anonymous"></script>
+	integrity="sha384-eKjgHJ9+vwU/FCSUG3nV1RKFolUXLsc6nLQ2R1tD0t4YFPCvRmkcF8saIfOZNWf/"
+	crossorigin="anonymous"></script>
 
 <script>
   Kakao.init('b69b79a570ff1eefbca66ca0445d929a'); // 사용하려는 앱의 JavaScript 키 입력
@@ -15,30 +17,21 @@
 
 
 <style>
- body {
-        font-family: "Pretendard";
-        background: #f1f1f1;
-        justify-content:space between;
-        display:flex;
-        flex-direction: column; /*수직 정렬*/
-    }
-
-
-	.blockquote-custom {
-  position: relative;
-  font-size: 1.1rem;
+.blockquote-custom {
+	position: relative;
+	font-size: 1.1rem;
 }
 
 .blockquote-custom-icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: -25px;
-  left: 50px;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	top: -25px;
+	left: 50px;
 }
 
 .small>span {
@@ -46,114 +39,99 @@
 	letter-spacing: 5px;
 	color: orange;
 }
+/* Card Styles */
+.card-sl {
+	border-radius: 8px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+}
 
-    a {
-        text-decoration: none;
-    }
+#shareimg {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+}
 
-    /* Card Styles */
+.card-image img {
+	height: 250px;
+	width: 520px;
+	border-radius: 8px 8px 0px 0;
+	object-fit: cover;
+	overflow: hidden;
+	z-index: 1;
+}
 
-    .card-sl {
-        border-radius: 8px;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    }
+.card-action {
+	position: relative;
+	float: right;
+	margin-top: -25px;
+	margin-right: 20px;
+	z-index: 2;
+	color: #E26D5C;
+	background: #fff;
+	border-radius: 100%;
+	padding: 15px;
+	font-size: 15px;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0
+		rgba(0, 0, 0, 0.19);
+	display: flex;
+}
 
+.card-action:hover {
+	color: #fff;
+	background: #E26D5C;
+	-webkit-animation: pulse 1.5s infinite;
+}
 
+.card-heading {
+	font-size: 18px;
+	font-weight: bold;
+	background: #fff;
+	padding: 10px 15px;
+}
 
-	#shareimg{
-	
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	
-	}
+.card-text {
+	padding: 10px 15px;
+	background: #fff;
+	font-size: 14px;
+	color: #636262;
+}
 
-    .card-image img {
-        height: 250px;
-        width: 520px;
-        border-radius: 8px 8px 0px 0;
-        object-fit:cover;
-        overflow:hidden;
-        z-index:1;
-    }
+.card-button {
+	display: flex;
+	justify-content: center;
+	padding: 10px 0;
+	width: 100%;
+	background-color: #1F487E;
+	color: #fff;
+	border-radius: 0 0 8px 8px;
+}
 
-    .card-action {
-        position: relative;
-        float: right;
-        margin-top: -25px;
-        margin-right: 20px;
-        z-index: 2;
-        color: #E26D5C;
-        background: #fff;
-        border-radius: 100%;
-        padding: 15px;
-        font-size: 15px;
-        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
-        display:flex;
-    }
+.card-button:hover {
+	text-decoration: none;
+	background-color: #1D3461;
+	color: #fff;
+}
 
-    .card-action:hover {
-        color: #fff;
-        background: #E26D5C;
-        -webkit-animation: pulse 1.5s infinite;
-    }
-
-    .card-heading {
-        font-size: 18px;
-        font-weight: bold;
-        background: #fff;
-        padding: 10px 15px;
-    }
-
-    .card-text {
-        padding: 10px 15px;
-        background: #fff;
-        font-size: 14px;
-        color: #636262;
-    }
-
-    .card-button {
-        display: flex;
-        justify-content: center;
-        padding: 10px 0;
-        width: 100%;
-        background-color: #1F487E;
-        color: #fff;
-        border-radius: 0 0 8px 8px;
-    }
-
-    .card-button:hover {
-        text-decoration: none;
-        background-color: #1D3461;
-        color: #fff;
-
-    }
-
-
-    @-webkit-keyframes pulse {
-        0% {
-            -moz-transform: scale(0.9);
-            -ms-transform: scale(0.9);
-            -webkit-transform: scale(0.9);
-            transform: scale(0.9);
-        }
-
-        70% {
-            -moz-transform: scale(1);
-            -ms-transform: scale(1);
-            -webkit-transform: scale(1);
-            transform: scale(1);
-            box-shadow: 0 0 0 50px rgba(90, 153, 212, 0);
-        }
-
-        100% {
-            -moz-transform: scale(0.9);
-            -ms-transform: scale(0.9);
-            -webkit-transform: scale(0.9);
-            transform: scale(0.9);
-            box-shadow: 0 0 0 0 rgba(90, 153, 212, 0);
-        }
-    }
-
-
+@-webkit-keyframes pulse { 0% {
+	-moz-transform: scale(0.9);
+	-ms-transform: scale(0.9);
+	-webkit-transform: scale(0.9);
+	transform: scale(0.9);
+}70%{
+-moz-transform:scale(1);
+-ms-transform:scale(1);
+-webkit-transform:scale(1);
+transform:scale(1);
+box-shadow:0 0 0 50px rgba(90,153,212,0);
+}
+100%{
+-moz-transform:scale(0.9);
+-ms-transform:scale(0.9);
+-webkit-transform:scale(0.9);
+transform:scale(0.9);
+box-shadow:0000rgba(90,153,212,0);
+}
+}
 .modal {
 	text-align: center;
 }
@@ -183,7 +161,6 @@
 	padding: 10px;
 }
 
-
 .btn_gotop {
 	display: none;
 	position: fixed;
@@ -200,53 +177,54 @@
 }
 
 #map {
-	display:flex;
+	display: flex;
 	width: 70%;
 	height: 400px;
-	border-radius:30px;
-	text-align:center;
+	border-radius: 30px;
+	text-align: center;
 	margin-left: auto;
-	margin-right:auto;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	margin-bottom:20px;
-	margin-top:40px;
-}
-.ftco-section {
-	padding : 0px;
+	margin-right: auto;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+	margin-bottom: 20px;
+	margin-top: 40px;
 }
 
+.ftco-section {
+	padding: 0px;
+}
 
 .collapsible-link::before {
-  content: '';
-  width: 14px;
-  height: 2px;
-  background: #333;
-  position: absolute;
-  top: calc(50% - 1px);
-  right: 1rem;
-  display: block;
-  transition: all 0.3s;
+	content: '';
+	width: 14px;
+	height: 2px;
+	background: #333;
+	position: absolute;
+	top: calc(50% - 1px);
+	right: 1rem;
+	display: block;
+	transition: all 0.3s;
 }
 
 /* Vertical line */
 .collapsible-link::after {
-  content: '';
-  width: 2px;
-  height: 14px;
-  background: #333;
-  position: absolute;
-  top: calc(50% - 7px);
-  right: calc(1rem + 6px);
-  display: block;
-  transition: all 0.3s;
+	content: '';
+	width: 2px;
+	height: 14px;
+	background: #333;
+	position: absolute;
+	top: calc(50% - 7px);
+	right: calc(1rem + 6px);
+	display: block;
+	transition: all 0.3s;
 }
 
 .collapsible-link[aria-expanded='true']::after {
-  transform: rotate(90deg) translateX(-1px);
+	transform: rotate(90deg) translateX(-1px);
 }
 
 .collapsible-link[aria-expanded='true']::before {
-  transform: rotate(180deg);
+	transform: rotate(180deg);
 }
 </style>
 
@@ -387,233 +365,279 @@
 	<ul class="slides" th:each="s : ${storeimglist}">
 		<li><img th:src="@{/storeimg/}+${s.storeimg}"
 			style="width: 250px; height: 250px; border-radius: 40px; margin-top: 20px;" />
-			<h4 id="storeid" th:text="${s.storeid}" style="display: none"></h4>
-		</li>
+			<h4 id="storeid" th:text="${s.storeid}" style="display: none"></h4></li>
 	</ul>
 </div>
 
 <body>
 
 
- <div class="container" style="margin-top:50px; margin-bottom:50px;" >
-        <div class="row" >
-            <div class="col-md-4 sm-4" th:each="d : ${detaillist}"  style="padding-top:20px;">
-                <div class="card-sl">
-                    <div class="card-image">
-                        
-                        <img
-                          th:src="@{/menuimg/}+${d.menuimg}" style="justify-content:space between;"/>
-                           
-                    </div>
+	<div class="container" style="margin-top: 50px; margin-bottom: 50px;">
+		<div class="row">
+			<div class="col-md-4 sm-4" th:each="d : ${detaillist}"
+				style="padding-top: 20px;">
+				<div class="card-sl">
+					<div class="card-image">
 
-                    <a class="card-action" href="#"><img th:src="@{/img/love.png}" style="width:30px;"></a>
-                    <div class="card-heading" th:text="${d.menuname}">
-                       
-                    </div>
-                    <div class="card-text" th:text="${d.storename}">
-                       
-                    </div>
-                    <div class="card-text" th:text="${#numbers.formatInteger(d.menuprice, 3, 'COMMA')}">
-                        
-                    </div>
-                    <a href="#" class="card-button"></a>
-                </div>
-            	
-            </div>
-        </div>  
-</div>
+						<img th:src="@{/menuimg/}+${d.menuimg}"
+							style="justify-content: space between;" />
 
-<!--매장상세정보  -->
-<div class="container">
-  <!-- For demo purpose -->
-  <div class="row" >
-  	
-    <div class="col-lg-9 mx-auto">
-      <!-- Accordion -->
-      
-      <div id="accordionExample" class="accordion shadow">
-		<div id="map"></div>
-        <!-- Accordion item 1 -->
-        <div class="card" >
-          <div id="headingOne" class="card-header bg-white shadow-sm border-0">
-            <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="d-block position-relative text-dark text-uppercase collapsible-link py-2">매장소개</a></h6>
-          </div>
-          <div id="collapseOne" aria-labelledby="headingOne" data-parent="#accordionExample" class="collapse show">
-            <div class="card-body p-5" th:each="i : ${info}">
-              <p class="font-weight-light m-0" th:text="${i.storeintroduce}">매장소개뿌려주기</p>
-            </div>
-          	
-          </div>
-        </div>
+					</div>
 
-        <!-- Accordion item 2 -->
-        <div class="card">
-          <div id="headingTwo" class="card-header bg-white shadow-sm border-0">
-            <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2">영업시간</a></h6>
-          </div>
-          <div id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordionExample" class="collapse">
-            <div class="card-body p-5" th:each="i : ${info}">
-              <p class="font-weight-light m-0" th:text="${i.storeinfo}">영업시간뿌려주기</p>
-            </div>
-          </div>
-        </div>
+					<a class="card-action" href="#"><img th:src="@{/img/love.png}"
+						style="width: 30px;"></a>
+					<div class="card-heading" th:text="${d.menuname}"></div>
+					<div class="card-text" th:text="${d.storename}"></div>
+					<div class="card-text"
+						th:text="${#numbers.formatInteger(d.menuprice, 3, 'COMMA')}">
 
-        <!-- Accordion item 3 -->
-        <div class="card">
-          <div id="headingThree" class="card-header bg-white shadow-sm border-0">
-            <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2">예약상황</a></h6>
-          </div>
-          <div id="collapseThree" aria-labelledby="headingThree" data-parent="#accordionExample" class="collapse">
-            <div class="card-body p-5" th:each="i : ${info}">
-              <p class="font-weight-light m-0" th:text="${i.storestatus}">예약상황뿌려주기</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="card">
-          <div id="headingFour" class="card-header bg-white shadow-sm border-0">
-            <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour" class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2">매장번호</a></h6>
-          </div>
-          <div id="collapseFour" aria-labelledby="headingFour" data-parent="#accordionExample" class="collapse">
-            <div class="card-body p-5" th:each="i : ${info}">
-              <p class="font-weight-light m-0" id="storetel" th:text="${i.storetel}">가게 전화번호</p>
-              <button id="call">전화하기</button>
-               
-            </div>
-          </div>
-        </div>
-		    <div class="card">
-          <div id="headingFive" class="card-header bg-white shadow-sm border-0">
-            <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseThree" class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2">공유하기</a></h6>
-          </div>
-          <div id="collapseFive" aria-labelledby="headingFive" data-parent="#accordionExample" class="collapse">
-            <div class="card-body p-5">
-        		<a id="kakaotalk-sharing-btn" href="javascript:;">
-  		<img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"
-   				style="border-radius:70px;" alt="카카오톡 공유 보내기 버튼" id="shareimg" />
-			</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- 매장상세정보 끝 -->
+					</div>
+					<a href="#" class="card-button"></a>
+				</div>
 
+			</div>
+		</div>
+	</div>
 
-<!--지도?  -->
-	<section class="ftco-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-						<!-- map 데이터가 저장된 부분, 안보이도록 설정이 되있어서 냅둬야함! -->
-						<table class="table" style="text-align: center;">
-							<tbody>
-								<tr class="alert" role="alert" th:each="d : ${detaillist}">
-									<td th:if="${session.logincust != null}" id="custid"
-										th:text="${session.logincust.custid}" style="display: none"></td>
-									<td id="storelat" th:text="${d.storelat}" style="display: none"></td>
-									<td id="storelong" th:text="${d.storelong}"
-										style="display: none"></td>
-									<td id="storename" th:text="${d.storename}"
-										style="display: none"></td>
-									<td id="storeaddr" th:text="${d.storeaddr}"
-										style="display: none"></td>
-									<td id="storeintro" th:text="${d.storeintroduce}"
-										style="display: none"></td>
-								</tr>
-							</tbody>
-						</table>
- 						<!-- map 데이터 끝! -->
- 			
- 			
-						
-						<!-- storereview -->
-						<h4 id="storename2" th:text="${shareinfo.storename}" style="display: none"></h4>
-						<h4 id="storeintro" th:text="${shareinfo.storeintroduce}" style="display: none"></h4>
-						
-						<!-- storereview -->
-						<h4 id="storename2" th:text="${shareinfo.storename}" style="display: none"></h4>
-						<h4 id="storeintro" th:text="${shareinfo.storeintroduce}" style="display: none"></h4>
-						<h4 id="storeimg" th:text="${shareimg.menuimg}" style="display: none"></h4>
-			
-			
-			<!-- 매장리뷰 -->		
-			<div class="review" style="margin-top:70px;">
-				
-				<div class="row">
-					<div class="col-xl-3 col-lg-4 col-md-6 mb-4"
-						th:each="rv : ${review}" style="height: 500px; width: 276px; border-radius:100px;">
-						<div class="bg-white rounded shadow-sm">
-							<img th:src="@{/storeimg/} + ${rv.storeimg}"
-								class="img-fluid card-img-top"
-								style="height: 250px; width: 250px">
-							<div class="p-4">
-								<h5>
-									<a href="#" class="text-dark" th:text="${rv.storename}"></a>
-								</h5>
-								<p class="small text-muted mb-0" th:text="${rv.revtext}"></p>
-								<div
-									class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
-									<p class="small">
-										<i class="star" style="padding-right: 45px">S t a r</i> <span
-											th:if="${rv.star == 1}">★ </span> <span
-											th:if="${rv.star == 2}">★ ★</span> <span
-											th:if="${rv.star == 3}">★ ★ ★</span> <span
-											th:if="${rv.star == 4}">★ ★ ★ ★</span> <span
-											th:if="${rv.star == 5}">★ ★ ★ ★ ★</span>
-									</p>
-								</div>
+	<!--매장상세정보  -->
+	<div class="container">
+		<!-- For demo purpose -->
+		<div class="row">
+
+			<div class="col-lg-9 mx-auto">
+				<!-- Accordion -->
+
+				<div id="accordionExample" class="accordion shadow">
+					<div id="map"></div>
+					<!-- Accordion item 1 -->
+					<div class="card">
+						<div id="headingOne"
+							class="card-header bg-white shadow-sm border-0">
+							<h6 class="mb-0 font-weight-bold">
+								<a href="#" data-toggle="collapse" data-target="#collapseOne"
+									aria-expanded="true" aria-controls="collapseOne"
+									class="d-block position-relative text-dark text-uppercase collapsible-link py-2">매장소개</a>
+							</h6>
+						</div>
+						<div id="collapseOne" aria-labelledby="headingOne"
+							data-parent="#accordionExample" class="collapse show">
+							<div class="card-body p-5" th:each="i : ${info}">
+								<p class="font-weight-light m-0" th:text="${i.storeintroduce}">매장소개뿌려주기</p>
+							</div>
+
+						</div>
+					</div>
+
+					<!-- Accordion item 2 -->
+					<div class="card">
+						<div id="headingTwo"
+							class="card-header bg-white shadow-sm border-0">
+							<h6 class="mb-0 font-weight-bold">
+								<a href="#" data-toggle="collapse" data-target="#collapseTwo"
+									aria-expanded="false" aria-controls="collapseTwo"
+									class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2">영업시간</a>
+							</h6>
+						</div>
+						<div id="collapseTwo" aria-labelledby="headingTwo"
+							data-parent="#accordionExample" class="collapse">
+							<div class="card-body p-5" th:each="i : ${info}">
+								<p class="font-weight-light m-0" th:text="${i.storeinfo}">영업시간뿌려주기</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- Accordion item 3 -->
+					<div class="card">
+						<div id="headingThree"
+							class="card-header bg-white shadow-sm border-0">
+							<h6 class="mb-0 font-weight-bold">
+								<a href="#" data-toggle="collapse" data-target="#collapseThree"
+									aria-expanded="false" aria-controls="collapseThree"
+									class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2">예약상황</a>
+							</h6>
+						</div>
+						<div id="collapseThree" aria-labelledby="headingThree"
+							data-parent="#accordionExample" class="collapse">
+							<div class="card-body p-5" th:each="i : ${info}">
+								<p class="font-weight-light m-0" th:text="${i.storestatus}">예약상황뿌려주기</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="card">
+						<div id="headingFour"
+							class="card-header bg-white shadow-sm border-0">
+							<h6 class="mb-0 font-weight-bold">
+								<a href="#" data-toggle="collapse" data-target="#collapseFour"
+									aria-expanded="false" aria-controls="collapseFour"
+									class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2">매장번호</a>
+							</h6>
+						</div>
+						<div id="collapseFour" aria-labelledby="headingFour"
+							data-parent="#accordionExample" class="collapse">
+							<div class="card-body p-5" th:each="i : ${info}">
+								<p class="font-weight-light m-0" id="storetel"
+									th:text="${i.storetel}">가게 전화번호</p>
+								<button id="call">전화하기</button>
+
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div id="headingFive"
+							class="card-header bg-white shadow-sm border-0">
+							<h6 class="mb-0 font-weight-bold">
+								<a href="#" data-toggle="collapse" data-target="#collapseFive"
+									aria-expanded="false" aria-controls="collapseThree"
+									class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2">공유하기</a>
+							</h6>
+						</div>
+						<div id="collapseFive" aria-labelledby="headingFive"
+							data-parent="#accordionExample" class="collapse">
+							<div class="card-body p-5">
+								<a id="kakaotalk-sharing-btn" href="javascript:;"> <img
+									src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"
+									style="border-radius: 70px;" alt="카카오톡 공유 보내기 버튼" id="shareimg" />
+								</a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
-
-</div>
-
-
-<!--환급정책  -->		
-<section class="py-5" th:if="${session.logincust != null}">
-    <div class="container">
-        <!-- FOR DEMO PURPOSE -->
-        <div class="row">
-            <div class="col-lg-6 mx-auto">
-                <!--  BLOCKQUOTE -->
-                <blockquote class="blockquote blockquote-custom bg-white p-5 shadow rounded" style="align-items:center; text-align:center;">
-                    <div class="blockquote-custom-icon bg-info shadow-sm"><i class="fa fa-quote-left text-white"></i></div>
-                    <p class="mb-0 mt-2" style="text-align:center; font-weight:700; font-size:30px; letter-spacing:4px; padding-bottom:20px; line-height:1.5;">예약 취소시 환급정책</p>
-                    		<p>환급 %는 매장마다 차이가 있으니 이용예정 매장의 환급정책을 확인해야합니다</p>
-							<p>환불 불가구간 이후부터는 환급이 불가능합니다</p>
-							<p>메뉴 결제 금액 환급 기준의 취소 시점은 이용 예정일시와 취소 발생 일시의 차이로 적용됩니다</p>
-							<p>이용예정 매장에서 정한 환불 불가 정책과 전자 상거래 등에서의 '소비자 보호에 관한 법률'등 관련
-								법령에서 정한 청약철회 제출 사요에 해당하는 경우 결제금의 전액 혹은 일부가 환급이 불가합니다</p>
-							<div style="display:inline-block; font-weight:bold;">
-							<p style="font-weight:bold;">취소시점:(예약일기준)</p>  <p style="font-weight:bold;">환급 %</p><br>
-							<p style="font-weight:bold;">2일이상</p>             <p style="font-weight:bold;">100%</p><br>
-							<p style="font-weight:bold;">하루전</p>				<p style="font-weight:bold;">60%</p><br>
-							<p style="font-weight:bold;">예약당일</p>           <p style="font-weight:bold;">30%</p><br>
-							<p style="font-weight:bold;">No Show</p>           <p style="font-weight:bold;">환급불가</p>
-							</div>
-                    <footer class="blockquote-footer pt-4 mt-4 border-top">
-                    <input type="checkbox" id="refund" name="refund" value="checked">
-							네, 해당 내용을 확인했습니다
-                    </footer>
-                </blockquote><!-- END -->
-
-            </div>
-        </div>
-    </div>
-</section>
-				
-				
-				
-				
-				
+		</div>
+	</div>
+	<div class="review" style="margin-top:20px;">
+		<div class="row" style="justify-content:center;">
+			<div class="col-xl-3 col-lg-4 col-md-6 mb-4" th:each="rv : ${review}"
+				style="width: 276px; border-radius: 100px;">
+				<div class="bg-white rounded shadow-sm" style="height: 450px;">
+					<img th:src="@{/storeimg/} + ${rv.storeimg}"
+						class="img-fluid card-img-top" style="height: 250px; width: 250px">
+					<div class="p-4">
+						<h5>
+							<a href="#" class="text-dark" th:text="${rv.storename}"></a>
+						</h5>
+						<p class="small text-muted mb-0" th:text="${rv.revtext}"></p>
+						<div
+							class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-2">
+							<p class="small">
+								<i class="star" style="padding-right: 45px">S t a r</i> <span
+									th:if="${rv.star == 1}">★ </span> <span th:if="${rv.star == 2}">★
+									★</span> <span th:if="${rv.star == 3}">★ ★ ★</span> <span
+									th:if="${rv.star == 4}">★ ★ ★ ★</span> <span
+									th:if="${rv.star == 5}">★ ★ ★ ★ ★</span>
+							</p>
+						</div>
+					</div>
 				</div>
 			</div>
+		</div>
+	</div>
+	<!-- 매장상세정보 끝 -->
+	<!--지도?  -->
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<!-- map 데이터가 저장된 부분, 안보이도록 설정이 되있어서 냅둬야함! -->
+					<table class="table" style="text-align: center;">
+						<tbody>
+							<tr class="alert" role="alert" th:each="d : ${detaillist}">
+								<td th:if="${session.logincust != null}" id="custid"
+									th:text="${session.logincust.custid}" style="display: none"></td>
+								<td id="storelat" th:text="${d.storelat}" style="display: none"></td>
+								<td id="storelong" th:text="${d.storelong}"
+									style="display: none"></td>
+								<td id="storename" th:text="${d.storename}"
+									style="display: none"></td>
+								<td id="storeaddr" th:text="${d.storeaddr}"
+									style="display: none"></td>
+								<td id="storeintro" th:text="${d.storeintroduce}"
+									style="display: none"></td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- map 데이터 끝! -->
+
+
+
+					<!-- storereview -->
+					<h4 id="storename2" th:text="${shareinfo.storename}"
+						style="display: none"></h4>
+					<h4 id="storeintro" th:text="${shareinfo.storeintroduce}"
+						style="display: none"></h4>
+
+					<!-- storereview -->
+					<h4 id="storename2" th:text="${shareinfo.storename}"
+						style="display: none"></h4>
+					<h4 id="storeintro" th:text="${shareinfo.storeintroduce}"
+						style="display: none"></h4>
+					<h4 id="storeimg" th:text="${shareimg.menuimg}"
+						style="display: none"></h4>
+
+
+					<!-- 매장리뷰 -->
+
+
+
+				</div>
+
+
+				<!--환급정책  -->
+				<section class="py-5" th:if="${session.logincust != null}">
+					<div class="container">
+						<!-- FOR DEMO PURPOSE -->
+						<div class="row">
+							<div class="col-lg-6 mx-auto">
+								<!--  BLOCKQUOTE -->
+								<blockquote
+									class="blockquote blockquote-custom bg-white p-5 shadow rounded"
+									style="align-items: center; text-align: center;">
+									<div class="blockquote-custom-icon bg-info shadow-sm">
+										<i class="fa fa-quote-left text-white"></i>
+									</div>
+									<p class="mb-0 mt-2"
+										style="text-align: center; font-weight: 700; font-size: 30px; letter-spacing: 4px; padding-bottom: 20px; line-height: 1.5;">예약
+										취소시 환급정책</p>
+									<p>환급 %는 매장마다 차이가 있으니 이용예정 매장의 환급정책을 확인해야합니다</p>
+									<p>환불 불가구간 이후부터는 환급이 불가능합니다</p>
+									<p>메뉴 결제 금액 환급 기준의 취소 시점은 이용 예정일시와 취소 발생 일시의 차이로 적용됩니다</p>
+									<p>이용예정 매장에서 정한 환불 불가 정책과 전자 상거래 등에서의 '소비자 보호에 관한 법률'등 관련
+										법령에서 정한 청약철회 제출 사요에 해당하는 경우 결제금의 전액 혹은 일부가 환급이 불가합니다</p>
+									<div style="display: inline-block; font-weight: bold;">
+										<p style="font-weight: bold;">취소시점:(예약일기준)</p>
+										<p style="font-weight: bold;">환급 %</p>
+										<br>
+										<p style="font-weight: bold;">2일이상</p>
+										<p style="font-weight: bold;">100%</p>
+										<br>
+										<p style="font-weight: bold;">하루전</p>
+										<p style="font-weight: bold;">60%</p>
+										<br>
+										<p style="font-weight: bold;">예약당일</p>
+										<p style="font-weight: bold;">30%</p>
+										<br>
+										<p style="font-weight: bold;">No Show</p>
+										<p style="font-weight: bold;">환급불가</p>
+									</div>
+									<footer class="blockquote-footer pt-4 mt-4 border-top">
+										<input type="checkbox" id="refund" name="refund"
+											value="checked"> 네, 해당 내용을 확인했습니다
+									</footer>
+								</blockquote>
+								<!-- END -->
+
+							</div>
+						</div>
+					</div>
+				</section>
+
+
+
+
+
+			</div>
+		</div>
 		</div>
 		<br> <br>
 		<div id="button">
@@ -633,12 +657,8 @@
 	<!-- Modal -->
 	<div class="modal fade" id="Modal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document" style="
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-">
+		<div class="modal-dialog" role="document"
+			style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel">위시리스트에 추가되었습니다.</h5>
@@ -657,8 +677,8 @@
 			</div>
 		</div>
 	</div>
-	
-	
+
+
 	<script th:src="@{/assets/js/bootstrap.min.js}"></script>
 	<script th:src="@{/assets/js/jquery.flexslider.js}"></script>
 	<script>

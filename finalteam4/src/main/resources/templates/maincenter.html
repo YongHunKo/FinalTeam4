@@ -207,7 +207,7 @@ $(document).ready(function(){
 							th:text="${session.logincust.custid}" style="display: none"></p>
                             <p  id="storeid" th:text="${t.storeid}" style="display:none;"></p>
                             <a th:href="@{/storedetail(storeid=${t.storeid})}" class="main-btn secondary-1-btn" style="width:auto;">
-                                <p th:text="${t.storeintroduce}" style="font-weight:900; color:white;"></p>
+                                <p th:text="${t.storeintroduce}" style="font-weight:500; font-size:11px; color:white;"></p>
  
                             </a>
                         </div>
@@ -237,7 +237,7 @@ $(document).ready(function(){
 							th:text="${session.logincust.custid}" style="display: none"></p>
                             <p  id="storeidtwo" th:text="${tw.storeid}" style="display:none;"></p>
                             <a th:href="@{/storedetail(storeid=${tw.storeid})}" class="main-btn secondary-1-btn">
-                                <p th:text="${tw.storeintroduce}" style="font-weight:900; color:white;"></p>
+                                <p th:text="${tw.storeintroduce}" style="font-weight:500; font-size:11px; color:white;"></p>
                                
                             </a>
                         </div>
@@ -269,9 +269,7 @@ $(document).ready(function(){
 							th:text="${session.logincust.custid}" style="display: none"></p>
                             <span id="storeidth" th:text="${th.storeid}" style="display:none;"></span>
                             <a th:href="@{/storedetail(storeid=${th.storeid})}" class="main-btn secondary-1-btn">
-                            
-                                
-                                <p th:text="${th.storeintroduce}" style="font-weight:900; color:white;"></p>
+                           <span th:text="${th.storeintroduce}" style="font-weight:500; font-size:11px; color:white;"></span>
                             </a>
                         </div>
                     </div>
@@ -291,7 +289,7 @@ $(document).ready(function(){
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="justify-content:center;">
                 <div class="col-lg-6" th:each="vw : ${viewwish}">
                     <div class="product-style-7 mt-30">
                         <div class="product-image">
