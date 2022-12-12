@@ -51,15 +51,25 @@
    - WBS   
    ![](./finalteam4/src/main/resources/static/img/READMEimg/plan2.JPG)
    ![](./finalteam4/src/main/resources/static/img/READMEimg/plan.JPG)
-5. 역할 분담(아주 상세하게)
+5. 역할 분담
    - 고용훈
-     - 검색, 식당, 예약-주문, QA테스트, 서버관리
+     - 검색(카테고리별 검색, 키워드 검색) 
+     - 스토어디테일
+     - 예약-주문(결제API, 카카오링크API, 웹소켓,  datetimepicker)
+     - QA테스트(1일 1시뮬레이션)
+     - NCP서버관리(NCP tomcat설치, SQL설치 및 DB연결)
+     - 소셜로그인(컨트롤러 일부분)
    - 김준기
-     - 로그인/소셜로그인, 메인페이지, 전체적인 CSS
+     - 로그인/소셜로그인(카카오/네이버/구글 소셜로그인) 
+     - 메인페이지(화면구성 및 디자인, 카드세션 디자인, 마이페이지 화면구성 및 세부화면 수정 등 전체적인 CSS)
    - 조여송
-     - 마이페이지, 쿠폰, OCR
+     - 마이페이지(회원등급 분류 및 쿠폰, 가까운 예약 배너, 테이블 조회, 상세 테이블 조회, OCR을 이용한 영수증 리뷰)
    - 박시연
-     - 관리자, 위시리스트, DB관리
+     - 관리자(관리자 등급분류, 관리자 페이지 내 데이터 종합 및 차트, 웹소캣 연결, 등급별 메뉴변경, 관리자 기능별 CRUD)
+     - 마이페이지(위시리스트 추가 및 삭제) 
+     - DB관리
+     - 검색(가격정렬)
+     - ppt
 6. 개발환경 및 수행 도구
    
 |언어|웹|개발도구|데이터베이스|협업도구|프레임워크|API|
@@ -304,13 +314,21 @@ function requestPay() {
 			}
 ```
 ### 마이페이지
-   - (mypage.png , mypage_orderlist.png , mypage_orderdetail.png 등등 삽입, OCR관련 중요 코드도 넣어보자)
-   - mypage.html로 이동하게 되면 가장 가까운 예약과 나의 등급, 보유 쿠폰 등이 보여집니다.
-   - 해당 등급은 일정 금액을 채우면 레벨업 하는 방식이고 등급이 상승하면 발급되는 쿠폰 또한 얻을 수 있습니다.
-   - 테이블 조회에서는 해당id의 지난 orderlist까지 전부 보여줍니다.
-   - 해당 주문을 누르면 상세 주문내역에 들어가고 예약한 메뉴 데이터들을 출력해줍니다.
-   - 또한 이곳에서 리뷰쓰기를 할 수 있습니다.
-   - 리뷰쓰기는 영수증인증을 해야하며, 해당 영수증을 NaverOCR을 통해 JSON형식으로 데이터를 추출하여 해당 영수증의 storename, reservedate, totalprice등을 비교하여 check버튼을 눌러 맞는지 판단합니다. 맞은 경우 review text box가 활성화 되어 리뷰 및 별점을 등록할 수 있습니다.
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/mypage2.png)
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/mypage2_edit.png)
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/mypage2_edit2.png)
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/mypage2_review.png)
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/mypage2_chatbot.png)
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/mypage2_wishlist.png)
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/mypage2_orderlist.png)
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/mypage2_orderdetail.png)
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/mypage2_ocrreview.png)
+   - `mypage.html`로 이동하게 되면 `가장 가까운 예약`과 `나의 등급`, `보유 쿠폰` 등이 보여집니다.
+   - 해당 등급은 `일정 금액`을 채우면 `레벨업` 하는 방식이고 `등급이 상승`하면 발급되는 `쿠폰` 또한 얻을 수 있습니다.
+   - `테이블 조회`에서는 해당id의 지난 `orderlist`까지 전부 보여줍니다.
+   - 해당 주문을 누르면 `상세 주문내역`에 들어가고 예약한 메뉴 데이터들을 출력해줍니다.
+   - 또한 이곳에서 `리뷰쓰기`를 할 수 있습니다.
+   - `리뷰쓰기`는 `영수증인증`을 해야하며, 해당 영수증을 `NaverOCR`을 통해 `JSON형식`으로 데이터를 추출하여 해당 영수증의 `storename`, `reservedate`, `totalprice`등을 비교하여 `check버튼`을 눌러 맞는지 판단합니다. 맞은 경우 `review text box`가 활성화 되어 `리뷰 및 별점`을 등록할 수 있습니다.
   ```javascript
   	function check(data) {
 		var rcp_storename = data.images[0].fields[0].inferText;
@@ -327,12 +345,12 @@ function requestPay() {
                   ...(생략)...
 	}
   ```
-   - 업로드된 이미지에 OCR을 사용하여 정해진 부분의 데이터를 추출하여 storename, reservedate, orderprice등을 비교하여 일치여부를 판단합니다. 
-   - 자신이 썼던 리뷰는 나의리뷰에서 볼 수 있습니다.
-   - 나의 위시리스트는 예약과정에서 위시리스트 담기버튼을 누르면 이곳에 저장이 되며 index에도 해당 id의 위시리스트가 출력이 됩니다.
-   - 해당 위시리스트를 지우기 위해선 나의 위시리스트로 이동하여 delete 시켜주어야합니다.
-   - 회원정보 수정은 먼저 비밀번호를 한번더 확인하는 작업을 거치고, id를 제외한 나머지 데이터들을 update할 수 있습니다. 회원탈퇴버튼을 누를시 해당id의 고객 데이터만 지워집니다.
-   - 1:1문의에서는 챗봇과 대화를 할 수 있으며, 정해진 명령어에 답변을 합니다.
+   - `업로드된 이미지`에 `OCR`을 사용하여 정해진 부분의 데이터를 추출하여 `storename`, `reservedate`, `orderprice`등을 비교하여 `일치여부`를 판단합니다. 
+   - 자신이 썼던 리뷰는 `나의 리뷰`에서 볼 수 있습니다.
+   - `나의 위시리스트`는 예약과정에서 `위시리스트 담기버튼`을 누르면 이곳에 저장이 되며 `index`에도 해당 id의 위시리스트가 출력이 됩니다.
+   - 해당 위시리스트를 지우기 위해선 나의 위시리스트로 이동하여 `delete` 시켜주어야합니다.
+   - `회원정보 수정`은 먼저 비밀번호를 한번더 확인하는 작업을 거치고, `id를 제외`한 나머지 데이터들을 `update`할 수 있습니다. `회원탈퇴버튼`을 누를시 해당id의 `고객 데이터만` 지워집니다.
+   - `1:1문의`에서는 `챗봇`과 대화를 할 수 있으며, `정해진 명령어`에 답변을 합니다.
 ### 주문 빈도에 따른 맛집랭킹 서비스
    - (rollingtext.gif)
    - index.html , MainController.java
@@ -388,10 +406,10 @@ function rollingCallback(){
    ![](./finalteam4/src/main/resources/static/img/READMEimg/admincoupon.png)
    ![](./finalteam4/src/main/resources/static/img/READMEimg/adminmenu.png)
    ![](./finalteam4/src/main/resources/static/img/READMEimg/adminreserve.png)
-   - 관리자는 총 3가지 레벨로 되어있습니다. 레벨1은 가게주인에 해당이 되고 레벨2는 admin시스템관리자, 레벨3은 총관리자입니다.
-   - 레벨1의 관리자는 각각의 가게이름으로 영업개시를 눌러 웹소켓과 연결하고, 예약주문 알림을 받을 수 있습니다. 또한 전체적인 예약 내역을 확인할 수 있고, 메뉴 관리를 통해 추가/수정/삭제를 할 수 있습니다.
-   - 레벨2의 관리자는 매장관리, 회원관리, 쿠폰관리를 할 수 있습니다. 매장관리에서는 매장에 관하여 추가/수정/삭제를 할 수 있으며, 회원관리에서는 고객데이터를 관리할 수 있습니다. 쿠폰관리에서는 custid순서대로 보유한 쿠폰을 조회할 수 있으며 추가/수정/삭제를 할 수 있습니다.
-   - admin의 index에서는 총 회원수, 입점매장, 누적 reserve, 누적 매출등을 볼 수 있으며, 일별 매출을 차트로 표현하여 쉽게 볼 수 있도록 하였습니다.
+   - `관리자`는 총 `3가지 레벨`로 되어있습니다. `레벨1`은 `가게주인`에 해당이 되고 `레벨2`는 `admin시스템관리자`, `레벨3`은 `총관리자`입니다.
+   - `레벨1`의 관리자는 각각의 가게이름으로 `영업개시`를 눌러 `웹소켓과 연결`하고, `예약주문 알림`을 받을 수 있습니다. 또한 `전체적인 예약 내역`을 확인할 수 있고, `메뉴 관리`를 통해 `추가/수정/삭제`를 할 수 있습니다.
+   - `레벨2의 관리자`는 `매장관리`, `회원관리`, `쿠폰관리`를 할 수 있습니다. `매장관리`에서는 매장에 관하여 `추가/수정/삭제`를 할 수 있으며, `회원관리`에서는 `고객데이터`를 관리할 수 있습니다. `쿠폰관리`에서는 `custid`순서대로 보유한 쿠폰을 조회할 수 있으며 `추가/수정/삭제`를 할 수 있습니다.
+   - `admin의 index`에서는 `총 회원수`, `입점매장`, `누적 reserve`, `누적 매출`등을 볼 수 있으며, 일별 매출을 `차트`로 표현하여 쉽게 볼 수 있도록 하였습니다.
 
 ## 트러블슈팅(마지막날까지 추가하기)
 - 고용훈
@@ -452,13 +470,12 @@ function rollingCallback(){
   - admin 메인 페이지에 chart 뿌리는 과정 중 $ajax가 정의되지 않는 문제 발생 →
 
 ## 고찰
-- (작성 중)
-- NCP 서브계정의 한계로 Naver api를 마음껏 사용하지 못했습니다
-- 카카오 비즈니스 채널 개설이 불가능하여 카카오 메시지 api 대신 최대한 비슷하게 카카오 link api를 이용했습니다.
-- 템플릿의 문제로 반복적인 명령어 사용 ex)rollingtext, search 등등
-- 조금 더 제주도스러운 UI/UX를 살리지 못했습니다.
-- API끼리의 조합이 너무 단순했습니다.
-- OCR을 사용하여 전체적인 데이터를 읽어 원하는 데이터만 추출하도록 개선하겠습니다.
+- NCP `서브계정의 한계`로 Naver api를 마음껏 사용하지 못했습니다
+- `카카오 비즈니스 채널 개설이 불가능`하여 카카오 메시지 api 대신 최대한 비슷하게 카카오 link api를 이용했습니다.
+- `템플릿의 문제`로 반복적인 명령어 사용 ex)rollingtext, search 등등
+- 조금 더 `제주도스러운 UI/UX`를 살리지 못했습니다.
+- API끼리의 조합이 너무 `단순`했습니다.
+- `OCR`을 사용하여 `전체적인 데이터`를 읽어 `원하는 데이터`만 추출하도록 개선하겠습니다.
 
 ## 후기
 - (작성 중)
