@@ -1,81 +1,156 @@
-<!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <meta charset="utf-8">
-
 <head>
-<link rel="stylesheet" th:href="@{/assets/css/common/styles.css}">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" th:href="@{/assets/css/style/css}">
 <style>
-.my_tit {
+/* 메뉴바 */
+.nav-item {
 	position: relative;
-	padding-bottom: 10px;
-	border-bottom: 4px solid #000;
+	padding-right: 50px;
 }
 
-.my_tit span {
-	display: inline-block;
-	margin-left: 10px;
-	font-size: 18px;
-	font-weight: 400;
-}
-
-.row {
+.navbar-collapse ul li a.nav-link:before {
+	position: absolute;
+	bottom: -5px;
+	left: 0;
 	width: 100%;
-	padding: 20px 10px;
-	display: flex;
-	flex-wrap: wrap;
-	padding-top: 20px;
+	height: 2px;
+	background: transparent;
+	content: '';
+	opacity: 0;
+	-ms-transition: opacity 0.3s, -webkit-transform 0.3s;
+	-webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+	transition: opacity 0.3s, transform 0.3s;
+	-ms-transform: translateY(10px);
+	-webkit-transform: translateY(10px);
+	transform: translateY(10px);
 }
 
-.img-fluid card-img-top {
-	height: 200px;
-	width: 150px;
+.navbar-collapse ul li:hover a.nav-link:before {
+	opacity: 1;
+	-ms-transform: translateY(0px);
+	-webkit-transform: translateY(0px);
+	transform: translateY(0px);
+	bottom: 0px;
+	background: skyblue;
 }
 
-.myButton {
-	box-shadow: inset 0px 39px 0px -24px #e67a73;
-	background-image: linear-gradient(45deg, #FF512F 0%, #F09819 51%, #FF512F 100%);
-	border-radius: 4px;
-	border: 1px solid #ffffff;
-	display: inline-block;
-	cursor: pointer;
+.dropdown-item:hover, .dropdown-item:focus {
 	color: #ffffff;
-	font-family: Arial;
-	font-size: 15px;
-	font-weight: bold;
-	padding: 8px 81px;
 	text-decoration: none;
-	text-shadow: 0px 1px 0px #b23e35;
+	background-color: skyblue;
 }
 
-.myButton:hover {
-	background-color: #eb675e;
+.dropdown-menu {
+	border: 0px;
+}
+/*  배너 */
+.card2 {
+	background-color: #ffffff;
+	border-radius: 30px;
+	background: url("/img/caption.jpg") no-repeat;
+	background-size: cover;
+	background-position: center;
+	margin-top: 30px;
 }
 
-.myButton:active {
-	position: relative;
-	top: 1px;
+#heading {
+	font-size: 55px;
+	color: #fff;
 }
 
-.cropped {
+.temp {
+	place-items: center;
+}
+
+.temp-details>p>span, .grey {
+	color: #fff;
+	font-size: 18px;
+}
+
+.fa {
+	color: #fff
+}
+
+*:focus {
+	outline: none;
+}
+
+/* Card Styles */
+.card-sl {
+	border-radius: 8px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
 	width: 300px;
-	height: 300px;
-	object-fit: cover;
-	object-position: 20% 10%;
-	padding-top: 20px;
-	border-radius: 70px;
-	overflow: hidden;
+	margin-left:auto;
+	margin-right:auto;
 }
+
+#shareimg {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+}
+
+.card-image img {
+	height: 250px;
+	width: 520px;
+	border-radius: 8px 8px 0px 0;
+	object-fit: cover;
+	overflow: hidden;
+	z-index: 1;
+}
+
+.card-action {
+	position: relative;
+	float: right;
+	margin-top: -25px;
+	margin-right: 20px;
+	z-index: 2;
+	color: #E26D5C;
+	background: #fff;
+	border-radius: 100%;
+	padding: 15px;
+	font-size: 15px;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0
+		rgba(0, 0, 0, 0.19);
+	display: flex;
+}
+
+.card-heading {
+	font-size: 18px;
+	font-weight: bold;
+	background: #fff;
+	padding: 10px 15px;
+}
+
+.card-text {
+	padding: 10px 15px;
+	background: #fff;
+	font-size: 14px;
+	color: #636262;
+}
+
+.card-button {
+	display: flex;
+	justify-content: center;
+	padding: 10px 0;
+	width: 100%;
+	background-color: orange;
+	color: #fff;
+	border-radius: 0 0 8px 8px;
+}
+
+.card-button:hover {
+	text-decoration: none;
+	background-color: #1D3461;
+	color: #fff;
+}
+
+
 </style>
 
 <script>
-	$(document).ready(function() {
-		const menu = document.querySelector("#menu-toggle")
-		$("#wrapper").toggleClass("menuDisplayed");
-		menu.style.visibility = "hidden";
-	});
-
 	function del(wishlistid) {
 		var id = '[[${session.logincust.custid}]]';
 		var c = confirm('삭제하시겠습니까?');
@@ -85,10 +160,9 @@
 		}
 	}
 </script>
+</head>
 <body>
-	<div id="wrapper" style="height: auto">
-		<!-- 메뉴바 -->
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -97,8 +171,8 @@
 			</button>
 
 
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
+			<div class="collapse navbar-collapse" id="navbarSupportedContent" style="justify-content:center;">
+				<ul class="navbar-nav">
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -133,35 +207,59 @@
 				</ul>
 			</div>
 		</nav>
-		<!-- 메뉴바 끝 -->
-		<th:block th:replace="mypage/fragment/banner :: bannerFragment"></th:block>
-		<div id="page-content-wrapper">
-			<div class="container-fluid px-1 px-md-4 py-2 mx-auto">
-				<div class="row d-flex justify-content-center px-3">
-					<h3 class="my_tit">
-						위시리스트<span>Wishlist</span>
-					</h3>
-					<div class="row">
-						<div class="col-xl-3 col-lg-6 col-md-6 mb-4"
-							th:each="vw : ${viewwish}" style="height: 500px; width: 305px">
-							<div class="bg-white rounded shadow-sm">
-								<img th:src="@{/storeimg/} + ${vw.storeimg}" alt=""
-									class="cropped" style="height: 300px; width: 320px">
-								<div class="p-4">
-									<h5>
-										<a th:href="@{/storedetail(storeid=${vw.storeid})}"
-											class="text-dark" th:text="${vw.storename}"></a>
-									</h5>
-									<p class="small text-muted mb-0"></p>
-									<center>
-										<a th:onclick="del([[${vw.wishlistid}]])" class="myButton">DELETE</a>
-									</center>
-								</div>
-							</div>
+		<div class="container-fluid">
+
+		<div class="row justify-content-center">
+			<div class="col-12 col-md-4 col-sm-12 col-xs-12">
+				<div class="card2 p-4">
+					<div class="d-flex">
+						<h6 class="flex-grow-1" style="color: #fff;"
+							th:text="'😀'+${session.logincust.custname}+'님의 가까운 예약'"></h6>
+						<h6></h6>
+					</div>
+					<div class="d-flex flex-column temp mt-5 mb-3"
+						th:with="list1 = ${session.list_one}">
+						<h3 class="mb-0 font-weight-bold" id="heading"
+							th:text="${list1.storename}"></h3>
+					</div>
+					<div class="d-flex" th:with="list1 = ${session.list_one}">
+						<div class="temp-details flex-grow-1">
+							<p class="my-1" th:text="'D' + ${session.banner_dday}"
+								style="color: #fff; font-size: 15px;">
+								<span th:text="${session.banner_rsvdate}"
+									style="color: #fff; font-size: 45px;"></span>
+							</p>
+							<p class="my-1">
+								<span th:text="'예약날짜 : '+${list1.reservedate}"
+									style="color: #fff;"> </span>
+							</p>
 						</div>
+						<div></div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</body>
+	<div class="container" style="margin-top: 50px; margin-bottom: 50px;">
+		<div class="row">
+			<div class="col-md-4 sm-4" th:each="vw : ${viewwish}"
+				style="padding-top: 20px; text-align: center;">
+				<div class="card-sl">
+					<div class="card-image">
+
+						<img th:src="@{/storeimg/} + ${vw.storeimg}"
+							style="justify-content: space between;" />
+
+					</div>
+					<div class="card-heading" ><a th:href="@{/storedetail(storeid=${vw.storeid})}" th:text="${vw.storename}" style="text-decoration:none; color:black;"></a></div>
+						<button class="btn btn-primary" style="margin-bottom:10px;"><a th:onclick="del([[${vw.wishlistid}]])">DELETE</a></button>
+					<a href="#" class="card-button"></a>
+				</div>
+
+			</div>
+			
+		</div>
+
+	</div>
+	</body>
+	</html>
