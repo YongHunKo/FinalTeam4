@@ -26,6 +26,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		INNER JOIN menu m on r.menuid = m.menuid
 		INNER JOIN store s on m.storeid = s.storeid
 		INNER JOIN orderlist o on r.orderlistno = o.orderlistno
-		WHERE s.storeid = #{storeid};
+		WHERE s.storeid = #{storeid}
+		ORDER BY o.reservedate DESC, o.reservetime DESC;
 	</select>
 </mapper>
