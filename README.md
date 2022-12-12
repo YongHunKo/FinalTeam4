@@ -45,7 +45,9 @@
       4. OCR을 이용한 영수증 리뷰
    6. 관리자 페이지 구현
 4. 프로젝트 세부일정
-   - (세부일정 사진)
+   - WBS   
+   ![](./finalteam4/src/main/resources/static/img/READMEimg/plan2.JPG)
+   ![](./finalteam4/src/main/resources/static/img/READMEimg/plan.JPG)
 5. 역할 분담(아주 상세하게)
    - 고용훈
      - 검색, 식당, 예약-주문, QA테스트, 서버관리
@@ -56,7 +58,7 @@
    - 박시연
      - 관리자, 위시리스트, DB관리
 6. 개발환경 및 수행 도구
-
+   
 |언어|웹|개발도구|데이터베이스|협업도구|프레임워크|API|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |Java|JavaScript|Eclipse|MySQL|GitHub|SpringBoot|Kakaologin|
@@ -67,9 +69,9 @@
 |||||||Kakao link|
 |||||||Kakao Map|
 
-1. DB 설계
+7. DB 설계
    ![](./finalteam4/src/main/resources/static/img/READMEimg/ERD.png)
-2. UI 설계
+8. UI 설계
    ![](./finalteam4/src/main/resources/static/img/READMEimg/total_userflow.png)
 
 <details>
@@ -360,7 +362,12 @@ function rollingCallback(){
 </script>
 ```
 ### 관리자 페이지
-   - (admin.png)
+   ![](./finalteam4/src/main/resources/static/img/READMEimg/adminindex.png)
+   ![](./finalteam4/src/main/resources/static/img/READMEimg/adminstore.png)
+   ![](./finalteam4/src/main/resources/static/img/READMEimg/admincust.png)
+   ![](./finalteam4/src/main/resources/static/img/READMEimg/admincoupon.png)
+   ![](./finalteam4/src/main/resources/static/img/READMEimg/adminmenu.png)
+   ![](./finalteam4/src/main/resources/static/img/READMEimg/adminreserve.png)
    - 관리자는 총 3가지 레벨로 되어있습니다. 레벨1은 가게주인에 해당이 되고 레벨2는 admin시스템관리자, 레벨3은 총관리자입니다.
    - 레벨1의 관리자는 각각의 가게이름으로 영업개시를 눌러 웹소켓과 연결하고, 예약주문 알림을 받을 수 있습니다. 또한 전체적인 예약 내역을 확인할 수 있고, 메뉴 관리를 통해 추가/수정/삭제를 할 수 있습니다.
    - 레벨2의 관리자는 매장관리, 회원관리, 쿠폰관리를 할 수 있습니다. 매장관리에서는 매장에 관하여 추가/수정/삭제를 할 수 있으며, 회원관리에서는 고객데이터를 관리할 수 있습니다. 쿠폰관리에서는 custid순서대로 보유한 쿠폰을 조회할 수 있으며 추가/수정/삭제를 할 수 있습니다.
