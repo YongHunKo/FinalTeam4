@@ -66,7 +66,7 @@ public class LoginController {
 		}
 		
 		if (session != null) {
-			session.invalidate();
+			session.removeAttribute("logincust");;
 		}
 		return "index";
 	}
