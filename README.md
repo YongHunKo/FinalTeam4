@@ -51,15 +51,25 @@
    - WBS   
    ![](./finalteam4/src/main/resources/static/img/READMEimg/plan2.JPG)
    ![](./finalteam4/src/main/resources/static/img/READMEimg/plan.JPG)
-5. 역할 분담(아주 상세하게)
+5. 역할 분담
    - 고용훈
-     - 검색, 식당, 예약-주문, QA테스트, 서버관리
+     - 검색(카테고리별 검색, 키워드 검색) 
+     - 스토어디테일
+     - 예약-주문(결제API, 카카오링크API, 웹소켓,  datetimepicker)
+     - QA테스트(1일 1시뮬레이션)
+     - NCP서버관리(NCP tomcat설치, SQL설치 및 DB연결)
+     - 소셜로그인(컨트롤러 일부분)
    - 김준기
-     - 로그인/소셜로그인, 메인페이지, 전체적인 CSS
+     - 로그인/소셜로그인(카카오/네이버/구글 소셜로그인) 
+     - 메인페이지(화면구성 및 디자인, 카드세션 디자인, 마이페이지 화면구성 및 세부화면 수정 등 전체적인 CSS)
    - 조여송
-     - 마이페이지, 쿠폰, OCR
+     - 마이페이지(회원등급 분류 및 쿠폰, 가까운 예약 배너, 테이블 조회, 상세 테이블 조회, OCR을 이용한 영수증 리뷰)
    - 박시연
-     - 관리자, 위시리스트, DB관리
+     - 관리자(관리자 등급분류, 관리자 페이지 내 데이터 종합 및 차트, 웹소캣 연결, 등급별 메뉴변경, 관리자 기능별 CRUD)
+     - 마이페이지(위시리스트 추가 및 삭제) 
+     - DB관리
+     - 검색(가격정렬)
+     - ppt
 6. 개발환경 및 수행 도구
    
 |언어|웹|개발도구|데이터베이스|협업도구|프레임워크|API|
@@ -205,8 +215,14 @@ $('#reserve_btn').click(function() {
 ```
 ### 예약
   ![](./finalteam4/src/main/resources/static/img/READMEimg/reserve.png)
-  ![](./finalteam4/src/main/resources/static/img/READMEimg/reserve_coupon.png)
+  <details>
+<summary>예약페이지 펼쳐보기</summary>
+<div markdown="1">  
+    ![](./finalteam4/src/main/resources/static/img/READMEimg/reserve_coupon.png)
   ![](./finalteam4/src/main/resources/static/img/READMEimg/reservesuccess.png)
+</div>
+</details>
+
    - reserve.html , ReserveController
    - `/addcart`된 데이터가 `/reserveimpl`을 통해 모델에 저장되어 `reserve.html`에 뿌려집니다.
    - 메뉴의 수량 변경은 동기적으로 `수정버튼`을 통해 `/update`로 넘어가 수량이 변경되고, 변경 후에 `totalprice`가 바뀝니다.
@@ -304,13 +320,27 @@ function requestPay() {
 			}
 ```
 ### 마이페이지
-   - (mypage.png , mypage_orderlist.png , mypage_orderdetail.png 등등 삽입, OCR관련 중요 코드도 넣어보자)
-   - mypage.html로 이동하게 되면 가장 가까운 예약과 나의 등급, 보유 쿠폰 등이 보여집니다.
-   - 해당 등급은 일정 금액을 채우면 레벨업 하는 방식이고 등급이 상승하면 발급되는 쿠폰 또한 얻을 수 있습니다.
-   - 테이블 조회에서는 해당id의 지난 orderlist까지 전부 보여줍니다.
-   - 해당 주문을 누르면 상세 주문내역에 들어가고 예약한 메뉴 데이터들을 출력해줍니다.
-   - 또한 이곳에서 리뷰쓰기를 할 수 있습니다.
-   - 리뷰쓰기는 영수증인증을 해야하며, 해당 영수증을 NaverOCR을 통해 JSON형식으로 데이터를 추출하여 해당 영수증의 storename, reservedate, totalprice등을 비교하여 check버튼을 눌러 맞는지 판단합니다. 맞은 경우 review text box가 활성화 되어 리뷰 및 별점을 등록할 수 있습니다.
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/mypage2.png)
+<details>
+<summary>마이페이지 펼쳐보기</summary>
+<div markdown="1">  
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/mypage2_edit.png)
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/mypage2_edit2.png)
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/mypage2_review.png)
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/mypage2_chatbot.png)
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/mypage2_wishlist.png)
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/mypage2_orderlist.png)
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/mypage2_orderdetail.png)
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/mypage2_ocrreview.png)
+</div>
+</details>
+
+   - `mypage.html`로 이동하게 되면 `가장 가까운 예약`과 `나의 등급`, `보유 쿠폰` 등이 보여집니다.
+   - 해당 등급은 `일정 금액`을 채우면 `레벨업` 하는 방식이고 `등급이 상승`하면 발급되는 `쿠폰` 또한 얻을 수 있습니다.
+   - `테이블 조회`에서는 해당id의 지난 `orderlist`까지 전부 보여줍니다.
+   - 해당 주문을 누르면 `상세 주문내역`에 들어가고 예약한 메뉴 데이터들을 출력해줍니다.
+   - 또한 이곳에서 `리뷰쓰기`를 할 수 있습니다.
+   - `리뷰쓰기`는 `영수증인증`을 해야하며, 해당 영수증을 `NaverOCR`을 통해 `JSON형식`으로 데이터를 추출하여 해당 영수증의 `storename`, `reservedate`, `totalprice`등을 비교하여 `check버튼`을 눌러 맞는지 판단합니다. 맞은 경우 `review text box`가 활성화 되어 `리뷰 및 별점`을 등록할 수 있습니다.
   ```javascript
   	function check(data) {
 		var rcp_storename = data.images[0].fields[0].inferText;
@@ -327,14 +357,13 @@ function requestPay() {
                   ...(생략)...
 	}
   ```
-   - 업로드된 이미지에 OCR을 사용하여 정해진 부분의 데이터를 추출하여 storename, reservedate, orderprice등을 비교하여 일치여부를 판단합니다. 
-   - 자신이 썼던 리뷰는 나의리뷰에서 볼 수 있습니다.
-   - 나의 위시리스트는 예약과정에서 위시리스트 담기버튼을 누르면 이곳에 저장이 되며 index에도 해당 id의 위시리스트가 출력이 됩니다.
-   - 해당 위시리스트를 지우기 위해선 나의 위시리스트로 이동하여 delete 시켜주어야합니다.
-   - 회원정보 수정은 먼저 비밀번호를 한번더 확인하는 작업을 거치고, id를 제외한 나머지 데이터들을 update할 수 있습니다. 회원탈퇴버튼을 누를시 해당id의 고객 데이터만 지워집니다.
-   - 1:1문의에서는 챗봇과 대화를 할 수 있으며, 정해진 명령어에 답변을 합니다.
+   - `업로드된 이미지`에 `OCR`을 사용하여 정해진 부분의 데이터를 추출하여 `storename`, `reservedate`, `orderprice`등을 비교하여 `일치여부`를 판단합니다. 
+   - 자신이 썼던 리뷰는 `나의 리뷰`에서 볼 수 있습니다.
+   - `나의 위시리스트`는 예약과정에서 `위시리스트 담기버튼`을 누르면 이곳에 저장이 되며 `index`에도 해당 id의 위시리스트가 출력이 됩니다.
+   - 해당 위시리스트를 지우기 위해선 나의 위시리스트로 이동하여 `delete` 시켜주어야합니다.
+   - `회원정보 수정`은 먼저 비밀번호를 한번더 확인하는 작업을 거치고, `id를 제외`한 나머지 데이터들을 `update`할 수 있습니다. `회원탈퇴버튼`을 누를시 해당id의 `고객 데이터만` 지워집니다.
+   - `1:1문의`에서는 `챗봇`과 대화를 할 수 있으며, `정해진 명령어`에 답변을 합니다.
 ### 주문 빈도에 따른 맛집랭킹 서비스
-   - (rollingtext.gif)
    - index.html , MainController.java
    - `Orderlist`의 누적된 DB를 종합하여 예약이 많은 가게에 베네핏을 주기 위해  `상위 5개` 메뉴에 대해 과거 네이버 실시간검색과 비슷한 느낌으로 출력합니다.
    - `review`가 많은 가게는 오늘의 추천 맛집으로 출력합니다
@@ -382,19 +411,40 @@ function rollingCallback(){
 </script>
 ```
 ### 관리자 페이지
-   ![](./finalteam4/src/main/resources/static/img/READMEimg/adminindex.png)
+![](./finalteam4/src/main/resources/static/img/READMEimg/adminindex.png)
+<details>
+<summary>관리자페이지 펼쳐보기</summary>
+<div markdown="1">  
    ![](./finalteam4/src/main/resources/static/img/READMEimg/adminstore.png)
    ![](./finalteam4/src/main/resources/static/img/READMEimg/admincust.png)
    ![](./finalteam4/src/main/resources/static/img/READMEimg/admincoupon.png)
    ![](./finalteam4/src/main/resources/static/img/READMEimg/adminmenu.png)
    ![](./finalteam4/src/main/resources/static/img/READMEimg/adminreserve.png)
-   - 관리자는 총 3가지 레벨로 되어있습니다. 레벨1은 가게주인에 해당이 되고 레벨2는 admin시스템관리자, 레벨3은 총관리자입니다.
-   - 레벨1의 관리자는 각각의 가게이름으로 영업개시를 눌러 웹소켓과 연결하고, 예약주문 알림을 받을 수 있습니다. 또한 전체적인 예약 내역을 확인할 수 있고, 메뉴 관리를 통해 추가/수정/삭제를 할 수 있습니다.
-   - 레벨2의 관리자는 매장관리, 회원관리, 쿠폰관리를 할 수 있습니다. 매장관리에서는 매장에 관하여 추가/수정/삭제를 할 수 있으며, 회원관리에서는 고객데이터를 관리할 수 있습니다. 쿠폰관리에서는 custid순서대로 보유한 쿠폰을 조회할 수 있으며 추가/수정/삭제를 할 수 있습니다.
-   - admin의 index에서는 총 회원수, 입점매장, 누적 reserve, 누적 매출등을 볼 수 있으며, 일별 매출을 차트로 표현하여 쉽게 볼 수 있도록 하였습니다.
+</div>
+</details>
 
-## 트러블슈팅(마지막날까지 추가하기)
-- 고용훈
+   - `관리자`는 총 `3가지 레벨`로 되어있습니다. `레벨1`은 `가게주인`에 해당이 되고 `레벨2`는 `admin시스템관리자`, `레벨3`은 `총관리자`입니다.
+   - `레벨1`의 관리자는 각각의 가게이름으로 `영업개시`를 눌러 `웹소켓과 연결`하고, `예약주문 알림`을 받을 수 있습니다. 또한 `전체적인 예약 내역`을 확인할 수 있고, `메뉴 관리`를 통해 `추가/수정/삭제`를 할 수 있습니다.
+   - `레벨2의 관리자`는 `매장관리`, `회원관리`, `쿠폰관리`를 할 수 있습니다. `매장관리`에서는 매장에 관하여 `추가/수정/삭제`를 할 수 있으며, `회원관리`에서는 `고객데이터`를 관리할 수 있습니다. `쿠폰관리`에서는 `custid`순서대로 보유한 쿠폰을 조회할 수 있으며 `추가/수정/삭제`를 할 수 있습니다.
+   - `admin의 index`에서는 `총 회원수`, `입점매장`, `누적 reserve`, `누적 매출`등을 볼 수 있으며, 일별 매출을 `차트`로 표현하여 쉽게 볼 수 있도록 하였습니다.
+
+## 트러블슈팅
+- 고용훈/ 중요 트러블 슈팅 및 해결
+    - `모바일(모바일+태블릿)`에서 실행 시 결제 페이지가 제대로 작동하지 않는 현상 → 해당 현상은 `pc와 모바일`의 `결제 모듈 작동 방식`에 의한 차이로, `pc`는 모듈을 직접띄워주며 실행되는 반면 `모바일`은 `redirect`로 새창으로 이동해버려서 작동하지 않는 현상이 발생했다. `m_redirect_url`을 주어서 모바일 결제가 진행된 후 `m_redirect_url`의 `redirect페이지`로 이동하게하여 해결
+    - java.lang.IllegalArgumentException: Illegal pattern character 'I’ , java.text.ParseException: Unparseable date: "undefined”. `d.m.y h:i:s`를 `yyyy.MM.dd HH:mm` 로 바꾸는 과정에서 생긴 parsing오류 -> 먼저 php인 `d.m.y h:i` 는 `yyyy.MM.dd HH:mm` 와 숫자가 다르기 때문에 1차적으로 html에서 `d.m.y h:i → YYYY.M.D H:mm` 로 변환시켜준다. 그리고 컨트롤러로 넘기면서 `YYYY.M.D H:mm → yyyy.MM.dd HH:mm`로 `DateFormat`을 잡고 변환시켜준다. 이때 주의해야할 점은 컨트롤러 부분에서 받아들이는 `DateFormate`이 `yyyy.MM.dd HH:mm`형식 이어야한다
+- 김준기/ 중요 트러블 슈팅 및 해결
+  - `navbar-search -style5` class로 묶여있는  `div`들  `justify-content:between` 제거 → 이유 브라우저 창이 줄어듬과 동시에 반응형 동작이 일어나는데, 블록을 잡아먹어 `search-bar` 충돌로 뭉그러짐현상이 동작되서 제거후 해결
+  - `NCP` 연동시 카카오로그인 실행시 값을 DB에 저장못해줌 → 공인IP로 바뀌며 서버주소가 바뀌기 때문에 KakaoService 에서 redirect url도 신경써줘야함. 도메인주소 재설정후 해결  
+- 조여송/ 중요 트러블 슈팅 및 해결
+  - // 변수에 타임리프 `[[${…}]]` 로 담을때 `<script>` 에 `th:inline="javascript"` 추가해주기 → 알아서 문자열에 따옴표를 추가해주고 알아서 객체화를 해준다.
+  - 제이쿼리 `<input type=”password”>` 에 값이 없는데도 null로 확인을 못함 → 전 메서드 `$.attr("disabled", **true**);` 에서 막아놓았었음 / if문 작성시 return 꼭 작성할 것  
+- 박시연/ 중요 트러블 슈팅 및 해결
+  - `어노테이션` 문제로 `JUnit` 에러 발생 → 전부 삭제 후 다시 코딩으로 해결 (`Lombok`에러 아니었음)
+  - 위시리스트 삭제 과정에서 링크에 mypage가 중복되던 문제 → 매핑 문제. controller와 html 수정으로 해결
+<details>
+<summary>고용훈/전체 트러블 슈팅</summary>
+<div markdown="1">
+
   - `CRUD 테스트` 중 `insert`가 안먹히는 현상 → `DTO순서`와 `DML 컬럼의 순서`가 맞지 않아서 발생한 현상→ `DTO의 순서`를 바꿔주면서 해결
   - `MyBatisSystemException` →마이바티스에서 파라메터 속성값을 잘못 설정함 → 속성에 맞게끔 수정→마이바티스 작성시 똑바로 보자
   - `search_btn`이 안먹히는 현상발생 →버튼 이벤트에 `alert`을 해줬는데도 `alert`이 안뜨는 상황→버튼에 걸려있는 `css`가 문제다 → `css`문제가 아니었고 `JQueryScript` 순서 문제여서 제일 위로 올려주며 해결
@@ -420,8 +470,13 @@ function rollingCallback(){
   - `No 'Access-Control-Allow-Origin' header is present on the requested resource.` 에러는 `config` 에서 세팅한 `ip` 값과 `New socketJS` 에서 설정한 `ip`값이 달라서 발생한 에러→해당 ip값을 맞춰주면 `connected`
   - adminpage에 chart가 뜨지 않는 현상 → 1. 데이터를 필요한 것만 남긴다 2. 라이브러리 순서 확인
   - java.lang.IllegalArgumentException: Illegal pattern character 'I’ , java.text.ParseException: Unparseable date: "undefined”. `d.m.y h:i:s`를 `yyyy.MM.dd HH:mm` 로 바꾸는 과정에서 생긴 parsing오류 -> 먼저 php인 `d.m.y h:i` 는 `yyyy.MM.dd HH:mm` 와 숫자가 다르기 때문에 1차적으로 html에서 `d.m.y h:i → YYYY.M.D H:mm` 로 변환시켜준다. 그리고 컨트롤러로 넘기면서 `YYYY.M.D H:mm → yyyy.MM.dd HH:mm`로 `DateFormat`을 잡고 변환시켜준다. 이때 주의해야할 점은 컨트롤러 부분에서 받아들이는 `DateFormate`이 `yyyy.MM.dd HH:mm`형식 이어야한다
+</div>
+</details>   
 
-- 김준기
+<details>
+<summary>김준기/전체 트러블 슈팅</summary>
+<div markdown="1">  
+
   - `Login` 기능 구현시 `input 값`을 못받아오는 현상 → `input 태그` 내의 `name 값`을 `DTO의 변수명`과 일치하게 셋팅하니을 넘겨줘서 해결.
   - `반응형 웹 템플릿` 의 주 `src` 들이 적용되지 않던 현상 → `index.html`의 `body`부분이 아닌 `head` 부분으로 옮겨주고, /설정해줌으로 해결 → 상단 `search bar` 창 호환 문제 해결완료
   - `navbar-search -style5` class로 묶여있는  `div`들  `justify-content:between` 제거 → 이유 브라우저 창이 줄어듬과 동시에 반응형 동작이 일어나는데, 블록을 잡아먹어 `search-bar` 충돌로 뭉그러짐현상이 동작되서 제거후 해결
@@ -431,8 +486,13 @@ function rollingCallback(){
   - `Google Login` → 구글로그인 설정시 , scope 값을 가져오는 `Google API` 서버 주소를 기본 설정값으로 설정하였더니, 정보를 가져오는 팀원과 못가져오는 팀원으로 나뉨 → 서버주소를 가져오고싶은 스코프값으로 바꿔주니 해결 → scope=email,profile
   - `NCP` 연동시 mainpage에 Logo 값을 렌더링 못하는 현상 → 서버올릴시 파일명을 체크하자 경로상 Logo7.svg로 저장되어있었으나 img 태그를 logo7.svg로설정하여 못불러옴.
   - `NCP` 연동시 카카오로그인 실행시 값을 DB에 저장못해줌 → 공인IP로 바뀌며 서버주소가 바뀌기 때문에 KakaoService 에서 redirect url도 신경써줘야함. 도메인주소 재설정후 해결
+</div>
+</details>
 
-- 조여송
+<details>
+<summary>조여송/전체 트러블슈팅</summary>
+<div markdown="1">  
+
   - 회원정보 관련 기능들에 필요한 회원 데이터를 `session`과 `model`에 저장함에 있어 어떻게 나눌 것인가 → `session` 만으로 회원 관련 모든 기능에 쓸 수 있지만 서버에 무리를 줄 수 있으므로 `model` 객체를 사용할 것
   - 회원정보 수정 후 다시 마이페이지로 리다이렉트 되지 않음 → `attr()` 메서드 `action` 속성에 상위 맵핑 경로 작성으로 해결
   - 타임리프 파싱에러(Could not parse as each:)로 리스트를 반복으로 가져올 수 없는 현상 → `th:each = ”ex : ${example}”` 처럼 참조변수와 스페이스 구분을 확실히 줘서 해결
@@ -444,21 +504,27 @@ function rollingCallback(){
   - // 변수에 타임리프 `[[${…}]]` 로 담을때 `<script>` 에 `th:inline="javascript"` 추가해주기 → 알아서 문자열에 따옴표를 추가해주고 알아서 객체화를 해준다.
   - 
   - `[application.properties](http://application.properties)` directory 경로 뒤에 `/` 로 끝내기
+</div>
+</details>
 
-- 박시연
+<details>
+<summary>박시연/전체 트러블슈팅</summary>
+<div markdown="1">  
+
   - `어노테이션` 문제로 `JUnit` 에러 발생 → 전부 삭제 후 다시 코딩으로 해결 (`Lombok`에러 아니었음)
   - maincenter html에 wishlist를 뿌리는 작업 중 `session`에서 id를 읽어오지 못하는 문제 발생 →
   - 위시리스트 삭제 과정에서 링크에 mypage가 중복되던 문제 → 매핑 문제. controller와 html 수정으로 해결
   - admin 메인 페이지에 chart 뿌리는 과정 중 $ajax가 정의되지 않는 문제 발생 →
+</div>
+</details>
 
 ## 고찰
-- (작성 중)
-- NCP 서브계정의 한계로 Naver api를 마음껏 사용하지 못했습니다
-- 카카오 비즈니스 채널 개설이 불가능하여 카카오 메시지 api 대신 최대한 비슷하게 카카오 link api를 이용했습니다.
-- 템플릿의 문제로 반복적인 명령어 사용 ex)rollingtext, search 등등
-- 조금 더 제주도스러운 UI/UX를 살리지 못했습니다.
-- API끼리의 조합이 너무 단순했습니다.
-- OCR을 사용하여 전체적인 데이터를 읽어 원하는 데이터만 추출하도록 개선하겠습니다.
+- NCP `서브계정의 한계`로 Naver api를 마음껏 사용하지 못했습니다
+- `카카오 비즈니스 채널 개설이 불가능`하여 카카오 메시지 api 대신 최대한 비슷하게 카카오 link api를 이용했습니다.
+- `템플릿의 문제`로 반복적인 명령어 사용 ex)rollingtext, search 등등
+- 조금 더 `제주도스러운 UI/UX`를 살리지 못했습니다.
+- API끼리의 조합이 너무 `단순`했습니다.
+- `OCR`을 사용하여 `전체적인 데이터`를 읽어 `원하는 데이터`만 추출하도록 개선하겠습니다.
 
 ## 후기
 - (작성 중)
