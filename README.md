@@ -7,9 +7,9 @@
   - 팀원 : [김준기](https://github.com/Junki-stevekim), [조여송](https://github.com/the-escort), [박시연](https://github.com/syp00)
 - 프로젝트 진행 : 2022.10.24 ~ 2022.12.16
 - 기대효과
-  - 일부 식당에만 서비스되는 기존 테이블링 앱과 달리 공공데이터를 이용하여 더 대중적인 원격 줄서기 서비스를 제공
-  - 웹 어플리케이션 서비스에 미숙하신 분들도 쉽게 이용할 수 있는 서비스를 제공
-  - 영수증 인증 리뷰를 통한 신뢰도있는 리뷰서비스 제공
+  - 일부 식당에만 서비스되는 기존 테이블링 앱과 달리 `공공데이터`를 이용하여 더 대중적인 원격 줄서기 서비스를 제공
+  - 웹 어플리케이션 서비스에 미숙하신 분들도 `쉽게 이용`할 수 있는 서비스를 제공
+  - 영수증 인증 리뷰를 통한 `신뢰도있는` 리뷰서비스 제공
 
 ## 프로젝트 개요
 1. 개발환경 및 시스템 구성도
@@ -29,15 +29,15 @@
   ![](./finalteam4/src/main/resources/static/img/READMEimg/system_configuration_map.png)
 2. 프로젝트 목적
     - `제주도 모범음식점현황 데이터`를 이용한 제주도내 `식당/다이닝/카페`의 메뉴들을 예약주문할 수 있는 웹 어플리케이션 구현
-   -  java를 기반으로 Controller 및 CRUD 구현
-   -  HTML/CSS/JS를 이용한 웹 화면 구성 및 기능 구현
-   -  MyBatis를 이용한 Eclipse와 MySQL의 DB연동
-   -  Kakao/Naver/Google 로그인 API를 이용한 소셜로그인 구현
-   -  NCP를 이용한 웹 서비스 배포
-   -  NCP의 OCR을 이용한 영수증 인증 후 작성가능한 리뷰 구현
-   -  NCP의 ChatBot을 이용한 1:1문의 구현
-   -  Import를 이용한 결제시스템 구현
-   -  웹소켓을 이용하여 고객(가게주인)에게 보내는 예약 알림 구현
+   -  `java`를 기반으로 `Controller` 및 `CRUD` 구현
+   -  `HTML/CSS/JS`를 이용한 웹 화면 구성 및 기능 구현
+   -  `MyBatis`를 이용한 Eclipse와 MySQL의 DB연동
+   -  Kakao/Naver/Google 로그인 `API`를 이용한 소셜로그인 구현
+   -  `NCP`를 이용한 웹 서비스 배포
+   -  NCP의 `OCR`을 이용한 `영수증 인증` 후 작성가능한 리뷰 구현
+   -  NCP의 `ChatBot`을 이용한 1:1문의 구현
+   -  Import를 이용한 `결제시스템` 구현
+   -  `웹소켓`을 이용하여 고객(가게주인)에게 보내는 예약 알림 구현
 3. 목차
    1. [index](#index)
    2. [로그인/로그아웃/회원가입](#회원가입)
@@ -86,13 +86,10 @@
      - DB관리
      - 검색(가격정렬)
      - ppt
-6. 개발환경 및 수행 도구
-   
 
-
-7. DB 설계
+6. DB 설계
    ![](./finalteam4/src/main/resources/static/img/READMEimg/ERD.png)
-8. UI 설계
+7. UI 설계
    ![](./finalteam4/src/main/resources/static/img/READMEimg/total_userflow.png)
 
 <details>
@@ -535,7 +532,6 @@ function rollingCallback(){
 - `OCR`을 사용하여 `전체적인 데이터`를 읽어 `원하는 데이터`만 추출하도록 개선하겠습니다.
 
 ## 후기
-- (작성 중)
 - 고용훈
   - 파이널프로젝트를 진행하며 먼저 끝까지 잘 따라와준 팀원들에게 감사함을 표합니다. 
   - 저희팀원끼리 부족한 부분을 서로 채워주며 끝까지 달려왔고, 열심히 해준 팀원덕분에 전체적인 진행은 아주 원활이 진행하여 마무리를 했습니다. 
