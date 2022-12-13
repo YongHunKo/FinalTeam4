@@ -331,7 +331,7 @@
 
 		$("#savereview").click(function() {
 			$("#review").attr({
-				"action" : "/mypage/reviewregist",
+				"action" : "[[@{/mypage/reviewregist}]]",
 				"method" : "GET"
 			});
 			$("#review").submit();
@@ -363,7 +363,7 @@
 		formData.append("image", imageInput.files[0]);
 
 		$.ajax({
-			url : "/ocr/ocrresult",
+			url : "[[@{/ocr/ocrresult}]]",
 			data : formData,
 			processData : false,
 			contentType : false,

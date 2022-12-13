@@ -232,7 +232,7 @@ function onSuccess(googleUser) {
 $(document).ready(function(){
 	$('#login_btn').click(function(){
 		$('#login_form').attr({
-			method:'get',
+			method:'post',
 			action:'[[@{/loginimpl}]]'
 		});
 		$('#login_form').submit();

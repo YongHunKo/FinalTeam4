@@ -182,8 +182,8 @@
 		var form = $(input).serialize();
 
 		$.ajax({
-			url : "/mypage/addcoupon",
-			type : "GET",
+			url : "[[@{/mypage/addcoupon}]]",
+			type : "POST",
 			data : form,
 			success : function(date) {
 				alert("쿠폰발급이 완료되었습니다.");
