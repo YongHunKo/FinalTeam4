@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <meta charset="utf-8">
@@ -6,7 +7,6 @@
 <link rel="stylesheet" th:href="@{/assets/css/style.css}">
 <link th:href="@{/assets/css/datepicker.min.css}" rel="stylesheet"
 	type="text/css" media="all">
-<link rel="stylesheet" th:href="@{/assets/css/nice-select.css}">
 <script type="text/JavaScript"
 	src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 
@@ -266,15 +266,9 @@ th {
 	font-weight: bold;
 }
 
-table>tbody>tr>td>img {
-	width: 100px;
-	object-fit: cover;
-}
 
-table>tbody>tr>td>img:hover {
-	width: 99px;
-	border: 1px solid #FE6B00;
-}
+
+
 
 .btn:hover {
 	background-color: #FE6B00;
@@ -320,21 +314,23 @@ table.table th {
 		<div class="wrap">
 			<div class="content_area">
 				<div class="container-fluid">
-					<h3 style="font-weight: 700; text-align: center; margin-top: 20px;">예약페이지</h3>
+					<h4 style="font-weight: 600; text-align: center; margin-top: 20px;">예약페이지</h4>
 				</div>
 				<div class="content_middle_section"></div>
 				<div class="content_totalCount_section">
 					<table class="table table-hover">
 						<tbody>
+						<thead>
 							<tr>
 								<th class="td_width_1"></th>
 								<th class="td_width_2">메뉴 이미지</th>
-								<th class="td_width_3">메뉴명</th>
+								<th class="td_width_3">메뉴</th>
 								<th class="td_width_4">가격</th>
 								<th class="td_width_4">수량</th>
 								<th class="td_width_4">합계</th>
 							</tr>
 						</thead>
+						</tbody>
 						<tbody>
 							<tr th:each="c : ${menulist}">
 								<td class="td_width_1 cart_info_td"><input type="checkbox"
@@ -351,7 +347,7 @@ table.table th {
 									id="adminid" th:value="${c.adminid}"></td>
 								<td class="td_width_2"><img
 									th:src="@{/menuimg/}+${c.menuimg}"
-									style="width: 200px; height: 200px; border-radius: 60px;">
+									style="max-width:100%; max-height:100%; border-radius:10px;">
 								</td>
 								<td class="td_width_3" th:text="${c.menuname}">Item Name</td>
 								<td class="td_width_4 price_td"
@@ -802,7 +798,7 @@ table.table th {
 		</script>
 
 	</div>
-
+<script th:src="@{/assets/js/jquery.nice-select.min.js}"></script>
 </body>
 
 </html>
