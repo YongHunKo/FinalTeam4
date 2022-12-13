@@ -1,4 +1,5 @@
 # Eat & Out
+### AI플랫폼을 활용한 예약주문 서비스 웹 어플리케이션 개발
 <p align="center"><img src="./finalteam4/src/main/resources/static/assets/images/eLogo.png" width="400" height=""></p>
 
 - 팀명 : `Eat & Out`
@@ -11,17 +12,32 @@
   - 영수증 인증 리뷰를 통한 신뢰도있는 리뷰서비스 제공
 
 ## 프로젝트 개요
-1. 프로젝트 주제
-    - `AI 플랫폼`을 활용한 예약주문 서비스 웹 어플리케이션 개발
-2. 프로젝트 목적(얘는 수정이 살짝 필요함)
+1. 개발환경 및 시스템 구성도
+   - 개발환경 및 버전
+
+      |언어|웹|개발도구|데이터베이스|협업도구|프레임워크|API|
+      |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+      |`Java 11`|JavaScript|Eclipse 2020-12|MySQL 8.0.17|`GitHub`|SpringBoot 2.7.4|Kakaologin|
+      ||HTML5|||Notion|MyBatis 3.2.2|Naverlogin|
+      ||CSS6|||GatherTown||NaverOCR|
+      ||JQuery 3.1.1|||||NaverChatbot|
+      ||AJAX|||||Import|
+      |||||||Kakao link|
+      |||||||Kakao Map|
+
+   - 시스템 구성도
+  ![](./finalteam4/src/main/resources/static/img/READMEimg/system_configuration_map.png)
+2. 프로젝트 목적
     - `제주도 모범음식점현황 데이터`를 이용한 제주도내 `식당/다이닝/카페`의 메뉴들을 예약주문할 수 있는 웹 어플리케이션 구현
-      - `협업`을 통해 반응형 웹사이트를 구현
-      - 맛집예약 웹사이트에 맞는 `화면 디자인 및 DB설계`
-      - `프레임워크`를 이용한 동적인 화면 구현
-      - `DBMS`를 이용하여 DB를 구축하고 Spring Container와 연결
-      - Java 개발도구와 IDE 사용
-      - ERD Cloud와 Notion, Github을 사용한 협업 경험
-      - 식당 예약을 하는데 불편함을 개선하고 `신뢰성`있는 리뷰서비스 제공
+   -  java를 기반으로 Controller 및 CRUD 구현
+   -  HTML/CSS/JS를 이용한 웹 화면 구성 및 기능 구현
+   -  MyBatis를 이용한 Eclipse와 MySQL의 DB연동
+   -  Kakao/Naver/Google 로그인 API를 이용한 소셜로그인 구현
+   -  NCP를 이용한 웹 서비스 배포
+   -  NCP의 OCR을 이용한 영수증 인증 후 작성가능한 리뷰 구현
+   -  NCP의 ChatBot을 이용한 1:1문의 구현
+   -  Import를 이용한 결제시스템 구현
+   -  웹소켓을 이용하여 고객(가게주인)에게 보내는 예약 알림 구현
 3. 목차
    1. [index](#index)
    2. [로그인/로그아웃/회원가입](#회원가입)
@@ -72,15 +88,7 @@
      - ppt
 6. 개발환경 및 수행 도구
    
-|언어|웹|개발도구|데이터베이스|협업도구|프레임워크|API|
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-|Java|JavaScript|Eclipse|MySQL|GitHub|SpringBoot|Kakaologin|
-||HTML5|||Notion|MyBatis|Naverlogin|
-||CSS6|||GatherTown||NaverOCR|
-||JQuery|||||NaverChatbot|
-||AJAX|||||Import|
-|||||||Kakao link|
-|||||||Kakao Map|
+
 
 7. DB 설계
    ![](./finalteam4/src/main/resources/static/img/READMEimg/ERD.png)
