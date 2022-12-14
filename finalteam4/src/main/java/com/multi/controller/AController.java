@@ -2,11 +2,16 @@ package com.multi.controller;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -24,6 +29,9 @@ import com.multi.service.OcrService;
 import com.multi.service.OrderlistService;
 import com.multi.service.ReserveService;
 import com.multi.service.StoreService;
+import com.multi.service.TestSMS;
+
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 @RestController
 public class AController {
@@ -48,6 +56,8 @@ public class AController {
 	@Value("${imgdir}")
 	String imgdir;
 
+	@Autowired
+	TestSMS  TestSMS;
 	/**
 	 * checkid 해당 메소드는 cid를 통해 cust에서 해당 cid와 맞는 custid를 검색하여 일치 여부를 result로
 	 * return해주기 위한 목적이다.
@@ -76,7 +86,13 @@ public class AController {
 		}
 		return result;
 	}
-
+	
+	@PostMapping("/memberPhoneCheck")
+	public @ResponseBody String memberPhoneCheck(@RequestParam(value="to") String to) throws CoolsmsException {
+			
+		return TestSMS.PhoneNumberCheck(to);
+	}
+	
 	/**
 	 * addcart 해당 메소드는 storeid를 통해 store-menu-menuimgs로 묶인 관계에서 검색된 데이터들을 cart에
 	 * register하는 것이 목적이다.

@@ -119,6 +119,8 @@
 
 
 	<script>
+
+	 
 	
 	$(document).ready(function(){
 		$('#signup_btn').click(function(){
@@ -130,7 +132,7 @@
 		});
 		
 		
-		
+		 
 		$('#check').click(function(){
 			var custid = $('#id').val();
 			$.ajax({
@@ -161,6 +163,39 @@
 		});
 		
 		
+		
+		
+		//문자인증
+		$('#memberPhoneCheck').click(function(){
+			 $('#number').show();
+			var to = $('#memberPhone').val();
+			$.ajax({
+				url : "/eatnout/memberPhoneCheck",
+				type : "POST",
+				data : "to=" + to,
+				dataType : "json",
+				success : function(data) {
+					const checkNum = data;
+		            //인증하기 버튼 클릭 이벤트
+				$('#certifyCheck').click(function(){
+						const userNum = $('#memberPhoneCertify').val();		
+						if(checkNum == userNum){
+							alert('인증 성공하였습니다.');
+						}else {
+							alert('인증 실패하였습니다. 다시 입력해주세요.');
+						}
+					});
+		            
+				},
+				error : function() {
+					alert("에러")
+				}
+			});
+		});
+		 
+		
+			
+		 
 	}); 
 	</script>
 
@@ -188,7 +223,16 @@
                <input type="text" id="name" name="custname" class="form-control item" placeholder="이름" required>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control item" id="phone-number" placeholder="Phone Number (예: 01012345678)">
+            	<div style="display:flex; justify-content:space-between;" id="phone">
+                <input type="text" class="form-control item" id="memberPhone" name="tel" placeholder="Phone Number (예: 01012345678)" style="width:300px;">
+                <button class="btn btn-warning"  id="memberPhoneCheck" style=" position:relative; margin-bottom:30px; left:20px; width:180px;" >휴대폰 본인인증하기</button>
+                </div>
+                <div id="number" style="display:none;">
+                <div style="display:flex; justify-content:space-between;">
+                <input type="text" class="form-control item" id="memberPhoneCertify" placeholder="인증번호를 적어주세요" style="width:280px;">
+                <button class="btn btn-warning"  id="certifyCheck" style=" position:relative; margin-bottom:30px; left:20px; margin-bottom:25px; width:180px;">인증번호입력하기</button>
+                </div>
+                </div>
             </div>
             <div class="form-group">
                 <input type="text" class="form-control item" id="birth-date" placeholder="Birth Date (예: 1995-11-12)">
