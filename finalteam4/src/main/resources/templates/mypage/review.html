@@ -12,7 +12,7 @@
 .card2 {
 	background-color: #ffffff;
 	border-radius: 30px;
-	background: url("/eatnout/img/caption.jpg") no-repeat;
+	
 	background-size: cover;
 	background-position: center;
 	margin-top: 30px;
@@ -179,7 +179,7 @@
 
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-4 col-sm-12 col-xs-12">
-				<div class="card2 p-4">
+				<div class="card2 p-4" th:style="'background: url('+@{/img/caption.jpg}+');'">
 					<div class="d-flex">
 						<h6 class="flex-grow-1" style="color: #fff;"
 							th:text="'😀'+${session.logincust.custname}+'님의 가까운 예약'"></h6>
