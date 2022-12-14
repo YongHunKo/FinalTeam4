@@ -46,7 +46,7 @@ public class KaKaoService {
 	            StringBuilder sb = new StringBuilder();
 	            sb.append("grant_type=authorization_code");
 	            sb.append("&client_id=8f091ec537ce9700f5864824e26f19d9"); // APPLICATION Client ID
-	            sb.append("&redirect_uri=http://118.67.131.90/kakao/callback"); // Redirect URL
+	            sb.append("&redirect_uri=http://118.67.131.90/eatnout/kakao/callback"); // Redirect URL
 				/* 서버전용
 				 * sb.append("&redirect_uri=http://118.67.131.90/kakao/callback"); 
 				 * 

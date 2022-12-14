@@ -53,7 +53,7 @@ public class OauthService {
 	        sb.append("grant_type=authorization_code");
 	        sb.append("&client_id=414674411151-8otfjo97eobc9r4lk262bvegl1e27so6.apps.googleusercontent.com");
 	        sb.append("&client_secret=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");
-	        sb.append("&redirect_uri=http://localhost:80/google/callback");
+	        sb.append("&redirect_uri=http://localhost:80/eatnout/google/callback");
 	        sb.append("&code="+authorize_code);
 	        sb.append("&state=url_parameter");
 	        sb.append("&prompt=consent");
