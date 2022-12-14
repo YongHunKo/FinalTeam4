@@ -5,14 +5,14 @@
 
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" th:href="@{/assets/css/common/styles.css}">
+
 
 <style>
 /*  배너 */
 .card2 {
 	background-color: #ffffff;
 	border-radius: 30px;
-	background: url("/img/caption.jpg") no-repeat;
+	background: url("/eatnout/img/caption.jpg") no-repeat;
 	background-size: cover;
 	background-position: center;
 	margin-top: 30px;
@@ -316,7 +316,7 @@
 						</div>
 						<div id="card-body">
 						<div class="d-flex flex-row p-3">
-							<img src="/assets/images/eLogo.png" width="70" height="70" >
+							<img th:src="@{/assets/images/eLogo.png}" width="70" height="70" >
 							<div class="chat ml-2 p-3">궁금하신 점 있으신가요? 저에게 물어봐주세요!</div>
 						</div>
 						</div>

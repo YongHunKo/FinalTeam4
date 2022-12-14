@@ -7,7 +7,37 @@
 <link rel="stylesheet" th:href="@{/assets/css/common/styles.css}">
 
 <style>
+/* 배너 */
+.card2 {
+	background-color: #ffffff;
+	border-radius: 30px;
+	background: url("/eatnout/img/caption.jpg") no-repeat;
+	background-size: cover;
+	background-position: center;
+	margin-top: 30px;
+}
 
+#heading {
+	font-size: 55px;
+	color: #fff;
+}
+
+.temp {
+	place-items: center;
+}
+
+.temp-details>p>span, .grey {
+	color: #fff;
+	font-size: 18px;
+}
+
+.fa {
+	color: #fff
+}
+
+*:focus {
+	outline: none;
+}
 .reconfirm {
 	margin: 0px auto;
 	height: 220px;
@@ -146,7 +176,39 @@
 		</div>
 	</nav>
 	<!-- 메뉴바 끝 -->
-	<th:block th:replace="mypage/fragment/banner :: bannerFragment"></th:block>
+	<div class="container-fluid">
+
+		<div class="row justify-content-center">
+			<div class="col-12 col-md-4 col-sm-12 col-xs-12">
+				<div class="card2 p-4">
+					<div class="d-flex">
+						<h6 class="flex-grow-1" style="color: #fff;"
+							th:text="'😀'+${session.logincust.custname}+'님의 가까운 예약'"></h6>
+						<h6></h6>
+					</div>
+					<div class="d-flex flex-column temp mt-5 mb-3"
+						th:with="list1 = ${session.list_one}">
+						<h3 class="mb-0 font-weight-bold" id="heading"
+							th:text="${list1.storename}"></h3>
+					</div>
+					<div class="d-flex" th:with="list1 = ${session.list_one}">
+						<div class="temp-details flex-grow-1">
+							<p class="my-1" th:text="'D' + ${session.banner_dday}"
+								style="color: #fff; font-size: 15px;">
+								<span th:text="${session.banner_rsvdate}"
+									style="color: #fff; font-size: 45px;"></span>
+							</p>
+							<p class="my-1">
+								<span th:text="'예약날짜 : '+${list1.reservedate}"
+									style="color: #fff;"> </span>
+							</p>
+						</div>
+						<div></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div id="page-content-wrapper">
 		<div class="container-fluid px-1 px-md-4 py-2 mx-auto">
 			<div class="row d-flex justify-content-center px-3">

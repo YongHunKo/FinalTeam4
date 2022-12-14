@@ -4,6 +4,37 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" th:href="@{/assets/css/style/css}">
 <style>
+/* 배너 */
+.card2 {
+	background-color: #ffffff;
+	border-radius: 30px;
+	
+	background-size: cover;
+	background-position: center;
+	margin-top: 30px;
+}
+
+#heading {
+	font-size: 55px;
+	color: #fff;
+}
+
+.temp {
+	place-items: center;
+}
+
+.temp-details>p>span, .grey {
+	color: #fff;
+	font-size: 18px;
+}
+
+.fa {
+	color: #fff
+}
+
+*:focus {
+	outline: none;
+}
 /* 메뉴바 */
 .nav-item {
 	position: relative;
@@ -207,11 +238,11 @@
 				</ul>
 			</div>
 		</nav>
-		<div class="container-fluid">
+	<div class="container-fluid">
 
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-4 col-sm-12 col-xs-12">
-				<div class="card2 p-4">
+				<div class="card2 p-4" th:style="'background: url('+@{/img/caption.jpg}+');'">
 					<div class="d-flex">
 						<h6 class="flex-grow-1" style="color: #fff;"
 							th:text="'😀'+${session.logincust.custname}+'님의 가까운 예약'"></h6>
