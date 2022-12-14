@@ -155,7 +155,7 @@
 	var id = "[[${session.logincust.custid}]]";
 	// 서버소켓에 연결
 	function connect() {
-		var socket = new SockJS("/ws");
+		var socket = new SockJS("/eatnout/ws");
 		stompClient = Stomp.over(socket);
 
 		stompClient.connect({}, function(frame) {
