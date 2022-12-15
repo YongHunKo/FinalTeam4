@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM store
 	</select>
 	<insert id="insert" parameterType="StoreDTO">
-		INSERT INTO store VALUES (#{storeid},#{cateid},#{storename},#{storeintroduce},#{storetel},#{storestatus},#{storeinfo},#{storeaddr})
+		INSERT INTO store VALUES (#{storeid},#{cateid},#{storename},#{storeintroduce},#{storetel},#{storestatus},#{storeinfo},#{storeaddr},0,0)
 	</insert>
 	<update id="update" parameterType="StoreDTO">
 		UPDATE store SET cateid=#{cateid}, storename=#{storename}, storeintroduce=#{storeintroduce}, storetel=#{storetel}, storestatus=#{storestatus}, storeinfo=#{storeinfo}, storeaddr=#{storeaddr} WHERE storeid=#{storeid}
