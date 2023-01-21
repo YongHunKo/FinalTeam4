@@ -135,6 +135,7 @@ public class KaKaoService {
 		    return userInfo;
 		}
 
+	 
 	 public void kakaoLogout(String access_Token) {
 		    String reqURL="https://kapi.kakao.com/v1/user/logout";
 		    try {

@@ -74,6 +74,7 @@ public class KaKaoController {
 	    String email = String.valueOf(userInfo.get("email"));
 	    String profile =String.valueOf(userInfo.get("profile"));
 	    
+	    
 	    /*소셜로그인을 하는 부분*/
 		/*여기서 "1"값을 준 이유는 네이버 소셜로그인과 동일한 계정을 등록하지 않기 위함이다*/
 	    if(custservice.get(email+"1") != null) {
