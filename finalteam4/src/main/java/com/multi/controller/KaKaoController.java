@@ -49,8 +49,7 @@ public class KaKaoController {
 	 @RequestMapping(value="/callback")
 	 public String login(@RequestParam("code") String code, HttpSession session,Model model) throws Exception {
 		String access_Token = kakao.getAccessToken(code);
-	    HashMap<String, Object> userInfo = kakao.getUserInfo(access_Token);
-	    
+	    HashMap<String, Object> userInfo = kakao.getUserInfo(access_Token);	    
 	    /*랜덤이미지, 랜덤정보 부분*/
 	    List<StoreimgDTO> list2=null;
 	    List<StoreimgDTO> list3=null;
@@ -84,7 +83,7 @@ public class KaKaoController {
 	    	}
 	    }else {
 	    	try {
-	    		custservice.register(new CustDTO(email+"1", "1", nickname, null, null, null, "orange",profile));
+	    		custservice.register(new CustDTO(email+"1", "1", nickname, null, null, null,profile));
 	    		session.setAttribute("logincust", custservice.get(email+"1"));
 	    	} catch (Exception e) {
 	    		e.printStackTrace();

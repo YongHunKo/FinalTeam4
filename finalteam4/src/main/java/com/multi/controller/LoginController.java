@@ -70,7 +70,6 @@ public class LoginController {
 		}
 		return "index";
 	}
-
 	/**
 	 * loginimpl
 	 * 파라메터로 받아온 custid, custpwd를 사용하여
@@ -97,8 +96,7 @@ public class LoginController {
 		List<StoreimgDTO> list3=null;
 		List<StoreimgDTO> list4=null;
 		List<StoreimgDTO> list5=null;
-		List<StoreimgDTO> list6=null;
-		
+		List<StoreimgDTO> list6=null;		
 		try {
 			cust = service.get(custid);
 			list2=imgservice.selectrandom();
@@ -122,8 +120,7 @@ public class LoginController {
 				list = wishservice.viewwish(custid);
 				model.addAttribute("viewwish", list);
 			}
-		} catch (Exception e) {
-			
+		} catch (Exception e) {			
 		}
 		OrderlistDTO list9 = null;
 		OrderlistDTO list10 = null;
@@ -145,8 +142,5 @@ public class LoginController {
 			e.printStackTrace();
 		}
 		return "index";
-	}
-
-	
-	
+	}	
 }

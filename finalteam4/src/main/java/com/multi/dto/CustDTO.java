@@ -21,7 +21,6 @@ public class CustDTO {
 	private Date custrdate;
 	private String birth;
 	private String tel;
-	private String lv;
 	
 	// 프로필이미지 테스트
 	private String profileimg;

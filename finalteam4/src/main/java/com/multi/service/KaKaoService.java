@@ -45,8 +45,8 @@ public class KaKaoService {
 	            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 	            StringBuilder sb = new StringBuilder();
 	            sb.append("grant_type=authorization_code");
-	            sb.append("&client_id=932666bf7708e571ec41024c94bd820a"); // APPLICATION Client ID
-	            sb.append("&redirect_uri=http://118.67.131.90/eatnout/kakao/callback"); // Redirect URL
+	            sb.append("&client_id=8f091ec537ce9700f5864824e26f19d9"); // APPLICATION Client ID
+	            sb.append("&redirect_uri=http://127.0.0.1/eatnout/kakao/callback"); // Redirect URL
 				/* 서버전용
 				 * sb.append("&redirect_uri=http://118.67.131.90/kakao/callback"); 
 				 * 
@@ -89,8 +89,7 @@ public class KaKaoService {
 	        return access_Token;
 	    }
 	
-	 public HashMap<String, Object> getUserInfo (String access_Token) {
-		    
+	 public HashMap<String, Object> getUserInfo (String access_Token) {  
 		    //    요청하는 클라이언트마다 가진 정보가 다를 수 있기에 HashMap타입으로 선언
 		    HashMap<String, Object> userInfo = new HashMap<>();
 		    String reqURL = "https://kapi.kakao.com/v2/user/me";
