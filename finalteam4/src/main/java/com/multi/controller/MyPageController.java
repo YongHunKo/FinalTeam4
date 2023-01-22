@@ -71,13 +71,7 @@ public class MyPageController {
 			String reservedate = list_one.getReservetime();
 			String reservedate2 = reservedate.substring(0, 5);
 				
-			if (total_pay.getTotalpay() >= 300000) {
-				cust.setLv("orange");
-				cust_service.modify(cust);
-			} else if (total_pay.getTotalpay() >= 100000) {
-				cust.setLv("yellow");
-				cust_service.modify(cust);
-			}
+			
 			
 			
 			session.setAttribute("banner_rsvdate", reservedate2);
@@ -112,7 +106,13 @@ public class MyPageController {
 		}
 		return "index";
 	}
-
+	
+	@RequestMapping("/notice")
+	public String notice( Model model) {
+		
+		model.addAttribute("center", dir+"notice");
+		return "index";
+	}
 	/**
 	 * orderdetail 해당 메소드는 session의 저장된 logincust를 obj에 저장하고, obj를 CustDTO에 담아서
 	 * custid를 추출하여 해당 custid의 주문내역과 파라메터 id의 예약내역을 각각의 list에 담아 orderdetail에 출력을

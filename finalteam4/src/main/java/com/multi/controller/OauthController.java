@@ -67,7 +67,7 @@ public class OauthController {
 				    	}
 				    }else {
 				    	try {
-				    		custservice.register(new CustDTO(email+"3", "3", name, null, null, null,null,profile));
+				    		custservice.register(new CustDTO(email+"3", "3", name, null, null, null,profile));
 				    		session.setAttribute("logincust", custservice.get(email+"3"));
 				    	} catch (Exception e) {
 				    		e.printStackTrace();

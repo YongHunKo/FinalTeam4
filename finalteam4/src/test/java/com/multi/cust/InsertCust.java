@@ -16,7 +16,7 @@ class InsertCust {
 	@Test
 	void contextLoads() {
 		try {
-			service.register(new CustDTO("id11", "pwd11", "test11", null, null, "01011111111", "yellow", null));
+			service.register(new CustDTO("id11", "pwd11", "test11", null, null, "01011111111", null));
 			System.out.println("insert_ok");
 		} catch (Exception e) {
 			e.printStackTrace();

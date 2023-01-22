@@ -141,7 +141,6 @@ public class LoginController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return "index";
+				return "index";
 	}	
 }
