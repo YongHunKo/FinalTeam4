@@ -589,33 +589,8 @@ function rollingCallback2(){
 
     <!--====== 메인부분  시작======-->
    <div th:insert="${center} ? ${center} : maincenter">
-    <section class="header-style-1">
-        <div class="header-big">
-            <div class="header-items-active">
-                <div class="single-header-item bg_cover" th:each="r : ${randomimg}"
-                    th:style="'background-image: url('+@{'/img/'+${r.storeimg}}+');'">
-                    <div class="header-item-content">
-                        <h3 class="title" th:text="${r.storename}"></h3>
-                        <a href="javascript:void(0)" class="link" th:text="${r.storeintroduce}"></a>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        <div class="header-min">
-            <div class="header-min-item product-style-25 bg_cover" th:each="ra : ${randominfo}"
-                th:style="'background-image: url('+@{'/img/'+${ra.menuimg}}+');'">
-                <div class="product-content">
-                    <h4 class="title"><a href="product-details-page.html" th:text="${ra.storename}"></a></h4>
-                    <p th:text="${ra.storeintroduce}"></p>
-                    <a href="javascript:void(0)" class="main-btn primary-btn-border" th:text="${ra.storestatus}">
-                        </a>
-                </div>
-            </div>
   
-            </div>
-        </div>
-        
+        </div>  
     <!--====== 메인부분 끝======-->
 
 
